@@ -13,7 +13,7 @@ export default class MainPrivate extends Component {
 			<>
 				<Container fluid>
 					<div className="mainSideBar">
-						<SideBarLeft />
+						<SideBarLeft tipo={this.props.tipo}/>
 					</div>
 					<div className="mainContent mainMiSendero">
 						<Container fluid className="m-b">
