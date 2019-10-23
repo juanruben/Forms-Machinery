@@ -1,9 +1,11 @@
 class Session {
-	openSession = (token, rut, usuario, correo) => {
+	openSession = (token, rut, nombre, telefono, email, perfil) => {
 		localStorage.setItem('token', token)
 		localStorage.setItem('rut', rut)
-		localStorage.setItem('usuario', usuario)
-		localStorage.setItem('correo', correo)
+		localStorage.setItem('nombre', nombre)
+		localStorage.setItem('telefono', telefono)
+		localStorage.setItem('email', email)
+		localStorage.setItem('perfil', perfil)
 	}
 	isAuth= () => {
 		let isAuth = ("token" in localStorage)
@@ -14,8 +16,10 @@ class Session {
 		return {
 			token:localStorage.getItem("token"),
 			rut:localStorage.getItem("rut"),
-			correo:localStorage.getItem("correo"),
-			usuario:localStorage.getItem("usuario"),
+			nombre:localStorage.getItem("nombre"),
+			telefono:localStorage.getItem("telefono"),
+			email:localStorage.getItem("email"),
+			perfil:localStorage.getItem("perfil"),
 		}
 	}
 	close = () => {
