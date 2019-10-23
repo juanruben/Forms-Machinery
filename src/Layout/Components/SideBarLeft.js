@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Session from './../../Service/Session';
 
 import Logo from './../../Assets/Images/Logo.png';
 
@@ -10,6 +11,12 @@ export default class SiedebarLeft extends Component {
 		super(props);
 		this.state = {};
 	}
+
+	handleClose(){
+		Session.close();
+		window.location.assign('/');
+	}
+	
 	render() {
 		return (
 			<div className='sidebar-left sidenav' >
