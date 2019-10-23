@@ -1,5 +1,5 @@
 class Session {
-	openTmpPopUp = (token, rut, usuario, correo) => {
+	openSession = (token, rut, usuario, correo) => {
 		localStorage.setItem('token', token)
 		localStorage.setItem('rut', rut)
 		localStorage.setItem('usuario', usuario)
