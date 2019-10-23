@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
-
 
 import Logo from './../../Assets/Images/Logo.png';
+
+import MenuAdministrador from './MenuAdministrador';
+import MenuOperador from './MenuOperador';
 
 export default class SiedebarLeft extends Component {
 	constructor(props) {
@@ -19,49 +20,8 @@ export default class SiedebarLeft extends Component {
 						</span>
 					</div>
 					<br/>
-					<Link to="servicios-contratados/">
-						<li className="li-link">
-							<span className="sidebar-label">
-								Mis Servicios Contratados
-							</span>
-						</li>
-					</Link>
-					<Link to="cartola-de-pago/">
-						<li  className="li-link">
-							<span className="sidebar-label">
-								Cartola de Pago
-							</span>
-						</li>
-					</Link>
-					<Link to="mis-datos/">
-						<li  className="li-link">
-							<span className="sidebar-label">
-								Mis Datos
-							</span>
-						</li>
-					</Link>
-					<Link to="cambiar-contrasena/">
-						<li  className="li-link">
-							<span className="sidebar-label">
-								Cambiar Contraseña
-							</span>
-						</li>
-					</Link>
+					{this.props.tipo === 'administrador' ? <MenuAdministrador/> : <MenuOperador/>}
 
-					<Link to="preguntas-frecuentes/">
-						<li className="li-link">
-							<span className="sidebar-label">
-								Preguntas Frecuentes
-							</span>
-						</li>
-					</Link>
-					<Link to="contacto/">
-						<li className="li-link">
-							<span className="sidebar-label">
-								Contacto
-							</span>
-						</li>
-					</Link>
 					<li className="li-link" onClick={this.handleClose}>
 						<span className="sidebar-label">
 							Cerrar sesión
