@@ -20,7 +20,7 @@ export default class MainPrivate extends Component {
 							<div>
 								<NavBarTop nameNavBarTop={this.props.name}/>
 							</div>
-							<div>
+							<div className="container-data">
 								{this.props.children}
 							</div>
 						</Container>
