@@ -13,7 +13,7 @@ class Networking {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': Session.getTokenUser().token
+				'Authorization': Session.getInfoUser().token
 			}
 		}
 	}
@@ -33,7 +33,7 @@ class Networking {
 	}
 
     async send() {
-		let endpoint = this.endpoint.includes('.php') ? baseUrlApi + this.endpoint: BaseURLVoyager + this.endpoint
+		let endpoint = baseUrlApi + this.endpoint
 		let response = await fetch(endpoint, this.headers)
         let result = await response.json()
 		if (result) {
