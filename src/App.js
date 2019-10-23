@@ -3,16 +3,18 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './Pages/Login';
 import Recuperar from './Pages/Recuperar';
-import Home from './Pages/Home';
+import Administrador from './Pages/Administrador';
+import Operador from './Pages/Operador';
 
 class App extends Component {
 	render() {
 		return (
         <Router>
             <Switch> 
-              <Route exact path="/" component={Login}  />
-              <Route exact path="/Home" component={Home}  />
-              <Route exact path="/Recuperar" component={Recuperar}  />
+              <Route exact path="/" component={Login}/>
+              <Route exact path="/Recuperar" component={Recuperar}/>
+              <Route path="/Administrador" component={Administrador}/>
+              <Route path="/Operador" component={Operador}/>
             </Switch>
         </Router>
     )
