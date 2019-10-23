@@ -7,7 +7,7 @@ class Home extends Component {
 	render() {
 		return (
             <>
-                <Layout name="Esto es el topheader">
+                <Layout name="Esto es el topheader" tipo='operador'>
                     <Container>
                         <Row>
                             <Col>
