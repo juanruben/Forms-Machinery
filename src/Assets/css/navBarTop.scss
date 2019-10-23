@@ -1,13 +1,7 @@
 .NavBarTop {
-	margin: 40px 0 25px 0;
-	border-bottom: dashed 2px $color-borde;
-	padding-bottom: 18px;
+	margin: 20px 0 45px 0;
+	border-bottom: solid 2px $color-borde;
 	.navBarTextTitle {
-		font-weight: bold !important;
-	}
-	.icon-volver {
-		width: 20px;
-		margin-right: 5px;
-		margin-top: -5px;
+		font-weight: 500 !important;
 	}
 }
