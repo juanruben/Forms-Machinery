@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import { Container, Row, Col, Form, FormGroup, Button, Alert} from 'reactstrap';
+//import Session from './../Service/Session';
+import Api from './../Service/Api';
 
 
 import Logo from './../Assets/Images/Logo.png';
@@ -13,6 +14,38 @@ class Recuperar extends Component {
             email: '',
             txtMsj:'',
             AlertClass:'',
+        }
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.procesar = this.procesar.bind(this);
+    }
+    async procesar() {
+        let dataProcesar = {};
+        dataProcesar['email'] = this.state.email;
+        let response = await Api.RecuperarContrasenia(dataProcesar);
+        if(response.result === 'success'){
+            if(response.perfil === 1){
+                window.location.assign('/administrador/');
+            }else{
+                window.location.assign('/operador/');
+            }
+        }else{
+            this.setState({
+                txtMsj:"Usuario y/o contraseña incorrectos",
+                AlertClass: 'alert-danger'
+            });
+        }
+    }
+    
+    handleInputChange(event) { 
+        this.setState({ txtMsj:"" });
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+        this.setState({ [name]: value });
+        if(this.state.usuario && this.state.password){
+            this.setState({ disabledButton:true });
+        }else{
+            this.setState({ disabledButton:false }); 
         }
     }
 	render() {
@@ -38,7 +71,7 @@ class Recuperar extends Component {
                                     </FormGroup>
                                     <FormGroup row>
                                         <Col sm={12} className="text-center">
-                                            <Button onClick={this.setForm} className="btn-orange">Enviar</Button>
+                                            <Button onClick={this.procesar} className="btn-orange">Enviar</Button>
                                         </Col>
                                     </FormGroup>
                                     <FormGroup row>
