@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { Link } from "react-router-dom";
 
+
+import Logo from './../../Assets/Images/Logo.png';
+
 export default class SiedebarLeft extends Component {
 	constructor(props) {
 		super(props);
@@ -12,6 +15,7 @@ export default class SiedebarLeft extends Component {
 				<ul className="p-0">
 					<div className="">
 						<span className="bar-sidebar-left">
+							<img src={Logo} alt="" />
 						</span>
 					</div>
 					<br/>
