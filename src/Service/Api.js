@@ -1,5 +1,4 @@
 import Network from './Network';
-
 class Api {
   static async functionPOST(data) {
     const response = await Network.post('ruta', data);
