@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import {
+  Button, Modal, ModalHeader, ModalBody, ModalFooter,
+} from 'reactstrap';
 import verpdf from '../../../Assets/Images/ad10.png';
+
 class RegistroHistorico extends Component {
   constructor(props) {
     super(props);
@@ -9,9 +12,11 @@ class RegistroHistorico extends Component {
     };
     this.toggle = this.toggle.bind(this);
   }
+
   toggle() {
     this.setState({ modal: !this.state.modal });
   }
+
   render() {
     return (
       <>

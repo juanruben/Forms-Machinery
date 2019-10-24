@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Col, Row, Button, Form, FormGroup, Input } from 'reactstrap';
+import {
+  Col, Row, Button, Form, FormGroup, Input,
+} from 'reactstrap';
 import Layout from '../../../Layout/MainPrivate';
+
 class ClienteAgregar extends Component {
   render() {
     return (

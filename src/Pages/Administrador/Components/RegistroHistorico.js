@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../../Layout/MainPrivate';
 import PopUp from './PopUpRegistroHistorico';
+
 const items = [
   {
     patente: 'kkll29',
