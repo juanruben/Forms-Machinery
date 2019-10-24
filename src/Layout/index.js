@@ -15,7 +15,7 @@ export default class MainPrivate extends Component {
 					<div className="mainSideBar">
 						<SideBarLeft/>
 					</div>
-					<div className="mainContent mainMiSendero">
+					<div className="mainContent main-icafal">
 						<Container fluid className="m-b">
 							<div>
 								<NavBarTop nameNavBarTop={this.props.name}/>
