@@ -72,4 +72,5 @@ class ClienteAgregar extends Component {
     );
   }
 }
+
 export default ClienteAgregar;

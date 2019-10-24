@@ -58,4 +58,5 @@ class RegistroHistorico extends Component {
     );
   }
 }
+
 export default RegistroHistorico;

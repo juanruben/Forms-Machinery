@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col, Form, FormGroup, Button, Alert } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Button,
+  Alert,
+} from 'reactstrap';
 // import Session from './../Service/Session';
 import Api from '../Service/Api';
 import Logo from '../Assets/Images/Logo.png';
+
 class Recuperar extends Component {
   constructor(props) {
     super(props);
@@ -84,4 +93,5 @@ class Recuperar extends Component {
     );
   }
 }
+
 export default Recuperar;

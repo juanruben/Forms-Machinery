@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import RegistroHistorico from './Components/RegistroHistorico';
 import ClienteAgregar from './Components/ClienteAgregar';
 import ClienteLists from './Components/ClienteLists';
+
 const App = () => (
   <Router>
     <Switch>
@@ -14,4 +15,5 @@ const App = () => (
     </Switch>
   </Router>
 );
+
 export default App;

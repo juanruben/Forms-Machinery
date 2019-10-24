@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import Layout from '../../../Layout/MainPrivate';
+
 const Home = () => (
   <Layout name="Esto es el topheader">
     <Container>
@@ -12,4 +13,5 @@ const Home = () => (
     </Container>
   </Layout>
 );
+
 export default Home;
