@@ -1,22 +1,28 @@
 import Network from './Network';
 
 class Api {
-  async functionPOST(data) {
-    return await Network.post('ruta', data);
+  static async functionPOST(data) {
+    const response = await Network.post('ruta', data);
+    if (response) {
+      return response;
+    }
+    return null;
   }
 
-  async Login(data) {
+  static async Login(data) {
     const response = await Network.get('ruta', data);
     if (response) {
       return response;
     }
+    return null;
   }
 
-  async RecuperarContrasenia(data) {
+  static async RecuperarContrasenia(data) {
     const response = await Network.get('ruta', data);
     if (response) {
       return response;
     }
+    return null;
   }
 }
 
