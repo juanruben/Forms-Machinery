@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import SideBarLeft from './Components/SideBarLeft';
 import NavBarTop from './Components/NavBarTop';
-
 class MainPrivate extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
   render() {
     const { name, children } = this.props;
     return (
@@ -30,5 +28,4 @@ class MainPrivate extends Component {
     );
   }
 }
-
 export default MainPrivate;

@@ -23,27 +23,27 @@ export default class MenuAdministrador extends Component {
         <Link to={`${path}registro-historico/`}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Registro Histórico
+              Registro Histórico
             </span>
           </li>
         </Link>
         <Link onClick={this.toggle}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Admin. Clientes
+              Admin. Clientes
             </span>
             <Collapse isOpen={this.state.collapse}>
               <Link to={`${path}cliente/agregar`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Agregar Cliente
+                    Agregar Cliente
                   </span>
                 </li>
               </Link>
               <Link to={`${path}cliente/lists`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Admin. Clientes
+                    Admin. Clientes
                   </span>
                 </li>
               </Link>
@@ -53,20 +53,20 @@ export default class MenuAdministrador extends Component {
         <Link onClick={this.toggle}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Admin. Usuarios
+              Admin. Usuarios
             </span>
             <Collapse isOpen={this.state.collapse}>
               <Link to={`${path}usuario/agregar`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Agregar Usuario
+                    Agregar Usuario
                   </span>
                 </li>
               </Link>
               <Link to={`${path}usuario/lists`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Admin. Usuarios
+                    Admin. Usuarios
                   </span>
                 </li>
               </Link>
@@ -76,20 +76,20 @@ export default class MenuAdministrador extends Component {
         <Link onClick={this.toggle}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Admin. Maquina
+              Admin. Maquina
             </span>
             <Collapse isOpen={this.state.collapse}>
               <Link to={`${path}maquina/agregar`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Agregar Maquina
+                    Agregar Maquina
                   </span>
                 </li>
               </Link>
               <Link to={`${path}maquina/lists`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Admin. Maquina
+                    Admin. Maquina
                   </span>
                 </li>
               </Link>
@@ -99,20 +99,20 @@ export default class MenuAdministrador extends Component {
         <Link onClick={this.toggle}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Admin. Formularios
+              Admin. Formularios
             </span>
             <Collapse isOpen={this.state.collapse}>
               <Link to={`${path}formulario/agregar`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Agregar Formulario
+                    Agregar Formulario
                   </span>
                 </li>
               </Link>
               <Link to={`${path}formulario/lists`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Admin. Formularios
+                    Admin. Formularios
                   </span>
                 </li>
               </Link>
@@ -122,20 +122,20 @@ export default class MenuAdministrador extends Component {
         <Link onClick={this.toggle}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Admin. Notificaciones
+              Admin. Notificaciones
             </span>
             <Collapse isOpen={this.state.collapse}>
               <Link to={`${path}notificacion/agregar`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Agregar Notificación
+                    Agregar Notificación
                   </span>
                 </li>
               </Link>
               <Link to={`${path}notificacion/lists`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Admin. Notificaciones
+                    Admin. Notificaciones
                   </span>
                 </li>
               </Link>

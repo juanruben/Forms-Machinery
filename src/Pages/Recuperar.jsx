@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Container, Row, Col, Form, FormGroup, Button, Alert,
-} from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Button, Alert } from 'reactstrap';
 // import Session from './../Service/Session';
 import Api from '../Service/Api';
-
-
 import Logo from '../Assets/Images/Logo.png';
-
 class Recuperar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
-      txtMsj: '',
-      AlertClass: '',
+      msj: '',
+      alert_class: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.procesar = this.procesar.bind(this);
   }
-
   async procesar() {
     const dataProcesar = {};
     const { email } = this.state;
@@ -34,30 +28,25 @@ class Recuperar extends Component {
       }
     } else {
       this.setState({
-        txtMsj: 'Usuario y/o contraseña incorrectos',
-        AlertClass: 'alert-danger',
+        msj: 'Usuario y/o contraseña incorrectos',
+        alert_class: 'alert-danger',
       });
     }
   }
-
   handleInputChange(event) {
     this.setState({
-      txtMsj: '',
+      msj: '',
     });
-
     const { value, name } = event.target;
-
     this.setState({ [name]: value });
-
     if (this.state.usuario && this.state.password) {
       this.setState({ disabledButton: true });
     } else {
       this.setState({ disabledButton: false });
     }
   }
-
   render() {
-    const { txtMsj, AlertClass, email } = this.state;
+    const { msj, alert_class, email } = this.state;
     return (
       <Container>
         <Row>
@@ -74,7 +63,7 @@ class Recuperar extends Component {
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    {txtMsj !== '' ? <Alert className={`alert ${AlertClass}`}>{txtMsj}</Alert> : '' }
+                    {msj !== '' ? <Alert className={`alert ${alert_class}`}>{msj}</Alert> : '' }
                   </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -95,5 +84,4 @@ class Recuperar extends Component {
     );
   }
 }
-
 export default Recuperar;

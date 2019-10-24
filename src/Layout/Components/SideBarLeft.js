@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Session from '../../Service/Session';
-
 import Logo from '../../Assets/Images/Logo.png';
-
 import MenuAdministrador from './MenuAdministrador';
 import MenuOperador from './MenuOperador';
 
@@ -28,7 +26,6 @@ export default class SiedebarLeft extends Component {
           </div>
           <br />
           {Session.getInfoUser().NPerfil === 1 ? <MenuAdministrador /> : <MenuOperador />}
-
           <li className="li-link" onClick={this.handleClose}>
             <span className="sidebar-label">
 							Cerrar sesión

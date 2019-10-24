@@ -1,14 +1,10 @@
 import React from 'react';
 import { Row, Col} from 'reactstrap';
-
 class NavBarTop extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
   }
-
   render() {
     const { nameNavBarTop } = this.props;
     return (
@@ -22,5 +18,4 @@ class NavBarTop extends React.Component {
     );
   }
 }
-
 export default NavBarTop;

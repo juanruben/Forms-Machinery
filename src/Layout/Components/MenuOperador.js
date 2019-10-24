@@ -23,20 +23,20 @@ export default class MenuOperador extends Component {
         <Link onClick={this.toggle}>
           <li className="li-link">
             <span className="sidebar-label">
-                            Entradas y Salidas
+              Entradas y Salidas
             </span>
             <Collapse isOpen={this.state.collapse}>
               <Link to={`${path}check-in`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Check In
+                    Check In
                   </span>
                 </li>
               </Link>
               <Link to={`${path}check-out`}>
                 <li className="li-link">
                   <span className="sidebar-label">
-                                        Check Out
+                    Check Out
                   </span>
                 </li>
               </Link>
