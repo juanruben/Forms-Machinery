@@ -27,7 +27,7 @@ export default class SiedebarLeft extends Component {
 						</span>
 					</div>
 					<br/>
-					{this.props.tipo === 'administrador' ? <MenuAdministrador/> : <MenuOperador/>}
+					{Session.getInfoUser().NPerfil === 1 ? <MenuAdministrador/> : <MenuOperador/>}
 
 					<li className="li-link" onClick={this.handleClose}>
 						<span className="sidebar-label">
