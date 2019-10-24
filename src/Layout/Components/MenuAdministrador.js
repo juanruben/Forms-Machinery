@@ -18,7 +18,7 @@ export default class MenuAdministrador extends Component {
         let path = '/administrador/';
 		return (
             <>
-                <Link>
+                <Link to={path+'registro-historico/'}>
                     <li className="li-link">
                         <span className="sidebar-label">
                             Registro Histórico
