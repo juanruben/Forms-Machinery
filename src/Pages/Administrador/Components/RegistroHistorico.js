@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import { Container, Row, Col} from 'reactstrap';
 
 import Layout from '../../../Layout';
-import PopUp from './PopUpRegistroHistorico';
+import PopUp from './../PopUp/PopUpRegistroHistorico';
 const items = [
     {
         patente:'kkll29',
