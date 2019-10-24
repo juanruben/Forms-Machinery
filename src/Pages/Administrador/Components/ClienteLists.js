@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import { Container, Row, Col} from 'reactstrap';
 
-import Layout from '../../../Layout';
+import Layout from '../../../Layout/MainPrivate';
 const items = [
     {
         cliente:'kkll29',
