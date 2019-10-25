@@ -28,7 +28,7 @@ class Networking {
   async post(endpoint, data = {}) {
     this.endpoint = endpoint;
     this.headers.method = 'POST';
-    this.headers.body = this.fromData(data);
+    this.headers.body = Networking.fromData(data);
     return this.send();
   }
 
