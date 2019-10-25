@@ -25,6 +25,11 @@ const items = [
   },
 ];
 class RegistroHistorico extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <Layout name="Administrador de clientes">

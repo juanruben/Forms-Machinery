@@ -34,7 +34,13 @@ const items = [
     recepcion: 'Jorge González',
   },
 ];
+
 class RegistroHistorico extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <Layout name="Registro Histórico">

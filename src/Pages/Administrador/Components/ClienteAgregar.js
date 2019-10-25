@@ -5,6 +5,11 @@ import {
 import Layout from '../../../Layout/MainPrivate';
 
 class ClienteAgregar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
       <Layout name="Crear cliente">
