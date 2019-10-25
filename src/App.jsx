@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './Pages/Login';
-import Recuperar from './Pages/Recuperar';
+import Recuperar from './Pages/Recover';
 import Administrador from './Pages/Administrador/App';
 import Operador from './Pages/Operador/App';
 
