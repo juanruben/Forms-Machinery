@@ -23,7 +23,7 @@ class Login extends Component {
       disabledButton: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.procesar = this.procesar.bind(this);
+    this.processInformation = this.processInformation.bind(this);
   }
 
   async processInformation() {

@@ -22,7 +22,7 @@ class Recover extends Component {
       disabledButton: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.procesar = this.procesar.bind(this);
+    this.processInformation = this.processInformation.bind(this);
   }
 
   async processInformation() {
