@@ -10,7 +10,7 @@ class Api {
   }
 
   static async Login(data) {
-    const response = await Network.get('ruta', data);
+    const response = await Network.post('ruta', data);
     if (response) {
       return response;
     }
