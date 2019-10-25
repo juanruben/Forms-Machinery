@@ -19,7 +19,8 @@ class Recuperar extends Component {
     this.state = {
       email: '',
       msj: '',
-      alert_class: '',
+      alertclass: '',
+      disabledbutton: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.procesar = this.procesar.bind(this);
@@ -31,32 +32,35 @@ class Recuperar extends Component {
     dataProcesar.email = email;
     const response = await Api.RecuperarContrasenia(dataProcesar);
     if (response.result === 'success') {
-      if (response.perfil === 1) {
-        window.location.assign('/administrador/');
-      } else {
-        window.location.assign('/operador/');
-      }
+      console.info('Contraseña fue recuperada coractamente');
     } else {
       this.setState({
-        msj: 'Usuario y/o contraseña incorrectos',
-        alert_class: 'alert-danger',
+        msj: 'Ocurrió un prolema al intentar recuperar contraseña',
+        alertclass: 'alert-danger',
       });
     }
   }
+
   handleInputChange(event) {
-    this.setState({
-      msj: '',
-    });
+    this.setState({ msj: '' });
     const { value, name } = event.target;
     this.setState({ [name]: value });
-    if (this.state.usuario && this.state.password) {
-      this.setState({ disabledButton: true });
+    const { email } = this.state;
+    if (email !== '') {
+      this.setState({ disabledbutton: true });
     } else {
-      this.setState({ disabledButton: false });
+      this.setState({ disabledbutton: false });
     }
   }
+
   render() {
-    const { msj, alert_class, email } = this.state;
+    const {
+      msj,
+      alertclass,
+      email,
+      disabledbutton,
+    } = this.state;
+
     return (
       <Container>
         <Row>
@@ -73,12 +77,12 @@ class Recuperar extends Component {
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    {msj !== '' ? <Alert className={`alert ${alert_class}`}>{msj}</Alert> : '' }
+                    {msj !== '' ? <Alert className={`alert ${alertclass}`}>{msj}</Alert> : '' }
                   </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    <Button onClick={this.procesar} className="btn-orange">Enviar</Button>
+                    <Button onClick={this.procesar} className="btn-orange" disabled={disabledbutton}>Enviar</Button>
                   </Col>
                 </FormGroup>
                 <FormGroup row>

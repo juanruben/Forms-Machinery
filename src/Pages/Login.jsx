@@ -55,7 +55,7 @@ class Login extends Component {
     const { name } = target;
     this.setState({ [name]: value });
     const { usuario, password } = this.state;
-    if (usuario && password) {
+    if (usuario !== '' && password !== '') {
       this.setState({ disabledbutton: true });
     } else {
       this.setState({ disabledbutton: false });
