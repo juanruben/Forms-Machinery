@@ -16,59 +16,59 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      usuario: '',
-      password: '',
-      msj: '',
-      alertclass: '',
-      disabledbutton: '',
+      inputUsuario: '',
+      inputPassword: '',
+      textMsj: '',
+      alertClass: '',
+      disabledButton: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.procesar = this.procesar.bind(this);
   }
 
-  async procesar() {
-    const { usuario, password } = this.state;
+  async processInformation() {
+    const { inputUsuario, inputPassword } = this.state;
     const dataProcesar = {
-      usuario,
-      password,
+      inputUsuario,
+      inputPassword,
     };
-    const response = await Api.Login(dataProcesar);
+    const responseApi = await Api.Login(dataProcesar);
 
-    if (response.result === 'success') {
-      if (response.perfil === 1) {
+    if (responseApi.result === 'success') {
+      if (responseApi.perfil === 1) {
         window.location.assign('/administrador/');
       } else {
         window.location.assign('/operador/');
       }
     } else {
       this.setState({
-        msj: 'Usuario y/o contraseña incorrectos',
-        alertclass: 'alert-danger',
+        textMsj: 'Usuario y/o contraseña incorrectos',
+        alertClass: 'alert-danger',
       });
     }
   }
 
   handleInputChange(event) {
-    this.setState({ msj: '' });
+    this.setState({ textMsj: '' });
     const { target } = event;
     const { value } = target;
     const { name } = target;
     this.setState({ [name]: value });
-    const { usuario, password } = this.state;
-    if (usuario !== '' && password !== '') {
-      this.setState({ disabledbutton: true });
+    const { inputUsuario, inputPassword } = this.state;
+    if (inputUsuario !== '' && inputPassword !== '') {
+      this.setState({ disabledButton: true });
     } else {
-      this.setState({ disabledbutton: false });
+      this.setState({ disabledButton: false });
     }
   }
 
   render() {
     const {
-      usuario,
-      password,
-      msj,
-      alertclass,
-      disabledbutton,
+      inputUsuario,
+      inputPassword,
+      textMsj,
+      alertClass,
+      disabledButton,
     } = this.state;
 
     return (
@@ -82,22 +82,22 @@ class Login extends Component {
               <Form>
                 <FormGroup row>
                   <Col sm={12}>
-                    <input type="text" name="usuario" id="usuario" onChange={this.handleInputChange} value={usuario || ''} placeholder="Usuario" className="form-control" />
+                    <input type="text" name="usuario" id="usuario" onChange={this.handleInputChange} value={inputUsuario || ''} placeholder="Usuario" className="form-control" />
                   </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12}>
-                    <input type="password" name="password" id="password" onChange={this.handleInputChange} value={password || ''} placeholder="Password" className="form-control" />
+                    <input type="password" name="password" id="password" onChange={this.handleInputChange} value={inputPassword || ''} placeholder="Password" className="form-control" />
                   </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    {msj !== '' ? <Alert className={`alert ${alertclass}`}>{msj}</Alert> : '' }
+                    {textMsj !== '' ? <Alert className={`alert ${alertClass}`}>{textMsj}</Alert> : '' }
                   </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    <Button onClick={this.procesar} className="btn-orange" disabled={disabledbutton}>Entrar</Button>
+                    <Button onClick={this.processInformation} className="btn-orange" disabled={disabledButton}>Entrar</Button>
                   </Col>
                 </FormGroup>
                 <FormGroup row>

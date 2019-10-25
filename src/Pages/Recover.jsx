@@ -9,56 +9,55 @@ import {
   Button,
   Alert,
 } from 'reactstrap';
-// import Session from './../Service/Session';
 import Api from '../Service/Api';
 import Logo from '../Assets/images/Logo.png';
 
-class Recuperar extends Component {
+class Recover extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      msj: '',
-      alertclass: '',
-      disabledbutton: false,
+      inputEmail: '',
+      textMsj: '',
+      alertClass: '',
+      disabledButton: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.procesar = this.procesar.bind(this);
   }
 
-  async procesar() {
+  async processInformation() {
     const dataProcesar = {};
-    const { email } = this.state;
-    dataProcesar.email = email;
-    const response = await Api.RecuperarContrasenia(dataProcesar);
-    if (response.result === 'success') {
+    const { inputEmail } = this.state;
+    dataProcesar.email = inputEmail;
+    const responseApi = await Api.RecuperarContrasenia(dataProcesar);
+    if (responseApi.result === 'success') {
       console.info('Contraseña fue recuperada coractamente');
     } else {
       this.setState({
-        msj: 'Ocurrió un prolema al intentar recuperar contraseña',
-        alertclass: 'alert-danger',
+        textMsj: 'Ocurrió un prolema al intentar recuperar contraseña',
+        alertClass: 'alert-danger',
       });
     }
   }
 
   handleInputChange(event) {
-    this.setState({ msj: '' });
+    this.setState({ textMsj: '' });
     const { value, name } = event.target;
     this.setState({ [name]: value });
     const { email } = this.state;
     if (email !== '') {
-      this.setState({ disabledbutton: true });
+      this.setState({ disabledButton: true });
     } else {
-      this.setState({ disabledbutton: false });
+      this.setState({ disabledButton: false });
     }
   }
 
   render() {
     const {
-      msj,
-      alertclass,
-      email,
-      disabledbutton,
+      textMsj,
+      alertClass,
+      inputEmail,
+      disabledButton,
     } = this.state;
 
     return (
@@ -72,17 +71,17 @@ class Recuperar extends Component {
               <Form>
                 <FormGroup row>
                   <Col sm={12}>
-                    <input type="text" name="email" id="email" onChange={this.handleInputChange} value={email || ''} placeholder="Email" className="form-control" />
+                    <input type="text" name="email" id="email" onChange={this.handleInputChange} value={inputEmail || ''} placeholder="Email" className="form-control" />
                   </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    {msj !== '' ? <Alert className={`alert ${alertclass}`}>{msj}</Alert> : '' }
+                    {textMsj !== '' ? <Alert className={`alert ${alertClass}`}>{textMsj}</Alert> : '' }
                   </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col sm={12} className="text-center">
-                    <Button onClick={this.procesar} className="btn-orange" disabled={disabledbutton}>Enviar</Button>
+                    <Button onClick={this.processInformation} className="btn-orange" disabled={disabledButton}>Enviar</Button>
                   </Col>
                 </FormGroup>
                 <FormGroup row>
@@ -99,4 +98,4 @@ class Recuperar extends Component {
   }
 }
 
-export default Recuperar;
+export default Recover;
