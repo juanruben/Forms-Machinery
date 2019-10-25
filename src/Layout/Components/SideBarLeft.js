@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Session from '../../Service/Session';
-import Logo from '../../Assets/Images/Logo.png';
+import Logo from '../../Assets/images/Logo.png';
 import MenuAdministrador from './MenuAdministrador';
 import MenuOperador from './MenuOperador';
 
@@ -8,10 +8,11 @@ export default class SiedebarLeft extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleClose() {
-    Session.close();
+    this.Session.close();
     window.location.assign('/');
   }
 

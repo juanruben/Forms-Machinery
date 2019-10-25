@@ -6,7 +6,7 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap';
-import verpdf from '../../../Assets/Images/ad10.png';
+import verpdf from '../../../Assets/images/ad10.png';
 
 class RegistroHistorico extends Component {
   constructor(props) {

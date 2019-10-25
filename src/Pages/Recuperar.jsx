@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 // import Session from './../Service/Session';
 import Api from '../Service/Api';
-import Logo from '../Assets/Images/Logo.png';
+import Logo from '../Assets/images/Logo.png';
 
 class Recuperar extends Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class Recuperar extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.procesar = this.procesar.bind(this);
   }
+
   async procesar() {
     const dataProcesar = {};
     const { email } = this.state;
