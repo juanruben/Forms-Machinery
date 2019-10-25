@@ -9,9 +9,8 @@ import {
   Button,
   Alert,
 } from 'reactstrap';
-// import Session from './../Service/Session';
 import Api from '../Service/Api';
-import Logo from '../Assets/Images/Logo.png';
+import Logo from '../Assets/images/Logo.png';
 
 class Login extends Component {
   constructor(props) {
@@ -25,12 +24,15 @@ class Login extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.procesar = this.procesar.bind(this);
   }
+
   async procesar() {
-    const dataProcesar = {};
     const { usuario, password } = this.state;
-    dataProcesar.usuario = usuario;
-    dataProcesar.password = password;
+    const dataProcesar = {
+      usuario,
+      password,
+    };
     const response = await Api.Login(dataProcesar);
+
     if (response.result === 'success') {
       if (response.perfil === 1) {
         window.location.assign('/administrador/');
@@ -44,6 +46,7 @@ class Login extends Component {
       });
     }
   }
+
   handleInputChange(event) {
     this.setState({ msj: '' });
     const { target } = event;
