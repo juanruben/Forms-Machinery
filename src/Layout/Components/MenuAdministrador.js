@@ -2,6 +2,84 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Collapse } from 'reactstrap';
 
+const menu = [
+  {
+    name: 'Registro Histórico',
+    link: '/registro-historico/',
+  },
+  {
+    name: 'Admin. Clientes',
+    link: '#',
+    submenu: [
+      {
+        name: 'Agregar Cliente',
+        link: '/cliente/agregar',
+      },
+      {
+        name: 'Admin. Clientes',
+        link: '/cliente/lists',
+      },
+    ],
+  },
+  {
+    name: 'Admin. Usuarios',
+    link: '#',
+    submenu: [
+      {
+        name: 'Agregar Usuario',
+        link: '/usuario/agregar',
+      },
+      {
+        name: 'Admin. Usuario',
+        link: '/usuario/lists',
+      },
+    ],
+  },
+  {
+    name: 'Admin. Maquina',
+    link: '#',
+    submenu: [
+      {
+        name: 'Agregar Maquina',
+        link: '/maquina/agregar',
+      },
+      {
+        name: 'Admin. Maquina',
+        link: '/maquina/lists',
+      },
+    ],
+  },
+  {
+    name: 'Admin. Formularios',
+    link: '#',
+    submenu: [
+      {
+        name: 'Agregar Formularios',
+        link: '/formulario/agregar',
+      },
+      {
+        name: 'Admin. Formularios',
+        link: '/formulario/lists',
+      },
+    ],
+  },
+  {
+    name: 'Admin. Notificaciones',
+    link: '#',
+    submenu: [
+      {
+        name: 'Agregar Notificaciones',
+        link: '/notificaciones/agregar',
+      },
+      {
+        name: 'Admin. Notificaciones',
+        link: '/notificaciones/lists',
+      },
+    ],
+  },
+];
+
+
 export default class MenuAdministrador extends Component {
   constructor(props) {
     super(props);
@@ -11,137 +89,48 @@ export default class MenuAdministrador extends Component {
     this.toggle = this.toggle.bind(this);
   }
 
-  toggle(event) {
-    event.preventDefault();
-    this.setState((state) => ({ collapse: !state.collapse }));
+  toggle(e, tab) {
+    const { collapse } = this.state;
+    e.preventDefault();
+    if (collapse !== tab) {
+      this.setState({
+        collapse: tab,
+      });
+    } else {
+      this.setState({
+        collapse: 0,
+      });
+    }
   }
 
   render() {
-    const path = '/administrador/';
+    const path = '/administrador';
+    const { collapse } = this.state;
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <>
-        <Link to={`${path}registro-historico/`}>
-          <li className="li-link">
-            <span className="sidebar-label">
-              Registro Histórico
-            </span>
-          </li>
-        </Link>
-        <Link onClick={this.toggle}>
-          <li className="li-link">
-            <span className="sidebar-label">
-              Admin. Clientes
-            </span>
-            <Collapse isOpen={this.state.collapse}>
-              <Link to={`${path}cliente/agregar`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Agregar Cliente
-                  </span>
-                </li>
-              </Link>
-              <Link to={`${path}cliente/lists`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Admin. Clientes
-                  </span>
-                </li>
-              </Link>
-            </Collapse>
-          </li>
-        </Link>
-        <Link onClick={this.toggle}>
-          <li className="li-link">
-            <span className="sidebar-label">
-              Admin. Usuarios
-            </span>
-            <Collapse isOpen={this.state.collapse}>
-              <Link to={`${path}usuario/agregar`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Agregar Usuario
-                  </span>
-                </li>
-              </Link>
-              <Link to={`${path}usuario/lists`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Admin. Usuarios
-                  </span>
-                </li>
-              </Link>
-            </Collapse>
-          </li>
-        </Link>
-        <Link onClick={this.toggle}>
-          <li className="li-link">
-            <span className="sidebar-label">
-              Admin. Maquina
-            </span>
-            <Collapse isOpen={this.state.collapse}>
-              <Link to={`${path}maquina/agregar`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Agregar Maquina
-                  </span>
-                </li>
-              </Link>
-              <Link to={`${path}maquina/lists`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Admin. Maquina
-                  </span>
-                </li>
-              </Link>
-            </Collapse>
-          </li>
-        </Link>
-        <Link onClick={this.toggle}>
-          <li className="li-link">
-            <span className="sidebar-label">
-              Admin. Formularios
-            </span>
-            <Collapse isOpen={this.state.collapse}>
-              <Link to={`${path}formulario/agregar`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Agregar Formulario
-                  </span>
-                </li>
-              </Link>
-              <Link to={`${path}formulario/lists`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Admin. Formularios
-                  </span>
-                </li>
-              </Link>
-            </Collapse>
-          </li>
-        </Link>
-        <Link onClick={this.toggle}>
-          <li className="li-link">
-            <span className="sidebar-label">
-              Admin. Notificaciones
-            </span>
-            <Collapse isOpen={this.state.collapse}>
-              <Link to={`${path}notificacion/agregar`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Agregar Notificación
-                  </span>
-                </li>
-              </Link>
-              <Link to={`${path}notificacion/lists`}>
-                <li className="li-link">
-                  <span className="sidebar-label">
-                    Admin. Notificaciones
-                  </span>
-                </li>
-              </Link>
-            </Collapse>
-          </li>
-        </Link>
+        {menu.map((item, index) => (
+          <Link to={path + item.link} onClick={(e) => { this.toggle(e, index + 1); }}>
+            <li className="li-link">
+              <span className="sidebar-label">
+                {item.name}
+              </span>
+              {typeof item.submenu !== 'undefined' ? (
+                <Collapse isOpen={parseInt(collapse) === (index + 1)}>
+                  {item.submenu.map((item2) => (
+                    <Link to={path + item2.link}>
+                      <li className="li-sub-link">
+                        <span className="sidebar-label">
+                          {item2.name}
+                        </span>
+                      </li>
+                    </Link>
+                  ))}
+                </Collapse>
+              ) : null}
+            </li>
+          </Link>
+        ))}
       </>
     );
   }
