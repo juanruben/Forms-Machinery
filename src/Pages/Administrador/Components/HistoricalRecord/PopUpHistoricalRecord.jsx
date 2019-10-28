@@ -6,9 +6,9 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap';
-import verpdf from '../../../Assets/images/ad10.png';
+import verpdf from '../../../../Assets/images/ad10.png';
 
-class RegistroHistorico extends Component {
+class PopUpHistoricalRecord extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,4 +51,4 @@ class RegistroHistorico extends Component {
   }
 }
 
-export default RegistroHistorico;
+export default PopUpHistoricalRecord;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Layout from '../../../Layout/MainPrivate';
-import PopUp from './PopUpRegistroHistorico';
+import Layout from '../../../../Layout/MainPrivate';
+import PopUp from './PopUpHistoricalRecord';
 
 const items = [
   {
@@ -35,7 +35,7 @@ const items = [
   },
 ];
 
-class RegistroHistorico extends Component {
+class HistoricalRecord extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -43,7 +43,6 @@ class RegistroHistorico extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Registro Histórico">
         <div className="table-responsive">
           <table className="table table-orange">
@@ -62,7 +61,7 @@ class RegistroHistorico extends Component {
             </thead>
             <tbody>
               {items.map((item) => (
-                <tr key={item.patente}>
+                <tr>
                   <td>{item.patente}</td>
                   <td>{item.fecha}</td>
                   <td>{item.id_maquina}</td>
@@ -82,4 +81,4 @@ class RegistroHistorico extends Component {
   }
 }
 
-export default RegistroHistorico;
+export default HistoricalRecord;
