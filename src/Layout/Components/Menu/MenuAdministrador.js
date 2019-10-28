@@ -71,7 +71,7 @@ export default class MenuAdministrador extends Component {
     super(props);
     this.state = {
       collapse: false,
-      path : '/administrador',
+      path: '/administrador',
     };
     this.toggle = this.toggle.bind(this);
   }
