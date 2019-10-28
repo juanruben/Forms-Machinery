@@ -19,7 +19,6 @@ export default class SiedebarLeft extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <div className="sidebar-left sidenav">
         <ul className="p-0">
           <div className="text-center">
