@@ -1,77 +1,60 @@
 import React, { Component } from 'react';
 import {
-  Col, Row, Button, Form, FormGroup, Input,
+  Col,
+  Row,
+  Button,
+  Form,
+  FormGroup,
+  Input,
 } from 'reactstrap';
 import Layout from '../../../../Layout/MainPrivate';
 
 class FormAdd extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { values: [] };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  createUI() {
+    return this.state.values.map((el, i) => (
+      <div key={i}>
+        <input type="text" value={el || ''} onChange={this.handleChange.bind(this, i)} />
+        <input type="button" value="remove" onClick={this.removeClick.bind(this, i)} />
+      </div>
+    ));
+  }
+
+  handleChange(i, event) {
+    const values = [...this.state.values];
+    values[i] = event.target.value;
+    this.setState({ values });
+  }
+
+  addClick() {
+    this.setState((prevState) => ({ values: [...prevState.values, ''] }));
+  }
+
+  removeClick(i) {
+    const values = [...this.state.values];
+    values.splice(i, 1);
+    this.setState({ values });
+  }
+
+  handleSubmit(event) {
+    alert(`A name was submitted: ${this.state.values.join(', ')}`);
+    event.preventDefault();
   }
 
   render() {
     return (
       // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Administrador de formulario">
-        <h3 className="title-container">Agregar usuario</h3>
         <div className="container-white">
-          <Form>
-            <Row form>
-              <Col md={6}>
-                <p>Agrega los datos solicitados</p>
-              </Col>
-              <Col md={6}>
-                <p />
-              </Col>
-            </Row>
-            <Row form>
-              <Col md={6}>
-                <FormGroup>
-                  <Input type="text" name="nombre" id="nombre" placeholder="Nombre" />
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Input type="text" name="rut" id="rut" placeholder="RUT" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row form>
-              <Col md={6}>
-                <FormGroup>
-                  <Input type="number" name="telefono" id="telefono" placeholder="Teléfono" />
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Input type="email" name="email" id="email" placeholder="Email" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row form>
-              <Col md={12}>
-                <FormGroup>
-                  <Input type="select" name="perfil" id="perfil">
-                    <option>Administrador</option>
-                    <option>OPerario</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row form>
-              <Col md={6}>
-                <FormGroup>
-                  <Input type="password" name="password" id="password" placeholder="Contraseña" />
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Input type="password" name="passwordR" id="passwordR" placeholder="Repita Contraseña" />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Button className="btn-orange">Crear</Button>
+          <Form onSubmit={this.handleSubmit}>
+            {this.createUI()}
+            <input type="button" value="add more" onClick={this.addClick.bind(this)} className="btn-orange" />
+            <input type="submit" value="Submit" className="btn-orange" />
           </Form>
         </div>
       </Layout>
