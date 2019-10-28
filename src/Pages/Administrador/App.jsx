@@ -12,20 +12,20 @@ import MachineryAdd from './Components/Machinery/MachineryAdd';
 import HistoricalRecord from './Components/HistoricalRecord/HistoricalRecord';
 
 const App = () => (
-  <Router>
-    <Switch>
-      <Route exact path="/administrador/home/" component={Home} />
-      <Route exact path="/administrador/registro-historico/" component={HistoricalRecord} />
-      <Route exact path="/administrador/cliente/add/" component={ClientAdd} />
-      <Route exact path="/administrador/cliente/lists/" component={ClientLists} />
-      <Route exact path="/administrador/usuario/add/" component={UserAdd} />
-      <Route exact path="/administrador/usuario/lists/" component={UserLists} />
-      <Route exact path="/administrador/maquina/add/" component={MachineryAdd} />
-      <Route exact path="/administrador/maquina/lists/" component={MachineryLists} />
-      <Route exact path="/administrador/formulario/add/" component={FormAdd} />
-      <Route exact path="/administrador/formulario/lists/" component={FormLists} />
-    </Switch>
-  </Router>
+    <Router>
+        <Switch>
+            <Route exact path="/administrador/home/" component={Home} />
+            <Route exact path="/administrador/registro-historico/" component={HistoricalRecord} />
+            <Route exact path="/administrador/cliente/add/" component={ClientAdd} />
+            <Route exact path="/administrador/cliente/lists/" component={ClientLists} />
+            <Route exact path="/administrador/usuario/add/" component={UserAdd} />
+            <Route exact path="/administrador/usuario/lists/" component={UserLists} />
+            <Route exact path="/administrador/maquina/add/" component={MachineryAdd} />
+            <Route exact path="/administrador/maquina/lists/" component={MachineryLists} />
+            <Route exact path="/administrador/formulario/add/" component={FormAdd} />
+            <Route exact path="/administrador/formulario/lists/" component={FormLists} />
+        </Switch>
+    </Router>
 );
 
 export default App;
