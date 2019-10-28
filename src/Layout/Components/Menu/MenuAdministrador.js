@@ -13,7 +13,7 @@ const menu = [
     submenu: [
       {
         name: 'Agregar Cliente',
-        link: '/cliente/agregar',
+        link: '/cliente/add',
       },
       {
         name: 'Admin. Clientes',
@@ -27,7 +27,7 @@ const menu = [
     submenu: [
       {
         name: 'Agregar Usuario',
-        link: '/usuario/agregar',
+        link: '/usuario/add',
       },
       {
         name: 'Admin. Usuario',
@@ -41,7 +41,7 @@ const menu = [
     submenu: [
       {
         name: 'Agregar Maquina',
-        link: '/maquina/agregar',
+        link: '/maquina/add',
       },
       {
         name: 'Admin. Maquina',
@@ -55,7 +55,7 @@ const menu = [
     submenu: [
       {
         name: 'Agregar Formularios',
-        link: '/formulario/agregar',
+        link: '/formulario/add',
       },
       {
         name: 'Admin. Formularios',
@@ -69,7 +69,7 @@ const menu = [
     submenu: [
       {
         name: 'Agregar Notificaciones',
-        link: '/notificaciones/agregar',
+        link: '/notificaciones/add',
       },
       {
         name: 'Admin. Notificaciones',
