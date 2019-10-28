@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Session from '../../Service/Session';
 import Logo from '../../Assets/images/Logo.png';
-import MenuAdministrador from './MenuAdministrador';
-import MenuOperador from './MenuOperador';
+import MenuAdministrador from './Menu/MenuAdministrador';
+import MenuOperador from './Menu/MenuOperador';
 
 export default class SiedebarLeft extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ export default class SiedebarLeft extends Component {
 
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <div className="sidebar-left sidenav">
         <ul className="p-0">
           <div className="">
