@@ -42,13 +42,12 @@ class FormAdd extends Component {
   }
 
   handleSubmit(event) {
-    alert(`A name was submitted: ${this.state.values.join(', ')}`);
-    event.preventDefault();
+    // alert(`A name was submitted: ${this.state.values.join(', ')}`);
+    this.event.preventDefault();
   }
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Administrador de formulario">
         <div className="container-white">
           <Form onSubmit={this.handleSubmit}>

@@ -12,7 +12,6 @@ class UserAdd extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Administrador de usuario">
         <h3 className="title-container">Agregar usuario</h3>
         <div className="container-white">

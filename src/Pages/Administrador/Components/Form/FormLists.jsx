@@ -24,7 +24,7 @@ const items = [
     perfil: 'En Obra',
   },
 ];
-class UserLists extends Component {
+class FormLists extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -32,8 +32,7 @@ class UserLists extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
-      <Layout name="Administrador de usuario">
+      <Layout name="Administrador de formulario">
         <div className="table-responsive">
           <table className="table table-orange">
             <thead>
@@ -65,4 +64,4 @@ class UserLists extends Component {
   }
 }
 
-export default UserLists;
+export default FormLists;

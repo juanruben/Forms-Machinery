@@ -24,7 +24,7 @@ const items = [
     estado: 'En Obra',
   },
 ];
-class MachineLists extends Component {
+class MachineryLists extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -32,7 +32,6 @@ class MachineLists extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Administrador de Maquinas">
         <div className="table-responsive">
           <table className="table table-orange">
@@ -65,4 +64,4 @@ class MachineLists extends Component {
   }
 }
 
-export default MachineLists;
+export default MachineryLists;

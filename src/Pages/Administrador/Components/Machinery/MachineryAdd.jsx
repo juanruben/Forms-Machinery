@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import Layout from '../../../../Layout/MainPrivate';
 
-class MachineAdd extends Component {
+class MachineryAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,7 +12,6 @@ class MachineAdd extends Component {
 
   render() {
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Administrador de Maquinas">
         <h3 className="title-container">Agregar usuario</h3>
         <div className="container-white">
@@ -79,4 +78,4 @@ class MachineAdd extends Component {
   }
 }
 
-export default MachineAdd;
+export default MachineryAdd;
