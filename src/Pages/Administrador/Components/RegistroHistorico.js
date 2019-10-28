@@ -43,6 +43,7 @@ class RegistroHistorico extends Component {
 
   render() {
     return (
+      // eslint-disable-next-line react/jsx-filename-extension
       <Layout name="Registro Histórico">
         <div className="table-responsive">
           <table className="table table-orange">
@@ -61,7 +62,7 @@ class RegistroHistorico extends Component {
             </thead>
             <tbody>
               {items.map((item) => (
-                <tr>
+                <tr key={item.patente}>
                   <td>{item.patente}</td>
                   <td>{item.fecha}</td>
                   <td>{item.id_maquina}</td>

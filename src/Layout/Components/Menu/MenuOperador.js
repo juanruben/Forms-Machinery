@@ -56,7 +56,7 @@ export default class MenuOperador extends Component {
                 {item.name}
               </span>
               {typeof item.submenu !== 'undefined' ? (
-                <Collapse isOpen={parseInt(collapse) === (index + 1)}>
+                <Collapse isOpen={collapse === (index + 1)}>
                   {item.submenu.map((item2) => (
                     <Link to={path + item2.link}>
                       <li className="li-sub-link">

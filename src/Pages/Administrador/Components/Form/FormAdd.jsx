@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Col,
-  Row,
-  Button,
   Form,
-  FormGroup,
-  Input,
 } from 'reactstrap';
 import Layout from '../../../../Layout/MainPrivate';
 

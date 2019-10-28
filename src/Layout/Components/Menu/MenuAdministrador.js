@@ -63,20 +63,6 @@ const menu = [
       },
     ],
   },
-  {
-    name: 'Admin. Notificaciones',
-    link: '#',
-    submenu: [
-      {
-        name: 'Agregar Notificaciones',
-        link: '/notificaciones/add',
-      },
-      {
-        name: 'Admin. Notificaciones',
-        link: '/notificaciones/lists',
-      },
-    ],
-  },
 ];
 
 
@@ -85,6 +71,7 @@ export default class MenuAdministrador extends Component {
     super(props);
     this.state = {
       collapse: false,
+      path : '/administrador',
     };
     this.toggle = this.toggle.bind(this);
   }
@@ -104,30 +91,31 @@ export default class MenuAdministrador extends Component {
   }
 
   render() {
-    const path = '/administrador';
-    const { collapse } = this.state;
+    const { collapse, path } = this.state;
     return (
       // eslint-disable-next-line react/jsx-filename-extension
       <>
         {menu.map((item, index) => (
-          <Link to={path + item.link} onClick={(e) => { this.toggle(e, index + 1); }}>
+          <Link to={path + item.link} onClick={(e) => { this.toggle(e, index + 1); }} key={index}>
             <li className="li-link">
               <span className="sidebar-label">
                 {item.name}
               </span>
-              {typeof item.submenu !== 'undefined' ? (
-                <Collapse isOpen={parseInt(collapse) === (index + 1)}>
-                  {item.submenu.map((item2) => (
-                    <Link to={path + item2.link}>
-                      <li className="li-sub-link">
-                        <span className="sidebar-label">
-                          {item2.name}
-                        </span>
-                      </li>
-                    </Link>
-                  ))}
-                </Collapse>
-              ) : null}
+              <ul>
+                {typeof item.submenu !== 'undefined' ? (
+                  <Collapse isOpen={collapse === (index + 1)}>
+                    {item.submenu.map((item2, index2) => (
+                      <Link to={path + item2.link} key={index2}>
+                        <li className="li-sub-link">
+                          <span className="sidebar-label">
+                            {item2.name}
+                          </span>
+                        </li>
+                      </Link>
+                    ))}
+                  </Collapse>
+                ) : null}
+              </ul>
             </li>
           </Link>
         ))}

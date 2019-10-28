@@ -21,16 +21,16 @@ export default class SiedebarLeft extends Component {
       // eslint-disable-next-line react/jsx-filename-extension
       <div className="sidebar-left sidenav">
         <ul className="p-0">
-          <div className="">
+          <div className="text-center">
             <span className="bar-sidebar-left">
-              <img src={Logo} alt="" />
+              <img src={Logo} alt="" className="logo-menu" />
             </span>
           </div>
           <br />
           {Session.getInfoUser().NPerfil === 1 ? <MenuAdministrador /> : <MenuOperador />}
           <li className="li-link" onClick={this.handleClose}>
             <span className="sidebar-label">
-							Cerrar sesión
+              Cerrar sesión
             </span>
           </li>
         </ul>
