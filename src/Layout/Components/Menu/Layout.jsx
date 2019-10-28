@@ -29,7 +29,6 @@ export default class Layout extends Component {
     const { items, path } = this.props;
     const { collapse } = this.state;
     return (
-      // eslint-disable-next-line react/jsx-filename-extension
       <>
         {items.map((item, index) => (
           <Link to={path + item.link} onClick={(e) => { this.toggle(e, index + 1); }} key={index}>
@@ -37,21 +36,19 @@ export default class Layout extends Component {
               <span className="sidebar-label">
                 {item.name}
               </span>
-              <ul>
-                {typeof item.submenu !== 'undefined' ? (
-                  <Collapse isOpen={collapse === (index + 1)}>
-                    {item.submenu.map((item2, index2) => (
-                      <Link to={path + item2.link} key={index2}>
-                        <li className="li-sub-link">
-                          <span className="sidebar-label">
-                            {item2.name}
-                          </span>
-                        </li>
-                      </Link>
-                    ))}
-                  </Collapse>
-                ) : null}
-              </ul>
+              {typeof item.submenu !== 'undefined' ? (
+                <Collapse isOpen={collapse === (index + 1)}>
+                  {item.submenu.map((item2, index2) => (
+                    <Link to={path + item2.link} key={index2}>
+                      <li className="li-sub-link">
+                        <span className="sidebar-label">
+                          {item2.name}
+                        </span>
+                      </li>
+                    </Link>
+                  ))}
+                </Collapse>
+              ) : null}
             </li>
           </Link>
         ))}
