@@ -6,10 +6,10 @@ import ClientLists from './Components/Client/ClientLists';
 import ClientAdd from './Components/Client/ClientAdd';
 import UserLists from './Components/User/UserLists';
 import UserAdd from './Components/User/UserAdd';
-import MachineAdd from './Components/Machine/MachineAdd';
-import MachineLists from './Components/Machine/MachineLists';
 import FormAdd from './Components/Form/FormAdd';
 import FormLists from './Components/Form/FormLists';
+import MachineryLists from './Components/Machinery/MachineryLists';
+import MachineryAdd from './Components/Machinery/MachineryAdd';
 
 const App = () => (
   <Router>
@@ -20,8 +20,8 @@ const App = () => (
       <Route exact path="/administrador/cliente/lists/" component={ClientLists} />
       <Route exact path="/administrador/usuario/add/" component={UserAdd} />
       <Route exact path="/administrador/usuario/lists/" component={UserLists} />
-      <Route exact path="/administrador/maquina/add/" component={MachineAdd} />
-      <Route exact path="/administrador/maquina/lists/" component={MachineLists} />
+      <Route exact path="/administrador/maquina/add/" component={MachineryAdd} />
+      <Route exact path="/administrador/maquina/lists/" component={MachineryLists} />
       <Route exact path="/administrador/formulario/add/" component={FormAdd} />
       <Route exact path="/administrador/formulario/lists/" component={FormLists} />
     </Switch>
