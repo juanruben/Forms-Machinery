@@ -14,7 +14,7 @@ class Forms extends Component {
     }
 
     render() {
-        const { items } = this.props;
+        const { items, handleChange } = this.props;
         return (
             <>
                 {items.map((item) => (
@@ -23,13 +23,19 @@ class Forms extends Component {
                             {item.tagType === 'input' ? (
                                 <Input
                                     type={item.type}
-                                    name={item.name}
                                     id={item.name}
+                                    name={item.name}
                                     placeholder={item.placeholders}
+                                    onChange={handleChange}
                                 />
                             ) : ''}
                             {item.tagType === 'select' ? (
-                                <select id={item.name} name={item.name} className="form-control">
+                                <select
+                                    id={item.name}
+                                    name={item.name}
+                                    className="form-control"
+                                    onChange={handleChange}
+                                >
                                     {item.values.map((option) => (
                                         <option value={option}>{option}</option>
                                     ))}
@@ -40,6 +46,7 @@ class Forms extends Component {
                                     name={item.name}
                                     id={item.name}
                                     className="btn-orange"
+                                    type="submit"
                                 >
                                     {item.placeholders}
                                 </Button>

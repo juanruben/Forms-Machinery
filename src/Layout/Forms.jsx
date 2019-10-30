@@ -5,52 +5,51 @@ import {
 
 import TagInput from './TagInput';
 
-const items = [
-    {
-        placeholders: 'Nombre',
-        name: 'nombre',
-        type: 'text',
-        tagType: 'input',
-        validate: true,
-        space: 6,
-    },
-    {
-        placeholders: 'Apellido',
-        name: 'apellido',
-        type: 'text',
-        tagType: 'input',
-        validate: true,
-        space: 6,
-    },
-    {
-        placeholders: 'Apellido',
-        name: 'apellido',
-        type: 'text',
-        tagType: 'input',
-        validate: true,
-        space: 12,
-    },
-    {
-        placeholders: 'Apellido',
-        name: 'apellido',
-        type: 'select',
-        tagType: 'select',
-        validate: true,
-        space: 12,
-        values: [
-            'option 1',
-            'option 2',
-        ],
-    },
-    {
-        placeholders: 'Crear',
-        name: 'btn-crear',
-        type: 'button',
-        tagType: 'button',
-        validate: true,
-        space: 4,
-    },
-];
+const useForm = ({ initialValues, onSubmit, validate }) => {
+    const [values, setValues] = React.useState(initialValues || {});
+    const [touchedValues, setTouchedValues] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+    const handleChange = (event) => {
+        const { target } = event;
+        console.info(event);
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const { name } = target;
+        setValues({
+            ...values,
+            [name]: value,
+        });
+    };
+    const handleBlur = (event) => {
+        const { target } = event;
+        const { name } = target;
+        setTouchedValues({
+            ...touchedValues,
+            [name]: true,
+        });
+        const e = validate(values);
+        setErrors({
+            ...errors,
+            ...e,
+        });
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const e = validate(values);
+        setErrors({
+            ...errors,
+            ...e,
+        });
+        onSubmit({ values, e });
+    };
+    return {
+        values,
+        touchedValues,
+        errors,
+        handleChange,
+        handleSubmit,
+        handleBlur,
+    };
+};
 
 class Forms extends Component {
     constructor(props) {
@@ -59,10 +58,11 @@ class Forms extends Component {
     }
 
     render() {
+        const { items } = this.props;
         return (
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
                 <Row form>
-                    <TagInput items={items} />
+                    <TagInput items={items} handleChange={this.handleChange} />
                 </Row>
             </Form>
         );
