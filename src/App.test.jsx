@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-
-import App from './App';
+import App, { mainReducer } from './App';
 import AppRouter from './AppRouter';
 
 describe('App', () => {
@@ -17,5 +16,21 @@ describe('App', () => {
 
     it('should render the AppRouter Component', () => {
         expect(wrapper.containsMatchingElement(<AppRouter />)).toEqual(true);
+    });
+
+    it('should update the state', () => {
+        const expectedAction = {
+            type: 'setLoading',
+            value: true,
+        };
+        expect(mainReducer({}, expectedAction)).toEqual({ loading: true });
+    });
+
+    it('should update the state2', () => {
+        const expectedAction = {
+            type: 'test',
+            value: undefined,
+        };
+        expect(mainReducer({}, expectedAction)).toEqual({ loading: undefined });
     });
 });
