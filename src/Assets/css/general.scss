@@ -1,14 +1,13 @@
-$width-sidebar:18rem;
-$width-close: 5rem;
-
-$burger: white;
+body, div, p {
+	font-family: 'Lato', sans-serif;
+	margin: 0;
+	padding: 0;
+}
 
 /***COLORES BASE***/
 $color-orange: #ff5900;
-$color-white: #fff;
 $color-borde:#ccc;
-$back-gray-claro:#f4f4f4;
+$color-light-gray:#f4f4f4;
 
-
-$back-gray: #627171;
-$back-green: #95c11f;
+$width-sidebar:18rem;
+$width-close: 5rem;
