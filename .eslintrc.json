@@ -1,8 +1,8 @@
 {
     "env": {
         "browser": true,
-		"es6": true,
-		"jest": true
+        "es6": true,
+        "jest": true
     },
     "extends": [
         "airbnb"
@@ -22,10 +22,32 @@
         "react"
     ],
     "rules": {
-        "indent": ["error", 4],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
-        "linebreak-style": 0
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "linebreak-style": 0,
+        "react/prop-types": [
+            2,
+            {
+                "ignore": [
+                    "children"
+                ]
+            }
+        ],
+        "react/forbid-prop-types": 0,
+        "import/prefer-default-export": 0
     },
     "parser": "babel-eslint"
 }
