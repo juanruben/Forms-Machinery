@@ -11,6 +11,6 @@ describe('LayoutFullWidth', () => {
     it('should render correctly', () => expect(wrapper.debug()).toMatchSnapshot());
 
     it('should render divs', () => {
-        expect(wrapper.find('div')).toHaveLength(2);
+        expect(wrapper.find('div')).toHaveLength(1);
     });
 });
