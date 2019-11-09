@@ -7,7 +7,7 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-
+import { login } from '../../Service/__mocks__/Api';
 
 class Login extends Component {
     constructor(props) {
@@ -22,6 +22,7 @@ class Login extends Component {
         this.handleValidation = this.handleValidation.bind(this);
         this.checkLoggedIn = this.checkLoggedIn.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
+        this.signIn = this.signIn.bind(this);
     }
 
     componentDidMount() {
@@ -65,20 +66,25 @@ class Login extends Component {
         });
     }
 
-    async handleSignIn() {
+    async signIn() {
+        const { username, password } = this.state;
+        return login(username, password);
+    }
+
+    handleSignIn() {
         if (this.handleValidation()) {
             this.toggleLoading(true);
 
-            // const { username, password } = this.state;
-            // const response = await login(username, password);
-            // console.log(response);
+            const response = this.signIn();
 
-            const [, dispatch] = this.context;
+            if (response.token) {
+                const [, dispatch] = this.context;
 
-            dispatch({
-                type: 'SIGN_IN',
-                value: { token: 'tokentokentoken', role: 1 },
-            });
+                dispatch({
+                    type: 'SIGN_IN',
+                    value: { token: response.token, role: 1 },
+                });
+            }
 
             this.toggleLoading(false);
         }
