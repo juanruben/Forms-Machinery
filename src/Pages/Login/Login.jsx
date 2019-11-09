@@ -16,7 +16,6 @@ class Login extends Component {
             username: '',
             password: '',
             errors: {},
-            rol: 1,
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleValidation = this.handleValidation.bind(this);
@@ -104,7 +103,6 @@ class Login extends Component {
             username,
             password,
             errors,
-            rol,
         } = this.state;
 
         const path = role === 1 ? '/admin' : '/op';
@@ -120,7 +118,6 @@ class Login extends Component {
                     <Logo />
                     <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
                     <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
-                    <Input type="text" name="rol" onChange={this.handleInputChange} value={rol} icon="fas fa-unlock-alt" placeholder="Rol" errors={errors.rol} />
                     <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
                     <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
                 </Box>
