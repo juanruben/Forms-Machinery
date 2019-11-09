@@ -1,4 +1,4 @@
-import { validateEmail, validateUsername, validatePassword } from './Utils';
+import { validateEmail, validateUsername, validatePassword, encode, decode } from './Utils';
 
 describe('Utils', () => {
     test('validate email', () => {
@@ -25,5 +25,13 @@ describe('Utils', () => {
         expect(validatePassword('abcdef')).toBeFalsy();
         expect(validatePassword('3123123')).toBeFalsy();
         expect(validatePassword('test123')).toBeFalsy();
+    });
+
+    test('encoding', () => {
+        expect(encode('test')).toEqual('WkVkV2VtUkJQVDA9');
+    });
+
+    test('decoding', () => {
+        expect(decode('WkVkV2VtUkJQVDA9')).toEqual('test');
     });
 });
