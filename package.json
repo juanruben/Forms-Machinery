@@ -54,6 +54,10 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.jsx"
+    ],
+    "coverageReporters": [
+      "text",
+      "html"
     ]
   }
 }
