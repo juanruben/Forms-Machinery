@@ -75,30 +75,31 @@ describe('Login', () => {
 });
 
 describe('Login process', () => {
-    let wrapper;
-    let wrapperLogin;
-    beforeEach(() => {
-        wrapper = mount(
+    it('should log in', (done) => {
+        const wrapper = mount(
             <StateProvider initialState={initialState} reducer={reducer}>
                 <AppWithLoader />
             </StateProvider>,
         );
-        wrapperLogin = wrapper.find(Login).at(0);
-    });
+        const wrapperLogin = wrapper.find(Login).at(0);
 
-    it('should log in', () => {
-        wrapperLogin.setState({ username: 'test', password: 'Test123' });
         const spyValidation = jest.spyOn(wrapperLogin.instance(), 'handleValidation');
         const spyLoader = jest.spyOn(wrapperLogin.instance(), 'toggleLoading');
+        const spySignin = jest.spyOn(wrapperLogin.instance(), 'signIn');
 
+        wrapperLogin.setState({ username: 'test', password: 'Test1234' });
         act(() => {
+            wrapper.update();
             wrapperLogin.instance().handleSignIn();
         });
         expect(spyValidation).toBeCalledTimes(1);
         expect(spyLoader).toBeCalledTimes(2);
+        expect(spySignin).toBeCalledTimes(1);
         wrapper.update();
         expect(wrapper.render().find('Main')).toBeTruthy();
-    });
 
-    afterEach(() => wrapper.unmount());
+        wrapper.unmount();
+
+        done();
+    });
 });
