@@ -10,8 +10,7 @@ export function validateUsername(username) {
 }
 
 export function validatePassword(password) {
-    // at least one number, one lowercase and one uppercase letter
-    // at least six characters
+    // Al menos: un número, una minúscula, una mayúscula y seis caracteres
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
     return regex.test(String(password));
 }
