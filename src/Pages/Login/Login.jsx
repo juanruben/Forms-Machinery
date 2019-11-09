@@ -18,7 +18,7 @@ class Login extends Component {
             errors: {},
         };
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
+        this.validForm = this.validForm.bind(this);
         this.checkLoggedIn = this.checkLoggedIn.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
         this.signIn = this.signIn.bind(this);
@@ -35,7 +35,7 @@ class Login extends Component {
         });
     }
 
-    handleValidation() {
+    validForm() {
         const { username, password } = this.state;
         const errors = {};
         let formIsValid = true;
@@ -85,7 +85,7 @@ class Login extends Component {
                 });
             }
 
-            this.toggleLoading(false);
+        if (this.validForm()) {
         }
     }
 
