@@ -14,3 +14,11 @@ export function validatePassword(password) {
     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/;
     return regex.test(String(password));
 }
+
+export function encode(value) {
+    return btoa(btoa(btoa(value)));
+}
+
+export function decode(value) {
+    return atob(atob(atob(value)));
+}
