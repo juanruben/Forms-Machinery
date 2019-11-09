@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { StateContext } from '../../State';
-import Session from '../../Service/Session';
-import LoginApi from '../../Service/LoginApi';
+import { validateUsername, validatePassword } from '../../Service/Utils';
 import LayoutFullWidth from '../../Layout/LayoutFullWidth/LayoutFullWidth';
+import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 
-class Login extends Component {
-    static contextType = StateContext;
 
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             password: '',
             errors: {},
-            loggedin: false,
+            rol: 1,
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleValidation = this.handleValidation.bind(this);
         this.checkLoggedIn = this.checkLoggedIn.bind(this);
-        this.login = this.login.bind(this);
+        this.handleSignIn = this.handleSignIn.bind(this);
     }
 
     componentDidMount() {
@@ -30,9 +29,9 @@ class Login extends Component {
     }
 
     checkLoggedIn() {
-        const loggedin = Session.isAuth();
-        this.setState({
-            loggedin,
+        const [, dispatch] = this.context;
+        dispatch({
+            type: 'LOAD_SESSION',
         });
     }
 
@@ -41,16 +40,14 @@ class Login extends Component {
         const errors = {};
         let formIsValid = true;
 
-        // username
-        if (!username) {
+        if (!validateUsername(username)) {
             formIsValid = false;
-            errors.username = 'No puede ser vacío';
+            errors.username = 'Error de formato username';
         }
 
-        // password
-        if (!password) {
+        if (!validatePassword(password)) {
             formIsValid = false;
-            errors.password = 'No puede ser vacío';
+            errors.password = 'Error de formato de contraseña';
         }
 
         this.setState({
@@ -63,31 +60,25 @@ class Login extends Component {
     toggleLoading(value) {
         const [, dispatch] = this.context;
         dispatch({
-            type: 'setLoading',
+            type: 'SET_LOADING',
             value,
         });
     }
 
-    async login() {
+    async handleSignIn() {
         if (this.handleValidation()) {
             this.toggleLoading(true);
-            const { username, password } = this.state;
 
-            // const response = await LoginApi({
-            //     username,
-            //     password,
-            // });
-            this.setState({
-                loggedin: true,
+            // const { username, password } = this.state;
+            // const response = await login(username, password);
+            // console.log(response);
+
+            const [, dispatch] = this.context;
+
+            dispatch({
+                type: 'SIGN_IN',
+                value: { token: 'tokentokentoken', role: 1 },
             });
-
-            // if (responseApi.result === 'success') {
-            //     if (responseApi.perfil === 1) {
-            //         window.location.assign('/administrador/');
-            //     } else {
-            //         window.location.assign('/operador/');
-            //     }
-            // }
 
             this.toggleLoading(false);
         }
@@ -102,30 +93,36 @@ class Login extends Component {
     }
 
     render() {
+        const [{ loggedin, role }] = this.context;
         const {
             username,
             password,
             errors,
-            loggedin,
+            rol,
         } = this.state;
 
+        const path = role === 1 ? '/admin' : '/op';
         if (loggedin) {
             return (
-                <Redirect to="/" />
+                <Redirect to={path} />
             );
         }
 
         return (
             <LayoutFullWidth>
-                <Logo />
-                <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
-                <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
-                <Button type="submit" onClick={this.login} text="Entrar" />
-                <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
-                {loggedin && <div>Logueado</div>}
+                <Box>
+                    <Logo />
+                    <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
+                    <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
+                    <Input type="text" name="rol" onChange={this.handleInputChange} value={rol} icon="fas fa-unlock-alt" placeholder="Rol" errors={errors.rol} />
+                    <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
+                    <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
+                </Box>
             </LayoutFullWidth>
         );
     }
 }
+
+Login.contextType = StateContext;
 
 export default Login;
