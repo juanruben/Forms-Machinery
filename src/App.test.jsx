@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import App, { mainReducer } from './App';
-import AppRouter from './AppRouter';
+import App, { reducer } from './App';
+import AppWithLoader from './AppWithLoader';
+import { encode } from './Service/Utils';
+
 
 describe('App', () => {
     let wrapper;
@@ -14,23 +16,67 @@ describe('App', () => {
         ReactDOM.unmountComponentAtNode(div);
     });
 
-    it('should render the AppRouter Component', () => {
-        expect(wrapper.containsMatchingElement(<AppRouter />)).toEqual(true);
+    it('should render the AppWithLoader Component', () => {
+        expect(wrapper.containsMatchingElement(<AppWithLoader />)).toEqual(true);
     });
 
-    it('should update the state', () => {
+    it('should update loading', () => {
         const expectedAction = {
-            type: 'setLoading',
+            type: 'SET_LOADING',
             value: true,
         };
-        expect(mainReducer({}, expectedAction)).toEqual({ loading: true });
+        expect(reducer({}, expectedAction)).toEqual({ loading: true });
     });
 
-    it('should update the state2', () => {
+    it('should load session', () => {
+        localStorage.clear();
+        localStorage.setItem('t', encode('test'));
+        localStorage.setItem('r', encode('1'));
+        const expectedAction = {
+            type: 'LOAD_SESSION',
+        };
+        expect(reducer({}, expectedAction)).toEqual({ loggedin: true, token: 'test', role: 1 });
+    });
+
+    it('should not load session', () => {
+        localStorage.clear();
+        localStorage.setItem('t', 'test');
+        localStorage.setItem('r', '1');
+        const expectedAction = {
+            type: 'LOAD_SESSION',
+        };
+        expect(reducer({}, expectedAction)).toEqual({ loggedin: false, token: null });
+    });
+
+    it('should not load session', () => {
+        localStorage.clear();
+        const expectedAction = {
+            type: 'LOAD_SESSION',
+        };
+        expect(reducer({}, expectedAction)).toEqual({ loggedin: false, token: null });
+    });
+
+    it('should signin', () => {
+        const expectedAction = {
+            type: 'SIGN_IN',
+            value: { token: 'test', role: 1 },
+        };
+        expect(reducer({}, expectedAction)).toEqual({ loggedin: true, token: 'test', role: 1 });
+    });
+
+    it('should signout', () => {
+        const expectedAction = {
+            type: 'EXIT',
+            value: true,
+        };
+        expect(reducer({}, expectedAction)).toEqual({ loggedin: false, token: null });
+    });
+
+    it('should update undefined state', () => {
         const expectedAction = {
             type: 'test',
             value: undefined,
         };
-        expect(mainReducer({}, expectedAction)).toEqual({ loading: undefined });
+        expect(reducer({}, expectedAction)).toEqual({ loading: undefined });
     });
 });
