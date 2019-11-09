@@ -8,6 +8,7 @@ import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { login } from '../../Service/__mocks__/Api';
+// import { login } from '../../Service/Api';
 
 class Login extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ class Login extends Component {
         this.validForm = this.validForm.bind(this);
         this.checkLoggedIn = this.checkLoggedIn.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
+        this.requestSignIn = this.requestSignIn.bind(this);
         this.signIn = this.signIn.bind(this);
     }
 
@@ -65,27 +67,29 @@ class Login extends Component {
         });
     }
 
-    async signIn() {
+    async requestSignIn() {
         const { username, password } = this.state;
-        return login(username, password);
+        await login(username, password).then((response) => {
+            if (response.status === 200) {
+                const { data } = response;
+                this.signIn(data.token, data.role);
+            }
+            this.toggleLoading(false);
+        });
+    }
+
+    signIn(token, role) {
+        const [, dispatch] = this.context;
+        dispatch({
+            type: 'SIGN_IN',
+            value: { token, role },
+        });
     }
 
     handleSignIn() {
-        if (this.handleValidation()) {
-            this.toggleLoading(true);
-
-            const response = this.signIn();
-
-            if (response.token) {
-                const [, dispatch] = this.context;
-
-                dispatch({
-                    type: 'SIGN_IN',
-                    value: { token: response.token, role: 1 },
-                });
-            }
-
         if (this.validForm()) {
+            this.toggleLoading(true);
+            this.requestSignIn();
         }
     }
 
