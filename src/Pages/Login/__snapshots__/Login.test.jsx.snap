@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should render correctly 1`] = `
+"<StateProvider initialState={{...}} reducer={[Function: reducer]}>
+  <AppWithLoader>
+    <Loader visible={false}>
+      <AppRouter>
+        <BrowserRouter>
+          <Router history={{...}}>
+            <Switch>
+              <Route exact={true} path=\\"/login\\" component={[function]} location={{...}} computedMatch={{...}}>
+                <Login history={{...}} location={{...}} match={{...}} staticContext={[undefined]}>
+                  <LayoutFullWidth>
+                    <div className=\\"full-width-container\\">
+                      <Box>
+                        <div className=\\"box-container\\">
+                          <Logo>
+                            <div className=\\"logo\\">
+                              <img src=\\"Logo.png\\" alt=\\"logo icafal\\" />
+                            </div>
+                          </Logo>
+                          <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\">
+                            <div className=\\"input-bordered-container\\">
+                              <i className=\\"fas fa-user-tie\\" />
+                              <input className=\\"input-bordered false\\" type=\\"text\\" name=\\"username\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Usuario\\" />
+                            </div>
+                          </Input>
+                          <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors=\\"\\">
+                            <div className=\\"input-bordered-container\\">
+                              <i className=\\"fas fa-unlock-alt\\" />
+                              <input className=\\"input-bordered false\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
+                            </div>
+                          </Input>
+                          <Input type=\\"text\\" name=\\"rol\\" onChange={[Function: bound handleInputChange]} value={1} icon=\\"fas fa-unlock-alt\\" placeholder=\\"Rol\\" errors=\\"\\">
+                            <div className=\\"input-bordered-container\\">
+                              <i className=\\"fas fa-unlock-alt\\" />
+                              <input className=\\"input-bordered false\\" type=\\"text\\" name=\\"rol\\" value={1} onChange={[Function: bound handleInputChange]} placeholder=\\"Rol\\" />
+                            </div>
+                          </Input>
+                          <Button type=\\"submit\\" onClick={[Function: bound handleSignIn]} text=\\"Entrar\\" disabled={false}>
+                            <button type=\\"submit\\" className=\\"main-button\\" onClick={[Function: bound handleSignIn]} disabled={false}>
+                              Entrar
+                            </button>
+                          </Button>
+                          <Link to=\\"/recuperar\\" className=\\"link-login\\">
+                            <LinkAnchor className=\\"link-login\\" href=\\"/recuperar\\" navigate={[Function: navigate]}>
+                              <a className=\\"link-login\\" href=\\"/recuperar\\" onClick={[Function: onClick]}>
+                                Olvidó su contraseña
+                              </a>
+                            </LinkAnchor>
+                          </Link>
+                        </div>
+                      </Box>
+                    </div>
+                  </LayoutFullWidth>
+                </Login>
+              </Route>
+            </Switch>
+          </Router>
+        </BrowserRouter>
+      </AppRouter>
+    </Loader>
+  </AppWithLoader>
+</StateProvider>"
+`;
