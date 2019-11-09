@@ -1,29 +1,11 @@
-import Network from './Network';
+import axios from 'axios';
 
-class Api {
-    static async functionPOST(data) {
-        const response = await Network.post('ruta', data);
-        if (response) {
-            return response;
-        }
-        return null;
-    }
-
-    static async Login(data) {
-        const response = await Network.post('ruta', data);
-        if (response) {
-            return response;
-        }
-        return null;
-    }
-
-    static async RecuperarContrasenia(data) {
-        const response = await Network.get('ruta', data);
-        if (response) {
-            return response;
-        }
-        return null;
-    }
+export async function login(username, password) {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/todos/1`, {
+        params: {
+            username,
+            password,
+        },
+    });
+    return response;
 }
-
-export default Api;
