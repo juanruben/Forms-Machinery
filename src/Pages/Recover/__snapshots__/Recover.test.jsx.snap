@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Recover should render correctly 1`] = `
+"<LayoutFullWidth>
+  <Box>
+    <Logo />
+    <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors=\\"\\" />
+    <Button type=\\"submit\\" onClick={[Function: bound send]} text=\\"Enviar\\" disabled={false} />
+  </Box>
+</LayoutFullWidth>"
+`;
