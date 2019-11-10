@@ -31,12 +31,6 @@ exports[`Login should render correctly 1`] = `
                               <input className=\\"input-bordered false\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
                             </div>
                           </Input>
-                          <Input type=\\"text\\" name=\\"rol\\" onChange={[Function: bound handleInputChange]} value={1} icon=\\"fas fa-unlock-alt\\" placeholder=\\"Rol\\" errors=\\"\\">
-                            <div className=\\"input-bordered-container\\">
-                              <i className=\\"fas fa-unlock-alt\\" />
-                              <input className=\\"input-bordered false\\" type=\\"text\\" name=\\"rol\\" value={1} onChange={[Function: bound handleInputChange]} placeholder=\\"Rol\\" />
-                            </div>
-                          </Input>
                           <Button type=\\"submit\\" onClick={[Function: bound handleSignIn]} text=\\"Entrar\\" disabled={false}>
                             <button type=\\"submit\\" className=\\"main-button\\" onClick={[Function: bound handleSignIn]} disabled={false}>
                               Entrar
