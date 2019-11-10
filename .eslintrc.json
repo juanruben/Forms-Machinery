@@ -48,7 +48,8 @@
         ],
         "react/forbid-prop-types": 0,
         "import/prefer-default-export": 0,
-        "radix": 0
+        "radix": 0,
+        "react/jsx-props-no-spreading": 0
     },
     "parser": "babel-eslint"
 }
