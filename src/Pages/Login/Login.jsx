@@ -70,9 +70,11 @@ class Login extends Component {
     async requestSignIn() {
         const { username, password } = this.state;
         await login(username, password).then((response) => {
-            if (response.status === 200) {
+            if (response && response.status === 200) {
                 const { data } = response;
                 this.signIn(data.token, data.role);
+            } else {
+                alert('No hay acceso al sistema');
             }
             this.toggleLoading(false);
         });
