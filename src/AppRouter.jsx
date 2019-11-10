@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     BrowserRouter as Router, Route, Switch, Redirect,
 } from 'react-router-dom';
@@ -16,6 +17,10 @@ export const PrivateRoute = ({ component: Component, ...rest }) => {
         );
     }
     return <Redirect to="/login" />;
+};
+
+PrivateRoute.propTypes = {
+    component: PropTypes.elementType.isRequired,
 };
 
 const AppRouter = () => (
