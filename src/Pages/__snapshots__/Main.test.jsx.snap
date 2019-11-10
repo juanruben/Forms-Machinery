@@ -2,6 +2,7 @@
 
 exports[`should render ok 1`] = `
 "<Fragment>
+  fjadslf:
   <button type=\\"submit\\" onClick={[Function: handleClick]}>
     Salir
   </button>
