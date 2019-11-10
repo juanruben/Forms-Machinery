@@ -36,7 +36,7 @@ describe('Login', () => {
     });
 
     it('should call functions on login with no data', () => {
-        const spyValidation = jest.spyOn(wrapperLogin.instance(), 'handleValidation');
+        const spyValidation = jest.spyOn(wrapperLogin.instance(), 'validForm');
         const spyLoader = jest.spyOn(wrapperLogin.instance(), 'toggleLoading');
         act(() => {
             wrapperLogin.instance().handleSignIn();
@@ -54,11 +54,11 @@ describe('Login', () => {
 
     it('should validate', () => {
         wrapperLogin.setState({ username: 'test', password: 'Test123' });
-        expect(wrapperLogin.instance().handleValidation()).toBe(true);
+        expect(wrapperLogin.instance().validForm()).toBe(true);
         wrapperLogin.setState({ username: '' });
-        expect(wrapperLogin.instance().handleValidation()).toBe(false);
+        expect(wrapperLogin.instance().validForm()).toBe(false);
         wrapperLogin.setState({ password: '' });
-        expect(wrapperLogin.instance().handleValidation()).toBe(false);
+        expect(wrapperLogin.instance().validForm()).toBe(false);
     });
 
     it('should have a box container', () => {
@@ -67,7 +67,7 @@ describe('Login', () => {
 
     it('should have a logo, two inputs and a button', () => {
         expect(wrapper.find('Logo')).toHaveLength(1);
-        expect(wrapper.find('Input')).toHaveLength(3);
+        expect(wrapper.find('Input')).toHaveLength(2);
         expect(wrapper.find('Button')).toHaveLength(1);
     });
 
@@ -82,24 +82,21 @@ describe('Login process', () => {
             </StateProvider>,
         );
         const wrapperLogin = wrapper.find(Login).at(0);
-
-        const spyValidation = jest.spyOn(wrapperLogin.instance(), 'handleValidation');
-        const spyLoader = jest.spyOn(wrapperLogin.instance(), 'toggleLoading');
-        const spySignin = jest.spyOn(wrapperLogin.instance(), 'signIn');
-
-        wrapperLogin.setState({ username: 'test', password: 'Test1234' });
-        act(() => {
+        const spyValidation = jest.spyOn(wrapperLogin.instance(), 'validForm');
+        setTimeout(() => {
+            act(() => {
+                wrapper.update();
+                wrapperLogin.setState({ username: 'test', password: 'Test1234' });
+                wrapperLogin.instance().handleSignIn();
+            });
+            expect(spyValidation).toBeCalledTimes(1);
+            expect(wrapperLogin.instance().validForm()).toBeTruthy();
             wrapper.update();
-            wrapperLogin.instance().handleSignIn();
+            expect(wrapper.render().find('Main')).toBeTruthy();
+
+            wrapper.unmount();
+
+            done();
         });
-        expect(spyValidation).toBeCalledTimes(1);
-        expect(spyLoader).toBeCalledTimes(2);
-        expect(spySignin).toBeCalledTimes(1);
-        wrapper.update();
-        expect(wrapper.render().find('Main')).toBeTruthy();
-
-        wrapper.unmount();
-
-        done();
     });
 });
