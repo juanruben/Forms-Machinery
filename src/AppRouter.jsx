@@ -28,8 +28,6 @@ const AppRouter = () => (
         <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/recuperar" component={Recover} />
-            <PrivateRoute path="/admin" component={Main} />
-            <PrivateRoute path="/op" component={Main} />
             <PrivateRoute path="/" component={Main} />
             <Route component={Page404} />
         </Switch>
