@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render ok 1`] = `
+"<Fragment>
+  <button type=\\"submit\\" onClick={[Function: handleClick]}>
+    Salir
+  </button>
+  <Switch>
+    <Route path=\\"/admin\\" component={[function]} />
+    <Route path=\\"/op\\" component={[Function: Operator]} />
+    <Route component={[Function: Page404]} />
+  </Switch>
+</Fragment>"
+`;
