@@ -3,56 +3,56 @@ export default [
         id: 1,
         title: 'Dashboard',
         path: '/admin/dashboard',
-        icon: 'fas fa-user-tie',
+        icon: 'fas fa-home',
 
     },
     {
         id: 2,
         title: 'Clientes',
         path: '/admin/clientes',
-        icon: 'fas fa-user-tie',
+        icon: 'far fa-address-book',
 
     },
     {
         id: 3,
         title: 'Usuarios',
         path: '/admin/usuarios',
-        icon: 'fas fa-user-tie',
+        icon: 'fas fa-users-cog',
 
     },
     {
         id: 4,
         title: 'Máquinas',
         path: '/admin/maquinas',
-        icon: 'fas fa-user-tie',
+        icon: 'fas fa-tractor',
 
     },
     {
         id: 5,
         title: 'Formularios',
         path: '/admin/formularios',
-        icon: 'fas fa-user-tie',
+        icon: 'fas fa-notes-medical',
 
     },
     {
         id: 6,
         title: 'Dashboard Operador',
         path: '/dashboard',
-        icon: 'fas fa-user-tie',
+        icon: 'fas fa-home',
 
     },
     {
         id: 7,
         title: 'Registrar Entrada',
         path: '/entrada',
-        icon: 'fas fa-user-tie',
+        icon: 'fas fa-clipboard-check',
 
     },
     {
         id: 8,
         title: 'Registrar Salida',
         path: '/salida',
-        icon: 'fas fa-user-tie',
+        icon: 'far fa-clipboard',
 
     },
 ];
