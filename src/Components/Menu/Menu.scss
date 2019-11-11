@@ -1,13 +1,21 @@
-.sidebar{
-    width: 256px;
+.sidebar {
+  width: 256px;
 
-    .content{
-        padding: 16px;
-        height: 100%;
+  .content {
+    padding: 16px;
+    height: 100%;
 
-        .sidebarLink{
-            display: block;
-            text-decoration: none;
-        }
+    .sidebarLink {
+      display: block;
+      text-decoration: none;
     }
+
+    button {
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
 }
