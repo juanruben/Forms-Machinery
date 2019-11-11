@@ -67,14 +67,15 @@ class Main extends React.Component {
                     <MenuButton onClick={this.menuButtonClick} />
                     <Title text="Registro Histórico" />
                     <Switch>
+                        <Route exact path="/admin/dashboard" component={Admin} />
                         <Route exact path="/admin/clientes" component={Admin} />
                         <Route exact path="/admin/usuarios" component={Admin} />
                         <Route exact path="/admin/maquinas" component={Admin} />
                         <Route exact path="/admin/formularios" component={Admin} />
-                        <Route exact path="/admin" component={Admin} />
+                        <Route exact path="/admin/dashboard" component={Admin} />
                         <Route exact path="/entrada" component={Operator} />
                         <Route exact path="/salida" component={Operator} />
-                        <Route exact path="/" component={Operator} />
+                        <Route exact path="/dashboard" component={Operator} />
                     </Switch>
                 </div>
             </Sidebar>
