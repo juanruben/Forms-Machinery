@@ -3,7 +3,7 @@
 exports[`Menu should render ok 1`] = `
 "<div className=\\"sidebar\\">
   <div className=\\"content\\">
-    <Logo padding={0} maxWidth={100} />
+    <Logo padding={0} maxWidth={80} />
     <button type=\\"button\\" onClick={[Function: test]}>
       Salir
     </button>
