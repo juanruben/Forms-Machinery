@@ -1,9 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { mount, shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { StateProvider } from '../../State';
-import { initialState, reducer } from '../../App';
-import AppWithLoader from '../../AppWithLoader';
+import { initialState } from '../../App';
 import Recover from './Recover';
 import Button from '../../Components/Button/Button';
 
@@ -21,7 +21,9 @@ describe('Recover', () => {
         const mockReducer = jest.fn();
         const wrapper2 = mount(
             <StateProvider initialState={initialState} reducer={mockReducer}>
-                <Recover />
+                <Router>
+                    <Recover />
+                </Router>
             </StateProvider>,
         );
         const wrapperRecover = wrapper2.find(Recover).at(0);
