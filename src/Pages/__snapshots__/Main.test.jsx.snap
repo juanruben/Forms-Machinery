@@ -6,14 +6,15 @@ exports[`Main should render ok 1`] = `
     <MenuButton onClick={[Function: bound menuButtonClick]} />
     <Title text=\\"Registro Histórico\\" />
     <Switch>
+      <Route exact={true} path=\\"/admin/dashboard\\" component={[Function: Admin]} />
       <Route exact={true} path=\\"/admin/clientes\\" component={[Function: Admin]} />
       <Route exact={true} path=\\"/admin/usuarios\\" component={[Function: Admin]} />
       <Route exact={true} path=\\"/admin/maquinas\\" component={[Function: Admin]} />
       <Route exact={true} path=\\"/admin/formularios\\" component={[Function: Admin]} />
-      <Route exact={true} path=\\"/admin\\" component={[Function: Admin]} />
+      <Route exact={true} path=\\"/admin/dashboard\\" component={[Function: Admin]} />
       <Route exact={true} path=\\"/entrada\\" component={[Function: Operator]} />
       <Route exact={true} path=\\"/salida\\" component={[Function: Operator]} />
-      <Route exact={true} path=\\"/\\" component={[Function: Operator]} />
+      <Route exact={true} path=\\"/dashboard\\" component={[Function: Operator]} />
     </Switch>
   </div>
 </Sidebar>"
