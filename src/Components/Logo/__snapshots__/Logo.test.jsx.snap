@@ -2,6 +2,6 @@
 
 exports[`Logo should render correctly 1`] = `
 "<div style={{...}}>
-  <img style={{...}} src=\\"Logo.png\\" alt=\\"logo icafal\\" />
+  <img style={{...}} src=\\"logo.png\\" alt=\\"logo icafal\\" />
 </div>"
 `;

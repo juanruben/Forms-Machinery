@@ -16,7 +16,7 @@ exports[`Login should render correctly 1`] = `
                         <div className=\\"box-container\\">
                           <Logo padding={30} maxWidth={150}>
                             <div style={{...}}>
-                              <img style={{...}} src=\\"Logo.png\\" alt=\\"logo icafal\\" />
+                              <img style={{...}} src=\\"logo.png\\" alt=\\"logo icafal\\" />
                             </div>
                           </Logo>
                           <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\">
