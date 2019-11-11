@@ -93,8 +93,8 @@ class Recover extends Component {
                 <Box>
                     <Logo />
                     <Input type="email" name="email" onChange={this.handleInputChange} value={email} icon="far fa-envelope" placeholder="Correo electrónico" errors={errors.email} />
-                    <Button type="submit" onClick={this.send} text="Enviar" />
-                    {/* <Link to="/" className="link-login">Volver</Link> */}
+                    <Button type="button" onClick={this.send} text="Enviar" />
+                    <Link to="/" className="link-login">Volver</Link>
                 </Box>
                 {sent && <div className="message-ok">Revisa tu correo y verifica tu contraseña</div>}
             </LayoutFullWidth>
