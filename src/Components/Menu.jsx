@@ -9,7 +9,7 @@ const Menu = (props) => {
         <div className="sidebar">
             <div className="content">
                 {items.map((item) => (
-                    <Link to={item.path} className="sidebarLink">{item.title}</Link>
+                    <Link key={item.id} to={item.path} className="sidebarLink">{item.title}</Link>
                 ))}
             </div>
         </div>
