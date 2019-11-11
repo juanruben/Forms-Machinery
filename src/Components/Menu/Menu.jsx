@@ -6,9 +6,10 @@ import './Menu.scss';
 
 const Menu = (props) => {
     const { items } = props;
-    const [, dispatch] = useStateValue();
+    const state = useStateValue();
 
     const test = () => {
+        const [, dispatch] = state;
         dispatch({
             type: 'EXIT',
         });
