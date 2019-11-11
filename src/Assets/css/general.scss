@@ -1,13 +1,11 @@
-body, div, p {
-	font-family: 'Lato', sans-serif;
-	margin: 0;
-	padding: 0;
+body,
+div,
+p {
+  font-size: 14px;
+  font-family: "Lato", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/***COLORES BASE***/
-$color-orange: #ff5900;
-$color-borde:#ccc;
-$color-light-gray:#f4f4f4;
-
-$width-sidebar:18rem;
-$width-close: 5rem;
+$icafal-orange: #ff5900;
+$icafal-background: #f2f2f2;

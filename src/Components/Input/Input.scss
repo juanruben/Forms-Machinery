@@ -1,39 +1,38 @@
-.input-bordered-container{
-	position: relative;
+.input-bordered-container {
+  position: relative;
 
-	i{
-		color: rgb(134, 134, 134);
-		position: absolute;
-		left: 14px;
-		top: 14px;
-	}
+  i {
+    color: rgb(134, 134, 134);
+    position: absolute;
+    left: 14px;
+    top: 14px;
+  }
 
-	input{
-		border: solid $color-orange 1px;
-		border-radius: 2px;
-		display: block;
-		height: 45px;
-		margin-bottom: 10px;
-		padding-left: 40px;
-		width: 100%;
+  input {
+    border: solid $icafal-orange 1px;
+    border-radius: 3px;
+    display: block;
+    height: 45px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    width: 100%;
 
-		&::placeholder{
-			color: #d3d3d3;
-			font-size: 0.8em;
-		}
-	}
+    &::placeholder {
+      color: #d3d3d3;
+      font-size: 0.8em;
+    }
+  }
 
-	.border-error{
-		border: solid red 3px;
-		border-radius: 4px;
-	}
+  .border-error {
+    border: solid red 3px;
+    border-radius: 4px;
+  }
 
-	.warning{
-		color: red;
-		position: absolute;
-		left: calc(100% + 10px);
-		top: 14px;
-		width: 20px;
-	}
+  .warning {
+    color: red;
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 14px;
+    width: 20px;
+  }
 }
-

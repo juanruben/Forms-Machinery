@@ -1,12 +1,14 @@
+@import "../../Assets/css/general.scss";
+
 .sidebar {
-  width: 256px;
+  width: 200px;
 
   .content {
     padding: 16px;
     height: 100%;
 
     .sidebarLink {
-      color: rgb(255, 123, 0);
+      color: $icafal-orange;
       display: block;
       text-decoration: none;
     }

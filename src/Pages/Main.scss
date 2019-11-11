@@ -1,5 +1,9 @@
-.content-area{
-    background-color: #eee;
-    min-height: 100vh;
-    overflow: auto;
+@import "../Assets/css/general.scss";
+
+.content-area {
+  background-color: $icafal-background;
+  min-height: 100vh;
+  overflow: auto;
+  padding: 0 20px;
+  padding-top: 10px;
 }
