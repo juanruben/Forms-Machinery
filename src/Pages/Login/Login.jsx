@@ -121,7 +121,7 @@ class Login extends Component {
         return (
             <LayoutFullWidth>
                 <Box>
-                    <Logo />
+                    <Logo padding={40} maxWidth={200} />
                     <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
                     <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
                     <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
