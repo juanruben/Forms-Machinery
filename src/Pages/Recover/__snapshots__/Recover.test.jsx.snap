@@ -5,7 +5,10 @@ exports[`Recover should render correctly 1`] = `
   <Box>
     <Logo />
     <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors=\\"\\" />
-    <Button type=\\"submit\\" onClick={[Function: bound send]} text=\\"Enviar\\" disabled={false} />
+    <Button type=\\"button\\" onClick={[Function: bound send]} text=\\"Enviar\\" disabled={false} />
+    <Link to=\\"/\\" className=\\"link-login\\">
+      Volver
+    </Link>
   </Box>
 </LayoutFullWidth>"
 `;

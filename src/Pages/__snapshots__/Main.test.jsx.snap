@@ -1,20 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main should render ok 1`] = `
-"<Sidebar sidebar={{...}} docked={false} touch={true} transitions={false} touchHandleWidth={20} dragToggleDistance={30} open={false} pullRight={false} shadow={true} onSetOpen={[Function: onSetOpen]} styles={{...}} defaultSidebarWidth={0}>
-  <button onClick={[Function: bound menuButtonClick]}>
-    Menú
-  </button>
-  Contenido....
-  <Switch>
-    <Route exact={true} path=\\"/admin/clientes\\" component={[Function: Admin]} />
-    <Route exact={true} path=\\"/admin/usuarios\\" component={[Function: Admin]} />
-    <Route exact={true} path=\\"/admin/maquinas\\" component={[Function: Admin]} />
-    <Route exact={true} path=\\"/admin/formularios\\" component={[Function: Admin]} />
-    <Route exact={true} path=\\"/admin\\" component={[Function: Admin]} />
-    <Route exact={true} path=\\"/entrada\\" component={[Function: Operator]} />
-    <Route exact={true} path=\\"/salida\\" component={[Function: Operator]} />
-    <Route exact={true} path=\\"/\\" component={[Function: Operator]} />
-  </Switch>
+"<Sidebar sidebar={{...}} docked={false} transitions={false} open={false} touch={true} touchHandleWidth={20} pullRight={false} shadow={true} dragToggleDistance={30} onSetOpen={[Function: onSetOpen]} styles={{...}} defaultSidebarWidth={0}>
+  <div className=\\"content-area\\">
+    <button onClick={[Function: bound menuButtonClick]} type=\\"button\\">
+      Menú
+    </button>
+    Contenido....
+    <Switch>
+      <Route exact={true} path=\\"/admin/clientes\\" component={[Function: Admin]} />
+      <Route exact={true} path=\\"/admin/usuarios\\" component={[Function: Admin]} />
+      <Route exact={true} path=\\"/admin/maquinas\\" component={[Function: Admin]} />
+      <Route exact={true} path=\\"/admin/formularios\\" component={[Function: Admin]} />
+      <Route exact={true} path=\\"/admin\\" component={[Function: Admin]} />
+      <Route exact={true} path=\\"/entrada\\" component={[Function: Operator]} />
+      <Route exact={true} path=\\"/salida\\" component={[Function: Operator]} />
+      <Route exact={true} path=\\"/\\" component={[Function: Operator]} />
+    </Switch>
+  </div>
 </Sidebar>"
 `;

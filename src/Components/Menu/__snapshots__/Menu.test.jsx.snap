@@ -2,6 +2,10 @@
 
 exports[`Menu should render ok 1`] = `
 "<div className=\\"sidebar\\">
-  <div className=\\"content\\" />
+  <div className=\\"content\\">
+    <button type=\\"button\\" onClick={[Function: test]}>
+      Salir
+    </button>
+  </div>
 </div>"
 `;
