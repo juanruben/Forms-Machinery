@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuButton should render ok 1`] = `
+"<button onClick={[Function: mockConstructor]} type=\\"button\\" className=\\"menu-icon\\">
+  <i className=\\"fas fa-bars\\" />
+</button>"
+`;

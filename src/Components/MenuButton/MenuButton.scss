@@ -1,0 +1,13 @@
+@import "../../Assets/css/general.scss";
+
+.menu-icon {
+  background-color: $icafal-background;
+  border: none;
+  color: $icafal-orange;
+  font-size: 30px;
+  padding: 0;
+
+  &:focus {
+    outline: 0;
+  }
+}
