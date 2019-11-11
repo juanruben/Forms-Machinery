@@ -1,12 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Main should render ok 1`] = `
-"<Sidebar sidebar={{...}} docked={false} transitions={false} open={false} touch={true} touchHandleWidth={20} pullRight={false} shadow={true} dragToggleDistance={30} onSetOpen={[Function: onSetOpen]} styles={{...}} defaultSidebarWidth={0}>
+"<Sidebar sidebar={{...}} docked={false} shadow={false} transitions={false} open={false} touch={true} touchHandleWidth={20} pullRight={false} dragToggleDistance={30} onSetOpen={[Function: onSetOpen]} styles={{...}} defaultSidebarWidth={0}>
   <div className=\\"content-area\\">
-    <button onClick={[Function: bound menuButtonClick]} type=\\"button\\">
-      Menú
-    </button>
-    Contenido....
+    <MenuButton onClick={[Function: bound menuButtonClick]} />
+    <Title text=\\"Registro Histórico\\" />
     <Switch>
       <Route exact={true} path=\\"/admin/clientes\\" component={[Function: Admin]} />
       <Route exact={true} path=\\"/admin/usuarios\\" component={[Function: Admin]} />
