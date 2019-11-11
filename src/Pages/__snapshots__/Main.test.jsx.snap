@@ -1,15 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render ok 1`] = `
-"<Fragment>
-  fjadslf:
-  <button type=\\"submit\\" onClick={[Function: handleClick]}>
-    Salir
+exports[`Main should render ok 1`] = `
+"<Sidebar sidebar={{...}} docked={false} touch={true} transitions={false} touchHandleWidth={20} dragToggleDistance={30} open={false} pullRight={false} shadow={true} onSetOpen={[Function: onSetOpen]} styles={{...}} defaultSidebarWidth={0}>
+  <button onClick={[Function: bound menuButtonClick]}>
+    Menú
   </button>
+  Contenido....
   <Switch>
-    <Route path=\\"/admin\\" component={[function]} />
-    <Route path=\\"/op\\" component={[Function: Operator]} />
-    <Route component={[Function: Page404]} />
+    <Route exact={true} path=\\"/admin/clientes\\" component={[Function: Admin]} />
+    <Route exact={true} path=\\"/admin/usuarios\\" component={[Function: Admin]} />
+    <Route exact={true} path=\\"/admin/maquinas\\" component={[Function: Admin]} />
+    <Route exact={true} path=\\"/admin/formularios\\" component={[Function: Admin]} />
+    <Route exact={true} path=\\"/admin\\" component={[Function: Admin]} />
+    <Route exact={true} path=\\"/entrada\\" component={[Function: Operator]} />
+    <Route exact={true} path=\\"/salida\\" component={[Function: Operator]} />
+    <Route exact={true} path=\\"/\\" component={[Function: Operator]} />
   </Switch>
-</Fragment>"
+</Sidebar>"
 `;
