@@ -25,7 +25,7 @@ Logo.propTypes = {
 
 Logo.defaultProps = {
     padding: 0,
-    maxWidth: 100,
+    maxWidth: 80,
 }
 
 export default Logo;
