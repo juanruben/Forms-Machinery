@@ -14,7 +14,7 @@ exports[`Login should render correctly 1`] = `
                     <div className=\\"full-width-container\\">
                       <Box>
                         <div className=\\"box-container\\">
-                          <Logo padding={40} maxWidth={200}>
+                          <Logo padding={30} maxWidth={150}>
                             <div style={{...}}>
                               <img style={{...}} src=\\"Logo.png\\" alt=\\"logo icafal\\" />
                             </div>
