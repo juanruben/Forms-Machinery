@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../State';
+import Logo from '../Logo/Logo';
 import './Menu.scss';
 
 const Menu = (props) => {
@@ -18,6 +19,7 @@ const Menu = (props) => {
     return (
         <div className="sidebar">
             <div className="content">
+                <Logo />
                 {items.map((item) => (
                     <Link key={item.id} to={item.path} className="sidebarLink">{item.title}</Link>
                 ))}
