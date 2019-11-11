@@ -3,7 +3,7 @@
 exports[`Recover should render correctly 1`] = `
 "<LayoutFullWidth>
   <Box>
-    <Logo />
+    <Logo padding={40} maxWidth={200} />
     <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors=\\"\\" />
     <Button type=\\"button\\" onClick={[Function: bound send]} text=\\"Enviar\\" disabled={false} />
     <Link to=\\"/\\" className=\\"link-login\\">
