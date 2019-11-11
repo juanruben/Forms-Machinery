@@ -24,7 +24,7 @@ describe('Menu', () => {
             },
         ];
         const wrapper = shallow(<Menu items={items} />);
-        expect(wrapper.find('Link')).toHaveLength(2);
+        expect(wrapper.find('NavLink')).toHaveLength(2);
     });
 
     test('one item', () => {
@@ -37,11 +37,11 @@ describe('Menu', () => {
             },
         ];
         const wrapper = shallow(<Menu items={items} />);
-        expect(wrapper.find('Link')).toHaveLength(1);
+        expect(wrapper.find('NavLink')).toHaveLength(1);
     });
 
     test('zero items', () => {
         const wrapper = shallow(<Menu items={[]} />);
-        expect(wrapper.find('Link')).toHaveLength(0);
+        expect(wrapper.find('NavLink')).toHaveLength(0);
     });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useStateValue } from '../../State';
 import Logo from '../Logo/Logo';
 import Avatar from '../Avatar/Avatar';
@@ -24,10 +24,12 @@ const Menu = (props) => {
                 <Avatar title={username} image={avatar} />
                 <ul className="menu-items">
                     {items.map((item) => (
-                        <li key={item.id} className="single-item">
-                            <span><i className={item.icon} /></span>
-                            <Link to={item.path} className="sidebarLink">{item.title}</Link>
-                        </li>
+                        <NavLink to={item.path} key={item.id} className="item-container" activeClassName="active">
+                            <li className="single-item">
+                                <span><i className={item.icon} /></span>
+                                {item.title}
+                            </li>
+                        </NavLink>
                     ))}
                     <li>
                         <span><i className="fas fa-user-tie" /></span>

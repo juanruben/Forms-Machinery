@@ -6,31 +6,47 @@
   .content {
     font-size: 0.8em;
     padding: 16px;
+    padding-top: 30px;
     height: 100%;
 
     .menu-items {
-      border-bottom: solid 1px #ddd;
-      border-top: solid 1px #ddd;
+      border-bottom: solid 1px #eee;
+      border-top: solid 1px #eee;
       list-style: none;
       padding: 0;
 
       .single-item {
-        border-bottom: solid 1px #ddd;
-        padding: 5px 0;
+        border-bottom: solid 1px #eee;
+        color: black;
+        padding: 7px 0;
+      }
+
+      .single-item:hover {
+        text-decoration: none;
+      }
+
+      .item-container:hover {
+        text-decoration: none;
       }
 
       .sidebarLink {
-        color: black;
         display: inline-block;
-        padding-left: 10px;
         text-decoration: none;
+      }
+
+      span {
+        padding-right: 10px;
+      }
+
+      .active li {
+        color: $icafal-orange;
+        font-weight: bold;
       }
 
       button {
         background: none;
         border: none;
-        padding: 5px 0;
-        padding-left: 10px;
+        padding: 7px 0;
         text-decoration: none;
         cursor: pointer;
       }
