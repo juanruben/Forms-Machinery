@@ -2,7 +2,7 @@ export default [
     {
         id: 1,
         title: 'Dashboard',
-        path: '/admin',
+        path: '/admin/dashboard',
         icon: 'fas fa-user-tie',
 
     },
@@ -36,8 +36,8 @@ export default [
     },
     {
         id: 6,
-        title: 'Dashboard Op',
-        path: '/',
+        title: 'Dashboard Operador',
+        path: '/dashboard',
         icon: 'fas fa-user-tie',
 
     },
