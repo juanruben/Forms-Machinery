@@ -32,7 +32,7 @@ const Menu = (props) => {
                         </NavLink>
                     ))}
                     <li>
-                        <span><i className="fas fa-user-tie" /></span>
+                        <span><i className="fas fa-door-open" /></span>
                         <button type="button" onClick={test}>Cerrar sesión</button>
                     </li>
                 </ul>
