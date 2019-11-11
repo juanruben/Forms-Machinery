@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 import { useStateValue } from '../State';
-import Menu from '../Components/Menu';
+import Menu from '../Components/Menu/Menu';
 import Admin from './Admin';
 import Operator from './Operator';
 
