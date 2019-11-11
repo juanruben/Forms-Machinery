@@ -9,6 +9,8 @@ import Admin from './Admin';
 import Operator from './Operator';
 
 import dataMenu from './dataMenuAdmin';
+import avatar from '../Assets/images/avatar.png';
+
 import './Main.scss';
 
 const mql = window.matchMedia('(min-width: 800px)');
@@ -53,7 +55,7 @@ class Main extends React.Component {
         const { docked, transitions } = this.state;
 
         const sidebarProps = {
-            sidebar: <Menu items={dataMenu} />,
+            sidebar: <Menu items={dataMenu} username="administrador" avatar={avatar} />,
             docked,
             shadow: false,
             transitions,
