@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 // import { useStateValue } from '../State';
 import Menu from '../Components/Menu/Menu';
+import MenuButton from '../Components/MenuButton/MenuButton';
+import Title from '../Components/Title/Title';
 import Admin from './Admin';
 import Operator from './Operator';
 
@@ -53,14 +55,15 @@ class Main extends React.Component {
         const sidebarProps = {
             sidebar: <Menu items={dataMenu} />,
             docked,
+            shadow: false,
             transitions,
         };
 
         return (
             <Sidebar {...sidebarProps}>
                 <div className="content-area">
-                    <button onClick={this.menuButtonClick} type="button">Menú</button>
-                    Contenido....
+                    <MenuButton onClick={this.menuButtonClick} />
+                    <Title text="Registro Histórico" />
                     <Switch>
                         <Route exact path="/admin/clientes" component={Admin} />
                         <Route exact path="/admin/usuarios" component={Admin} />
