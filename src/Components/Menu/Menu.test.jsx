@@ -14,11 +14,13 @@ describe('Menu', () => {
                 id: 1,
                 title: 'Dashboard',
                 path: '/admin',
+                icon: 'fas fa-user-tie',
             },
             {
                 id: 2,
                 title: 'Clientes',
                 path: '/admin/clientes',
+                icon: 'fas fa-user-tie',
             },
         ];
         const wrapper = shallow(<Menu items={items} />);
@@ -31,6 +33,7 @@ describe('Menu', () => {
                 id: 1,
                 title: 'Dashboard',
                 path: '/admin',
+                icon: 'fas fa-user-tie',
             },
         ];
         const wrapper = shallow(<Menu items={items} />);

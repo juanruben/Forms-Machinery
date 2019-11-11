@@ -18,14 +18,22 @@ const Menu = (props) => {
     };
 
     return (
-        <div className="sidebar">
+        <div className="sidebar-container">
             <div className="content">
                 <Logo />
                 <Avatar title={username} image={avatar} />
-                {items.map((item) => (
-                    <Link key={item.id} to={item.path} className="sidebarLink">{item.title}</Link>
-                ))}
-                <button type="button" onClick={test}>Salir</button>
+                <ul className="menu-items">
+                    {items.map((item) => (
+                        <li key={item.id} className="single-item">
+                            <span><i className={item.icon} /></span>
+                            <Link to={item.path} className="sidebarLink">{item.title}</Link>
+                        </li>
+                    ))}
+                    <li>
+                        <span><i className="fas fa-user-tie" /></span>
+                        <button type="button" onClick={test}>Cerrar sesión</button>
+                    </li>
+                </ul>
             </div>
         </div>
     );
@@ -37,6 +45,7 @@ Menu.propTypes = {
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
             path: PropTypes.string.isRequired,
+            icon: PropTypes.string.isRequired,
         }).isRequired,
     ).isRequired,
     username: PropTypes.string,

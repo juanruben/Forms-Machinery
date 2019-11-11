@@ -1,25 +1,39 @@
 @import "../../Assets/css/general.scss";
 
-.sidebar {
+.sidebar-container {
   width: 200px;
 
   .content {
+    font-size: 0.8em;
     padding: 16px;
     height: 100%;
 
-    .sidebarLink {
-      color: $icafal-orange;
-      display: block;
-      text-decoration: none;
-    }
-
-    button {
-      background: none;
-      border: none;
-      color: rgb(255, 123, 0);
+    .menu-items {
+      border-bottom: solid 1px #ddd;
+      border-top: solid 1px #ddd;
+      list-style: none;
       padding: 0;
-      text-decoration: none;
-      cursor: pointer;
+
+      .single-item {
+        border-bottom: solid 1px #ddd;
+        padding: 5px 0;
+      }
+
+      .sidebarLink {
+        color: black;
+        display: inline-block;
+        padding-left: 10px;
+        text-decoration: none;
+      }
+
+      button {
+        background: none;
+        border: none;
+        padding: 5px 0;
+        padding-left: 10px;
+        text-decoration: none;
+        cursor: pointer;
+      }
     }
   }
 }
