@@ -7,6 +7,7 @@ import Admin from './Admin';
 import Operator from './Operator';
 
 import dataMenu from './dataMenuAdmin';
+import './Main.scss';
 
 const mql = window.matchMedia('(min-width: 800px)');
 
@@ -60,6 +61,7 @@ class Main extends React.Component {
 
         return (
             <Sidebar {...sidebarProps}>
+                <div className="content-area">
                 <button onClick={this.menuButtonClick}>Menú</button>
                 Contenido....
                 <Switch>
@@ -72,6 +74,7 @@ class Main extends React.Component {
                     <Route exact path="/salida" component={Operator} />
                     <Route exact path="/" component={Operator} />
                 </Switch>
+                </div>
             </Sidebar>
         );
     }
