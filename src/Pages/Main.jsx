@@ -17,7 +17,7 @@ class Main extends React.Component {
 
         this.state = {
             docked: mql.matches,
-            trans: false,
+            transitions: false,
         };
 
         this.menuButtonClick = this.menuButtonClick.bind(this);
@@ -42,21 +42,18 @@ class Main extends React.Component {
         event.preventDefault();
         const { docked } = this.state;
         this.setState({
-            trans: true,
+            transitions: true,
             docked: !docked,
         });
     }
 
     render() {
-        const { docked, trans } = this.state;
+        const { docked, transitions } = this.state;
 
         const sidebarProps = {
             sidebar: <Menu items={dataMenu} />,
             docked,
-            touch: true,
-            transitions: trans,
-            touchHandleWidth: 20,
-            dragToggleDistance: 30,
+            transitions,
         };
 
         return (
