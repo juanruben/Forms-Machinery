@@ -8,7 +8,7 @@ exports[`Menu should render ok 1`] = `
     <ul className=\\"menu-items\\">
       <li>
         <span>
-          <i className=\\"fas fa-user-tie\\" />
+          <i className=\\"fas fa-door-open\\" />
         </span>
         <button type=\\"button\\" onClick={[Function: test]}>
           Cerrar sesión
