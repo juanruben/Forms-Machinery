@@ -36,20 +36,13 @@ export default [
     },
     {
         id: 6,
-        title: 'Dashboard Operador',
-        path: '/dashboard',
-        icon: 'fas fa-home',
-
-    },
-    {
-        id: 7,
         title: 'Registrar Entrada',
         path: '/entrada',
         icon: 'fas fa-clipboard-check',
 
     },
     {
-        id: 8,
+        id: 7,
         title: 'Registrar Salida',
         path: '/salida',
         icon: 'far fa-clipboard',
