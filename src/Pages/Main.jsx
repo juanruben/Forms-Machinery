@@ -6,7 +6,10 @@ import Sidebar from 'react-sidebar';
 import Menu from '../Components/Menu/Menu';
 import MenuButton from '../Components/MenuButton/MenuButton';
 import Title from '../Components/Title/Title';
-import Admin from './Admin';
+import History from './History/History';
+import Clients from './Clients/Clients';
+import Machines from './Machines/Machines';
+import Users from './Users/Users';
 import Operator from './Operator';
 
 import dataMenu from './dataMenuAdmin';
@@ -78,15 +81,14 @@ class Main extends React.Component {
                 </div>
                 <div className="content-area">
                     <Switch>
-                        <Route exact path="/admin/dashboard" component={Admin} />
-                        <Route exact path="/admin/clientes" component={Admin} />
-                        <Route exact path="/admin/usuarios" component={Admin} />
-                        <Route exact path="/admin/maquinas" component={Admin} />
-                        <Route exact path="/admin/formularios" component={Admin} />
-                        <Route exact path="/admin/dashboard" component={Admin} />
+                        <Route exact path="/admin/dashboard" component={History} />
+                        <Route exact path="/admin/clientes" component={Clients} />
+                        <Route exact path="/admin/usuarios" component={Users} />
+                        <Route exact path="/admin/maquinas" component={Machines} />
+                        <Route exact path="/admin/formularios" component={History} />
+                        <Route exact path="/admin/dashboard" component={History} />
                         <Route exact path="/entrada" component={Operator} />
                         <Route exact path="/salida" component={Operator} />
-                        <Route exact path="/dashboard" component={Operator} />
                     </Switch>
                 </div>
             </Sidebar>
