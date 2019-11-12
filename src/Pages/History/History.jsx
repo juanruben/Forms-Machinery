@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Admin() {
+function History() {
     return (
         <div>
             soy admin
@@ -8,4 +8,4 @@ function Admin() {
     );
 }
 
-export default Admin;
+export default History;
