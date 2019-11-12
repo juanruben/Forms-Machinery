@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 // import { useStateValue } from '../State';
 import Menu from '../Components/Menu/Menu';
@@ -26,10 +27,12 @@ class Main extends React.Component {
 
         this.menuButtonClick = this.menuButtonClick.bind(this);
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
+        this.findTitle = this.findTitle.bind(this);
     }
 
     componentDidMount() {
         mql.addListener(this.mediaQueryChanged);
+        this.findTitle();
     }
 
     componentWillUnmount() {
@@ -40,6 +43,12 @@ class Main extends React.Component {
         this.setState({
             docked: mql.matches,
         });
+    }
+
+    findTitle() {
+        const { location } = this.props;
+        const { pathname } = location;
+        return dataMenu.find((item) => item.path === pathname).title;
     }
 
     menuButtonClick(event) {
@@ -65,7 +74,7 @@ class Main extends React.Component {
             <Sidebar {...sidebarProps}>
                 <div className="content-area">
                     <MenuButton onClick={this.menuButtonClick} />
-                    <Title text="Registro Histórico" />
+                    <Title text={this.findTitle()} />
                     <Switch>
                         <Route exact path="/admin/dashboard" component={Admin} />
                         <Route exact path="/admin/clientes" component={Admin} />
@@ -83,4 +92,16 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+Main.propTypes = {
+    location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+    }),
+};
+
+Main.defaultProps = {
+    location: {
+        pathname: '',
+    },
+};
+
+export default withRouter(Main);
