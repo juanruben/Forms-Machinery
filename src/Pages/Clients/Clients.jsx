@@ -133,7 +133,7 @@ class Clients extends Component {
         return (
             <>
                 <TopBar>
-                    <IconButton onClick={() => { }} icon="far fa-file-excel" />
+                    <IconButton onClick={() => { }} icon="fas fa-file-download" />
                     <ModalAdd title="Crear cliente">
                         <ClientForm />
                     </ModalAdd>
