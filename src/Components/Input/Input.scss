@@ -21,8 +21,8 @@
     width: 100%;
 
     &::placeholder {
-      color: #d3d3d3;
-      font-size: 0.8em;
+      color: #bbb;
+      transform: translateY(-2px);
     }
   }
 
