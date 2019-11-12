@@ -9,6 +9,7 @@ import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { login } from '../../Service/__mocks__/Api';
 // import { login } from '../../Service/Api';
+import './Login.scss';
 
 class Login extends Component {
     constructor(props) {
