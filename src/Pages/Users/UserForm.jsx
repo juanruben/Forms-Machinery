@@ -20,7 +20,7 @@ class UserForms extends Component {
                     <Col md={6}><Input label="RUT" placeholder="RUT" /></Col>
                     <Col md={6}><Input label="Teléfono" placeholder="Teléfono" /></Col>
                     <Col md={6}><Input label="Email" placeholder="Email" /></Col>
-                    <Col md={12}><Input label="Rol" placeholder="Rol" /></Col>
+                    <Col md={12}><Input label="Rol" placeholder="Seleccione..." /></Col>
                     <Col md={6}><Input label="Contraseña" placeholder="Contraseña" /></Col>
                     <Col md={6}><Input label="Repita contraseña" placeholder="Repita contraseña" /></Col>
                 </Row>
