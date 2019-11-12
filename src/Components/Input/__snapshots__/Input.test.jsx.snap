@@ -2,6 +2,6 @@
 
 exports[`Input should render correctly 1`] = `
 "<div className=\\"input-bordered-container\\">
-  <input className=\\"input-bordered false\\" type=\\"text\\" name=\\"test\\" value=\\"\\" onChange={[Function: mockConstructor]} placeholder=\\"\\" />
+  <input className=\\"input-bordered false null\\" type=\\"text\\" name=\\"test\\" value=\\"\\" onChange={[Function: mockConstructor]} placeholder=\\"\\" />
 </div>"
 `;

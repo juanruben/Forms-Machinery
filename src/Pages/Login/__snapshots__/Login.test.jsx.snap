@@ -19,16 +19,16 @@ exports[`Login should render correctly 1`] = `
                               <img style={{...}} src=\\"logo.png\\" alt=\\"logo icafal\\" />
                             </div>
                           </Logo>
-                          <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\">
+                          <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\" label=\\"\\">
                             <div className=\\"input-bordered-container\\">
                               <i className=\\"fas fa-user-tie\\" />
-                              <input className=\\"input-bordered false\\" type=\\"text\\" name=\\"username\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Usuario\\" />
+                              <input className=\\"input-bordered false padding-icon\\" type=\\"text\\" name=\\"username\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Usuario\\" />
                             </div>
                           </Input>
-                          <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors=\\"\\">
+                          <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors=\\"\\" label=\\"\\">
                             <div className=\\"input-bordered-container\\">
                               <i className=\\"fas fa-unlock-alt\\" />
-                              <input className=\\"input-bordered false\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
+                              <input className=\\"input-bordered false padding-icon\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
                             </div>
                           </Input>
                           <Button type=\\"submit\\" onClick={[Function: bound handleSignIn]} text=\\"Entrar\\" disabled={false}>
