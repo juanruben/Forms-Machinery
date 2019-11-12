@@ -13,7 +13,7 @@ class NewForm extends Component {
     render() {
         return (
             <>
-                <Input placeholder="Nombre empresa" />
+                <Input label="Nombre" placeholder="Nombre" />
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
