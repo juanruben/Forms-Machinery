@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import TopBar from '../../Components/TopBar/TopBar';
-import IconButton from '../../Components/IconButton/IconButton';
 import UserForm from './UserForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
 
@@ -133,7 +132,6 @@ class Users extends Component {
         return (
             <>
                 <TopBar>
-                    <IconButton onClick={() => { }} icon="fas fa-file-download" />
                     <ModalAdd title="Crear usuario">
                         <UserForm />
                     </ModalAdd>
