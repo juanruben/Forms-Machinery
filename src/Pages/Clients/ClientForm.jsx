@@ -9,18 +9,18 @@ class ClientForm extends Component {
         super(props);
         this.state = {
         };
-        }
+    }
 
     render() {
         const { callback } = this.props;
         return (
             <>
-                <Input placeholder="Nombre empresa" />
-                <Input placeholder="Razón social" />
-                <Input placeholder="Rut empresa" />
-                <Input placeholder="Teléfono de contacto" />
-                <Input placeholder="Dirección" />
-                <Input placeholder="Emails" />
+                <Input label="Nombre empresa" placeholder="Nombre empresa" />
+                <Input label="Razón social" placeholder="Razón social" />
+                <Input label="Rut empresa" placeholder="Rut empresa" />
+                <Input label="Teléfono de contacto" placeholder="Teléfono de contacto" />
+                <Input label="Dirección" placeholder="Dirección" />
+                <Input label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." />
                 * Estas direcciones de correo recibirán reporte y estado de las maquinarias cuando esta salgan del taller hacia la obra del cliente
                 <Row>
                     <Col md={8} />
