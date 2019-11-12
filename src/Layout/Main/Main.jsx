@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
 // import { useStateValue } from '../State';
-import Menu from '../Components/Menu/Menu';
-import MenuButton from '../Components/MenuButton/MenuButton';
-import Title from '../Components/Title/Title';
-import History from './History/History';
-import Clients from './Clients/Clients';
-import Machines from './Machines/Machines';
-import Users from './Users/Users';
-import Operator from './Operator';
+import Menu from '../../Components/Menu/Menu';
+import MenuButton from '../../Components/MenuButton/MenuButton';
+import Title from '../../Components/Title/Title';
+import History from '../../Pages/History/History';
+import Clients from '../../Pages/Clients/Clients';
+import Machines from '../../Pages/Machines/Machines';
+import Users from '../../Pages/Users/Users';
+import CheckIn from '../../Pages/CheckIn/CheckIn';
+import CheckOut from '../../Pages/CheckOut/CheckOut';
 
-import dataMenu from './dataMenuAdmin';
-import avatar from '../Assets/images/avatar.png';
+import dataMenu from './data/dataMenuAdmin';
+import avatar from '../../Assets/images/avatar.png';
 
 import './Main.scss';
 

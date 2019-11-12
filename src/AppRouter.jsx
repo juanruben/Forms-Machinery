@@ -6,7 +6,7 @@ import {
 import { useStateValue } from './State';
 import Login from './Pages/Login/Login';
 import Recover from './Pages/Recover/Recover';
-import Main from './Pages/Main';
+import Main from './Layout/Main/Main';
 import Page404 from './Components/Page404/Page404';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
