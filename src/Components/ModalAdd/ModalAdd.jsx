@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import {
     Modal, ModalHeader, ModalBody,
@@ -25,7 +25,7 @@ class ModalAdd extends Component {
 
     render() {
         const { showing } = this.state;
-        const { title, form } = this.props;
+        const { title, children } = this.props;
         return (
             <>
                 <span className="modal-add-button">
@@ -38,7 +38,7 @@ class ModalAdd extends Component {
                         {title}
                     </ModalHeader>
                     <ModalBody>
-                        {form}
+                        {cloneElement(children, { callback: this.toggle })}
                     </ModalBody>
                 </Modal>
             </>
@@ -48,7 +48,6 @@ class ModalAdd extends Component {
 
 ModalAdd.propTypes = {
     title: PropTypes.string.isRequired,
-    form: PropTypes.node.isRequired,
 };
 
 export default ModalAdd;

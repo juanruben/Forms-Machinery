@@ -134,7 +134,9 @@ class Clients extends Component {
             <>
                 <TopBar>
                     <IconButton onClick={() => { }} icon="far fa-file-excel" />
-                    <ModalAdd form={<ClientForm />} title="Crear cliente" />
+                    <ModalAdd title="Crear cliente">
+                        <ClientForm />
+                    </ModalAdd>
                 </TopBar>
 
                 <ReactTable

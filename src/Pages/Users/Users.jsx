@@ -134,7 +134,9 @@ class Users extends Component {
             <>
                 <TopBar>
                     <IconButton onClick={() => { }} icon="far fa-file-excel" />
-                    <ModalAdd form={<UserForm />} title="Crear usuario" />
+                    <ModalAdd title="Crear usuario">
+                        <UserForm />
+                    </ModalAdd>
                 </TopBar>
 
                 <ReactTable

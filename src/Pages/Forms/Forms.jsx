@@ -132,7 +132,9 @@ class Forms extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalAdd form={<FormForm />} title="Crear formulario" />
+                    <ModalAdd title="Crear formulario">
+                        <FormForm />
+                    </ModalAdd>
                 </TopBar>
 
                 <ReactTable

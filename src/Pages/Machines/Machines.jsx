@@ -134,7 +134,9 @@ class Machines extends Component {
             <>
                 <TopBar>
                     <IconButton onClick={() => { }} icon="far fa-file-excel" />
-                    <ModalAdd form={<MachineForm />} title="Crear máquina" />
+                    <ModalAdd title="Crear máquina">
+                        <MachineForm />
+                    </ModalAdd>
                 </TopBar>
 
                 <ReactTable
