@@ -1,0 +1,21 @@
+@import "../../Assets/css/general.scss";
+
+.modal-add-button {
+  margin-left: 20px;
+
+  button {
+    border: none;
+    color: $icafal-orange;
+    font-size: 3em;
+    height: 0px;
+    padding: 0;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover {
+      color: $icafal-orange-dark;
+    }
+  }
+}
