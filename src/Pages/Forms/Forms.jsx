@@ -104,11 +104,26 @@ class Forms extends Component {
             },
             {
                 name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
+
+        const columns = [
+            {
+                Header: 'Nombre',
+                accessor: 'name',
                 },
+            {
+                Header: 'Acciones',
+                id: 'actions',
+                accessor: (row) => null,
+                filterable: false,
+                sortable: false,
+                maxWidth: 150,
+                Cell: (row) => (
+                    <div className="form-actions">
+                        <span className="form-actions__icon"><i className="fas fa-eye" /></span>
+                        <span className="form-actions__icon"><i className="fas fa-pen" /></span>
+                        <span className="form-actions__icon"><i className="fas fa-trash" /></span>
+                    </div>
+                ),
             },
         ];
 
