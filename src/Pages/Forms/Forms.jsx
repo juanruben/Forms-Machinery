@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
-import 'react-table/react-table.css';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
