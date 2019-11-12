@@ -88,8 +88,8 @@ class Main extends React.Component {
                         <Route exact path="/admin/maquinas" component={Machines} />
                         <Route exact path="/admin/formularios" component={History} />
                         <Route exact path="/admin/dashboard" component={History} />
-                        <Route exact path="/entrada" component={Operator} />
-                        <Route exact path="/salida" component={Operator} />
+                        <Route exact path="/entrada" component={CheckIn} />
+                        <Route exact path="/salida" component={CheckOut} />
                     </Switch>
                 </div>
             </Sidebar>
