@@ -133,7 +133,7 @@ class Machines extends Component {
         return (
             <>
                 <TopBar>
-                    <IconButton onClick={() => { }} icon="far fa-file-excel" />
+                    <IconButton onClick={() => { }} icon="fas fa-file-download" />
                     <ModalAdd title="Crear máquina">
                         <MachineForm />
                     </ModalAdd>
@@ -151,7 +151,7 @@ class Machines extends Component {
                     noDataText="Sin datos"
                     pageText="Página"
                     ofText="de"
-                    rowsText="usuarios"
+                    rowsText="máquinas"
                 />
             </>
         );
