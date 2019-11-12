@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import image from '../../Assets/images/logo.png';
+import image from './logo.png';
 
 const Logo = (props) => {
     const { padding, maxWidth } = props;

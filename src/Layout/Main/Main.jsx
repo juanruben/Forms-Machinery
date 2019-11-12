@@ -15,7 +15,7 @@ import CheckIn from '../../Pages/CheckIn/CheckIn';
 import CheckOut from '../../Pages/CheckOut/CheckOut';
 
 import dataMenu from './data/dataMenuAdmin';
-import avatar from '../../Assets/images/avatar.png';
+import avatar from './avatar.png';
 
 import './Main.scss';
 
