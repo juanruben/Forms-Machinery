@@ -8,7 +8,7 @@
 
 .content-area {
   background-color: $icafal-background;
-  min-height: 100vh;
+  min-height: calc(100vh - 150px);
   overflow: auto;
   padding: 20px;
   padding-top: 0px;
