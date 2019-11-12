@@ -17,7 +17,7 @@
     height: 38px;
     margin-bottom: 10px;
     min-width: 250px;
-    padding-left: 40px;
+    padding-left: 10px;
     width: 100%;
 
     &::placeholder {
@@ -37,5 +37,9 @@
     left: calc(100% + 10px);
     top: 14px;
     width: 20px;
+  }
+
+  .padding-icon{
+    padding-left: 40px; 
   }
 }
