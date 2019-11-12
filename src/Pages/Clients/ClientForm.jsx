@@ -15,12 +15,14 @@ class ClientForm extends Component {
         const { callback } = this.props;
         return (
             <>
-                <Input label="Nombre empresa" placeholder="Nombre empresa" />
-                <Input label="Razón social" placeholder="Razón social" />
-                <Input label="Rut empresa" placeholder="Rut empresa" />
-                <Input label="Teléfono de contacto" placeholder="Teléfono de contacto" />
-                <Input label="Dirección" placeholder="Dirección" />
-                <Input label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." />
+                <Row>
+                    <Col md={6}><Input label="Nombre empresa" placeholder="Nombre empresa" /></Col>
+                    <Col md={6}><Input label="Razón social" placeholder="Razón social" /></Col>
+                    <Col md={6}><Input label="Rut empresa" placeholder="Rut empresa" /></Col>
+                    <Col md={6}><Input label="Teléfono de contacto" placeholder="Teléfono de contacto" /></Col>
+                    <Col md={12}><Input label="Dirección" placeholder="Dirección" /></Col>
+                    <Col md={12}><Input label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." /></Col>
+                </Row>
                 * Estas direcciones de correo recibirán reporte y estado de las maquinarias cuando esta salgan del taller hacia la obra del cliente
                 <Row>
                     <Col md={8} />

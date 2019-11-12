@@ -13,13 +13,15 @@ class MachineForm extends Component {
     render() {
         return (
             <>
-                <Input placeholder="Nombre empresa" />
-                <Input placeholder="Razón social" />
-                <Input placeholder="Rut empresa" />
-                <Input placeholder="Teléfono de contacto" />
-                <Input placeholder="Dirección" />
-                <Input placeholder="Emails" />
-                * Estas direcciones de correo recibirán reporte y estado de las maquinarias cuando esta salgan del taller hacia la obra del cliente
+                <Row>
+                    <Col md={12}><Input label="Nombre" placeholder="Nombre" /></Col>
+                    <Col md={6}><Input label="Código" placeholder="Código" /></Col>
+                    <Col md={6}><Input label="Patente" placeholder="Patente" /></Col>
+                    <Col md={6}><Input label="Marca" placeholder="Marca" /></Col>
+                    <Col md={6}><Input label="Modelo" placeholder="Modelo" /></Col>
+                    <Col md={6}><Input label="Año" placeholder="Año" /></Col>
+                    <Col md={6}><Input label="Formulario" placeholder="Seleccione..." /></Col>
+                </Row>
                 <Row>
                     <Col md={8} />
                     <Col md={4}>

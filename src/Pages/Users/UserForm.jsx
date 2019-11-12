@@ -13,13 +13,17 @@ class UserForms extends Component {
     render() {
         return (
             <>
-                <Input placeholder="Nombre empresa" />
-                <Input placeholder="Razón social" />
-                <Input placeholder="Rut empresa" />
-                <Input placeholder="Teléfono de contacto" />
-                <Input placeholder="Dirección" />
-                <Input placeholder="Emails" />
-                * Estas direcciones de correo recibirán reporte y estado de las maquinarias cuando esta salgan del taller hacia la obra del cliente
+                <Row>
+                    <Col md={6}><Input label="Nombre" placeholder="Nombre" /></Col>
+                    <Col md={6}><Input label="Apellido" placeholder="Apellido" /></Col>
+                    <Col md={6}><Input label="Nombre de usuario" placeholder="Nombre de usuario" /></Col>
+                    <Col md={6}><Input label="RUT" placeholder="RUT" /></Col>
+                    <Col md={6}><Input label="Teléfono" placeholder="Teléfono" /></Col>
+                    <Col md={6}><Input label="Email" placeholder="Email" /></Col>
+                    <Col md={12}><Input label="Rol" placeholder="Rol" /></Col>
+                    <Col md={6}><Input label="Contraseña" placeholder="Contraseña" /></Col>
+                    <Col md={6}><Input label="Repita contraseña" placeholder="Repita contraseña" /></Col>
+                </Row>
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
