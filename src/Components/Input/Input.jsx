@@ -4,19 +4,21 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        icon, errors, type, name, value, onChange, placeholder,
+        label, icon, errors, type, name, value, onChange, placeholder,
     } = props;
     const warning = (errors.length > 0);
     return (
         <div className="input-bordered-container">
+            {label}
             {icon && <i className={icon} />}
-            <input className={`input-bordered ${warning && 'border-error'}`} type={type} name={name} value={value} onChange={onChange} placeholder={placeholder} />
+            <input className={`input-bordered ${warning && 'border-error'} ${icon && 'padding-icon'}`} type={type} name={name} value={value} onChange={onChange} placeholder={placeholder} />
             {warning && <i className="fas fa-exclamation warning" />}
         </div>
     );
 };
 
 Input.propTypes = {
+    label: PropTypes.string,
     icon: PropTypes.string,
     errors: PropTypes.string,
     type: PropTypes.string,
@@ -27,6 +29,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+    label: '',
     icon: null,
     errors: '',
     type: 'text',
