@@ -72,9 +72,11 @@ class Main extends React.Component {
 
         return (
             <Sidebar {...sidebarProps}>
-                <div className="content-area">
+                <div className="top-area">
                     <MenuButton onClick={this.menuButtonClick} />
                     <Title text={this.findTitle()} />
+                </div>
+                <div className="content-area">
                     <Switch>
                         <Route exact path="/admin/dashboard" component={Admin} />
                         <Route exact path="/admin/clientes" component={Admin} />
