@@ -149,7 +149,7 @@ class Forms extends Component {
                     noDataText="Sin datos"
                     pageText="Página"
                     ofText="de"
-                    rowsText="clientes"
+                    rowsText="formularios"
                 />
             </>
         );
