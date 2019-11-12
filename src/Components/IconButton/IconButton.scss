@@ -1,0 +1,16 @@
+@import "../../Assets/css/general.scss";
+
+.icon-button {
+  background-color: $icafal-background;
+  border: none;
+  font-size: 30px;
+  padding: 0;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    color: $icafal-orange-dark;
+  }
+}
