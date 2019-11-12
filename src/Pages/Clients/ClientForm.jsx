@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -7,11 +8,11 @@ class ClientForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            sent: false,
+        };
         }
-    }
 
     render() {
+        const { callback } = this.props;
         return (
             <>
                 <Input placeholder="Nombre empresa" />
@@ -24,12 +25,20 @@ class ClientForm extends Component {
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
-                        <Button text="Crear" />
+                        <Button text="Crear" onClick={callback} />
                     </Col>
                 </Row>
             </>
         );
     }
 }
+
+ClientForm.propTypes = {
+    callback: PropTypes.func,
+};
+
+ClientForm.defaultProps = {
+    callback: null,
+};
 
 export default ClientForm;
