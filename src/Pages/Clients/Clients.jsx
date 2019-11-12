@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import ClientForm from './ClientForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-
-import './Clients.scss';
 
 class Clients extends Component {
     constructor(props) {
@@ -133,10 +132,10 @@ class Clients extends Component {
 
         return (
             <>
-                <div className="top-bar">
+                <TopBar>
                     <IconButton onClick={() => { }} icon="far fa-file-excel" />
                     <ModalAdd form={<ClientForm />} title="Crear cliente" />
-                </div>
+                </TopBar>
 
                 <ReactTable
                     data={data}
