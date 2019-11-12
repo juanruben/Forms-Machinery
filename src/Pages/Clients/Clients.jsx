@@ -143,6 +143,7 @@ class Clients extends Component {
                     data={data}
                     columns={columns}
                     filterable
+                    pageSizeOptions={[10, 20, 25, 50, 100]}
                     className="-striped"
                     defaultPageSize={10}
                     previousText="Anterior"
