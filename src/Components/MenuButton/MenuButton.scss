@@ -10,4 +10,8 @@
   &:focus {
     outline: 0;
   }
+
+  &:hover {
+    color: $icafal-orange-dark;
+  }
 }
