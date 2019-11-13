@@ -11,6 +11,7 @@ import Clients from '../../Pages/Clients/Clients';
 import Machines from '../../Pages/Machines/Machines';
 import Users from '../../Pages/Users/Users';
 import Forms from '../../Pages/Forms/Forms';
+import Sections from '../../Pages/Forms/Sections';
 import CheckIn from '../../Pages/CheckIn/CheckIn';
 import CheckOut from '../../Pages/CheckOut/CheckOut';
 
@@ -89,6 +90,7 @@ class Main extends React.Component {
                         <Route exact path="/admin/usuarios" component={Users} />
                         <Route exact path="/admin/maquinas" component={Machines} />
                         <Route exact path="/admin/formularios" component={Forms} />
+                        <Route exact path="/admin/formularios/:id" component={Sections} />
                         <Route exact path="/entrada" component={CheckIn} />
                         <Route exact path="/salida" component={CheckOut} />
                     </Switch>
