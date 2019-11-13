@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
-import FormSection from './FormSection';
+import SectionForm from './SectionForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
 import TopBar from '../../Components/TopBar/TopBar';
 
@@ -82,7 +82,7 @@ class Sections extends Component {
             <>
                 <TopBar>
                     <ModalAdd title="Crear sección de formulario">
-                        <FormSection />
+                        <SectionForm />
                     </ModalAdd>
                 </TopBar>
 

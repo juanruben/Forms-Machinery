@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 
-class NewSection extends Component {
+class SectionForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,4 +25,4 @@ class NewSection extends Component {
     }
 }
 
-export default NewSection;
+export default SectionForm;
