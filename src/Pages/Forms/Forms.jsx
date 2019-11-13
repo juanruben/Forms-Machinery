@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
@@ -11,6 +13,12 @@ class Forms extends Component {
         super(props);
         this.state = {
         };
+        this.onViewClick = this.onViewClick.bind(this);
+    }
+
+    onViewClick() {
+        const { history } = this.props;
+        history.push('/admin/formularios/12');
     }
 
     render() {
@@ -28,7 +36,8 @@ class Forms extends Component {
                 maxWidth: 150,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon"><i className="fas fa-eye" /></span>
+                        <span className="form-actions__icon" onClick={this.onViewClick}><i className="fas fa-eye" /></span>
+                        <span className="form-actions__icon"><i className="far fa-copy" /></span>
                         <span className="form-actions__icon"><i className="fas fa-pen" /></span>
                         <span className="form-actions__icon"><i className="fas fa-trash" /></span>
                     </div>
@@ -54,4 +63,8 @@ class Forms extends Component {
     }
 }
 
-export default Forms;
+Forms.propTypes = {
+    history: PropTypes.object.isRequired,
+};
+
+export default withRouter(Forms);
