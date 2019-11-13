@@ -53,7 +53,8 @@ class Main extends React.Component {
     findTitle() {
         const { location } = this.props;
         const { pathname } = location;
-        return dataMenu.find((item) => item.path === pathname).title;
+        const item = dataMenu.find((v) => v.path === pathname);
+        return item ? item.title : '';
     }
 
     menuButtonClick(event) {
