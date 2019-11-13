@@ -14,6 +14,9 @@ class FieldForm extends Component {
         return (
             <>
                 <Input label="Nombre" placeholder="Nombre" />
+                <Input label="Tipo" placeholder="Seleccione..." />
+                <div>Requerido <input type="checkbox" /></div>
+                <div>Observaciones <input type="checkbox" /></div>
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
