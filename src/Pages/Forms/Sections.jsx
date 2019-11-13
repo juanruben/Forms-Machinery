@@ -91,7 +91,7 @@ class Sections extends Component {
                     {' '}
                     Volver
                 </button>
-                <Title text="Secciones del formulario [...]" />
+                <Title text="Secciones del formulario [...xyz]" />
 
                 <SortableContainer
                     onSortEnd={this.onSortEnd}
