@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import { tableConfig } from '../../config';
 
 class Forms extends Component {
     constructor(props) {
@@ -97,16 +98,7 @@ class Forms extends Component {
                 <ReactTable
                     data={data}
                     columns={columns}
-                    filterable
-                    className="-striped"
-                    defaultPageSize={10}
-                    previousText="Anterior"
-                    nextText="Siguiente"
-                    loadingText="Cargando"
-                    noDataText="Sin datos"
-                    pageText="Página"
-                    ofText="de"
-                    rowsText="formularios"
+                    {...tableConfig}
                 />
             </>
         );

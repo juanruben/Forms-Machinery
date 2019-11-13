@@ -5,6 +5,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import MachineForm from './MachineForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import { tableConfig } from '../../config';
 
 class Machines extends Component {
     constructor(props) {
@@ -171,16 +172,7 @@ class Machines extends Component {
                 <ReactTable
                     data={data}
                     columns={columns}
-                    filterable
-                    className="-striped"
-                    defaultPageSize={10}
-                    previousText="Anterior"
-                    nextText="Siguiente"
-                    loadingText="Cargando"
-                    noDataText="Sin datos"
-                    pageText="Página"
-                    ofText="de"
-                    rowsText="máquinas"
+                    {...tableConfig}
                 />
             </>
         );

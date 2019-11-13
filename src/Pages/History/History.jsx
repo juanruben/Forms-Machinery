@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
+import { tableConfig } from '../../config';
 
 class History extends Component {
     constructor(props) {
@@ -146,6 +147,7 @@ class History extends Component {
                 ),
             },
         ];
+
         return (
             <>
                 <TopBar>
@@ -155,16 +157,7 @@ class History extends Component {
                 <ReactTable
                     data={data}
                     columns={columns}
-                    filterable
-                    className="-striped"
-                    defaultPageSize={10}
-                    previousText="Anterior"
-                    nextText="Siguiente"
-                    loadingText="Cargando"
-                    noDataText="Sin datos"
-                    pageText="Página"
-                    ofText="de"
-                    rowsText="registros"
+                    {...tableConfig}
                 />
             </>
         );

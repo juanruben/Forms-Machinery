@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import { tableConfig } from '../../config';
 
 class Users extends Component {
     constructor(props) {
@@ -161,16 +162,7 @@ class Users extends Component {
                 <ReactTable
                     data={data}
                     columns={columns}
-                    filterable
-                    className="-striped"
-                    defaultPageSize={10}
-                    previousText="Anterior"
-                    nextText="Siguiente"
-                    loadingText="Cargando"
-                    noDataText="Sin datos"
-                    pageText="Página"
-                    ofText="de"
-                    rowsText="usuarios"
+                    {...tableConfig}
                 />
             </>
         );

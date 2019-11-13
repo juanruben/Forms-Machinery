@@ -5,6 +5,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import ClientForm from './ClientForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import { tableConfig } from '../../config';
 
 class Clients extends Component {
     constructor(props) {
@@ -159,17 +160,7 @@ class Clients extends Component {
                 <ReactTable
                     data={data}
                     columns={columns}
-                    filterable
-                    pageSizeOptions={[10, 20, 25, 50, 100]}
-                    className="-striped"
-                    defaultPageSize={10}
-                    previousText="Anterior"
-                    nextText="Siguiente"
-                    loadingText="Cargando"
-                    noDataText="Sin datos"
-                    pageText="Página"
-                    ofText="de"
-                    rowsText="clientes"
+                    {...tableConfig}
                 />
             </>
         );
