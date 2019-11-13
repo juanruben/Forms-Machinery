@@ -86,6 +86,11 @@ class Sections extends Component {
                         <SectionForm />
                     </ModalAdd>
                 </TopBar>
+                <button onClick={() => { this.props.history.goBack(); }} className="back-button" type="button">
+                    <i className="fas fa-long-arrow-alt-left" />
+                    {' '}
+                    Volver
+                </button>
                 <Title text="Secciones del formulario [...]" />
 
                 <SortableContainer
