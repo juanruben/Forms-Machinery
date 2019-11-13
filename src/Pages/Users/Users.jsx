@@ -4,7 +4,7 @@ import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import { tableConfig } from '../../config';
+import { tableConfig, dummyData } from '../../config';
 
 class Users extends Component {
     constructor(props) {
@@ -14,125 +14,26 @@ class Users extends Component {
     }
 
     render() {
-        const data = [
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-        ];
-
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'name',
+                accessor: 'string1',
             },
             {
                 Header: 'RUT',
-                accessor: 'age',
+                accessor: 'number',
             },
             {
                 Header: 'Teléfono',
-                accessor: 'age',
+                accessor: 'number',
             },
             {
                 Header: 'Email',
-                accessor: 'name',
+                accessor: 'string2',
             },
             {
                 Header: 'Perfil',
-                accessor: 'name',
+                accessor: 'string3',
             },
             {
                 Header: 'Acciones',
@@ -160,7 +61,7 @@ class Users extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={data}
+                    data={dummyData}
                     columns={columns}
                     {...tableConfig}
                 />

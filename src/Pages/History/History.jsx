@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
-import { tableConfig } from '../../config';
+import { tableConfig, dummyData } from '../../config';
 
 class History extends Component {
     constructor(props) {
@@ -13,125 +13,26 @@ class History extends Component {
     }
 
     render() {
-        const data = [
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-        ];
-
         const columns = [
             {
                 Header: 'Fecha',
-                accessor: 'name',
+                accessor: 'date',
             },
             {
                 Header: 'Patente',
-                accessor: 'age',
+                accessor: 'string1',
             },
             {
                 Header: 'Código',
-                accessor: 'age',
+                accessor: 'number',
             },
             {
                 Header: 'Cliente',
-                accessor: 'name',
+                accessor: 'string3',
             },
             {
                 Header: 'Estado',
-                accessor: 'name',
+                accessor: 'string4',
             },
             {
                 Header: 'Ver',
@@ -155,7 +56,7 @@ class History extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={data}
+                    data={dummyData}
                     columns={columns}
                     {...tableConfig}
                 />

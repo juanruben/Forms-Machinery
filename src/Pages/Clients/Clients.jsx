@@ -5,7 +5,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import ClientForm from './ClientForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import { tableConfig } from '../../config';
+import { tableConfig, dummyData } from '../../config';
 
 class Clients extends Component {
     constructor(props) {
@@ -15,121 +15,22 @@ class Clients extends Component {
     }
 
     render() {
-        const data = [
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-        ];
-
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'name',
+                accessor: 'string1',
             },
             {
                 Header: 'Rut',
-                accessor: 'age',
+                accessor: 'number',
             },
             {
                 Header: 'Contacto',
-                accessor: 'age',
+                accessor: 'string',
             },
             {
                 Header: 'Email',
-                accessor: 'name',
+                accessor: 'string2',
             },
             {
                 Header: 'Acciones',
@@ -158,7 +59,7 @@ class Clients extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={data}
+                    data={dummyData}
                     columns={columns}
                     {...tableConfig}
                 />

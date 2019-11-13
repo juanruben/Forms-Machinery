@@ -5,7 +5,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import MachineForm from './MachineForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import { tableConfig } from '../../config';
+import { tableConfig, dummyData } from '../../config';
 
 class Machines extends Component {
     constructor(props) {
@@ -15,133 +15,34 @@ class Machines extends Component {
     }
 
     render() {
-        const data = [
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'AAA',
-                age: 21,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'BBB',
-                age: 26,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-            {
-                name: 'CCCC',
-                age: 36,
-                friend: {
-                    name: 'Jason Maurer',
-                    age: 23,
-                },
-            },
-        ];
-
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'name',
+                accessor: 'string1',
             },
             {
                 Header: 'Patente',
-                accessor: 'age',
+                accessor: 'number',
             },
             {
                 Header: 'Modelo',
-                accessor: 'name',
+                accessor: 'string2',
             },
             {
                 Header: 'Ubicación',
-                accessor: 'name',
+                accessor: 'string3',
             },
             {
                 Header: 'Cliente',
-                accessor: 'name',
+                accessor: 'string3',
             },
             {
                 Header: 'Estado',
-                accessor: 'name',
+                accessor: 'string4',
             },
             {
                 Header: 'Último movimiento',
-                accessor: 'name',
+                accessor: 'date',
             },
             {
                 Header: 'Acciones',
@@ -170,7 +71,7 @@ class Machines extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={data}
+                    data={dummyData}
                     columns={columns}
                     {...tableConfig}
                 />

@@ -4,7 +4,7 @@ import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import { tableConfig } from '../../config';
+import { tableConfig, dummyData } from '../../config';
 
 class Forms extends Component {
     constructor(props) {
@@ -14,61 +14,10 @@ class Forms extends Component {
     }
 
     render() {
-        const data = [
-            {
-                id: 1,
-                name: 'AAA',
-            },
-            {
-                id: 2,
-                name: 'BBB',
-            },
-            {
-                id: 2,
-                name: 'CCCC',
-            },
-            {
-                id: 2,
-                name: 'AAA',
-            },
-            {
-                id: 2,
-                name: 'BBB',
-            },
-            {
-                id: 2,
-                name: 'CCCC',
-            },
-            {
-                id: 2,
-                name: 'AAA',
-            },
-            {
-                id: 2,
-                name: 'BBB',
-            },
-            {
-                id: 2,
-                name: 'CCCC',
-            },
-            {
-                id: 2,
-                name: 'AAA',
-            },
-            {
-                id: 2,
-                name: 'BBB',
-            },
-            {
-                id: 2,
-                name: 'CCCC',
-            },
-        ];
-
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'name',
+                accessor: 'string1',
             },
             {
                 Header: 'Acciones',
@@ -96,7 +45,7 @@ class Forms extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={data}
+                    data={dummyData}
                     columns={columns}
                     {...tableConfig}
                 />
