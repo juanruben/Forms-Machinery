@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Admin from './Admin';
+import History from './History';
 
 test('should render ok', () => {
-    const wrapper = shallow(<Admin />);
+    const wrapper = shallow(<History />);
     expect(wrapper.debug()).toMatchSnapshot();
 });
