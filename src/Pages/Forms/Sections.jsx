@@ -100,10 +100,10 @@ class Sections extends Component {
                     useDragHandle
                     helperClass="sections-container"
                 >
-                    {items.map((item) => (
+                    {items.map((item, index) => (
                         <SortableItem
                             key={item.id}
-                            index={item.id}
+                            index={index}
                             value={item.name}
                             history={history}
                         />
