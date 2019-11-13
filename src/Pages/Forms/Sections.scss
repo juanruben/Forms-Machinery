@@ -1,0 +1,28 @@
+@import "../../styles.scss";
+
+.sections-container {
+  border-top: solid #ddd 1px;
+  list-style: none;
+  padding: 0;
+}
+.section-item {
+  border-bottom: solid #ddd 1px;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+
+  .form-actions {
+    display: inline;
+
+    &__icon {
+      cursor: pointer;
+      padding: 0 10px;
+    }
+  }
+}
+
+.section-sort-handle {
+  color: $icafal-orange;
+  cursor: pointer;
+  padding-right: 20px;
+}
