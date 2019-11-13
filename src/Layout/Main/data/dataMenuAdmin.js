@@ -1,7 +1,7 @@
 export default [
     {
         id: 1,
-        title: 'Dashboard',
+        title: 'Movimientos',
         path: '/admin/dashboard',
         icon: 'fas fa-home',
 
