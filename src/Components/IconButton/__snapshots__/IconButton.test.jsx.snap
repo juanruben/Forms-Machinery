@@ -2,6 +2,6 @@
 
 exports[`IconButton should render ok 1`] = `
 "<button onClick={[Function: mockConstructor]} type=\\"button\\" className=\\"icon-button\\">
-  <i className={[undefined]} />
+  <i className=\\"\\" />
 </button>"
 `;
