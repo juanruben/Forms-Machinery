@@ -5,6 +5,7 @@ import { sortableContainer, sortableElement, sortableHandle } from 'react-sortab
 import arrayMove from 'array-move';
 import SectionForm from './SectionForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 
 import './Sections.scss';
@@ -85,6 +86,7 @@ class Sections extends Component {
                         <SectionForm />
                     </ModalAdd>
                 </TopBar>
+                <Title text="Secciones del formulario [...]" />
 
                 <SortableContainer
                     onSortEnd={this.onSortEnd}
