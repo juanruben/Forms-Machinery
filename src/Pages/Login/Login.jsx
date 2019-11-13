@@ -123,9 +123,11 @@ class Login extends Component {
             <LayoutFullWidth>
                 <Box>
                     <Logo padding={30} maxWidth={150} />
-                    <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
-                    <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
-                    <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
+                    <div className="login-container">
+                        <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
+                        <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
+                        <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
+                    </div>
                     <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
                 </Box>
             </LayoutFullWidth>
