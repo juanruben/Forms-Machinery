@@ -25,7 +25,7 @@ class Forms extends Component {
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'string1',
+                accessor: 'machine',
             },
             {
                 Header: 'Acciones',

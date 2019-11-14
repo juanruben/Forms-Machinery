@@ -18,19 +18,19 @@ class Clients extends Component {
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'string1',
+                accessor: 'name',
             },
             {
                 Header: 'Rut',
-                accessor: 'number',
+                accessor: 'rut',
             },
             {
                 Header: 'Contacto',
-                accessor: 'string',
+                accessor: 'contact',
             },
             {
                 Header: 'Email',
-                accessor: 'string2',
+                accessor: 'email',
             },
             {
                 Header: 'Acciones',

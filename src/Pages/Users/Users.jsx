@@ -17,23 +17,23 @@ class Users extends Component {
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'string1',
+                accessor: 'name',
             },
             {
                 Header: 'RUT',
-                accessor: 'number',
+                accessor: 'rut',
             },
             {
                 Header: 'Teléfono',
-                accessor: 'number',
+                accessor: 'phone',
             },
             {
                 Header: 'Email',
-                accessor: 'string2',
+                accessor: 'email',
             },
             {
                 Header: 'Perfil',
-                accessor: 'string3',
+                accessor: 'profile',
             },
             {
                 Header: 'Acciones',

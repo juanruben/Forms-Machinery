@@ -41,19 +41,19 @@ class History extends Component {
             },
             {
                 Header: 'Patente',
-                accessor: 'string1',
+                accessor: 'plate',
             },
             {
                 Header: 'Código',
-                accessor: 'number',
+                accessor: 'code',
             },
             {
                 Header: 'Cliente',
-                accessor: 'string3',
+                accessor: 'name',
             },
             {
                 Header: 'Estado',
-                accessor: 'string4',
+                accessor: 'status',
             },
             {
                 Header: 'Ver',

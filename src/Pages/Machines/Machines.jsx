@@ -18,27 +18,27 @@ class Machines extends Component {
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'string1',
+                accessor: 'name',
             },
             {
                 Header: 'Patente',
-                accessor: 'number',
+                accessor: 'plate',
             },
             {
                 Header: 'Modelo',
-                accessor: 'string2',
+                accessor: 'model',
             },
             {
                 Header: 'Ubicación',
-                accessor: 'string3',
+                accessor: 'address',
             },
             {
                 Header: 'Cliente',
-                accessor: 'string3',
+                accessor: 'contact',
             },
             {
                 Header: 'Estado',
-                accessor: 'string4',
+                accessor: 'status',
             },
             {
                 Header: 'Último movimiento',
