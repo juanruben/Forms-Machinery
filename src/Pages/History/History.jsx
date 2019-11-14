@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 // import { StateContext } from '../State';
+import {
+    Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink,
+} from '@react-pdf/renderer';
+import {
+    Modal, ModalHeader, ModalBody, ModalFooter,
+} from 'reactstrap';
 import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
@@ -9,7 +15,22 @@ class History extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            showing: false,
+            ready: false,
         };
+
+        this.toggle = this.toggle.bind(this);
+    }
+
+    toggle() {
+        this.setState((prevState) => ({
+            showing: !prevState.showing,
+            ready: false,
+        }), () => {
+            setTimeout(() => {
+                this.setState({ ready: true });
+            }, 1);
+        });
     }
 
     render() {
@@ -43,11 +64,45 @@ class History extends Component {
                 maxWidth: 50,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon"><i className="fas fa-eye" /></span>
+                        <span className="form-actions__icon" onClick={this.toggle}><i className="fas fa-eye" /></span>
                     </div>
                 ),
             },
         ];
+
+        const { showing, ready } = this.state;
+
+        const styles = StyleSheet.create({
+            page: {
+                flexDirection: 'row',
+                backgroundColor: '#FFF',
+            },
+            section: {
+                margin: 10,
+                padding: 10,
+                flexGrow: 1,
+                fontSize: 100,
+                fontWeight: 700,
+                color: '#CCC',
+            },
+            text: {
+                color: '#F00',
+                margin: 10,
+                padding: 10,
+                flexGrow: 1,
+                fontSize: 12,
+            },
+        });
+
+        const doc = (
+            <Document>
+                <Page size="A4" style={styles.page}>
+                    <View style={styles.section}>
+                        <Text>PDF Icafal</Text>
+                    </View>
+                </Page>
+            </Document>
+        );
 
         return (
             <>
@@ -60,6 +115,41 @@ class History extends Component {
                     columns={columns}
                     {...tableConfig}
                 />
+
+                {/* {docviewr} */}
+
+                <Modal isOpen={showing} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}>
+                        Máquina 1...
+                    </ModalHeader>
+                    <ModalBody>
+                        {ready && (
+                            <PDFViewer width="100%" height="300px">
+                                {doc}
+                            </PDFViewer>
+                        )}
+                    </ModalBody>
+                    <ModalFooter>
+                        {ready && (
+                            <PDFDownloadLink
+                                document={doc}
+                                fileName="test.pdf"
+                                style={{
+                                    textDecoration: 'none',
+                                    padding: '10px',
+                                    color: '#4a4a4a',
+                                    backgroundColor: '#f2f2f2',
+                                    border: '1px solid #4a4a4a',
+                                }}
+                            >
+                                {
+                                    ({ blob, url, loading, error }) =>
+                                        (loading ? 'Cargando documento...' : 'Descargar')
+                                }
+                            </PDFDownloadLink>
+                        )}
+                    </ModalFooter>
+                </Modal>
             </>
         );
     }
