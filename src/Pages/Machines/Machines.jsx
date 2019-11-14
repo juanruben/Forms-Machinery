@@ -36,10 +36,12 @@ class Machines extends Component {
             {
                 Header: 'Patente',
                 accessor: 'plate',
+                maxWidth: 100,
             },
             {
                 Header: 'Modelo',
                 accessor: 'model',
+                maxWidth: 100,
             },
             {
                 Header: 'Ubicación',
@@ -52,6 +54,7 @@ class Machines extends Component {
             {
                 Header: 'Estado',
                 accessor: 'status',
+                maxWidth: 100,
             },
             {
                 Header: 'Último movimiento',

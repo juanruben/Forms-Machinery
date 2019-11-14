@@ -35,10 +35,12 @@ class Users extends Component {
             {
                 Header: 'RUT',
                 accessor: 'rut',
+                maxWidth: 100,
             },
             {
                 Header: 'Teléfono',
                 accessor: 'phone',
+                maxWidth: 150,
             },
             {
                 Header: 'Email',
@@ -47,6 +49,7 @@ class Users extends Component {
             {
                 Header: 'Perfil',
                 accessor: 'profile',
+                maxWidth: 100,
             },
             {
                 Header: 'Acciones',

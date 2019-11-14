@@ -38,14 +38,17 @@ class History extends Component {
             {
                 Header: 'Fecha',
                 accessor: 'date',
+                maxWidth: 200,
             },
             {
                 Header: 'Patente',
                 accessor: 'plate',
+                maxWidth: 100,
             },
             {
                 Header: 'Código',
                 accessor: 'code',
+                maxWidth: 100,
             },
             {
                 Header: 'Cliente',
@@ -54,6 +57,7 @@ class History extends Component {
             {
                 Header: 'Estado',
                 accessor: 'status',
+                maxWidth: 120,
             },
             {
                 Header: 'Ver',
