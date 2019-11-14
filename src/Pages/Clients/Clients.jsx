@@ -6,6 +6,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import ClientForm from './ClientForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import ModalEdit from '../../Components/ModalEdit/ModalEdit';
 import { tableConfig, dummyData } from '../../config';
 
 class Clients extends Component {
@@ -50,7 +51,9 @@ class Clients extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         <span className="form-actions__icon"><i className="fas fa-eye" /></span>
-                        <span className="form-actions__icon"><i className="fas fa-pen" /></span>
+                        <ModalEdit title="Editar cliente">
+                            <ClientForm />
+                        </ModalEdit>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),

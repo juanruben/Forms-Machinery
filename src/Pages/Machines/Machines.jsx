@@ -6,6 +6,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import MachineForm from './MachineForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import ModalEdit from '../../Components/ModalEdit/ModalEdit';
 import { tableConfig, dummyData } from '../../config';
 
 class Machines extends Component {
@@ -62,7 +63,9 @@ class Machines extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         <span className="form-actions__icon"><i className="fas fa-eye" /></span>
-                        <span className="form-actions__icon"><i className="fas fa-pen" /></span>
+                        <ModalEdit title="Editar máquina">
+                            <MachineForm />
+                        </ModalEdit>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),

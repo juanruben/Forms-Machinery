@@ -5,6 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import ModalEdit from '../../Components/ModalEdit/ModalEdit';
 import { tableConfig, dummyData } from '../../config';
 
 class Users extends Component {
@@ -53,7 +54,9 @@ class Users extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         <span className="form-actions__icon"><i className="fas fa-eye" /></span>
-                        <span className="form-actions__icon"><i className="fas fa-pen" /></span>
+                        <ModalEdit title="Editar usuario">
+                            <UserForm />
+                        </ModalEdit>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),

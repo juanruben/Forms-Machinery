@@ -6,6 +6,7 @@ import { sortableContainer, sortableElement, sortableHandle } from 'react-sortab
 import arrayMove from 'array-move';
 import SectionForm from './SectionForm';
 import ModalAdd from '../../Components/ModalAdd/ModalAdd';
+import ModalEdit from '../../Components/ModalEdit/ModalEdit';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 
@@ -30,7 +31,9 @@ const SortableItem = sortableElement(({ index, value, history }) => {
                 <div className="form-actions">
                     <span className="form-actions__icon" onClick={onViewClick}><i className="fas fa-eye" /></span>
                     <span className="form-actions__icon"><i className="far fa-copy" /></span>
-                    <span className="form-actions__icon"><i className="fas fa-pen" /></span>
+                    <ModalEdit title="Editar sección de formulario">
+                        <SectionForm />
+                    </ModalEdit>
                     <span className="form-actions__icon" onClick={() => { setShowConfirm(true) }}><i className="fas fa-trash" /></span>
                 </div>
             </li>
