@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { StateContext } from '../../State';
 import { validateUsername, validatePassword } from '../../Service/Utils';
 import LayoutFullWidth from '../../Layout/LayoutFullWidth/LayoutFullWidth';
@@ -18,6 +19,7 @@ class Login extends Component {
             username: '',
             password: '',
             errors: {},
+            showAlertError: false,
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.validForm = this.validForm.bind(this);
@@ -75,7 +77,9 @@ class Login extends Component {
                 const { data } = response;
                 this.signIn(data.token, data.role);
             } else {
-                alert('No hay acceso al sistema');
+                this.setState({
+                    showAlertError: true,
+                });
             }
             this.toggleLoading(false);
         });
@@ -106,6 +110,7 @@ class Login extends Component {
 
     render() {
         const [{ loggedin, role }] = this.context;
+        const { showAlertError } = this.state;
         const {
             username,
             password,
@@ -130,6 +135,19 @@ class Login extends Component {
                     </div>
                     <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
                 </Box>
+
+                <SweetAlert
+                    title=""
+                    show={showAlertError}
+                    error
+                    onConfirm={() => {
+                        this.setState({
+                            showAlertError: false,
+                        });
+                    }}
+                >
+                    No hay acceso al sistema
+                </SweetAlert>
             </LayoutFullWidth>
         );
     }
