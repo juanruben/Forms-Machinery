@@ -20,7 +20,14 @@ class UserForms extends Component {
                     <Col md={6}><Input label="RUT" placeholder="RUT" /></Col>
                     <Col md={6}><Input label="Teléfono" placeholder="Teléfono" /></Col>
                     <Col md={6}><Input label="Email" placeholder="Email" /></Col>
-                    <Col md={12}><Input label="Rol" placeholder="Seleccione..." /></Col>
+                    <Col md={12}>
+                        Rol
+                        <select name="" id="" className="select-icafal" defaultValue="0">
+                            <option value="0" disabled>Seleccione...</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Operador</option>
+                        </select>
+                    </Col>
                     <Col md={6}><Input label="Contraseña" placeholder="Contraseña" /></Col>
                     <Col md={6}><Input label="Repita contraseña" placeholder="Repita contraseña" /></Col>
                 </Row>

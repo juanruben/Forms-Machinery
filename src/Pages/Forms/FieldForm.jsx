@@ -14,9 +14,24 @@ class FieldForm extends Component {
         return (
             <>
                 <Input label="Nombre" placeholder="Nombre" />
-                <Input label="Tipo" placeholder="Seleccione..." />
-                <div>Requerido <input type="checkbox" /></div>
-                <div>Observaciones <input type="checkbox" /></div>
+                Tipo
+                <select name="" id="" className="select-icafal" defaultValue="0">
+                    <option value="0" disabled>Seleccione...</option>
+                    <option value="1">Texto</option>
+                    <option value="2">Check</option>
+                    <option value="3">Selección múltiple</option>
+                    <option value="4">Imágen</option>
+                </select>
+                <div>
+                    <input type="checkbox" />
+                    {' '}
+                    Requerido
+                </div>
+                <div>
+                    <input type="checkbox" />
+                    {' '}
+                    Observaciones
+                </div>
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
