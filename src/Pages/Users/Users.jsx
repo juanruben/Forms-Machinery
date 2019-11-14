@@ -4,8 +4,7 @@ import ReactTable from 'react-table';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
-import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import ModalEdit from '../../Components/ModalEdit/ModalEdit';
+import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig, dummyData } from '../../config';
 
 class Users extends Component {
@@ -27,6 +26,11 @@ class Users extends Component {
             {
                 Header: 'Nombre',
                 accessor: 'name',
+                Cell: (row) => (
+                    <ModalView title={row.original.name}>
+                        <UserForm />
+                    </ModalView>
+                ),
             },
             {
                 Header: 'RUT',
@@ -50,13 +54,12 @@ class Users extends Component {
                 accessor: (row) => null,
                 filterable: false,
                 sortable: false,
-                maxWidth: 150,
+                maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon"><i className="fas fa-eye" /></span>
-                        <ModalEdit title="Editar usuario">
+                        <ModalView title="Editar usuario" type="edit">
                             <UserForm />
-                        </ModalEdit>
+                        </ModalView>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),
@@ -66,9 +69,9 @@ class Users extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalAdd title="Crear usuario">
+                    <ModalView title="Crear usuario" type="add">
                         <UserForm />
-                    </ModalAdd>
+                    </ModalView>
                 </TopBar>
 
                 <ReactTable

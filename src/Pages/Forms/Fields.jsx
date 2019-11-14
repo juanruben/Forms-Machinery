@@ -5,12 +5,9 @@ import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import FieldForm from './FieldForm';
-import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import ModalEdit from '../../Components/ModalEdit/ModalEdit';
+import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
-
-
 import './Sections.scss';
 
 const DragHandle = sortableHandle(() => <span className="section-sort-handle"><i className="fas fa-grip-horizontal" /></span>);
@@ -23,13 +20,15 @@ const SortableItem = sortableElement(({ index, value }) => {
             <li className="section-item">
                 <span>
                     <DragHandle />
-                    {value}
+                    <button disabled style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'black', outline: '0' }} type="button">
+                        {value}
+                    </button>
                 </span>
                 <div className="form-actions">
                     <span className="form-actions__icon"><i className="far fa-copy" /></span>
-                    <ModalEdit title="Editar campo">
+                    <ModalView title="Editar campo" type="edit">
                         <FieldForm />
-                    </ModalEdit>
+                    </ModalView>
                     <span className="form-actions__icon" onClick={() => { setShowConfirm(true) }}><i className="fas fa-trash" /></span>
                 </div>
             </li>
@@ -104,9 +103,9 @@ class Fields extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalAdd title="Crear campo">
+                    <ModalView title="Crear campo" type="add">
                         <FieldForm />
-                    </ModalAdd>
+                    </ModalView>
                 </TopBar>
                 <button onClick={() => { this.props.history.goBack(); }} className="back-button" type="button">
                     <i className="fas fa-long-arrow-alt-left" />

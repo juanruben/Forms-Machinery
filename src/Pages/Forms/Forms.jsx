@@ -6,8 +6,7 @@ import { withRouter } from 'react-router-dom';
 import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
-import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import ModalEdit from '../../Components/ModalEdit/ModalEdit';
+import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig, dummyData } from '../../config';
 
 class Forms extends Component {
@@ -35,6 +34,11 @@ class Forms extends Component {
             {
                 Header: 'Nombre',
                 accessor: 'machine',
+                Cell: (row) => (
+                    <button style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'rgb(190,51,1)', outline: '0' }} onClick={this.onViewClick} type="button">
+                        {row.original.name}
+                    </button>
+                ),
             },
             {
                 Header: 'Acciones',
@@ -45,11 +49,10 @@ class Forms extends Component {
                 maxWidth: 150,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon" onClick={this.onViewClick}><i className="fas fa-eye" /></span>
                         <span className="form-actions__icon"><i className="far fa-copy" /></span>
-                        <ModalEdit title="Editar formulario">
+                        <ModalView title="Editar formulario" type="edit">
                             <FormForm />
-                        </ModalEdit>
+                        </ModalView>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),
@@ -59,9 +62,9 @@ class Forms extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalAdd title="Crear formulario">
+                    <ModalView title="Crear formulario" type="add">
                         <FormForm />
-                    </ModalAdd>
+                    </ModalView>
                 </TopBar>
 
                 <ReactTable

@@ -5,8 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import SectionForm from './SectionForm';
-import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import ModalEdit from '../../Components/ModalEdit/ModalEdit';
+import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 
@@ -26,14 +25,15 @@ const SortableItem = sortableElement(({ index, value, history }) => {
             <li className="section-item">
                 <span>
                     <DragHandle />
-                    {value}
+                    <button style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'rgb(190,51,1)', outline: '0' }} onClick={onViewClick} type="button">
+                        {value}
+                    </button>
                 </span>
                 <div className="form-actions">
-                    <span className="form-actions__icon" onClick={onViewClick}><i className="fas fa-eye" /></span>
                     <span className="form-actions__icon"><i className="far fa-copy" /></span>
-                    <ModalEdit title="Editar sección de formulario">
+                    <ModalView title="Editar sección de formulario" type="edit">
                         <SectionForm />
-                    </ModalEdit>
+                    </ModalView>
                     <span className="form-actions__icon" onClick={() => { setShowConfirm(true) }}><i className="fas fa-trash" /></span>
                 </div>
             </li>
@@ -109,9 +109,9 @@ class Sections extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalAdd title="Crear sección de formulario">
+                    <ModalView title="Crear sección de formulario" type="add">
                         <SectionForm />
-                    </ModalAdd>
+                    </ModalView>
                 </TopBar>
                 <button onClick={() => { this.props.history.goBack(); }} className="back-button" type="button">
                     <i className="fas fa-long-arrow-alt-left" />

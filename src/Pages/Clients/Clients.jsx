@@ -5,8 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import ClientForm from './ClientForm';
-import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import ModalEdit from '../../Components/ModalEdit/ModalEdit';
+import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig, dummyData } from '../../config';
 
 class Clients extends Component {
@@ -28,10 +27,16 @@ class Clients extends Component {
             {
                 Header: 'Nombre',
                 accessor: 'name',
+                Cell: (row) => (
+                    <ModalView title={row.original.name}>
+                        <ClientForm />
+                    </ModalView>
+                ),
             },
             {
                 Header: 'Rut',
                 accessor: 'rut',
+                maxWidth: 100,
             },
             {
                 Header: 'Contacto',
@@ -40,6 +45,9 @@ class Clients extends Component {
             {
                 Header: 'Email',
                 accessor: 'email',
+                Cell: (row) => (
+                    <a href={`mailto:${row.original.email}`}>{row.original.email}}</a>
+                ),
             },
             {
                 Header: 'Acciones',
@@ -47,13 +55,12 @@ class Clients extends Component {
                 accessor: (row) => null,
                 filterable: false,
                 sortable: false,
-                maxWidth: 150,
+                maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon"><i className="fas fa-eye" /></span>
-                        <ModalEdit title="Editar cliente">
+                        <ModalView title="Editar cliente" type="edit">
                             <ClientForm />
-                        </ModalEdit>
+                        </ModalView>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),
@@ -64,9 +71,9 @@ class Clients extends Component {
             <>
                 <TopBar>
                     <IconButton onClick={() => { }} icon="fas fa-file-download" />
-                    <ModalAdd title="Crear cliente">
+                    <ModalView title="Crear cliente" type="add">
                         <ClientForm />
-                    </ModalAdd>
+                    </ModalView>
                 </TopBar>
 
                 <ReactTable

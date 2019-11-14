@@ -5,8 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import IconButton from '../../Components/IconButton/IconButton';
 import MachineForm from './MachineForm';
-import ModalAdd from '../../Components/ModalAdd/ModalAdd';
-import ModalEdit from '../../Components/ModalEdit/ModalEdit';
+import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig, dummyData } from '../../config';
 
 class Machines extends Component {
@@ -28,6 +27,11 @@ class Machines extends Component {
             {
                 Header: 'Nombre',
                 accessor: 'name',
+                Cell: (row) => (
+                    <ModalView title={row.original.name}>
+                        <MachineForm />
+                    </ModalView>
+                ),
             },
             {
                 Header: 'Patente',
@@ -59,13 +63,12 @@ class Machines extends Component {
                 accessor: (row) => null,
                 filterable: false,
                 sortable: false,
-                maxWidth: 150,
+                maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon"><i className="fas fa-eye" /></span>
-                        <ModalEdit title="Editar máquina">
+                        <ModalView title="Editar máquina" type="edit">
                             <MachineForm />
-                        </ModalEdit>
+                        </ModalView>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
                 ),
@@ -76,9 +79,9 @@ class Machines extends Component {
             <>
                 <TopBar>
                     <IconButton onClick={() => { }} icon="fas fa-file-download" />
-                    <ModalAdd title="Crear máquina">
+                    <ModalView title="Crear máquina" type="add">
                         <MachineForm />
-                    </ModalAdd>
+                    </ModalView>
                 </TopBar>
 
                 <ReactTable
