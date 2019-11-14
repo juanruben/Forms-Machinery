@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
@@ -13,23 +14,46 @@ import './Sections.scss';
 const DragHandle = sortableHandle(() => <span className="section-sort-handle"><i className="fas fa-grip-horizontal" /></span>);
 
 const SortableItem = sortableElement(({ index, value, history }) => {
+    const [showConfirm, setShowConfirm] = useState(false);
+
     const onViewClick = () => {
         history.push(`/admin/formularios/secciones/${index}`);
     };
 
     return (
-        <li className="section-item">
-            <span>
-                <DragHandle />
-                {value}
-            </span>
-            <div className="form-actions">
-                <span className="form-actions__icon" onClick={onViewClick}><i className="fas fa-eye" /></span>
-                <span className="form-actions__icon"><i className="far fa-copy" /></span>
-                <span className="form-actions__icon"><i className="fas fa-pen" /></span>
-                <span className="form-actions__icon"><i className="fas fa-trash" /></span>
-            </div>
-        </li>
+        <>
+            <li className="section-item">
+                <span>
+                    <DragHandle />
+                    {value}
+                </span>
+                <div className="form-actions">
+                    <span className="form-actions__icon" onClick={onViewClick}><i className="fas fa-eye" /></span>
+                    <span className="form-actions__icon"><i className="far fa-copy" /></span>
+                    <span className="form-actions__icon"><i className="fas fa-pen" /></span>
+                    <span className="form-actions__icon" onClick={() => { setShowConfirm(true) }}><i className="fas fa-trash" /></span>
+                </div>
+            </li>
+
+            <SweetAlert
+                show={showConfirm}
+                warning
+                showCancel
+                confirmBtnText="Sí, estoy seguro"
+                cancelBtnText="No, Cancelar"
+                confirmBtnBsStyle="danger"
+                cancelBtnBsStyle="default"
+                title="Eliminar sección"
+                onConfirm={() => {
+                    setShowConfirm(false);
+                }}
+                onCancel={() => {
+                    setShowConfirm(false);
+                }}
+            >
+                ¿Está seguro?
+            </SweetAlert>
+        </>
     );
 });
 
