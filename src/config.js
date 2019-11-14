@@ -1184,3 +1184,31 @@ export const dummyData = [
         model: 'Randall',
     },
 ];
+
+/**
+
+https://www.json-generator.com/
+
+[
+  '{{repeat(5, 100)}}',
+  {
+    _id: '{{objectId()}}',
+    code: '{{integer(5000, 10000)}}',
+    status: '{{random("En taller", "Mantenimiento", "En terreno")}}',
+    profile: '{{random("Administrador", "Operador")}}',
+    name: '{{firstName()}} {{surname()}}',
+    machine: '{{firstName()}}',
+    contact: '{{firstName()}} {{surname()}}',
+    company: '{{company().toUpperCase()}}',
+    email: '{{email()}}',
+    phone: '+569 {{integer(1000, 9999)}}-{{integer(1000, 9999)}}',
+    address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    plate: '{{integer(11, 99)}}-{{integer(11, 99)}}-{{integer(11, 99)}}',
+    date: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+    picture: 'http://placehold.it/32x32',
+    rut: '{{integer(10000000, 25000000)}}-{{integer(0, 9)}}',
+    model: '{{surname()}}'
+  }
+]
+
+*/
