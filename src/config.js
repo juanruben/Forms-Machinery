@@ -1,6 +1,6 @@
 export const tableConfig = {
     filterable: true,
-    classstring1: '-striped',
+    className: '-striped',
     defaultPageSize: 10,
     previousText: '<',
     nextText: '>',
