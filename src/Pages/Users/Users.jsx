@@ -41,10 +41,16 @@ class Users extends Component {
                 Header: 'Teléfono',
                 accessor: 'phone',
                 maxWidth: 150,
+                Cell: (row) => (
+                    <a href={`tel:${row.original.phone}`}>{row.original.phone}</a>
+                ),
             },
             {
                 Header: 'Email',
                 accessor: 'email',
+                Cell: (row) => (
+                    <a href={`mailto:${row.original.email}`}>{row.original.email}}</a>
+                ),
             },
             {
                 Header: 'Perfil',
