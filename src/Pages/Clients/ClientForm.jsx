@@ -41,12 +41,12 @@ class ClientForm extends Component {
         return (
             <>
                 <Row>
-                    <Col md={6}><Input icon="far fa-envelope" name="name" onChange={() => { }} label="Nombre empresa" placeholder="Nombre empresa" value={data.name} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input name="name" onChange={() => { }} label="Nombre empresa" placeholder="Nombre empresa" value={data.name} readOnly={readOnly} icon="fas fa-industry" /></Col>
                     <Col md={6}><Input name="name" onChange={() => { }} label="Razón social" placeholder="Razón social" value={data.name} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input name="name" onChange={() => { }} label="Rut empresa" placeholder="Rut empresa" value={data.rut} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input name="name" onChange={() => { }} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={data.phone} readOnly={readOnly} /></Col>
-                    <Col md={12}><Input name="name" onChange={() => { }} label="Dirección" placeholder="Dirección" value={data.address} readOnly={readOnly} /></Col>
-                    <Col md={12}><Input name="name" onChange={() => { }} label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={data.email} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input name="name" onChange={() => { }} label="Rut empresa" placeholder="Rut empresa" value={data.rut} readOnly={readOnly} icon="far fa-address-card" /></Col>
+                    <Col md={6}><Input name="name" onChange={() => { }} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={data.phone} readOnly={readOnly} icon="fas fa-phone" /></Col>
+                    <Col md={12}><Input name="name" onChange={() => { }} label="Dirección" placeholder="Dirección" value={data.address} readOnly={readOnly} icon="fas fa-map-marked-alt" /></Col>
+                    <Col md={12}><Input name="name" onChange={() => { }} label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={data.email} readOnly={readOnly} icon="far fa-envelope" /></Col>
                 </Row>
                 {!readOnly && (
                     <>

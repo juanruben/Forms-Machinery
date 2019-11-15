@@ -41,12 +41,12 @@ class UserForm extends Component {
         return (
             <>
                 <Row>
-                    <Col md={6}><Input name="name" value={data.name} onChange={() => { }} readOnly={readOnly} label="Nombre" placeholder="Nombre" /></Col>
-                    <Col md={6}><Input name="name" value={data.name} onChange={() => { }} readOnly={readOnly} label="Apellido" placeholder="Apellido" /></Col>
-                    <Col md={6}><Input name="name" value={data.name} onChange={() => { }} readOnly={readOnly} label="Nombre de usuario" placeholder="Nombre de usuario" /></Col>
-                    <Col md={6}><Input name="name" value={data.rut} onChange={() => { }} readOnly={readOnly} label="RUT" placeholder="RUT" /></Col>
-                    <Col md={6}><Input name="name" value={data.phone} onChange={() => { }} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" /></Col>
-                    <Col md={6}><Input name="name" value={data.email} onChange={() => { }} readOnly={readOnly} label="Email" placeholder="Email" /></Col>
+                    <Col md={6}><Input name="name" value={data.name} onChange={() => { }} readOnly={readOnly} label="Nombre" placeholder="Nombre" icon="fas fa-user-alt" /></Col>
+                    <Col md={6}><Input name="name" value={data.name} onChange={() => { }} readOnly={readOnly} label="Apellido" placeholder="Apellido" icon="fas fa-user-alt" /></Col>
+                    <Col md={6}><Input name="name" value={data.name} onChange={() => { }} readOnly={readOnly} label="Nombre de usuario" placeholder="Nombre de usuario" icon="fas fa-user-alt" /></Col>
+                    <Col md={6}><Input name="name" value={data.rut} onChange={() => { }} readOnly={readOnly} label="RUT" placeholder="RUT" icon="far fa-address-card" /></Col>
+                    <Col md={6}><Input name="name" value={data.phone} onChange={() => { }} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" icon="fas fa-phone" /></Col>
+                    <Col md={6}><Input name="name" value={data.email} onChange={() => { }} readOnly={readOnly} label="Email" placeholder="Email" icon="far fa-envelope" /></Col>
                     <Col md={12}>
                         Rol
                         <select name="" id="" className="select-icafal" defaultValue="0">
