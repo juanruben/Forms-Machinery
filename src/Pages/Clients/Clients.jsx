@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
-import IconButton from '../../Components/IconButton/IconButton';
+import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ClientForm from './ClientForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig, dummyData } from '../../config';
@@ -73,7 +73,7 @@ class Clients extends Component {
         return (
             <>
                 <TopBar>
-                    <IconButton onClick={() => { }} icon="fas fa-file-download" />
+                    <DownloadCSVButton data={dummyData} filename="clientes.csv" />
                     <ModalView title="Crear cliente" type="add">
                         <ClientForm />
                     </ModalView>

@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
-import IconButton from '../../Components/IconButton/IconButton';
+import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import { tableConfig, dummyData } from '../../config';
 
 class History extends Component {
@@ -111,7 +111,7 @@ class History extends Component {
         return (
             <>
                 <TopBar>
-                    <IconButton onClick={() => { }} icon="fas fa-file-download" />
+                    <DownloadCSVButton data={dummyData} filename="historial.csv" />
                 </TopBar>
 
                 <ReactTable

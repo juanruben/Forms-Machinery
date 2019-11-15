@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
-import IconButton from '../../Components/IconButton/IconButton';
+import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import MachineForm from './MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig, dummyData } from '../../config';
@@ -84,7 +84,7 @@ class Machines extends Component {
         return (
             <>
                 <TopBar>
-                    <IconButton onClick={() => { }} icon="fas fa-file-download" />
+                    <DownloadCSVButton data={dummyData} filename="maquinas.csv" />
                     <ModalView title="Crear máquina" type="add">
                         <MachineForm />
                     </ModalView>
