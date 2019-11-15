@@ -12,15 +12,27 @@ const Input = (props) => {
         return null;
     }
 
+    if (locked) {
+        return (
+            <>
+                <div className={locked ? 'bold-label' : ''}>{label}</div>
+                <div className="input-bordered-container__locked-value">{value}</div>
+            </>
+        );
+    }
+
     return (
         <div className="input-bordered-container">
-            <div className={locked ? 'bold-label' : ''}>{label}</div>
+            {label}
             {icon && <i className={icon} />}
-            {locked ? (
-                <div className="input-bordered-container__locked-value">{value}</div>
-            ) : (
-                    <input className={`input-bordered ${warning && 'border-error'} ${icon && 'padding-icon'}`} type={type} name={name} value={value} onChange={onChange} placeholder={placeholder} />
-                )}
+            <input
+                className={`${warning && 'border-error'} ${icon && 'padding-icon'}`}
+                type={type}
+                name={name}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+            />
             {warning && <i className="fas fa-exclamation warning" />}
         </div>
     );
