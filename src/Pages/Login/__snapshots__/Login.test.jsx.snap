@@ -20,16 +20,16 @@ exports[`Login should render correctly 1`] = `
                             </div>
                           </Logo>
                           <div className=\\"login-container\\">
-                            <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\" label=\\"\\">
+                            <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\" label=\\"\\" readOnly={false} hideReadOnly={false}>
                               <div className=\\"input-bordered-container\\">
                                 <i className=\\"fas fa-user-tie\\" />
-                                <input className=\\"input-bordered false padding-icon\\" type=\\"text\\" name=\\"username\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Usuario\\" />
+                                <input className=\\"false padding-icon\\" type=\\"text\\" name=\\"username\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Usuario\\" />
                               </div>
                             </Input>
-                            <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors=\\"\\" label=\\"\\">
+                            <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors=\\"\\" label=\\"\\" readOnly={false} hideReadOnly={false}>
                               <div className=\\"input-bordered-container\\">
                                 <i className=\\"fas fa-unlock-alt\\" />
-                                <input className=\\"input-bordered false padding-icon\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
+                                <input className=\\"false padding-icon\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
                               </div>
                             </Input>
                             <Button type=\\"submit\\" onClick={[Function: bound handleSignIn]} text=\\"Entrar\\" disabled={false}>
@@ -47,6 +47,7 @@ exports[`Login should render correctly 1`] = `
                           </Link>
                         </div>
                       </Box>
+                      <SweetAlert title=\\"\\" show={false} error={true} onConfirm={[Function: onConfirm]} allowEscape={true} closeOnClickOutside={true} inputType=\\"text\\" customClass=\\"\\" validationMsg={{...}} validationRegex={{...}} hideOverlay={false} required={true} disabled={false} focusConfirmBtn={true} focusCancelBtn={false} showCloseButton={false} confirmBtnBsStyle=\\"primary\\" cancelBtnBsStyle=\\"link\\" beforeMount={[Function: beforeMount]} afterMount={[Function: afterMount]} beforeUpdate={{...}} afterUpdate={[Function: afterUpdate]} beforeUnmount={[Function: beforeUnmount]} style={{...}} closeBtnStyle={{...}} timeout={0} openAnim={{...}} closeAnim={false} reverseButtons={false} />
                     </div>
                   </LayoutFullWidth>
                 </Login>
