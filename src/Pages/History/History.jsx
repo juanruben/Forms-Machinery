@@ -43,7 +43,7 @@ class History extends Component {
             {
                 Header: 'Fecha',
                 accessor: 'date',
-                maxWidth: 200,
+                maxWidth: 150,
             },
             {
                 Header: 'Patente',
