@@ -3,6 +3,10 @@
 .input-bordered-container {
   position: relative;
 
+  .bold-label {
+    font-weight: bold;
+  }
+
   i {
     color: rgb(134, 134, 134);
     position: absolute;
@@ -39,5 +43,10 @@
 
   .padding-icon {
     padding-left: 40px;
+  }
+
+  &__locked-value {
+    padding-bottom: 20px;
+    padding-left: 5px;
   }
 }
