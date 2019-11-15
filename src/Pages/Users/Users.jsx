@@ -14,7 +14,10 @@ class Users extends Component {
             showConfirm: false,
         };
         this.handleRemove = this.handleRemove.bind(this);
+        this.findData = this.findData.bind(this);
     }
+
+    findData = (id) => dummyData.find((item) => item.id === id);
 
     handleRemove() {
         this.setState({ showConfirm: true });
@@ -28,7 +31,7 @@ class Users extends Component {
                 accessor: 'name',
                 Cell: (row) => (
                     <ModalView title={row.original.name}>
-                        <UserForm />
+                        <UserForm data={this.findData(row.original.id)} locked />
                     </ModalView>
                 ),
             },
@@ -67,7 +70,7 @@ class Users extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         <ModalView title="Editar usuario" type="edit">
-                            <UserForm />
+                            <UserForm data={this.findData(row.original.id)} />
                         </ModalView>
                         <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
                     </div>
