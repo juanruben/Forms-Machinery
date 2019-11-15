@@ -32,7 +32,7 @@ class Machines extends Component {
                 accessor: 'name',
                 Cell: (row) => (
                     <ModalView title={row.original.name}>
-                        <MachineForm data={this.findData(row.original.id)} locked />
+                        <MachineForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
             },

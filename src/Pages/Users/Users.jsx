@@ -31,7 +31,7 @@ class Users extends Component {
                 accessor: 'name',
                 Cell: (row) => (
                     <ModalView title={row.original.name}>
-                        <UserForm data={this.findData(row.original.id)} locked />
+                        <UserForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
             },

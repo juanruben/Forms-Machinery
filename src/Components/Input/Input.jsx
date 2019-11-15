@@ -4,21 +4,21 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        label, icon, errors, type, name, value, onChange, placeholder, locked, hideLocked,
+        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly,
     } = props;
     const warning = (errors.length > 0);
 
-    if (hideLocked && locked) {
+    if (hideReadOnly && readOnly) {
         return null;
     }
 
-    if (locked) {
+    if (readOnly) {
         return (
             <>
                 <div className="bold-label">{label}</div>
                 <div className="read-only-container">
                     {icon && <i className={icon} />}
-                    <div className={`locked-value ${icon && 'padding-icon'}`}>{value}</div>
+                    <div className={`read-only-value ${icon && 'padding-icon'}`}>{value}</div>
                 </div>
             </>
         );
@@ -52,8 +52,8 @@ Input.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.node,
     placeholder: PropTypes.string,
-    locked: PropTypes.bool,
-    hideLocked: PropTypes.bool,
+    readOnly: PropTypes.bool,
+    hideReadOnly: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -63,8 +63,8 @@ Input.defaultProps = {
     type: 'text',
     value: '',
     placeholder: '',
-    locked: false,
-    hideLocked: false,
+    readOnly: false,
+    hideReadOnly: false,
 };
 
 export default Input;

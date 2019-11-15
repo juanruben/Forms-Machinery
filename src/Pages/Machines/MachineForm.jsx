@@ -35,18 +35,18 @@ class MachineForm extends Component {
     }
 
     render() {
-        const { locked } = this.props;
+        const { readOnly } = this.props;
         const { data, createMode } = this.state;
 
         return (
             <>
                 <Row>
-                    <Col md={12}><Input label="Nombre" placeholder="Nombre" name="name" onChange={() => { }} value={data.machine} locked={locked} /></Col>
-                    <Col md={6}><Input label="Código" placeholder="Código" name="name" onChange={() => { }} value={data.code} locked={locked} /></Col>
-                    <Col md={6}><Input label="Patente" placeholder="Patente" name="name" onChange={() => { }} value={data.plate} locked={locked} /></Col>
-                    <Col md={6}><Input label="Marca" placeholder="Marca" name="name" onChange={() => { }} value={data.company} locked={locked} /></Col>
-                    <Col md={6}><Input label="Modelo" placeholder="Modelo" name="name" onChange={() => { }} value={data.model} locked={locked} /></Col>
-                    <Col md={6}><Input label="Año" placeholder="Año" name="name" onChange={() => { }} value={data.code} locked={locked} /></Col>
+                    <Col md={12}><Input label="Nombre" placeholder="Nombre" name="name" onChange={() => { }} value={data.machine} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input label="Código" placeholder="Código" name="name" onChange={() => { }} value={data.code} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input label="Patente" placeholder="Patente" name="name" onChange={() => { }} value={data.plate} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input label="Marca" placeholder="Marca" name="name" onChange={() => { }} value={data.company} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input label="Modelo" placeholder="Modelo" name="name" onChange={() => { }} value={data.model} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input label="Año" placeholder="Año" name="name" onChange={() => { }} value={data.code} readOnly={readOnly} /></Col>
                     <Col md={6}>
                         Formulario
                         <select name="" id="" className="select-icafal" defaultValue="0">
@@ -74,13 +74,13 @@ class MachineForm extends Component {
 MachineForm.propTypes = {
     callback: PropTypes.func,
     data: PropTypes.object,
-    locked: PropTypes.bool,
+    readOnly: PropTypes.bool,
 };
 
 MachineForm.defaultProps = {
     callback: null,
     data: null,
-    locked: false,
+    readOnly: false,
 };
 
 export default MachineForm;

@@ -3,6 +3,11 @@
 .read-only-container {
   position: relative;
 
+  .read-only-value {
+    padding-bottom: 20px;
+    padding-left: 5px;
+  }
+
   i {
     color: rgb(134, 134, 134);
     position: absolute;
@@ -59,9 +64,4 @@
 
 .bold-label {
   font-weight: bold;
-}
-
-.locked-value {
-  padding-bottom: 20px;
-  padding-left: 5px;
 }

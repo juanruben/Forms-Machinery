@@ -32,7 +32,7 @@ class Clients extends Component {
                 accessor: 'name',
                 Cell: (row) => (
                     <ModalView title={row.original.name}>
-                        <ClientForm data={this.findData(row.original.id)} locked />
+                        <ClientForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
             },

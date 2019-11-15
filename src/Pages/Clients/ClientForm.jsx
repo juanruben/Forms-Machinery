@@ -35,20 +35,20 @@ class ClientForm extends Component {
     }
 
     render() {
-        const { locked } = this.props;
+        const { readOnly } = this.props;
         const { data, createMode } = this.state;
 
         return (
             <>
                 <Row>
-                    <Col md={6}><Input name="name" onChange={() => {}} label="Nombre empresa" placeholder="Nombre empresa" value={data.name} locked={locked} /></Col>
-                    <Col md={6}><Input name="name" onChange={() => {}} label="Razón social" placeholder="Razón social" value={data.name} locked={locked} /></Col>
-                    <Col md={6}><Input name="name" onChange={() => {}} label="Rut empresa" placeholder="Rut empresa" value={data.rut} locked={locked} /></Col>
-                    <Col md={6}><Input name="name" onChange={() => {}} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={data.phone} locked={locked} /></Col>
-                    <Col md={12}><Input name="name" onChange={() => {}} label="Dirección" placeholder="Dirección" value={data.address} locked={locked} /></Col>
-                    <Col md={12}><Input name="name" onChange={() => {}} label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={data.email} locked={locked} /></Col>
+                    <Col md={6}><Input icon="far fa-envelope" name="name" onChange={() => { }} label="Nombre empresa" placeholder="Nombre empresa" value={data.name} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input name="name" onChange={() => { }} label="Razón social" placeholder="Razón social" value={data.name} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input name="name" onChange={() => { }} label="Rut empresa" placeholder="Rut empresa" value={data.rut} readOnly={readOnly} /></Col>
+                    <Col md={6}><Input name="name" onChange={() => { }} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={data.phone} readOnly={readOnly} /></Col>
+                    <Col md={12}><Input name="name" onChange={() => { }} label="Dirección" placeholder="Dirección" value={data.address} readOnly={readOnly} /></Col>
+                    <Col md={12}><Input name="name" onChange={() => { }} label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={data.email} readOnly={readOnly} /></Col>
                 </Row>
-                {!locked && (
+                {!readOnly && (
                     <>
                         * Estas direcciones de correo recibirán reporte y estado de las maquinarias
                         cuando esta salgan del taller hacia la obra del cliente
@@ -68,13 +68,13 @@ class ClientForm extends Component {
 ClientForm.propTypes = {
     callback: PropTypes.func,
     data: PropTypes.object,
-    locked: PropTypes.bool,
+    readOnly: PropTypes.bool,
 };
 
 ClientForm.defaultProps = {
     callback: null,
     data: null,
-    locked: false,
+    readOnly: false,
 };
 
 export default ClientForm;
