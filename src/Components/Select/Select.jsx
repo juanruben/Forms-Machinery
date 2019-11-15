@@ -30,7 +30,7 @@ const Select = (props) => {
                 <select name={name} id="" className="select-icafal" defaultValue="0" onChange={onChange}>
                     <option value="0" disabled>{placeholder}</option>
                     {options.map((item) => (
-                        <option value={item.id}>{item.name}</option>
+                        <option key={item.id} value={item.id}>{item.name}</option>
                     ))}
                 </select>
                 {warning && <i className="fas fa-exclamation warning" />}
