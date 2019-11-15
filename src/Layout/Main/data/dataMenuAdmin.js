@@ -15,23 +15,23 @@ export default [
     },
     {
         id: 3,
-        title: 'Usuarios',
-        path: '/admin/usuarios',
-        icon: 'fas fa-users-cog',
-
-    },
-    {
-        id: 4,
         title: 'Máquinas',
         path: '/admin/maquinas',
         icon: 'fas fa-tractor',
 
     },
     {
-        id: 5,
+        id: 4,
         title: 'Formularios',
         path: '/admin/formularios',
         icon: 'fas fa-notes-medical',
+
+    },
+    {
+        id: 5,
+        title: 'Usuarios',
+        path: '/admin/usuarios',
+        icon: 'fas fa-users-cog',
 
     },
     {
