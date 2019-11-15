@@ -39,7 +39,7 @@ const SortableItem = sortableElement(({ index, value, type }) => {
             <li className="section-item">
                 <span>
                     <DragHandle />
-                    <img src={getIcon(type)} alt="" style={{ width: '20px' }} />
+                    <img src={getIcon(type)} alt="" style={{ width: '25px' }} />
                     <button disabled style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'black', outline: '0', padding: '0 20px' }} type="button">
                         {value}
                     </button>
