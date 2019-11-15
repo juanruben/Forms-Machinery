@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ClientForm from './ClientForm';
@@ -35,15 +36,24 @@ class Clients extends Component {
                         <ClientForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Rut',
                 accessor: 'rut',
                 maxWidth: 100,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['rut'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Contacto',
                 accessor: 'contact',
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['contact'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Email',
@@ -51,6 +61,9 @@ class Clients extends Component {
                 Cell: (row) => (
                     <a href={`mailto:${row.original.email}`}>{row.original.email}}</a>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['email'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Acciones',

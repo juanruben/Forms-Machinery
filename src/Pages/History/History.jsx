@@ -7,6 +7,7 @@ import {
     Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactTable from 'react-table';
+import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import { tableConfig, dummyData } from '../../config';
@@ -65,6 +66,9 @@ class History extends Component {
                 Header: 'Código',
                 accessor: 'code',
                 maxWidth: 100,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['code'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Cliente',
@@ -74,6 +78,9 @@ class History extends Component {
                         <ClientForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Estado',

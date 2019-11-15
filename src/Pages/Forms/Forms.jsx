@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import matchSorter from 'match-sorter';
 import { withRouter } from 'react-router-dom';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
@@ -36,9 +37,12 @@ class Forms extends Component {
                 accessor: 'machine',
                 Cell: (row) => (
                     <button style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'rgb(190,51,1)', outline: '0' }} onClick={this.onViewClick} type="button">
-                        {row.original.name}
+                        {row.original.machine}
                     </button>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['machine'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Acciones',

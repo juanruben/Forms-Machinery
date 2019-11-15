@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
+import matchSorter from 'match-sorter';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
@@ -41,16 +42,25 @@ class Machines extends Component {
                         <MachineForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Patente',
                 accessor: 'plate',
                 maxWidth: 100,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['plate'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Modelo',
                 accessor: 'model',
                 maxWidth: 100,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['model'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Estado',

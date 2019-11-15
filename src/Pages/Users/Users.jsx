@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
+import matchSorter from 'match-sorter';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
@@ -34,11 +35,17 @@ class Users extends Component {
                         <UserForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'RUT',
                 accessor: 'rut',
                 maxWidth: 100,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['rut'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Teléfono',
@@ -47,6 +54,9 @@ class Users extends Component {
                 Cell: (row) => (
                     <a href={`tel:${row.original.phone}`}>{row.original.phone}</a>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['phone'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Email',
@@ -54,6 +64,9 @@ class Users extends Component {
                 Cell: (row) => (
                     <a href={`mailto:${row.original.email}`}>{row.original.email}}</a>
                 ),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['email'] }),
+                filterAll: true,
+                filterable: true,
             },
             {
                 Header: 'Perfil',
