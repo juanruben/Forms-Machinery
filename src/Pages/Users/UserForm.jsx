@@ -59,7 +59,7 @@ class UserForm extends Component {
                     <Col md={6}><Input name="name" value={data.rut} onChange={() => { }} readOnly={readOnly} label="RUT" placeholder="RUT" icon="far fa-address-card" /></Col>
                     <Col md={6}><Input name="name" value={data.phone} onChange={() => { }} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" icon="fas fa-phone" /></Col>
                     <Col md={6}><Input name="name" value={data.email} onChange={() => { }} readOnly={readOnly} label="Email" placeholder="Email" icon="far fa-envelope" /></Col>
-                    <Col md={12}><Select label="Rol" options={profiles} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
+                    <Col md={12}><Select label="Rol" value={data.profile} options={profiles} placeholder="Seleccione..." name="name" onChange={() => { }} readOnly={readOnly} /></Col>
                     <Col md={6}><Input name="name" onChange={() => { }} readOnly={readOnly} hideReadOnly label="Contraseña" placeholder="Contraseña" /></Col>
                     <Col md={6}><Input name="name" onChange={() => { }} readOnly={readOnly} hideReadOnly label="Repita contraseña" placeholder="Repita contraseña" /></Col>
                 </Row>
