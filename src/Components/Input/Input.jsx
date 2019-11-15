@@ -4,14 +4,18 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        label, icon, errors, type, name, value, onChange, placeholder,
+        label, icon, errors, type, name, value, onChange, placeholder, locked,
     } = props;
     const warning = (errors.length > 0);
     return (
         <div className="input-bordered-container">
-            {label}
+            <div className={locked ? 'bold-label' : ''}>{label}</div>
             {icon && <i className={icon} />}
-            <input className={`input-bordered ${warning && 'border-error'} ${icon && 'padding-icon'}`} type={type} name={name} value={value} onChange={onChange} placeholder={placeholder} />
+            {locked ? (
+                <div className="input-bordered-container__locked-value">{value}</div>
+            ) : (
+                <input className={`input-bordered ${warning && 'border-error'} ${icon && 'padding-icon'}`} type={type} name={name} value={value} onChange={onChange} placeholder={placeholder} />
+            )}
             {warning && <i className="fas fa-exclamation warning" />}
         </div>
     );
@@ -26,6 +30,7 @@ Input.propTypes = {
     onChange: PropTypes.func.isRequired,
     value: PropTypes.node,
     placeholder: PropTypes.string,
+    locked: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -35,6 +40,7 @@ Input.defaultProps = {
     type: 'text',
     value: '',
     placeholder: '',
+    locked: false,
 };
 
 export default Input;
