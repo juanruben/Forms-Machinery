@@ -47,14 +47,6 @@ class Machines extends Component {
                 maxWidth: 100,
             },
             {
-                Header: 'Ubicación',
-                accessor: 'address',
-            },
-            {
-                Header: 'Cliente',
-                accessor: 'contact',
-            },
-            {
                 Header: 'Estado',
                 accessor: 'status',
                 maxWidth: 100,
@@ -62,6 +54,7 @@ class Machines extends Component {
             {
                 Header: 'Último movimiento',
                 accessor: 'date',
+                maxWidth: 150,
             },
             {
                 Header: 'Acciones',
