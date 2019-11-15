@@ -3,6 +3,18 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import Select from '../../Components/Select/Select';
+
+const profiles = [
+    {
+        id: 1,
+        name: 'Administrador',
+    },
+    {
+        id: 2,
+        name: 'Operador',
+    },
+];
 
 class UserForm extends Component {
     constructor(props) {
@@ -47,14 +59,7 @@ class UserForm extends Component {
                     <Col md={6}><Input name="name" value={data.rut} onChange={() => { }} readOnly={readOnly} label="RUT" placeholder="RUT" icon="far fa-address-card" /></Col>
                     <Col md={6}><Input name="name" value={data.phone} onChange={() => { }} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" icon="fas fa-phone" /></Col>
                     <Col md={6}><Input name="name" value={data.email} onChange={() => { }} readOnly={readOnly} label="Email" placeholder="Email" icon="far fa-envelope" /></Col>
-                    <Col md={12}>
-                        Rol
-                        <select name="" id="" className="select-icafal" defaultValue="0">
-                            <option value="0" disabled>Seleccione...</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Operador</option>
-                        </select>
-                    </Col>
+                    <Col md={12}><Select label="Rol" options={profiles} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
                     <Col md={6}><Input name="name" onChange={() => { }} readOnly={readOnly} hideReadOnly label="Contraseña" placeholder="Contraseña" /></Col>
                     <Col md={6}><Input name="name" onChange={() => { }} readOnly={readOnly} hideReadOnly label="Repita contraseña" placeholder="Repita contraseña" /></Col>
                 </Row>

@@ -1,8 +1,54 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import Title from '../../Components/Title/Title';
+import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
 import './CheckIn.scss';
+
+const clients = [
+    {
+        id: 1,
+        name: 'Cliente 1',
+    },
+    {
+        id: 2,
+        name: 'Cliente 2',
+    },
+    {
+        id: 3,
+        name: 'Cliente 3',
+    },
+];
+
+const constructions = [
+    {
+        id: 1,
+        name: 'Obra 1',
+    },
+    {
+        id: 2,
+        name: 'Obra 2',
+    },
+    {
+        id: 3,
+        name: 'Obra 3',
+    },
+];
+
+const machines = [
+    {
+        id: 1,
+        name: 'Máquina 1',
+    },
+    {
+        id: 2,
+        name: 'Máquina 2',
+    },
+    {
+        id: 3,
+        name: 'Máquina 3',
+    },
+];
 
 function CheckIn() {
     return (
@@ -10,36 +56,9 @@ function CheckIn() {
             <Title text="Datos generales" />
             <div className="check-in-container__section">
                 <Row>
-                    <Col md={6}>
-                        Cliente
-                        <select name="" id="" className="select-icafal" defaultValue="0">
-                            <option value="0" disabled>Seleccione...</option>
-                            <option value="1">Cliente 1</option>
-                            <option value="2">Cliente 2</option>
-                            <option value="3">Cliente 3</option>
-                            <option value="4">Cliente 4</option>
-                        </select>
-                    </Col>
-                    <Col md={6}>
-                        Obra
-                        <select name="" id="" className="select-icafal" defaultValue="0">
-                            <option value="0" disabled>Seleccione...</option>
-                            <option value="1">Obra 1</option>
-                            <option value="2">Obra 2</option>
-                            <option value="3">Obra 3</option>
-                            <option value="4">Obra 4</option>
-                        </select>
-                    </Col>
-                    <Col md={6}>
-                        Código de máquina
-                        <select name="" id="" className="select-icafal" defaultValue="0">
-                            <option value="0" disabled>Seleccione...</option>
-                            <option value="1">Código de máquina 1</option>
-                            <option value="2">Código de máquina 2</option>
-                            <option value="3">Código de máquina 3</option>
-                            <option value="4">Código de máquina 4</option>
-                        </select>
-                    </Col>
+                    <Col md={6}><Select label="Cliente" options={clients} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
+                    <Col md={6}><Select label="Obra" options={constructions} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
+                    <Col md={6}><Select label="Código de máquina" options={machines} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
                 </Row>
             </div>
             <Row>

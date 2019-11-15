@@ -2,6 +2,26 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import Select from '../../Components/Select/Select';
+
+const types = [
+    {
+        id: 1,
+        name: 'Texto',
+    },
+    {
+        id: 2,
+        name: 'Check',
+    },
+    {
+        id: 3,
+        name: 'Selección múltiple',
+    },
+    {
+        id: 4,
+        name: 'Imagen',
+    },
+];
 
 class FieldForm extends Component {
     constructor(props) {
@@ -14,14 +34,7 @@ class FieldForm extends Component {
         return (
             <>
                 <Input label="Nombre" placeholder="Nombre" />
-                Tipo
-                <select name="" id="" className="select-icafal" defaultValue="0">
-                    <option value="0" disabled>Seleccione...</option>
-                    <option value="1">Texto</option>
-                    <option value="2">Check</option>
-                    <option value="3">Selección múltiple</option>
-                    <option value="4">Imágen</option>
-                </select>
+                <Select label="Tipo" options={types} placeholder="Seleccione..." name="name" onChange={() => { }} />
                 <div>
                     <input type="checkbox" />
                     {' '}

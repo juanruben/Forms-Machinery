@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Row, Col } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import Select from '../../Components/Select/Select';
 
 class MachineForm extends Component {
     constructor(props) {
@@ -37,7 +38,20 @@ class MachineForm extends Component {
     render() {
         const { readOnly } = this.props;
         const { data, createMode } = this.state;
-
+        const forms = [
+            {
+                id: 1,
+                name: 'Formulario 1',
+            },
+            {
+                id: 2,
+                name: 'Formulario 2',
+            },
+            {
+                id: 3,
+                name: 'Formulario 3',
+            },
+        ];
         return (
             <>
                 <Row>
@@ -47,18 +61,7 @@ class MachineForm extends Component {
                     <Col md={6}><Input label="Marca" placeholder="Marca" name="name" onChange={() => { }} value={data.company} readOnly={readOnly} /></Col>
                     <Col md={6}><Input label="Modelo" placeholder="Modelo" name="name" onChange={() => { }} value={data.model} readOnly={readOnly} /></Col>
                     <Col md={6}><Input label="Año" placeholder="Año" name="name" onChange={() => { }} value={data.code} readOnly={readOnly} /></Col>
-                    <Col md={6}>
-                        Formulario
-                        <select name="" id="" className="select-icafal" defaultValue="0">
-                            <option value="0" disabled>Seleccione...</option>
-                            <option value="1">Formulario 1</option>
-                            <option value="2">Formulario 2</option>
-                            <option value="3">Formulario 3</option>
-                            <option value="4">Formulario 4</option>
-                            <option value="5">Formulario 5</option>
-                            <option value="6">Formulario 6</option>
-                        </select>
-                    </Col>
+                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="name" onChange={() => { }} value={data.code} readOnly={readOnly} /></Col>
                 </Row>
                 <Row>
                     <Col md={8} />
