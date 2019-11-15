@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`IconButton should render ok 1`] = `
-"<button onClick={[Function: mockConstructor]} type=\\"button\\" className=\\"icon-button\\">
-  <i className=\\"\\" />
-</button>"
-`;
