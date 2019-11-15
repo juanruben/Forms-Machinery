@@ -57,7 +57,7 @@ class History extends Component {
                 accessor: 'plate',
                 maxWidth: 100,
                 Cell: (row) => (
-                    <ModalView title={row.original.plate}>
+                    <ModalView title={row.original.machine}>
                         <MachineForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
