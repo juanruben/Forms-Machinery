@@ -1,19 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import IconButton from './IconButton';
+import DownloadCSVButton from './DownloadCSVButton';
 
-describe('IconButton', () => {
+describe('DownloadCSVButton', () => {
     let wrapper;
-    const onClick = jest.fn();
 
     it('should render ok', () => {
-        wrapper = shallow(<IconButton onClick={onClick} icon="" />);
+        wrapper = shallow(<DownloadCSVButton data={[]} filename="test" />);
         expect(wrapper.debug()).toMatchSnapshot();
-    });
-
-    it('should call callback', () => {
-        wrapper = shallow(<IconButton onClick={onClick} icon="" />);
-        wrapper.simulate('click');
-        expect(onClick).toBeCalledTimes(1);
     });
 });
