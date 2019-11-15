@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Input should render correctly 1`] = `
-"<div className=\\"input-bordered-container\\">
-  <div className=\\"\\" />
-  <input className=\\"input-bordered false null\\" type=\\"text\\" name=\\"test\\" value=\\"\\" onChange={[Function: mockConstructor]} placeholder=\\"\\" />
-</div>"
+"<Fragment>
+  <div className=\\"input-bordered-container\\">
+    <input className=\\"false null\\" type=\\"text\\" name=\\"test\\" value=\\"\\" onChange={[Function: mockConstructor]} placeholder=\\"\\" />
+  </div>
+</Fragment>"
 `;
