@@ -59,9 +59,9 @@
     "sass": "^1.23.0"
   },
   "jest": {
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!react-bootstrap-sweetalert)"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.jsx"
