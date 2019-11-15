@@ -58,7 +58,34 @@ class Users extends Component {
             {
                 Header: 'Perfil',
                 accessor: 'profile',
-                maxWidth: 100,
+                width: 130,
+                Cell: (row) => (
+                    <>{row.original.profile === 1 ? 'Administrador' : 'Operador'}</>
+                ),
+                filterMethod: (filter, row) => {
+                    if (filter.value === 'all') {
+                        return true;
+                    }
+                    if (filter.value === '1') {
+                        return row[filter.id] === 1;
+                    }
+                    if (filter.value === '2') {
+                        return row[filter.id] === 2;
+                    }
+                    return row[filter.id] === 0;
+                },
+                Filter: ({ filter, onChange }) => (
+                    <select
+                        onChange={(event) => onChange(event.target.value)}
+                        className="table-select-top"
+                        style={{ width: '100%', height: '100%' }}
+                        value={filter ? filter.value : 'all'}
+                    >
+                        <option value="">Todo...</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Operador</option>
+                    </select>
+                ),
             },
             {
                 Header: 'Acciones',
