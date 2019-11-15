@@ -9014,6 +9014,11 @@ react-bootstrap-sweetalert@^5.1.7:
   resolved "https://registry.yarnpkg.com/react-bootstrap-sweetalert/-/react-bootstrap-sweetalert-5.1.7.tgz#2865d77e3613cdc6e6239e49e5165dc66f499023"
   integrity sha512-0IvGP7wQNWkLLnG1mlLZ9/NsD5QfJX2AenYSEHxcL/MQgAOfsUDjDnYxq/U/nJ/pt1+Y2XggmOoHNh+xPWRn6g==
 
+react-csv@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-csv/-/react-csv-1.1.2.tgz#6cb47e625f51878d24bb68a120efb45a30ad243a"
+  integrity sha512-pTOTYntW+gQWzCxyEGfS5ZeOfQw4Mu3B+DJd4jrJKNuAWFQ+EEyF2Earfg0+FVEkPwMr62OLtbYCHmc6vQWj2w==
+
 react-dev-utils@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/react-dev-utils/-/react-dev-utils-9.1.0.tgz#3ad2bb8848a32319d760d0a84c56c14bdaae5e81"
