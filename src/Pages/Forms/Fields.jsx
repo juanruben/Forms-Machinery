@@ -9,18 +9,38 @@ import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 import './Sections.scss';
+import image from './image.png';
+import text from './text.png';
+import simple from './simple.png';
+import multiple from './multiple.png';
 
 const DragHandle = sortableHandle(() => <span className="section-sort-handle"><i className="fas fa-grip-horizontal" /></span>);
 
-const SortableItem = sortableElement(({ index, value }) => {
+const SortableItem = sortableElement(({ index, value, type }) => {
     const [showConfirm, setShowConfirm] = useState(false);
+
+    function getIcon(fff) {
+        switch (fff) {
+            case 'text':
+                return text;
+            case 'image':
+                return image;
+            case 'simple':
+                return simple;
+            case 'multiple':
+                return multiple;
+            default:
+                return '';
+        }
+    }
 
     return (
         <>
             <li className="section-item">
                 <span>
                     <DragHandle />
-                    <button disabled style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'black', outline: '0' }} type="button">
+                    <img src={getIcon(type)} alt="" style={{ width: '30px' }} />
+                    <button disabled style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'black', outline: '0', padding:'0 20px' }} type="button">
                         {value}
                     </button>
                 </span>
@@ -64,26 +84,32 @@ class Fields extends Component {
                 {
                     id: 1,
                     name: 'Nombre del campo 1',
+                    type: 'text',
                 },
                 {
                     id: 2,
                     name: 'Nombre del campo 2',
+                    type: 'multiple',
                 },
                 {
                     id: 3,
                     name: 'Nombre del campo 3',
+                    type: 'image',
                 },
                 {
                     id: 4,
                     name: 'Nombre del campo 4',
+                    type: 'multiple',
                 },
                 {
                     id: 5,
                     name: 'Nombre del campo 5',
+                    type: 'simple',
                 },
                 {
                     id: 6,
                     name: 'Nombre del campo 6',
+                    type: 'text',
                 },
             ],
         };
@@ -125,6 +151,7 @@ class Fields extends Component {
                             key={item.id}
                             index={index}
                             value={item.name}
+                            type={item.type}
                             history={history}
                         />
                     ))}
