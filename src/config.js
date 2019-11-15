@@ -16,7 +16,7 @@ export const dummyData = [
     {
         id: '5dcd6b8318145cd012778f14',
         code: 5550,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Jennie Patton',
         machine: 'Lindsay',
@@ -34,7 +34,7 @@ export const dummyData = [
     {
         id: '5dcd6b83225b16b75872a324',
         code: 9627,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Taylor Humphrey',
         machine: 'Parsons',
@@ -52,7 +52,7 @@ export const dummyData = [
     {
         id: '5dcd6b833b427c417a1125e8',
         code: 8973,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Tamra Duncan',
         machine: 'Dennis',
@@ -70,7 +70,7 @@ export const dummyData = [
     {
         id: '5dcd6b83b6b2b9d1090864ec',
         code: 7443,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Sullivan Dodson',
         machine: 'Goldie',
@@ -88,7 +88,7 @@ export const dummyData = [
     {
         id: '5dcd6b839bf7fa37e326d107',
         code: 6472,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Casandra Dorsey',
         machine: 'Mercado',
@@ -106,7 +106,7 @@ export const dummyData = [
     {
         id: '5dcd6b838f1e0e615442f588',
         code: 6074,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Moses Valenzuela',
         machine: 'Franklin',
@@ -124,7 +124,7 @@ export const dummyData = [
     {
         id: '5dcd6b835ece041eaa9ceea5',
         code: 5684,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Wooten Knowles',
         machine: 'Mcneil',
@@ -142,7 +142,7 @@ export const dummyData = [
     {
         id: '5dcd6b83328611c157ca5770',
         code: 7198,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Bridgette Hunt',
         machine: 'Robbins',
@@ -160,7 +160,7 @@ export const dummyData = [
     {
         id: '5dcd6b8326a722b87c2672d7',
         code: 8415,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Neva Lott',
         machine: 'Wanda',
@@ -178,7 +178,7 @@ export const dummyData = [
     {
         id: '5dcd6b83e3c428edd12e744c',
         code: 7647,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Alissa Davis',
         machine: 'Lavonne',
@@ -196,7 +196,7 @@ export const dummyData = [
     {
         id: '5dcd6b83f273226006e00953',
         code: 7439,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Nadia Vang',
         machine: 'Bessie',
@@ -214,7 +214,7 @@ export const dummyData = [
     {
         id: '5dcd6b83df3664a8499717dd',
         code: 9500,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Charles Meyer',
         machine: 'Kathie',
@@ -232,7 +232,7 @@ export const dummyData = [
     {
         id: '5dcd6b83a3f69d5f08f4fcb2',
         code: 9321,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Ewing Hamilton',
         machine: 'Valerie',
@@ -250,7 +250,7 @@ export const dummyData = [
     {
         id: '5dcd6b836b0418ec798cef0d',
         code: 5566,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Burgess Harper',
         machine: 'Richmond',
@@ -268,7 +268,7 @@ export const dummyData = [
     {
         id: '5dcd6b83bd4ab6bf69bec78a',
         code: 6358,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Hartman Benson',
         machine: 'Deanna',
@@ -286,7 +286,7 @@ export const dummyData = [
     {
         id: '5dcd6b8342cc8f8d75b606d2',
         code: 8513,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Tameka Chase',
         machine: 'Kerry',
@@ -304,7 +304,7 @@ export const dummyData = [
     {
         id: '5dcd6b83463b242731aa6921',
         code: 7017,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Mcbride Faulkner',
         machine: 'Ayers',
@@ -322,7 +322,7 @@ export const dummyData = [
     {
         id: '5dcd6b83f1bf8b158a8f1a72',
         code: 8328,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Lewis Lawson',
         machine: 'Autumn',
@@ -340,7 +340,7 @@ export const dummyData = [
     {
         id: '5dcd6b8352a585597193d74e',
         code: 7878,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Carpenter Rosario',
         machine: 'Hahn',
@@ -358,7 +358,7 @@ export const dummyData = [
     {
         id: '5dcd6b83572aa2d0e08aef03',
         code: 6489,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Barnes Kinney',
         machine: 'Darla',
@@ -376,7 +376,7 @@ export const dummyData = [
     {
         id: '5dcd6b8316949ff0f1aa8828',
         code: 9762,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Trisha Freeman',
         machine: 'Heidi',
@@ -394,7 +394,7 @@ export const dummyData = [
     {
         id: '5dcd6b8308ebad68006d1d25',
         code: 9977,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Alfreda Bates',
         machine: 'Mathis',
@@ -412,7 +412,7 @@ export const dummyData = [
     {
         id: '5dcd6b83fd3a8fb13d6664e2',
         code: 8149,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Fisher Hess',
         machine: 'Michele',
@@ -430,7 +430,7 @@ export const dummyData = [
     {
         id: '5dcd6b839b55a7b0654ad1bd',
         code: 7747,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Ramsey Vaughan',
         machine: 'Gates',
@@ -448,7 +448,7 @@ export const dummyData = [
     {
         id: '5dcd6b8327de19f1c140e21b',
         code: 8630,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Miller Ford',
         machine: 'Jan',
@@ -466,7 +466,7 @@ export const dummyData = [
     {
         id: '5dcd6b83fe4bbe870ce8844c',
         code: 7774,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Tate Shelton',
         machine: 'Dunn',
@@ -484,7 +484,7 @@ export const dummyData = [
     {
         id: '5dcd6b83942e0406cd531844',
         code: 5209,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Cook Rich',
         machine: 'Salas',
@@ -502,7 +502,7 @@ export const dummyData = [
     {
         id: '5dcd6b83bd974e91ce96f2cd',
         code: 5075,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Ratliff Blake',
         machine: 'Krista',
@@ -520,7 +520,7 @@ export const dummyData = [
     {
         id: '5dcd6b839c6713385d3329ce',
         code: 7641,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Socorro Howell',
         machine: 'Ramona',
@@ -538,7 +538,7 @@ export const dummyData = [
     {
         id: '5dcd6b8334099e84d53fb33b',
         code: 5328,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Church Fields',
         machine: 'Bentley',
@@ -556,7 +556,7 @@ export const dummyData = [
     {
         id: '5dcd6b832e3bbf711de397e8',
         code: 8903,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Wolf Roy',
         machine: 'Pitts',
@@ -574,7 +574,7 @@ export const dummyData = [
     {
         id: '5dcd6b83c469e54f3a19563a',
         code: 9701,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Garrison Rodgers',
         machine: 'Callie',
@@ -592,7 +592,7 @@ export const dummyData = [
     {
         id: '5dcd6b83ec9d3b830ebf6c33',
         code: 9209,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Jackson Clayton',
         machine: 'Scott',
@@ -610,7 +610,7 @@ export const dummyData = [
     {
         id: '5dcd6b837eeb7ce93dc17b35',
         code: 9353,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Fitzgerald Warren',
         machine: 'Guadalupe',
@@ -628,7 +628,7 @@ export const dummyData = [
     {
         id: '5dcd6b83185acee1f609dde0',
         code: 6830,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Madden Merritt',
         machine: 'Samantha',
@@ -646,7 +646,7 @@ export const dummyData = [
     {
         id: '5dcd6b83b30b941c8aebccde',
         code: 9989,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Pacheco Noble',
         machine: 'Gwen',
@@ -664,7 +664,7 @@ export const dummyData = [
     {
         id: '5dcd6b834048b4c4f3324e5c',
         code: 7352,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Skinner York',
         machine: 'Odom',
@@ -682,7 +682,7 @@ export const dummyData = [
     {
         id: '5dcd6b834c40581ccc09ac36',
         code: 7722,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Trujillo Gentry',
         machine: 'Conway',
@@ -700,7 +700,7 @@ export const dummyData = [
     {
         id: '5dcd6b8377a22e28b25f5248',
         code: 9641,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Regina Black',
         machine: 'Castaneda',
@@ -718,7 +718,7 @@ export const dummyData = [
     {
         id: '5dcd6b83763775a957794d29',
         code: 8642,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Holloway Pickett',
         machine: 'Berry',
@@ -736,7 +736,7 @@ export const dummyData = [
     {
         id: '5dcd6b83c3334e948fcbe1ee',
         code: 9763,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Hanson Buckner',
         machine: 'Carey',
@@ -754,7 +754,7 @@ export const dummyData = [
     {
         id: '5dcd6b837500b4a34d3103bb',
         code: 8794,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Jenkins Booth',
         machine: 'Roberson',
@@ -772,7 +772,7 @@ export const dummyData = [
     {
         id: '5dcd6b8309ad6b3b2806c935',
         code: 8392,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Sherry Stout',
         machine: 'May',
@@ -790,7 +790,7 @@ export const dummyData = [
     {
         id: '5dcd6b831d4b21b4da109d40',
         code: 5611,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Hudson Reynolds',
         machine: 'Sheena',
@@ -808,7 +808,7 @@ export const dummyData = [
     {
         id: '5dcd6b83f53bbba3823d926a',
         code: 9564,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Riley Gould',
         machine: 'Mable',
@@ -826,7 +826,7 @@ export const dummyData = [
     {
         id: '5dcd6b833e40ce539ae53693',
         code: 8244,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Mills Morin',
         machine: 'Buchanan',
@@ -844,7 +844,7 @@ export const dummyData = [
     {
         id: '5dcd6b83cb926e7eac6134e1',
         code: 8016,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Denise Medina',
         machine: 'Mathews',
@@ -862,7 +862,7 @@ export const dummyData = [
     {
         id: '5dcd6b83b0724ce48d6bd4e6',
         code: 8050,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Riddle Jackson',
         machine: 'Mccray',
@@ -880,7 +880,7 @@ export const dummyData = [
     {
         id: '5dcd6b83c9c53b6eeb0c34dd',
         code: 5946,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Vanessa Pearson',
         machine: 'Maggie',
@@ -898,7 +898,7 @@ export const dummyData = [
     {
         id: '5dcd6b83c245384c00eeb1ab',
         code: 8627,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Rivera Cummings',
         machine: 'Medina',
@@ -916,7 +916,7 @@ export const dummyData = [
     {
         id: '5dcd6b834677c984dc8266c5',
         code: 8199,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Knox Reilly',
         machine: 'Francesca',
@@ -934,7 +934,7 @@ export const dummyData = [
     {
         id: '5dcd6b831fe51eeefd0cc267',
         code: 7121,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Floyd Wiggins',
         machine: 'Hodges',
@@ -952,7 +952,7 @@ export const dummyData = [
     {
         id: '5dcd6b8367162597a3979de0',
         code: 8652,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Hayden Hancock',
         machine: 'Silvia',
@@ -970,7 +970,7 @@ export const dummyData = [
     {
         id: '5dcd6b8393302b8c517a296f',
         code: 5571,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Melendez Houston',
         machine: 'Lola',
@@ -988,7 +988,7 @@ export const dummyData = [
     {
         id: '5dcd6b83cd006c66c4ffe2a9',
         code: 7526,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Dillard Anderson',
         machine: 'Brittany',
@@ -1006,7 +1006,7 @@ export const dummyData = [
     {
         id: '5dcd6b833d53230319e0d5a3',
         code: 5948,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Katharine Vasquez',
         machine: 'Swanson',
@@ -1024,7 +1024,7 @@ export const dummyData = [
     {
         id: '5dcd6b83366da60310812f25',
         code: 5209,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Petra Ayala',
         machine: 'Rosa',
@@ -1042,7 +1042,7 @@ export const dummyData = [
     {
         id: '5dcd6b83f6836608f3d7cd3b',
         code: 6074,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Hansen Frazier',
         machine: 'Angelita',
@@ -1060,7 +1060,7 @@ export const dummyData = [
     {
         id: '5dcd6b83fbd64e7d2bd23efe',
         code: 7496,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 1,
         name: 'Reyes Davenport',
         machine: 'Tracie',
@@ -1078,7 +1078,7 @@ export const dummyData = [
     {
         id: '5dcd6b839b74e704b7dc5068',
         code: 6485,
-        status: 'En terreno',
+        status: 1,
         profile: 1,
         name: 'Campos Macias',
         machine: 'Cherie',
@@ -1096,7 +1096,7 @@ export const dummyData = [
     {
         id: '5dcd6b8357d494d874d76ad7',
         code: 9591,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Cecelia Conrad',
         machine: 'Diaz',
@@ -1114,7 +1114,7 @@ export const dummyData = [
     {
         id: '5dcd6b83430cbf6af93f7ce1',
         code: 9229,
-        status: 'En taller',
+        status: 2,
         profile: 1,
         name: 'Terrie Baird',
         machine: 'Wood',
@@ -1132,7 +1132,7 @@ export const dummyData = [
     {
         id: '5dcd6b830881ed9bc4c8b5a9',
         code: 8176,
-        status: 'En taller',
+        status: 2,
         profile: 2,
         name: 'Patterson Alston',
         machine: 'Mcgee',
@@ -1150,7 +1150,7 @@ export const dummyData = [
     {
         id: '5dcd6b83b35c724c8a33ee82',
         code: 6284,
-        status: 'En terreno',
+        status: 1,
         profile: 2,
         name: 'Bond Maxwell',
         machine: 'Oliver',
@@ -1168,7 +1168,7 @@ export const dummyData = [
     {
         id: '5dcd6b83b73b603aa256df75',
         code: 6586,
-        status: 'Mantenimiento',
+        status: 3,
         profile: 2,
         name: 'Jeannine Hahn',
         machine: 'Garner',
