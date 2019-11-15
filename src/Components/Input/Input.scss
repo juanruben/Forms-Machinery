@@ -1,13 +1,28 @@
 @import "../../styles.scss";
 
+.read-only-container {
+  position: relative;
+
+  i {
+    color: rgb(134, 134, 134);
+    position: absolute;
+    left: 0px;
+    top: 5px;
+  }
+
+  .padding-icon {
+    padding-left: 20px;
+  }
+}
+
 .input-bordered-container {
   position: relative;
-  
+
   i {
     color: rgb(134, 134, 134);
     position: absolute;
     left: 14px;
-    top: 14px;
+    top: 12px;
   }
 
   input {
@@ -40,13 +55,13 @@
   .padding-icon {
     padding-left: 40px;
   }
-
-  &__locked-value {
-    padding-bottom: 20px;
-    padding-left: 5px;
-  }
 }
 
 .bold-label {
   font-weight: bold;
+}
+
+.locked-value {
+  padding-bottom: 20px;
+  padding-left: 5px;
 }
