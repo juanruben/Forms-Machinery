@@ -13,11 +13,12 @@ const Select = (props) => {
     }
 
     if (readOnly) {
+        const selected = options.find((item) => item.id === value);
         return (
             <>
                 <div className="bold-label">{label}</div>
                 <div className="read-only-container">
-                    <div className="read-only-value">{value}</div>
+                    <div className="read-only-value">{selected ? selected.name : ''}</div>
                 </div>
             </>
         );
