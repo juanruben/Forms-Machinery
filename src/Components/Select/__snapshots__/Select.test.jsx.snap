@@ -3,7 +3,9 @@
 exports[`Input should render correctly 1`] = `
 "<Fragment>
   <div className=\\"input-bordered-container\\">
-    <input className=\\"false null\\" type=\\"text\\" name=\\"test\\" value=\\"\\" onChange={[Function: mockConstructor]} placeholder=\\"\\" />
+    <select name=\\"test\\" id=\\"\\" className=\\"select-icafal\\" defaultValue=\\"0\\" onChange={[Function: mockConstructor]}>
+      <option value=\\"0\\" disabled={true} />
+    </select>
   </div>
 </Fragment>"
 `;
