@@ -63,12 +63,14 @@ class MachineForm extends Component {
                     <Col md={6}><Input label="Año" placeholder="Año" name="name" onChange={() => { }} value={data.code} readOnly={readOnly} /></Col>
                     <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="name" onChange={() => { }} value={data.code} readOnly={readOnly} /></Col>
                 </Row>
-                <Row>
-                    <Col md={8} />
-                    <Col md={4}>
-                        <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={this.handleNew} />
-                    </Col>
-                </Row>
+                {!readOnly && (
+                    <Row>
+                        <Col md={8} />
+                        <Col md={4}>
+                            <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={this.handleNew} />
+                        </Col>
+                    </Row>
+                )}
             </>
         );
     }
