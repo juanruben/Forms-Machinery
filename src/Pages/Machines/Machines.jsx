@@ -18,6 +18,12 @@ class Machines extends Component {
         this.findData = this.findData.bind(this);
     }
 
+    getStatus(value) {
+        if (value === 1) return 'En terreno';
+        if (value === 2) return 'En taller';
+        return 'Mantenimiento';
+    }
+
     findData = (id) => dummyData.find((item) => item.id === id);
 
     handleRemove() {
@@ -49,7 +55,38 @@ class Machines extends Component {
             {
                 Header: 'Estado',
                 accessor: 'status',
-                maxWidth: 100,
+                width: 130,
+                Cell: (row) => (
+                    <>{this.getStatus(row.original.status)}</>
+                ),
+                filterMethod: (filter, row) => {
+                    if (filter.value === 'all') {
+                        return true;
+                    }
+                    if (filter.value === '1') {
+                        return row[filter.id] === 1;
+                    }
+                    if (filter.value === '2') {
+                        return row[filter.id] === 2;
+                    }
+                    if (filter.value === '3') {
+                        return row[filter.id] === 3;
+                    }
+                    return row[filter.id] === 0;
+                },
+                Filter: ({ filter, onChange }) => (
+                    <select
+                        onChange={(event) => onChange(event.target.value)}
+                        className="table-select-top"
+                        style={{ width: '100%', height: '100%' }}
+                        value={filter ? filter.value : 'all'}
+                    >
+                        <option value="">Todo...</option>
+                        <option value="1">En terreno</option>
+                        <option value="2">En taller</option>
+                        <option value="3">Mantenimiento</option>
+                    </select>
+                ),
             },
             {
                 Header: 'Último movimiento',
