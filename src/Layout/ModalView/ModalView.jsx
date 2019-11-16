@@ -31,23 +31,21 @@ class ModalView extends Component {
         switch (type) {
             case 'add':
                 button = (
-                    <span className="modal-add-button">
-                        <button onClick={this.toggle} type="button">
-                            <i className="fas fa-plus-circle" />
-                        </button>
-                    </span>
+                    <button className="modal-add-button" onClick={this.toggle} type="button">
+                        <i className="fas fa-plus-circle" />
+                    </button>
                 );
                 break;
             case 'edit':
                 button = (
-                    <span className="form-actions__icon" onClick={this.toggle}>
+                    <button className="modal-edit-button" onClick={this.toggle} type="button">
                         <i className="fas fa-pen" />
-                    </span>
+                    </button>
                 );
                 break;
             default:
                 button = (
-                    <button style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'rgb(190,51,1)', outline: '0' }} onClick={this.toggle} type="button">
+                    <button className="modal-link-button" onClick={this.toggle} type="button">
                         {title}
                     </button>
                 );
@@ -71,6 +69,11 @@ class ModalView extends Component {
 
 ModalView.propTypes = {
     title: PropTypes.string.isRequired,
+    type: PropTypes.string,
+};
+
+ModalView.defaultProps = {
+    type: '',
 };
 
 export default ModalView;

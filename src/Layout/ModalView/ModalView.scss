@@ -1,21 +1,26 @@
 @import "../../styles.scss";
 
 .modal-add-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: $icafal-orange;
+  font-size: 3em;
   margin-left: 20px;
+  padding: 0;
 
-  button {
-    background-color: $icafal-background;
-    border: none;
-    color: $icafal-orange;
-    font-size: 3em;
-    padding: 0;
-
-    &:focus {
-      outline: 0;
-    }
-
-    &:hover {
-      color: $icafal-orange-dark;
-    }
+  &:hover {
+    color: $icafal-orange-dark;
   }
+}
+
+.modal-link-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: $icafal-orange-dark;
+}
+
+.modal-edit-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  padding: 0;
 }
