@@ -144,7 +144,7 @@ class Fields extends Component {
                     {' '}
                     Volver
                 </button>
-                <Title text="Campos de la sección [...xyz]>" />
+                <Title text="Campos de la sección [...xyz]" />
                 <SortableContainer
                     onSortEnd={this.onSortEnd}
                     lockAxis="y"
