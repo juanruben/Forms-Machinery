@@ -4,6 +4,7 @@ import Title from '../../Components/Title/Title';
 import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
 import Simple from '../../Components/Simple/Simple';
+import Multiple from '../../Components/Multiple/Multiple';
 import './CheckIn.scss';
 
 const clients = [
@@ -51,6 +52,51 @@ const machines = [
     },
 ];
 
+const options = [
+    {
+        id: 1,
+        name: '50%',
+    },
+    {
+        id: 2,
+        name: '75%',
+    },
+    {
+        id: 3,
+        name: '100%',
+    },
+];
+
+const options2 = [
+    {
+        id: 4,
+        name: 'Bueno',
+    },
+    {
+        id: 5,
+        name: 'Regular',
+    },
+    {
+        id: 6,
+        name: 'Malo',
+    },
+];
+
+const options3 = [
+    {
+        id: 7,
+        name: 'Bajo',
+    },
+    {
+        id: 8,
+        name: 'Medio',
+    },
+    {
+        id: 9,
+        name: 'Alto',
+    },
+];
+
 function CheckIn() {
     return (
         <div className="check-in-container">
@@ -61,6 +107,9 @@ function CheckIn() {
                     <Col md={6}><Select label="Obra" options={constructions} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
                     <Col md={6}><Select label="Código de máquina" options={machines} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
                     <Col md={6}><Simple label="Esto es un ejemplo de selección simple" name="name" onChange={() => { }} /></Col>
+                    <Col md={6}><Multiple label="Esto es un ejemplo de múltiples opciones" options={options} name="name" onChange={() => { }} /></Col>
+                    <Col md={6}><Multiple label="Otro ejemplo de múltiples opciones" options={options2} name="name2" onChange={() => { }} /></Col>
+                    <Col md={6}><Multiple label="Y otro más" options={options3} name="name3" onChange={() => { }} /></Col>
                 </Row>
             </div>
             <Row>
