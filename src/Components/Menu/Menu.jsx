@@ -10,7 +10,7 @@ const Menu = (props) => {
     const { items, username, avatar } = props;
     const state = useStateValue();
 
-    const test = () => {
+    const handleSignOut = () => {
         const [, dispatch] = state;
         dispatch({
             type: 'EXIT',
@@ -33,7 +33,7 @@ const Menu = (props) => {
                     ))}
                     <li>
                         <span><i className="fas fa-door-open" /></span>
-                        <button type="button" onClick={test}>Cerrar sesión</button>
+                        <button type="button" onClick={handleSignOut}>Cerrar sesión</button>
                     </li>
                 </ul>
             </div>
