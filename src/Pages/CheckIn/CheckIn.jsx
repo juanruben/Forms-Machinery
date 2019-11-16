@@ -5,6 +5,7 @@ import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
 import Simple from '../../Components/Simple/Simple';
 import Multiple from '../../Components/Multiple/Multiple';
+import Photo from '../../Components/Photo/Photo';
 import './CheckIn.scss';
 
 const clients = [
@@ -110,6 +111,11 @@ function CheckIn() {
                     <Col md={6}><Multiple label="Esto es un ejemplo de múltiples opciones" options={options} name="name" onChange={() => { }} /></Col>
                     <Col md={6}><Multiple label="Otro ejemplo de múltiples opciones" options={options2} name="name2" onChange={() => { }} /></Col>
                     <Col md={6}><Multiple label="Y otro más" options={options3} name="name3" onChange={() => { }} /></Col>
+                </Row>
+                <Row>
+                    <Col md={4}><Photo label="Toma una foto de XYZ en la máquina" onChange={() => { }} /></Col>
+                    <Col md={4}><Photo label="Toma otra foto de la máquina" onChange={() => { }} /></Col>
+                    <Col md={4}><Photo label="Y otra foto más" onChange={() => { }} /></Col>
                 </Row>
             </div>
             <Row>
