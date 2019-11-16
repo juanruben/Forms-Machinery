@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Title should render like snapshot 1`] = `
-"<div className=\\"main-title\\">
+"<div className=\\"title-container\\">
   Test
 </div>"
 `;

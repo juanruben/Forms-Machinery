@@ -8,50 +8,165 @@ exports[`Login should render correctly 1`] = `
         <BrowserRouter>
           <Router history={{...}}>
             <Switch>
-              <Route exact={true} path=\\"/login\\" component={[function]} location={{...}} computedMatch={{...}}>
-                <Login history={{...}} location={{...}} match={{...}} staticContext={[undefined]}>
-                  <LayoutFullWidth>
-                    <div className=\\"full-width-container\\">
-                      <Box>
-                        <div className=\\"box-container\\">
-                          <Logo padding={30} maxWidth={150}>
-                            <div style={{...}}>
-                              <img style={{...}} src=\\"logo.png\\" alt=\\"logo icafal\\" />
+              <PrivateRoute path=\\"/\\" component={[Function: C]} location={{...}} computedMatch={{...}}>
+                <Route component={[Function: component]}>
+                  <component history={{...}} location={{...}} match={{...}} staticContext={[undefined]}>
+                    <withRouter(Main) path=\\"/\\" location={{...}} computedMatch={{...}}>
+                      <Main path=\\"/\\" location={{...}} computedMatch={{...}} history={{...}} match={{...}} staticContext={[undefined]}>
+                        <Sidebar sidebar={{...}} docked={false} shadow={false} transitions={false} open={false} touch={true} touchHandleWidth={20} pullRight={false} dragToggleDistance={30} onSetOpen={[Function: onSetOpen]} styles={{...}} defaultSidebarWidth={0}>
+                          <div className={[undefined]} style={{...}} role=\\"navigation\\" id={[undefined]}>
+                            <div className={[undefined]} style={{...}} id={[undefined]}>
+                              <Menu items={{...}} username=\\"administrador\\" avatar=\\"avatar.png\\">
+                                <div className=\\"sidebar-container\\">
+                                  <div className=\\"content\\">
+                                    <Logo padding={0} maxWidth={80}>
+                                      <div style={{...}}>
+                                        <img style={{...}} src=\\"logo.png\\" alt=\\"logo icafal\\" />
+                                      </div>
+                                    </Logo>
+                                    <Avatar title=\\"administrador\\" image=\\"avatar.png\\">
+                                      <div className=\\"avatar-container\\">
+                                        <img src=\\"avatar.png\\" alt=\\"avatar\\" />
+                                        <div className=\\"title\\">
+                                          Usuario administrador
+                                        </div>
+                                      </div>
+                                    </Avatar>
+                                    <ul className=\\"menu-items\\">
+                                      <NavLink to=\\"/admin/dashboard\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/dashboard\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/dashboard\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"fas fa-home\\" />
+                                                </span>
+                                                Movimientos
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <NavLink to=\\"/admin/clientes\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/clientes\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/clientes\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"far fa-address-book\\" />
+                                                </span>
+                                                Clientes
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <NavLink to=\\"/admin/maquinas\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/maquinas\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/maquinas\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"fas fa-tractor\\" />
+                                                </span>
+                                                Máquinas
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <NavLink to=\\"/admin/formularios\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/formularios\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/formularios\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"fas fa-notes-medical\\" />
+                                                </span>
+                                                Formularios
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <NavLink to=\\"/admin/usuarios\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/usuarios\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/admin/usuarios\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"fas fa-users-cog\\" />
+                                                </span>
+                                                Usuarios
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <NavLink to=\\"/entrada\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/entrada\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/entrada\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"fas fa-clipboard-check\\" />
+                                                </span>
+                                                Registrar Entrada
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <NavLink to=\\"/salida\\" className=\\"item-container\\" activeClassName=\\"active\\">
+                                        <Link aria-current={{...}} className=\\"item-container\\" style={[undefined]} to={{...}}>
+                                          <LinkAnchor aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/salida\\" navigate={[Function: navigate]}>
+                                            <a aria-current={{...}} className=\\"item-container\\" style={[undefined]} href=\\"/salida\\" onClick={[Function: onClick]}>
+                                              <li className=\\"single-item\\">
+                                                <span>
+                                                  <i className=\\"far fa-clipboard\\" />
+                                                </span>
+                                                Registrar Salida
+                                              </li>
+                                            </a>
+                                          </LinkAnchor>
+                                        </Link>
+                                      </NavLink>
+                                      <li>
+                                        <span>
+                                          <i className=\\"fas fa-door-open\\" />
+                                        </span>
+                                        <button type=\\"button\\" onClick={[Function: test]}>
+                                          Cerrar sesión
+                                        </button>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </Menu>
                             </div>
-                          </Logo>
-                          <div className=\\"login-container\\">
-                            <Input type=\\"text\\" name=\\"username\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors=\\"\\" label=\\"\\" readOnly={false} hideReadOnly={false}>
-                              <div className=\\"input-bordered-container\\">
-                                <i className=\\"fas fa-user-tie\\" />
-                                <input className=\\"false padding-icon\\" type=\\"text\\" name=\\"username\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Usuario\\" />
+                            <div className={[undefined]} style={{...}} onClick={[Function: bound overlayClicked]} id={[undefined]} />
+                            <div className={[undefined]} style={{...}} id={[undefined]}>
+                              <div className=\\"top-area\\">
+                                <MenuButton onClick={[Function: bound menuButtonClick]}>
+                                  <button onClick={[Function: bound menuButtonClick]} type=\\"button\\" className=\\"menu-icon\\">
+                                    <i className=\\"fas fa-bars\\" />
+                                  </button>
+                                </MenuButton>
+                                <Title text=\\"\\">
+                                  <div className=\\"title-container\\" />
+                                </Title>
                               </div>
-                            </Input>
-                            <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors=\\"\\" label=\\"\\" readOnly={false} hideReadOnly={false}>
-                              <div className=\\"input-bordered-container\\">
-                                <i className=\\"fas fa-unlock-alt\\" />
-                                <input className=\\"false padding-icon\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound handleInputChange]} placeholder=\\"Contraseña\\" />
+                              <div className=\\"content-area\\">
+                                <Switch />
                               </div>
-                            </Input>
-                            <Button type=\\"submit\\" onClick={[Function: bound handleSignIn]} text=\\"Entrar\\" disabled={false}>
-                              <button type=\\"submit\\" className=\\"main-button\\" onClick={[Function: bound handleSignIn]} disabled={false}>
-                                Entrar
-                              </button>
-                            </Button>
+                            </div>
                           </div>
-                          <Link to=\\"/recuperar\\" className=\\"link-login\\">
-                            <LinkAnchor className=\\"link-login\\" href=\\"/recuperar\\" navigate={[Function: navigate]}>
-                              <a className=\\"link-login\\" href=\\"/recuperar\\" onClick={[Function: onClick]}>
-                                Olvidó su contraseña
-                              </a>
-                            </LinkAnchor>
-                          </Link>
-                        </div>
-                      </Box>
-                      <SweetAlert title=\\"\\" show={false} error={true} onConfirm={[Function: onConfirm]} allowEscape={true} closeOnClickOutside={true} inputType=\\"text\\" customClass=\\"\\" validationMsg={{...}} validationRegex={{...}} hideOverlay={false} required={true} disabled={false} focusConfirmBtn={true} focusCancelBtn={false} showCloseButton={false} confirmBtnBsStyle=\\"primary\\" cancelBtnBsStyle=\\"link\\" beforeMount={[Function: beforeMount]} afterMount={[Function: afterMount]} beforeUpdate={{...}} afterUpdate={[Function: afterUpdate]} beforeUnmount={[Function: beforeUnmount]} style={{...}} closeBtnStyle={{...}} timeout={0} openAnim={{...}} closeAnim={false} reverseButtons={false} />
-                    </div>
-                  </LayoutFullWidth>
-                </Login>
-              </Route>
+                        </Sidebar>
+                      </Main>
+                    </withRouter(Main)>
+                  </component>
+                </Route>
+              </PrivateRoute>
             </Switch>
           </Router>
         </BrowserRouter>

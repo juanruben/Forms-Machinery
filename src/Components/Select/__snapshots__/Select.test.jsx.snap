@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Input should render correctly 1`] = `
-"<Fragment>
-  <div className=\\"input-bordered-container\\">
-    <select name=\\"test\\" id=\\"\\" className=\\"select-icafal\\" defaultValue=\\"0\\" onChange={[Function: mockConstructor]}>
-      <option value=\\"0\\" disabled={true} />
-    </select>
-  </div>
-</Fragment>"
-`;
-
 exports[`Select should render correctly 1`] = `
 "<Fragment>
   <div className=\\"input-bordered-container\\">
