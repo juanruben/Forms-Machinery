@@ -7,7 +7,6 @@ import { useStateValue } from './State';
 import Login from './Pages/Login/Login';
 import Recover from './Pages/Recover/Recover';
 import Main from './Layout/Main/Main';
-import Page404 from './Components/Page404/Page404';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
     const [{ loggedin }] = useStateValue();
@@ -29,7 +28,6 @@ const AppRouter = () => (
             <Route exact path="/login" component={Login} />
             <Route exact path="/recuperar" component={Recover} />
             <PrivateRoute path="/" component={Main} />
-            <Route component={Page404} />
         </Switch>
     </Router>
 );
