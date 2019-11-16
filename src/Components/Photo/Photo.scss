@@ -1,0 +1,15 @@
+@import "../../styles.scss";
+
+.photo-container {
+  button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: $icafal-orange;
+    font-size: 2em;
+    padding: 0;
+
+    &:hover {
+      color: $icafal-orange-dark;
+    }
+  }
+}
