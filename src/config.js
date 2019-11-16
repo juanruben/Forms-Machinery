@@ -30,6 +30,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '21710044-2',
         model: 'Harmon',
+        year: 2000,
     },
     {
         id: '5dcd6b83225b16b75872a324',
@@ -48,6 +49,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '17338254-1',
         model: 'Velez',
+        year: 2000,
     },
     {
         id: '5dcd6b833b427c417a1125e8',
@@ -66,6 +68,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20353416-7',
         model: 'Wynn',
+        year: 2000,
     },
     {
         id: '5dcd6b83b6b2b9d1090864ec',
@@ -84,6 +87,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '19795563-7',
         model: 'Cervantes',
+        year: 2000,
     },
     {
         id: '5dcd6b839bf7fa37e326d107',
@@ -102,6 +106,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '17818535-8',
         model: 'Steele',
+        year: 2000,
     },
     {
         id: '5dcd6b838f1e0e615442f588',
@@ -120,6 +125,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '17142415-0',
         model: 'Bauer',
+        year: 2000,
     },
     {
         id: '5dcd6b835ece041eaa9ceea5',
@@ -138,6 +144,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '23647124-4',
         model: 'Blanchard',
+        year: 2000,
     },
     {
         id: '5dcd6b83328611c157ca5770',
@@ -156,6 +163,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '16585300-0',
         model: 'Marks',
+        year: 2000,
     },
     {
         id: '5dcd6b8326a722b87c2672d7',
@@ -174,6 +182,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '19721003-7',
         model: 'Arnold',
+        year: 2000,
     },
     {
         id: '5dcd6b83e3c428edd12e744c',
@@ -192,6 +201,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '21597880-1',
         model: 'Baker',
+        year: 2000,
     },
     {
         id: '5dcd6b83f273226006e00953',
@@ -210,6 +220,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10070647-7',
         model: 'Mcconnell',
+        year: 2000,
     },
     {
         id: '5dcd6b83df3664a8499717dd',
@@ -228,6 +239,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20041955-5',
         model: 'Cooley',
+        year: 2000,
     },
     {
         id: '5dcd6b83a3f69d5f08f4fcb2',
@@ -246,6 +258,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '15617603-6',
         model: 'Mcmahon',
+        year: 2000,
     },
     {
         id: '5dcd6b836b0418ec798cef0d',
@@ -264,6 +277,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10716014-8',
         model: 'Hayden',
+        year: 2000,
     },
     {
         id: '5dcd6b83bd4ab6bf69bec78a',
@@ -282,6 +296,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11652032-4',
         model: 'Cameron',
+        year: 2000,
     },
     {
         id: '5dcd6b8342cc8f8d75b606d2',
@@ -300,6 +315,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22994485-8',
         model: 'Walter',
+        year: 2000,
     },
     {
         id: '5dcd6b83463b242731aa6921',
@@ -318,6 +334,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '17869264-0',
         model: 'Callahan',
+        year: 2000,
     },
     {
         id: '5dcd6b83f1bf8b158a8f1a72',
@@ -336,6 +353,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11690340-6',
         model: 'Gamble',
+        year: 2000,
     },
     {
         id: '5dcd6b8352a585597193d74e',
@@ -354,6 +372,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22972412-6',
         model: 'Mcintyre',
+        year: 2000,
     },
     {
         id: '5dcd6b83572aa2d0e08aef03',
@@ -372,6 +391,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22435601-0',
         model: 'Stuart',
+        year: 2000,
     },
     {
         id: '5dcd6b8316949ff0f1aa8828',
@@ -390,6 +410,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11758582-5',
         model: 'Gilbert',
+        year: 2000,
     },
     {
         id: '5dcd6b8308ebad68006d1d25',
@@ -408,6 +429,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20176055-2',
         model: 'Talley',
+        year: 2000,
     },
     {
         id: '5dcd6b83fd3a8fb13d6664e2',
@@ -426,6 +448,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '16940273-9',
         model: 'Buckley',
+        year: 2000,
     },
     {
         id: '5dcd6b839b55a7b0654ad1bd',
@@ -444,6 +467,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '19354316-6',
         model: 'Gardner',
+        year: 2000,
     },
     {
         id: '5dcd6b8327de19f1c140e21b',
@@ -462,6 +486,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '18849527-4',
         model: 'Patel',
+        year: 2000,
     },
     {
         id: '5dcd6b83fe4bbe870ce8844c',
@@ -480,6 +505,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '13782366-3',
         model: 'Park',
+        year: 2000,
     },
     {
         id: '5dcd6b83942e0406cd531844',
@@ -498,6 +524,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22814198-1',
         model: 'Carlson',
+        year: 2000,
     },
     {
         id: '5dcd6b83bd974e91ce96f2cd',
@@ -516,6 +543,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10079997-9',
         model: 'Holland',
+        year: 2000,
     },
     {
         id: '5dcd6b839c6713385d3329ce',
@@ -534,6 +562,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20635152-9',
         model: 'Wallace',
+        year: 2000,
     },
     {
         id: '5dcd6b8334099e84d53fb33b',
@@ -552,6 +581,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10073778-1',
         model: 'Leblanc',
+        year: 2000,
     },
     {
         id: '5dcd6b832e3bbf711de397e8',
@@ -570,6 +600,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11227271-2',
         model: 'Mitchell',
+        year: 2000,
     },
     {
         id: '5dcd6b83c469e54f3a19563a',
@@ -588,6 +619,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11861937-9',
         model: 'Mckinney',
+        year: 2000,
     },
     {
         id: '5dcd6b83ec9d3b830ebf6c33',
@@ -606,6 +638,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '23689213-3',
         model: 'Payne',
+        year: 2000,
     },
     {
         id: '5dcd6b837eeb7ce93dc17b35',
@@ -624,6 +657,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '12304982-8',
         model: 'Wilkerson',
+        year: 2000,
     },
     {
         id: '5dcd6b83185acee1f609dde0',
@@ -642,6 +676,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '18076621-0',
         model: 'Duke',
+        year: 2000,
     },
     {
         id: '5dcd6b83b30b941c8aebccde',
@@ -660,6 +695,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '18757538-1',
         model: 'Bowers',
+        year: 2000,
     },
     {
         id: '5dcd6b834048b4c4f3324e5c',
@@ -678,6 +714,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22872767-8',
         model: 'Stevenson',
+        year: 2000,
     },
     {
         id: '5dcd6b834c40581ccc09ac36',
@@ -696,6 +733,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22374025-6',
         model: 'Gaines',
+        year: 2000,
     },
     {
         id: '5dcd6b8377a22e28b25f5248',
@@ -714,6 +752,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '21023604-2',
         model: 'Hinton',
+        year: 2000,
     },
     {
         id: '5dcd6b83763775a957794d29',
@@ -732,6 +771,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10064698-2',
         model: 'Parker',
+        year: 2000,
     },
     {
         id: '5dcd6b83c3334e948fcbe1ee',
@@ -750,6 +790,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11553954-9',
         model: 'Lancaster',
+        year: 2000,
     },
     {
         id: '5dcd6b837500b4a34d3103bb',
@@ -768,6 +809,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11087756-3',
         model: 'Oneil',
+        year: 2000,
     },
     {
         id: '5dcd6b8309ad6b3b2806c935',
@@ -786,6 +828,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '11042641-8',
         model: 'Ashley',
+        year: 2000,
     },
     {
         id: '5dcd6b831d4b21b4da109d40',
@@ -804,6 +847,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '14022363-3',
         model: 'Salazar',
+        year: 2000,
     },
     {
         id: '5dcd6b83f53bbba3823d926a',
@@ -822,6 +866,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '16509882-6',
         model: 'Mcclure',
+        year: 2000,
     },
     {
         id: '5dcd6b833e40ce539ae53693',
@@ -840,6 +885,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '16425095-6',
         model: 'Holder',
+        year: 2000,
     },
     {
         id: '5dcd6b83cb926e7eac6134e1',
@@ -858,6 +904,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '16512718-4',
         model: 'Foley',
+        year: 2000,
     },
     {
         id: '5dcd6b83b0724ce48d6bd4e6',
@@ -876,6 +923,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '23785540-8',
         model: 'Bush',
+        year: 2000,
     },
     {
         id: '5dcd6b83c9c53b6eeb0c34dd',
@@ -894,6 +942,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '23929557-9',
         model: 'Page',
+        year: 2000,
     },
     {
         id: '5dcd6b83c245384c00eeb1ab',
@@ -912,6 +961,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '12433233-1',
         model: 'Rasmussen',
+        year: 2000,
     },
     {
         id: '5dcd6b834677c984dc8266c5',
@@ -930,6 +980,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '22817329-0',
         model: 'Logan',
+        year: 2000,
     },
     {
         id: '5dcd6b831fe51eeefd0cc267',
@@ -948,6 +999,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10409844-8',
         model: 'Herring',
+        year: 2000,
     },
     {
         id: '5dcd6b8367162597a3979de0',
@@ -966,6 +1018,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '24869499-1',
         model: 'Santos',
+        year: 2000,
     },
     {
         id: '5dcd6b8393302b8c517a296f',
@@ -984,6 +1037,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '13883090-7',
         model: 'Griffin',
+        year: 2000,
     },
     {
         id: '5dcd6b83cd006c66c4ffe2a9',
@@ -1002,6 +1056,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '13161705-7',
         model: 'Duran',
+        year: 2000,
     },
     {
         id: '5dcd6b833d53230319e0d5a3',
@@ -1020,6 +1075,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '18807851-6',
         model: 'Hobbs',
+        year: 2000,
     },
     {
         id: '5dcd6b83366da60310812f25',
@@ -1038,6 +1094,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10204097-1',
         model: 'Holcomb',
+        year: 2000,
     },
     {
         id: '5dcd6b83f6836608f3d7cd3b',
@@ -1056,6 +1113,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '24934794-1',
         model: 'Weeks',
+        year: 2000,
     },
     {
         id: '5dcd6b83fbd64e7d2bd23efe',
@@ -1074,6 +1132,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '23617067-2',
         model: 'Hickman',
+        year: 2000,
     },
     {
         id: '5dcd6b839b74e704b7dc5068',
@@ -1092,6 +1151,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20183287-7',
         model: 'Terrell',
+        year: 2000,
     },
     {
         id: '5dcd6b8357d494d874d76ad7',
@@ -1110,6 +1170,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '10100945-7',
         model: 'Morgan',
+        year: 2000,
     },
     {
         id: '5dcd6b83430cbf6af93f7ce1',
@@ -1128,6 +1189,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '14705764-5',
         model: 'Gray',
+        year: 2000,
     },
     {
         id: '5dcd6b830881ed9bc4c8b5a9',
@@ -1146,6 +1208,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20839297-4',
         model: 'Newton',
+        year: 2000,
     },
     {
         id: '5dcd6b83b35c724c8a33ee82',
@@ -1164,6 +1227,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '20585573-1',
         model: 'Chen',
+        year: 2000,
     },
     {
         id: '5dcd6b83b73b603aa256df75',
@@ -1182,6 +1246,7 @@ export const dummyData = [
         picture: 'http://placehold.it/32x32',
         rut: '16695237-6',
         model: 'Randall',
+        year: 2000,
     },
 ];
 
@@ -1208,6 +1273,7 @@ https://www.json-generator.com/
     picture: 'http://placehold.it/32x32',
     rut: '{{integer(10000000, 25000000)}}-{{integer(0, 9)}}',
     model: '{{surname()}}'
+    year: 2000,
   }
 ]
 
