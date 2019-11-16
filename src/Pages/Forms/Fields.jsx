@@ -14,7 +14,9 @@ import text from './text.png';
 import simple from './simple.png';
 import multiple from './multiple.png';
 
-const DragHandle = sortableHandle(() => <span className="section-sort-handle"><i className="fas fa-grip-horizontal" /></span>);
+const SortableContainer = sortableContainer(({ children }) => <ul className="sortable-container">{children}</ul>);
+
+const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
 const SortableItem = sortableElement(({ index, value, type }) => {
     const [showConfirm, setShowConfirm] = useState(false);
@@ -36,22 +38,27 @@ const SortableItem = sortableElement(({ index, value, type }) => {
 
     return (
         <>
-            <li className="section-item">
+            <li className="sortable-item">
                 <span>
                     <DragHandle />
                     <img src={getIcon(type)} alt="" style={{ width: '25px' }} />
-                    <button disabled style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'black', outline: '0', padding: '0 20px' }} type="button">
+                    <button className="link-button" disabled type="button">
                         {value}
                     </button>
                 </span>
                 <div className="form-actions">
-                    <span className="form-actions__icon"><i className="far fa-copy" /></span>
+                    <button type="button">
+                        <i className="far fa-copy" />
+                    </button>
                     <ModalView title="Editar campo" type="edit">
                         <FieldForm />
                     </ModalView>
-                    <span className="form-actions__icon" onClick={() => { setShowConfirm(true) }}><i className="fas fa-trash" /></span>
+                    <button onClick={() => { setShowConfirm(true); }} type="button">
+                        <i className="fas fa-trash" />
+                    </button>
                 </div>
             </li>
+
             <SweetAlert
                 show={showConfirm}
                 warning
@@ -73,8 +80,6 @@ const SortableItem = sortableElement(({ index, value, type }) => {
         </>
     );
 });
-
-const SortableContainer = sortableContainer(({ children }) => <ul className="sections-container">{children}</ul>);
 
 class Fields extends Component {
     constructor(props) {
@@ -133,7 +138,7 @@ class Fields extends Component {
                         <FieldForm />
                     </ModalView>
                 </TopBar>
-                <button onClick={() => { this.props.history.goBack(); }} className="back-button" type="button">
+                <button onClick={() => { history.goBack(); }} className="back-button" type="button">
                     <i className="fas fa-long-arrow-alt-left" />
                     {' '}
                     Volver
@@ -144,7 +149,7 @@ class Fields extends Component {
                     lockAxis="y"
                     useWindowAsScrollContainer
                     useDragHandle
-                    helperClass="sections-container"
+                    helperClass="sortable-container"
                 >
                     {items.map((item, index) => (
                         <SortableItem

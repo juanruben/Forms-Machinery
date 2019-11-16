@@ -1,28 +1,39 @@
 @import "../../styles.scss";
 
-.sections-container {
+.sortable-container {
   border-top: solid #ddd 1px;
   list-style: none;
   padding: 0;
   user-select: none;
 }
-.section-item {
+
+.sortable-item {
   border-bottom: solid #ddd 1px;
   display: flex;
   justify-content: space-between;
   padding: 8px;
 
-  .form-actions {
-    display: inline;
+  .link-button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: black;
+  }
 
-    &__icon {
-      cursor: pointer;
+  .highlight {
+    color: $icafal-orange-dark;
+  }
+
+  .form-actions {
+    button {
+      border: 0;
+      background-color: rgba(0, 0, 0, 0);
       padding: 0 10px;
+      margin-left: 15px;
     }
   }
 }
 
-.section-sort-handle {
+.drag-handle {
   color: $icafal-orange;
   cursor: pointer;
   padding-right: 20px;

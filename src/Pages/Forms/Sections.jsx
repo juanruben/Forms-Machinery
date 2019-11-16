@@ -11,7 +11,9 @@ import TopBar from '../../Components/TopBar/TopBar';
 
 import './Sections.scss';
 
-const DragHandle = sortableHandle(() => <span className="section-sort-handle"><i className="fas fa-grip-horizontal" /></span>);
+const SortableContainer = sortableContainer(({ children }) => <ul className="sortable-container">{children}</ul>);
+
+const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
 const SortableItem = sortableElement(({ index, value, history }) => {
     const [showConfirm, setShowConfirm] = useState(false);
@@ -22,19 +24,23 @@ const SortableItem = sortableElement(({ index, value, history }) => {
 
     return (
         <>
-            <li className="section-item">
+            <li className="sortable-item">
                 <span>
                     <DragHandle />
-                    <button style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'rgb(190,51,1)', outline: '0' }} onClick={onViewClick} type="button">
+                    <button className="link-button highlight" onClick={onViewClick} type="button">
                         {value}
                     </button>
                 </span>
                 <div className="form-actions">
-                    <span className="form-actions__icon"><i className="far fa-copy" /></span>
+                    <button type="button">
+                        <i className="far fa-copy" />
+                    </button>
                     <ModalView title="Editar sección de formulario" type="edit">
                         <SectionForm />
                     </ModalView>
-                    <span className="form-actions__icon" onClick={() => { setShowConfirm(true) }}><i className="fas fa-trash" /></span>
+                    <button onClick={() => { setShowConfirm(true); }} type="button">
+                        <i className="fas fa-trash" />
+                    </button>
                 </div>
             </li>
 
@@ -59,8 +65,6 @@ const SortableItem = sortableElement(({ index, value, history }) => {
         </>
     );
 });
-
-const SortableContainer = sortableContainer(({ children }) => <ul className="sections-container">{children}</ul>);
 
 class Sections extends Component {
     constructor(props) {
@@ -113,7 +117,7 @@ class Sections extends Component {
                         <SectionForm />
                     </ModalView>
                 </TopBar>
-                <button onClick={() => { this.props.history.goBack(); }} className="back-button" type="button">
+                <button onClick={() => { history.goBack(); }} className="back-button" type="button">
                     <i className="fas fa-long-arrow-alt-left" />
                     {' '}
                     Volver
@@ -125,7 +129,7 @@ class Sections extends Component {
                     lockAxis="y"
                     useWindowAsScrollContainer
                     useDragHandle
-                    helperClass="sections-container"
+                    helperClass="sortable-container"
                 >
                     {items.map((item, index) => (
                         <SortableItem
