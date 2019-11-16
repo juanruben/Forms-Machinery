@@ -8,7 +8,8 @@ import FieldForm from './FieldForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
-import './Sections.scss';
+
+import './sortable.scss';
 import image from './image.png';
 import text from './text.png';
 import simple from './simple.png';

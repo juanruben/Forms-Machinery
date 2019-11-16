@@ -9,7 +9,7 @@ import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 
-import './Sections.scss';
+import './sortable.scss';
 
 const SortableContainer = sortableContainer(({ children }) => <ul className="sortable-container">{children}</ul>);
 
