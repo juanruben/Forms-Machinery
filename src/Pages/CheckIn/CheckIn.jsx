@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import Title from '../../Components/Title/Title';
 import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
+import Simple from '../../Components/Simple/Simple';
 import './CheckIn.scss';
 
 const clients = [
@@ -59,6 +60,7 @@ function CheckIn() {
                     <Col md={6}><Select label="Cliente" options={clients} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
                     <Col md={6}><Select label="Obra" options={constructions} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
                     <Col md={6}><Select label="Código de máquina" options={machines} placeholder="Seleccione..." name="name" onChange={() => { }} /></Col>
+                    <Col md={6}><Simple label="Esto es un ejemplo de selección simple" name="name" onChange={() => { }} /></Col>
                 </Row>
             </div>
             <Row>
