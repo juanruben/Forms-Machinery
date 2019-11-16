@@ -15,20 +15,18 @@ const Select = (props) => {
     if (readOnly) {
         const selected = options.find((item) => item.id === value);
         return (
-            <>
-                <div className="bold-label">{label}</div>
-                <div className="read-only-container">
-                    <div className="read-only-value">{selected ? selected.name : ''}</div>
-                </div>
-            </>
+            <div className="read-only-container">
+                <div className="label">{label}</div>
+                <div className="read-only-value">{selected ? selected.name : ''}</div>
+            </div>
         );
     }
 
     return (
         <>
             {label}
-            <div className="input-bordered-container">
-                <select name={name} id="" className="select-icafal" defaultValue="0" onChange={onChange}>
+            <div className="select-container">
+                <select name={name} id="" defaultValue="0" onChange={onChange}>
                     <option value="0" disabled>{placeholder}</option>
                     {options.map((item) => (
                         <option key={item.id} value={item.id}>{item.name}</option>
