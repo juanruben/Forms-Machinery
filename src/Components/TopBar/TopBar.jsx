@@ -4,7 +4,7 @@ import './TopBar.scss';
 function TopBar(props) {
     const { children } = props;
     return (
-        <div className="top-bar">
+        <div className="topbar-container">
             {children}
         </div>
     );

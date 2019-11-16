@@ -5,7 +5,7 @@ import './Button.scss';
 const Button = (props) => {
     const { onClick, disabled, text } = props;
     return (
-        <button type="submit" className="main-button" onClick={onClick} disabled={disabled}>
+        <button type="submit" className="button-main" onClick={onClick} disabled={disabled}>
             {text}
         </button>
     );

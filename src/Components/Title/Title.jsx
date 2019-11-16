@@ -5,7 +5,7 @@ import './Title.scss';
 function Title(props) {
     const { text } = props;
     return (
-        <div className="main-title">
+        <div className="title-container">
             {text}
         </div>
     );

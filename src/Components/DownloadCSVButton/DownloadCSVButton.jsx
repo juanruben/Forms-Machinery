@@ -6,7 +6,7 @@ import './DownloadCSVButton.scss';
 function DownloadCSVButton(props) {
     const { data, filename } = props;
     return (
-        <CSVLink data={data} filename={filename} separator=";" className="icon-button" target="_blank">
+        <CSVLink data={data} filename={filename} separator=";" className="button-download-csv" target="_blank">
             <i className="fas fa-file-download" />
         </CSVLink>
     );

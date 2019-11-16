@@ -1,26 +1,32 @@
 @import "../../styles.scss";
 
 .read-only-container {
-  position: relative;
-
-  .read-only-value {
-    padding-bottom: 20px;
-    padding-left: 5px;
+  .label {
+    font-weight: bold;
   }
 
-  i {
-    color: rgb(134, 134, 134);
-    position: absolute;
-    left: 0px;
-    top: 5px;
-  }
+  .content {
+    position: relative;
 
-  .padding-icon {
-    padding-left: 20px;
+    .read-only-value {
+      padding-bottom: 20px;
+      padding-left: 5px;
+    }
+
+    i {
+      color: rgb(134, 134, 134);
+      position: absolute;
+      left: 0px;
+      top: 5px;
+    }
+
+    .padding-icon {
+      padding-left: 20px;
+    }
   }
 }
 
-.input-bordered-container {
+.input-container {
   position: relative;
 
   i {
@@ -60,8 +66,4 @@
   .padding-icon {
     padding-left: 40px;
   }
-}
-
-.bold-label {
-  font-weight: bold;
 }

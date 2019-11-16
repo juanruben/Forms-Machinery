@@ -14,20 +14,20 @@ const Input = (props) => {
 
     if (readOnly) {
         return (
-            <>
-                <div className="bold-label">{label}</div>
-                <div className="read-only-container">
+            <div className="read-only-container">
+                <div className="label">{label}</div>
+                <div className="content">
                     {icon && <i className={icon} />}
                     <div className={`read-only-value ${icon && 'padding-icon'}`}>{value}</div>
                 </div>
-            </>
+            </div>
         );
     }
 
     return (
         <>
             {label}
-            <div className="input-bordered-container">
+            <div className="input-container">
                 {icon && <i className={icon} />}
                 <input
                     className={`${warning && 'border-error'} ${icon && 'padding-icon'}`}
