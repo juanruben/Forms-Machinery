@@ -7,7 +7,7 @@ import './styles.scss';
 
 export const initialState = {
     token: null,
-    loggedin: false,
+    loggedin: true,
     loading: false,
     role: null,
 };
