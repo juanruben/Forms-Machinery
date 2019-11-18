@@ -112,7 +112,9 @@ class Users extends Component {
                         <ModalView title="Editar usuario" type="edit">
                             <UserForm data={this.findData(row.original.id)} />
                         </ModalView>
-                        <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
+                        <button onClick={this.handleRemove} type="button">
+                            <i className="fas fa-trash" />
+                        </button>
                     </div>
                 ),
             },

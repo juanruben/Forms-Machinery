@@ -57,7 +57,9 @@ class Forms extends Component {
                         <ModalView title="Editar formulario" type="edit">
                             <FormForm />
                         </ModalView>
-                        <span className="form-actions__icon" onClick={this.handleRemove}><i className="fas fa-trash" /></span>
+                        <button onClick={this.handleRemove} type="button">
+                            <i className="fas fa-trash" />
+                        </button>
                     </div>
                 ),
             },
