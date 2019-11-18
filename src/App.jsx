@@ -2,7 +2,7 @@ import React from 'react';
 import { StateProvider } from './State';
 import { encode, decode } from './Service/Utils';
 import AppWithLoader from './AppWithLoader';
-
+import permissions from './permissions';
 import './styles.scss';
 
 export const initialState = {
@@ -52,6 +52,23 @@ export const reducer = (state, action) => {
                 token: tokenSession,
                 role: parseInt(roleSession),
             };
+        }
+
+        case 'CHECK_PERMISSIONS': {
+            let valid = false;
+            const item = permissions && permissions.find((v) => v.role === action.value.role);
+            if (item) {
+                valid = item.routes.includes(action.value.path);
+            }
+            if (!valid) {
+                localStorage.clear();
+                return {
+                    ...state,
+                    loggedin: false,
+                    token: null,
+                };
+            }
+            return state;
         }
 
         case 'EXIT':
