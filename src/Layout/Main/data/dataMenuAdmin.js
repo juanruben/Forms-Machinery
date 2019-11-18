@@ -24,7 +24,7 @@ export default [
         id: 4,
         title: 'Formularios',
         path: '/admin/formularios',
-        icon: 'fas fa-notes-medical',
+        icon: 'far fa-clipboard',
 
     },
     {
@@ -38,14 +38,12 @@ export default [
         id: 6,
         title: 'Registrar Entrada',
         path: '/entrada',
-        icon: 'fas fa-clipboard-check',
-
+        icon: 'fas fa-sign-in-alt',
     },
     {
         id: 7,
         title: 'Registrar Salida',
         path: '/salida',
-        icon: 'far fa-clipboard',
-
+        icon: 'fas fa-sign-out-alt',
     },
 ];
