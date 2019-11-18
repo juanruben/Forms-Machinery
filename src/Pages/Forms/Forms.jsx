@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import matchSorter from 'match-sorter';
 import { withRouter } from 'react-router-dom';
-// import { StateContext } from '../State';
 import ReactTable from 'react-table';
+import { StateContext } from '../../State';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { tableConfig } from '../../config';
 import './Forms.scss';
 
 const forms = [
@@ -29,11 +30,29 @@ class Forms extends Component {
         };
         this.handleRemove = this.handleRemove.bind(this);
         this.onViewClick = this.onViewClick.bind(this);
+        this.checkPermissions = this.checkPermissions.bind(this);
+    }
+
+    componentDidMount() {
+        this.checkPermissions();
     }
 
     onViewClick(id) {
         const { history } = this.props;
         history.push(`/admin/formularios/${id}`);
+    }
+
+    checkPermissions() {
+        const { match } = this.props;
+        const { path } = match;
+        const [{ role }, dispatch] = this.context;
+        dispatch({
+            type: 'CHECK_PERMISSIONS',
+            value: {
+                role,
+                path,
+            },
+        });
     }
 
     handleRemove() {
@@ -117,8 +136,20 @@ class Forms extends Component {
     }
 }
 
+Forms.contextType = StateContext;
+
 Forms.propTypes = {
     history: PropTypes.object.isRequired,
+    match: PropTypes.shape({
+        path: PropTypes.string.isRequired,
+    }),
 };
+
+Forms.defaultProps = {
+    match: {
+        path: '',
+    },
+};
+
 
 export default withRouter(Forms);
