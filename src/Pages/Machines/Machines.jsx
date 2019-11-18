@@ -19,7 +19,7 @@ class Machines extends Component {
         this.findData = this.findData.bind(this);
     }
 
-    getStatus(value) {
+    getStatus = (value) => {
         if (value === 1) return 'En terreno';
         if (value === 2) return 'En taller';
         return 'Mantenimiento';
