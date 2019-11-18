@@ -68,23 +68,6 @@ class Main extends React.Component {
             this.setState({
                 dataMenu: role === 1 ? menuAdmin : menuOp,
                 username: role === 1 ? 'administrador' : 'operador',
-            }, () => {
-                this.checkPermission();
-            });
-        }
-    }
-
-    checkPermission() {
-        const { location } = this.props;
-        const { pathname } = location;
-        const { dataMenu } = this.state;
-        const [, dispatch] = this.context;
-
-        const item = dataMenu.find((v) => v.path === pathname);
-
-        if (!item) {
-            dispatch({
-                type: 'EXIT',
             });
         }
     }
