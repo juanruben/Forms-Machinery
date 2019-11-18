@@ -64,7 +64,7 @@ function CheckOut() {
             <Row>
                 <Col md={8} />
                 <Col md={4}>
-                    <Button text="Enviar" />
+                    <Button text="Enviar" onClick={() => { }} />
                 </Col>
             </Row>
         </div>
