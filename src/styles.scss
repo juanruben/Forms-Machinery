@@ -33,7 +33,8 @@ $icafal-background: #f2f2f2;
 .form-actions {
   display: flex;
   justify-content: space-around;
-  span {
-    cursor: pointer;
+  button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
   }
 }
