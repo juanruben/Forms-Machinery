@@ -8,7 +8,16 @@ import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalView from '../../Layout/ModalView/ModalView';
-import { tableConfig, dummyData } from '../../config';
+const forms = [
+    {
+        id: 1,
+        name: 'Nombre del Formulario',
+    },
+    {
+        id: 2,
+        name: 'Nombre del Formulario2',
+    },
+];
 
 class Forms extends Component {
     constructor(props) {
@@ -34,13 +43,13 @@ class Forms extends Component {
         const columns = [
             {
                 Header: 'Nombre',
-                accessor: 'machine',
+                accessor: 'name',
                 Cell: (row) => (
-                    <button style={{ border: 'none', backgroundColor: 'rgba(0,0,0,0.0)', color: 'rgb(190,51,1)', outline: '0' }} onClick={this.onViewClick} type="button">
-                        {row.original.machine}
+                    <button className="link-button" onClick={() => { this.onViewClick(row.original.id); }} type="button">
+                        {row.original.name}
                     </button>
                 ),
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['machine'] }),
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
                 filterAll: true,
                 filterable: true,
             },
@@ -74,7 +83,7 @@ class Forms extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={dummyData}
+                    data={forms}
                     columns={columns}
                     {...tableConfig}
                 />
