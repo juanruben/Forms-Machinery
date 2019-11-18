@@ -20,9 +20,9 @@ class Forms extends Component {
         this.onViewClick = this.onViewClick.bind(this);
     }
 
-    onViewClick() {
+    onViewClick(id) {
         const { history } = this.props;
-        history.push('/admin/formularios/12');
+        history.push(`/admin/formularios/${id}`);
     }
 
     handleRemove() {
