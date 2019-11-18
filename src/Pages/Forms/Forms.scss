@@ -1,0 +1,11 @@
+@import "../../styles.scss";
+
+.link-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: $icafal-orange-dark;
+
+  &:focus {
+    outline: 0;
+  }
+}

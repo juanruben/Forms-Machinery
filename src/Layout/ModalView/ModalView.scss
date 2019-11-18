@@ -11,16 +11,28 @@
   &:hover {
     color: $icafal-orange-dark;
   }
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .modal-link-button {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   color: $icafal-orange-dark;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .modal-edit-button {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   padding: 0;
+
+  &:focus {
+    outline: 0;
+  }
 }
