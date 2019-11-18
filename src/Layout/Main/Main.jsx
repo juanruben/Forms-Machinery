@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Sidebar from 'react-sidebar';
-// import { useStateValue } from '../State';
+import { StateContext } from '../../State';
 import Menu from '../../Components/Menu/Menu';
 import MenuButton from '../../Components/MenuButton/MenuButton';
 import Title from '../../Components/Title/Title';
@@ -16,7 +16,9 @@ import Fields from '../../Pages/Forms/Fields';
 import CheckIn from '../../Pages/CheckIn/CheckIn';
 import CheckOut from '../../Pages/CheckOut/CheckOut';
 
-import dataMenu from './data/dataMenuAdmin';
+import menuAdmin from './data/dataMenuAdmin';
+import menuOp from './data/dataMenuOp';
+
 import avatar from './avatar.png';
 
 import './Main.scss';
@@ -30,16 +32,20 @@ class Main extends React.Component {
         this.state = {
             docked: mql.matches,
             transitions: false,
+            dataMenu: [],
+            username: '',
         };
 
         this.menuButtonClick = this.menuButtonClick.bind(this);
         this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
+        this.checkLoggedIn = this.checkLoggedIn.bind(this);
         this.findTitle = this.findTitle.bind(this);
     }
 
     componentDidMount() {
         mql.addListener(this.mediaQueryChanged);
         this.findTitle();
+        this.checkLoggedIn();
     }
 
     componentWillUnmount() {
@@ -52,9 +58,42 @@ class Main extends React.Component {
         });
     }
 
+    checkLoggedIn() {
+        const [{ role }, dispatch] = this.context;
+        if (!role) {
+            dispatch({
+                type: 'LOAD_SESSION',
+            });
+        } else {
+            this.setState({
+                dataMenu: role === 1 ? menuAdmin : menuOp,
+                username: role === 1 ? 'administrador' : 'operador',
+            }, () => {
+                this.checkPermission();
+            });
+        }
+    }
+
+    checkPermission() {
+        const { location } = this.props;
+        const { pathname } = location;
+        const { dataMenu } = this.state;
+        const [, dispatch] = this.context;
+
+        const item = dataMenu.find((v) => v.path === pathname);
+
+        if (!item) {
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
+
     findTitle() {
         const { location } = this.props;
         const { pathname } = location;
+        const { dataMenu } = this.state;
+
         const item = dataMenu.find((v) => v.path === pathname);
         return item ? item.title : '';
     }
@@ -69,10 +108,12 @@ class Main extends React.Component {
     }
 
     render() {
-        const { docked, transitions } = this.state;
+        const {
+            docked, transitions, dataMenu, username,
+        } = this.state;
 
         const sidebarProps = {
-            sidebar: <Menu items={dataMenu} username="administrador" avatar={avatar} />,
+            sidebar: <Menu items={dataMenu} username={username} avatar={avatar} />,
             docked,
             shadow: false,
             transitions,
@@ -101,6 +142,8 @@ class Main extends React.Component {
         );
     }
 }
+
+Main.contextType = StateContext;
 
 Main.propTypes = {
     location: PropTypes.shape({
