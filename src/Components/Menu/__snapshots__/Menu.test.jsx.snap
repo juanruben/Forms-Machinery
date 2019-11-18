@@ -10,7 +10,7 @@ exports[`Menu should render ok 1`] = `
         <span>
           <i className=\\"fas fa-door-open\\" />
         </span>
-        <button type=\\"button\\" onClick={[Function: test]}>
+        <button type=\\"button\\" onClick={[Function: handleSignOut]}>
           Cerrar sesión
         </button>
       </li>

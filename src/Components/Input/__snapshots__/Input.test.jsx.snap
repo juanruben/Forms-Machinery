@@ -2,7 +2,7 @@
 
 exports[`Input should render correctly 1`] = `
 "<Fragment>
-  <div className=\\"input-bordered-container\\">
+  <div className=\\"input-container\\">
     <input className=\\"false null\\" type=\\"text\\" name=\\"test\\" value=\\"\\" onChange={[Function: mockConstructor]} placeholder=\\"\\" />
   </div>
 </Fragment>"
