@@ -8,6 +8,8 @@ import ReactTable from 'react-table';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import './Forms.scss';
+
 const forms = [
     {
         id: 1,
