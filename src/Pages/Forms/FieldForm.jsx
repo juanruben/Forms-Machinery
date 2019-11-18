@@ -34,14 +34,14 @@ class FieldForm extends Component {
     render() {
         return (
             <>
-                <Input label="Nombre" placeholder="Nombre" />
-                <Select label="Tipo" options={types} placeholder="Seleccione..." name="name" onChange={() => { }} />
-                <Simple label="Requerido" name="name" onChange={() => { }} />
-                <Simple label="Observaciones" name="name2" onChange={() => { }} />
+                <Input label="Nombre" name="name" placeholder="Nombre" onChange={() => { }} />
+                <Select label="Tipo" name="type" options={types} placeholder="Seleccione..." onChange={() => { }} />
+                <Simple label="Requerido" name="required" onChange={() => { }} />
+                <Simple label="Observaciones" name="notes" onChange={() => { }} />
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
-                        <Button text="Crear" />
+                        <Button text="Crear" onClick={() => { }} />
                     </Col>
                 </Row>
             </>
