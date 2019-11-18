@@ -62,7 +62,9 @@ class Users extends Component {
                 Header: 'Email',
                 accessor: 'email',
                 Cell: (row) => (
-                    <a href={`mailto:${row.original.email}`}>{row.original.email}}</a>
+                    <a href={`mailto:${row.original.email}`}>
+                        {row.original.email}
+                    </a>
                 ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['email'] }),
                 filterAll: true,
