@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
+import Simple from '../../Components/Simple/Simple';
 
 const types = [
     {
@@ -35,16 +36,8 @@ class FieldForm extends Component {
             <>
                 <Input label="Nombre" placeholder="Nombre" />
                 <Select label="Tipo" options={types} placeholder="Seleccione..." name="name" onChange={() => { }} />
-                <div>
-                    <input type="checkbox" />
-                    {' '}
-                    Requerido
-                </div>
-                <div>
-                    <input type="checkbox" />
-                    {' '}
-                    Observaciones
-                </div>
+                <Simple label="Requerido" name="name" onChange={() => { }} />
+                <Simple label="Observaciones" name="name2" onChange={() => { }} />
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
