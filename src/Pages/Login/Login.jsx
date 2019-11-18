@@ -117,7 +117,7 @@ class Login extends Component {
             errors,
         } = this.state;
 
-        const path = role === 1 ? '/admin/dashboard' : '/dashboard';
+        const path = role === 1 ? '/admin/dashboard' : '/entrada';
         if (loggedin) {
             return (
                 <Redirect to={path} />
