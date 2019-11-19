@@ -84,10 +84,15 @@ class Login extends Component {
             if (response && response.status === 200) {
                 const { data } = response;
                 this.signIn(data.token, data.role);
-            } else {
+            } else if (response && response.status === 401) {
                 this.setState({
                     showAlertError: true,
                     alertMessage: 'Datos incorrectos',
+                });
+            } else {
+                this.setState({
+                    showAlertError: true,
+                    alertMessage: 'Error de conexión',
                 });
             }
             this.toggleLoading(false);
