@@ -37,7 +37,7 @@ const Input = (props) => {
                     onChange={onChange}
                     placeholder={placeholder}
                 />
-                {warning && <i className="fas fa-exclamation warning" />}
+                {warning && <div className="warning">{errors}</div>}
             </div>
         </>
     );
