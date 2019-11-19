@@ -6,7 +6,7 @@ const Select = (props) => {
     const {
         label, options, errors, name, value, onChange, placeholder, readOnly, hideReadOnly, required,
     } = props;
-    const warning = (errors.length > 0);
+    const warning = (errors[name] && errors[name].length > 0);
 
     if (hideReadOnly && readOnly) {
         return null;
@@ -27,13 +27,13 @@ const Select = (props) => {
             <div className="select-container">
                 {label}
                 {required ? ' *' : ''}
-                <select className={`${warning && 'border-error'}`} name={name} id="" defaultValue="0" onChange={onChange}>
+                <select className={`${warning && 'border-error'}`} name={name} id="" value={value} onChange={onChange}>
                     <option value="0" disabled>{placeholder}</option>
                     {options.map((item) => (
                         <option key={item.id} value={item.id}>{item.name}</option>
                     ))}
                 </select>
-                {warning && <div className="warning">{errors}</div>}
+                {warning && <div className="warning">{errors[name]}</div>}
             </div>
         </>
     );
@@ -41,11 +41,11 @@ const Select = (props) => {
 
 Select.propTypes = {
     label: PropTypes.string,
-    errors: PropTypes.string,
+    errors: PropTypes.object,
     options: PropTypes.array,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.node,
+    value: PropTypes.string,
     placeholder: PropTypes.string,
     readOnly: PropTypes.bool,
     hideReadOnly: PropTypes.bool,
@@ -54,9 +54,9 @@ Select.propTypes = {
 
 Select.defaultProps = {
     label: '',
-    errors: '',
+    errors: {},
     options: [],
-    value: '',
+    value: '0',
     placeholder: '',
     readOnly: false,
     hideReadOnly: false,
