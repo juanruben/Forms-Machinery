@@ -1,14 +1,11 @@
 import axios from 'axios';
 
-export async function login(username, password) {
+export async function login(user, password) {
     try {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-            params: {
-                username,
-                password,
-            },
-        });
-        return response;
+        return await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
+            user,
+            password,
+        }).then((res) => res);
     } catch (e) {
         return null;
     }
