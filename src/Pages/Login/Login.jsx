@@ -45,14 +45,20 @@ class Login extends Component {
         const errors = {};
         let formIsValid = true;
 
-        if (!validateUsername(username)) {
+        if (username.trim().length === 0) {
             formIsValid = false;
-            errors.username = 'Error de formato username';
+            errors.username = 'Requerido';
+        } else if (!validateUsername(username)) {
+            formIsValid = false;
+            errors.username = 'Error de formato';
         }
 
-        if (!validatePassword(password)) {
+        if (password.trim().length === 0) {
             formIsValid = false;
-            errors.password = 'Error de formato de contraseña';
+            errors.password = 'Requerido';
+        } else if (!validatePassword(password)) {
+            formIsValid = false;
+            errors.password = 'Error de formato';
         }
 
         this.setState({
