@@ -1,31 +1,55 @@
 import React, { Component } from 'react';
-// import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
 import ModalView from '../../Layout/ModalView/ModalView';
-import { tableConfig, dummyData } from '../../config';
+import { tableConfig } from '../../config';
+import { getUsers } from '../../Service/Api';
 
 class Users extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showConfirm: false,
+            data: [],
+            loading: false,
         };
         this.handleRemove = this.handleRemove.bind(this);
+        this.loadData = this.loadData.bind(this);
         this.findData = this.findData.bind(this);
     }
 
-    findData = (id) => dummyData.find((item) => item.id === id);
+    componentDidMount() {
+        this.loadData();
+    }
+
+    findData = (id) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === id);
+    }
+
+    async loadData() {
+        this.setState({
+            loading: true,
+        });
+
+        await getUsers()
+            .then((response) => {
+                this.setState({
+                    data: response.data,
+                    loading: false,
+                });
+            });
+    }
 
     handleRemove() {
         this.setState({ showConfirm: true });
     }
 
     render() {
-        const { showConfirm } = this.state;
+        const { showConfirm, data, loading } = this.state;
         const columns = [
             {
                 Header: 'Nombre',
@@ -36,6 +60,13 @@ class Users extends Component {
                     </ModalView>
                 ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                filterAll: true,
+                filterable: true,
+            },
+            {
+                Header: 'Apellido',
+                accessor: 'last_name',
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['last_name'] }),
                 filterAll: true,
                 filterable: true,
             },
@@ -59,23 +90,19 @@ class Users extends Component {
                 filterable: true,
             },
             {
-                Header: 'Email',
-                accessor: 'email',
-                Cell: (row) => (
-                    <a href={`mailto:${row.original.email}`}>
-                        {row.original.email}
-                    </a>
-                ),
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['email'] }),
+                Header: 'Usuario',
+                accessor: 'username',
+                maxWidth: 150,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['username'] }),
                 filterAll: true,
                 filterable: true,
             },
             {
                 Header: 'Perfil',
-                accessor: 'profile',
+                accessor: 'role_id',
                 width: 130,
                 Cell: (row) => (
-                    <>{row.original.profile === 1 ? 'Administrador' : 'Operador'}</>
+                    <>{row.original.role_id === 1 ? 'Administrador' : 'Operador'}</>
                 ),
                 filterMethod: (filter, row) => {
                     if (filter.value === 'all') {
@@ -131,9 +158,10 @@ class Users extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={dummyData}
+                    data={data}
                     columns={columns}
                     {...tableConfig}
+                    loading={loading}
                 />
 
                 <SweetAlert
