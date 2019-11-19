@@ -1,13 +1,23 @@
 @import "../../styles.scss";
 
 .multiple-container {
+  margin-bottom: 20px;
+
   ul.multiple-item {
     list-style: none;
     padding: 0px;
+    margin: 0;
   }
+
+  .border-error {
+    border: solid red;
+    border-radius: 4px;
+  }
+
   ul.multiple-item li {
     display: inline;
   }
+
   ul.multiple-item li label {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.9);
@@ -64,5 +74,11 @@
   ul.multiple-item li input[type="radio"] {
     position: absolute;
     opacity: 0;
+  }
+
+  .warning {
+    color: red;
+    font-size: 0.8em;
+    font-weight: bold;
   }
 }

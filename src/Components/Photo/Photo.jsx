@@ -41,34 +41,46 @@ class Photo extends Component {
     }
 
     render() {
-        const { label } = this.props;
+        const { label, required, errors } = this.props;
         const { viewCapture, dataUri } = this.state;
+        const warning = (errors.length > 0);
         const buttonText = viewCapture ? <i className="far fa-stop-circle" /> : <i className="fas fa-camera" />;
+
         return (
-            <div className="photo-container">
-                <div>{label}</div>
-                {!dataUri && <button onClick={this.handleViewCapture} type="button">{buttonText}</button>}
-                {viewCapture && <PhotoCapture onChange={this.handleOnChange} />}
-                {dataUri ? (
-                    <>
-                        <button onClick={this.handleRemove} type="button">
-                            <i className="fas fa-trash" />
-                        </button>
-                        <ImagePreview dataUri={dataUri} />
-                    </>
-                ) : null}
+            <div className="photo-container" >
+                <div>
+                    {label}
+                    {required ? ' *' : ''}
+                </div>
+                <div className={`${warning && 'border-error'}`}>
+                    {!dataUri && <button onClick={this.handleViewCapture} type="button">{buttonText}</button>}
+                    {viewCapture && <PhotoCapture onChange={this.handleOnChange} />}
+                    {dataUri ? (
+                        <>
+                            <button onClick={this.handleRemove} type="button">
+                                <i className="fas fa-trash" />
+                            </button>
+                            <ImagePreview dataUri={dataUri} />
+                        </>
+                    ) : null}
+                </div>
+                {warning && <div className="warning">{errors}</div>}
             </div>
         );
     }
 }
 
 Photo.propTypes = {
+    errors: PropTypes.string,
     label: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    required: PropTypes.bool,
 };
 
 Photo.defaultProps = {
+    errors: '',
     label: '',
+    required: false,
 };
 
 export default Photo;

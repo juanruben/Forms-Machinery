@@ -4,7 +4,7 @@ import './Select.scss';
 
 const Select = (props) => {
     const {
-        label, options, errors, name, value, onChange, placeholder, readOnly, hideReadOnly,
+        label, options, errors, name, value, onChange, placeholder, readOnly, hideReadOnly, required,
     } = props;
     const warning = (errors.length > 0);
 
@@ -24,8 +24,9 @@ const Select = (props) => {
 
     return (
         <>
-            {label}
             <div className="select-container">
+                {label}
+                {required ? ' *' : ''}
                 <select className={`${warning && 'border-error'}`} name={name} id="" defaultValue="0" onChange={onChange}>
                     <option value="0" disabled>{placeholder}</option>
                     {options.map((item) => (
@@ -48,6 +49,7 @@ Select.propTypes = {
     placeholder: PropTypes.string,
     readOnly: PropTypes.bool,
     hideReadOnly: PropTypes.bool,
+    required: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -58,6 +60,7 @@ Select.defaultProps = {
     placeholder: '',
     readOnly: false,
     hideReadOnly: false,
+    required: false,
 };
 
 export default Select;

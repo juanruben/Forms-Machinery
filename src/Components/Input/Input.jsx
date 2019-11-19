@@ -4,7 +4,7 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly,
+        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly, required
     } = props;
     const warning = (errors.length > 0);
 
@@ -54,6 +54,7 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     readOnly: PropTypes.bool,
     hideReadOnly: PropTypes.bool,
+    required: PropTypes.bool,
 };
 
 Input.defaultProps = {
@@ -65,6 +66,7 @@ Input.defaultProps = {
     placeholder: '',
     readOnly: false,
     hideReadOnly: false,
+    required: false,
 };
 
 export default Input;

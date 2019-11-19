@@ -1,6 +1,19 @@
 @import "../../styles.scss";
 
 .photo-container {
+  .border-error {
+    border: solid red;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 0 10px;
+  }
+
+  .warning {
+    color: red;
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+
   button {
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -10,6 +23,10 @@
 
     &:hover {
       color: $icafal-orange-dark;
+    }
+
+    &:focus {
+      outline: 0;
     }
   }
 }
