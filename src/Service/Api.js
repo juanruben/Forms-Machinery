@@ -26,3 +26,15 @@ export async function login(user, password) {
         });
     return response;
 }
+
+export async function logout() {
+    return axios.post(`${process.env.REACT_APP_API_URL}/logout`);
+}
+
+export async function getUsers() {
+    return axios.get(`${process.env.REACT_APP_API_URL}/users`);
+}
+
+export async function addUser(data) {
+    return axios.post(`${process.env.REACT_APP_API_URL}/users`);
+}
