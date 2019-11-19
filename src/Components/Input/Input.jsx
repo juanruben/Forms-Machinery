@@ -4,9 +4,9 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly, required
+        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly, required,
     } = props;
-    const warning = (errors.length > 0);
+    const warning = (errors[name] && errors[name].length > 0);
 
     if (hideReadOnly && readOnly) {
         return null;
@@ -27,6 +27,7 @@ const Input = (props) => {
     return (
         <>
             {label}
+            {required ? ' *' : ''}
             <div className="input-container">
                 {icon && <i className={icon} />}
                 <input
@@ -37,7 +38,7 @@ const Input = (props) => {
                     onChange={onChange}
                     placeholder={placeholder}
                 />
-                {warning && <div className="warning">{errors}</div>}
+                {warning && <div className="warning">{errors[name]}</div>}
             </div>
         </>
     );
@@ -46,7 +47,7 @@ const Input = (props) => {
 Input.propTypes = {
     label: PropTypes.string,
     icon: PropTypes.string,
-    errors: PropTypes.string,
+    errors: PropTypes.object,
     type: PropTypes.string,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -60,7 +61,7 @@ Input.propTypes = {
 Input.defaultProps = {
     label: '',
     icon: null,
-    errors: '',
+    errors: {},
     type: 'text',
     value: '',
     placeholder: '',
