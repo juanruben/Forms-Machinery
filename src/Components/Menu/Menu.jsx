@@ -4,18 +4,24 @@ import { NavLink } from 'react-router-dom';
 import { useStateValue } from '../../State';
 import Logo from '../Logo/Logo';
 import Avatar from '../Avatar/Avatar';
+import { logout } from '../../Service/Api';
+
 import './Menu.scss';
 
 const Menu = (props) => {
     const { items, username, avatar } = props;
     const state = useStateValue();
 
-    const handleSignOut = () => {
-        const [, dispatch] = state;
-        dispatch({
-            type: 'EXIT',
+    async function handleSignOut() {
+        await logout().then((response) => {
+            if (response && response.status === 200) {
+                const [, dispatch] = state;
+                dispatch({
+                    type: 'EXIT',
+                });
+            }
         });
-    };
+    }
 
     return (
         <div className="sidebar-container">
