@@ -16,7 +16,7 @@ const types = [
     },
     {
         id: 3,
-        name: 'Selección múltiple',
+        name: 'Múltiples opciones',
     },
     {
         id: 4,
