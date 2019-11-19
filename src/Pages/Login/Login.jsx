@@ -8,8 +8,8 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import { login } from '../../Service/__mocks__/Api';
-// import { login } from '../../Service/Api';
+// import { login } from '../../Service/__mocks__/Api';
+import { login } from '../../Service/Api';
 import './Login.scss';
 
 class Login extends Component {
@@ -20,6 +20,7 @@ class Login extends Component {
             password: '',
             errors: {},
             showAlertError: false,
+            alertMessage: '',
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.validForm = this.validForm.bind(this);
@@ -78,6 +79,7 @@ class Login extends Component {
 
     async requestSignIn() {
         const { username, password } = this.state;
+
         await login(username, password).then((response) => {
             if (response && response.status === 200) {
                 const { data } = response;
@@ -85,6 +87,7 @@ class Login extends Component {
             } else {
                 this.setState({
                     showAlertError: true,
+                    alertMessage: 'Datos incorrectos',
                 });
             }
             this.toggleLoading(false);
@@ -116,7 +119,7 @@ class Login extends Component {
 
     render() {
         const [{ loggedin, role }] = this.context;
-        const { showAlertError } = this.state;
+        const { showAlertError, alertMessage } = this.state;
         const {
             username,
             password,
@@ -135,8 +138,8 @@ class Login extends Component {
                 <Box>
                     <Logo padding={30} maxWidth={150} />
                     <div className="login-container">
-                        <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors.username} />
-                        <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors.password} />
+                        <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors} />
+                        <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors} />
                         <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
                     </div>
                     <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
@@ -152,7 +155,7 @@ class Login extends Component {
                         });
                     }}
                 >
-                    No hay acceso al sistema
+                    {alertMessage}
                 </SweetAlert>
             </LayoutFullWidth>
         );
