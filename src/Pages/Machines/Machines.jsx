@@ -60,8 +60,20 @@ class Machines extends Component {
             });
     }
 
-    handleRemove() {
-        this.setState({ showConfirm: true });
+    async removeMachine() {
+        const { deleteId } = this.state;
+        await deleteMachine(deleteId).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
+        });
+    }
+
+    handleRemove(id) {
+        this.setState({
+            showConfirm: true,
+            deleteId: id,
+        });
     }
 
     render() {
@@ -148,7 +160,7 @@ class Machines extends Component {
                         <ModalView title="Editar máquina" type="edit">
                             <MachineForm data={this.findData(row.original.id)} />
                         </ModalView>
-                        <button onClick={this.handleRemove} type="button">
+                        <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
                             <i className="fas fa-trash" />
                         </button>
                     </div>
@@ -182,6 +194,7 @@ class Machines extends Component {
                     cancelBtnBsStyle="default"
                     title="Eliminar máquina"
                     onConfirm={() => {
+                        this.removeMachine();
                         this.setState({
                             showConfirm: false,
                         });

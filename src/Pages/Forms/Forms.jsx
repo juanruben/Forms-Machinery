@@ -30,6 +30,11 @@ class Forms extends Component {
         this.loadData();
     }
 
+    findData = (id) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === id);
+    }
+
     onViewClick(id) {
         const { history } = this.props;
         history.push(`/admin/formularios/${id}`);
@@ -56,8 +61,20 @@ class Forms extends Component {
             });
     }
 
-    handleRemove() {
-        this.setState({ showConfirm: true });
+    async removeForm() {
+        const { deleteId } = this.state;
+        await deleteForm(deleteId).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
+        });
+    }
+
+    handleRemove(id) {
+        this.setState({
+            showConfirm: true,
+            deleteId: id,
+        });
     }
 
     render() {
@@ -85,10 +102,10 @@ class Forms extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         <span className="form-actions__icon"><i className="far fa-copy" /></span>
-                        <ModalView title="Editar formulario" type="edit">
-                            <FormForm />
+                        <ModalView title="Editar formulario" type="edit" callback={this.loadData}>
+                            <FormForm data={this.findData(row.original.id)} />
                         </ModalView>
-                        <button onClick={this.handleRemove} type="button">
+                        <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
                             <i className="fas fa-trash" />
                         </button>
                     </div>
@@ -99,7 +116,7 @@ class Forms extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalView title="Crear formulario" type="add">
+                    <ModalView title="Crear formulario" type="add" callback={this.loadData}>
                         <FormForm />
                     </ModalView>
                 </TopBar>
@@ -121,6 +138,7 @@ class Forms extends Component {
                     cancelBtnBsStyle="default"
                     title="Eliminar formulario"
                     onConfirm={() => {
+                        this.removeForm();
                         this.setState({
                             showConfirm: false,
                         });

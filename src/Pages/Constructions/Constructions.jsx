@@ -53,8 +53,20 @@ class Constructions extends Component {
             });
     }
 
-    handleRemove() {
-        this.setState({ showConfirm: true });
+    async removeConstruction() {
+        const { deleteId } = this.state;
+        await deleteConstruction(deleteId).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
+        });
+    }
+
+    handleRemove(id) {
+        this.setState({
+            showConfirm: true,
+            deleteId: id,
+        });
     }
 
     render() {
@@ -112,7 +124,7 @@ class Constructions extends Component {
                         <ModalView title="Editar obra" type="edit">
                             <ConstructionForm data={this.findData(row.original.id)} />
                         </ModalView>
-                        <button onClick={this.handleRemove} type="button">
+                        <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
                             <i className="fas fa-trash" />
                         </button>
                     </div>
@@ -146,6 +158,7 @@ class Constructions extends Component {
                     cancelBtnBsStyle="default"
                     title="Eliminar obra"
                     onConfirm={() => {
+                        this.removeConstruction();
                         this.setState({
                             showConfirm: false,
                         });

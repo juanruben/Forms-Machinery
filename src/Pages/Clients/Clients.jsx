@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-// import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
+import { StateContext } from '../../State';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ClientForm from './ClientForm';
 import ModalView from '../../Layout/ModalView/ModalView';
@@ -54,8 +54,20 @@ class Clients extends Component {
             });
     }
 
-    handleRemove() {
-        this.setState({ showConfirm: true });
+    async removeClient() {
+        const { deleteId } = this.state;
+        await deleteClient(deleteId).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
+        });
+    }
+
+    handleRemove(id) {
+        this.setState({
+            showConfirm: true,
+            deleteId: id,
+        });
     }
 
     render() {
@@ -110,10 +122,10 @@ class Clients extends Component {
                 maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <ModalView title="Editar cliente" type="edit">
+                        <ModalView title="Editar cliente" type="edit" callback={this.loadData}>
                             <ClientForm data={this.findData(row.original.id)} />
                         </ModalView>
-                        <button onClick={this.handleRemove} type="button">
+                        <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
                             <i className="fas fa-trash" />
                         </button>
                     </div>
@@ -125,7 +137,7 @@ class Clients extends Component {
             <>
                 <TopBar>
                     <DownloadCSVButton data={data} filename="clientes.csv" />
-                    <ModalView title="Crear cliente" type="add">
+                    <ModalView title="Crear cliente" type="add" callback={this.loadData}>
                         <ClientForm />
                     </ModalView>
                 </TopBar>
@@ -147,6 +159,7 @@ class Clients extends Component {
                     cancelBtnBsStyle="default"
                     title="Eliminar cliente"
                     onConfirm={() => {
+                        this.removeClient();
                         this.setState({
                             showConfirm: false,
                         });
@@ -163,5 +176,7 @@ class Clients extends Component {
         );
     }
 }
+
+Clients.contextType = StateContext;
 
 export default Clients;
