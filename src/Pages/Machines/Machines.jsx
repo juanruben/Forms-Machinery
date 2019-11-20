@@ -151,7 +151,6 @@ class Machines extends Component {
             {
                 Header: 'Acciones',
                 id: 'actions',
-                accessor: (row) => null,
                 filterable: false,
                 sortable: false,
                 maxWidth: 100,

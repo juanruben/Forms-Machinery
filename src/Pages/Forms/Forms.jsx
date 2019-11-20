@@ -30,14 +30,14 @@ class Forms extends Component {
         this.loadData();
     }
 
-    findData = (id) => {
-        const { data } = this.state;
-        return data.find((item) => item.id === id);
-    }
-
     onViewClick(id) {
         const { history } = this.props;
         history.push(`/admin/formularios/${id}`);
+    }
+
+    findData = (id) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === id);
     }
 
     async loadData() {
@@ -95,7 +95,6 @@ class Forms extends Component {
             {
                 Header: 'Acciones',
                 id: 'actions',
-                accessor: (row) => null,
                 filterable: false,
                 sortable: false,
                 maxWidth: 150,
