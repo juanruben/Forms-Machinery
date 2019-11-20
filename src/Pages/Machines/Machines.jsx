@@ -137,7 +137,7 @@ class Machines extends Component {
                         value={filter ? filter.value : 'all'}
                     >
                         <option value="">Todo...</option>
-                        <option value="1">En terreno</option>
+                        <option value="1">En obra</option>
                         <option value="2">En taller</option>
                         <option value="3">Mantenimiento</option>
                     </select>
