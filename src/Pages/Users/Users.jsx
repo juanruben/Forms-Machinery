@@ -163,7 +163,7 @@ class Users extends Component {
                         <ModalView title="Editar usuario" type="edit">
                             <UserForm data={this.findData(row.original.id)} />
                         </ModalView>
-                        <button onClick={this.handleRemove} type="button">
+                        <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
                             <i className="fas fa-trash" />
                         </button>
                     </div>
