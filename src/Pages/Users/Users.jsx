@@ -7,6 +7,7 @@ import UserForm from './UserForm';
 import { StateContext } from '../../State';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
+import { formatRut } from '../../Service/Utils';
 import { getUsers, deleteUser } from '../../Service/Api';
 
 class Users extends Component {
@@ -45,7 +46,7 @@ class Users extends Component {
                     loading: false,
                 });
             }).catch((error) => {
-                if (error.response.status === 403) {
+                if (error.response.status === 403 || error.response.status === 401) {
                     const [, dispatch] = this.context;
                     dispatch({
                         type: 'EXIT',
@@ -96,6 +97,9 @@ class Users extends Component {
                 Header: 'RUT',
                 accessor: 'rut',
                 maxWidth: 100,
+                Cell: (row) => (
+                    <span>{formatRut(row.original.rut)}</span>
+                ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['rut'] }),
                 filterAll: true,
                 filterable: true,
