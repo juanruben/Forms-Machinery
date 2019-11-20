@@ -20,7 +20,15 @@ class ModalView extends Component {
     toggle() {
         this.setState((prevState) => ({
             showing: !prevState.showing,
-        }));
+        }), () => {
+            const { showing } = this.state;
+            if (!showing) {
+                const { callback } = this.props;
+                if (callback) {
+                    callback();
+                }
+            }
+        });
     }
 
     render() {
@@ -70,10 +78,12 @@ class ModalView extends Component {
 ModalView.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string,
+    callback: PropTypes.func,
 };
 
 ModalView.defaultProps = {
     type: '',
+    callback: null,
 };
 
 export default ModalView;
