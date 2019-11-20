@@ -4,7 +4,7 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly, required,
+        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly, required, onKeyPress,
     } = props;
     const warning = (errors[name] && errors[name].length > 0);
 
@@ -36,6 +36,7 @@ const Input = (props) => {
                     name={name}
                     value={value}
                     onChange={onChange}
+                    onKeyPress={onKeyPress}
                     placeholder={placeholder}
                     autoComplete="new-password"
                 />
