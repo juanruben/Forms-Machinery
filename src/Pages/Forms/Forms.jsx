@@ -8,33 +8,26 @@ import { StateContext } from '../../State';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { getForms, deleteForm } from '../../Service/Api';
 import { tableConfig } from '../../config';
 import './Forms.scss';
-
-const forms = [
-    {
-        id: 1,
-        name: 'Nombre del Formulario',
-    },
-    {
-        id: 2,
-        name: 'Nombre del Formulario2',
-    },
-];
 
 class Forms extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showConfirm: false,
+            data: [],
+            loading: false,
+            deleteId: null,
         };
+        this.loadData = this.loadData.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.onViewClick = this.onViewClick.bind(this);
-        this.checkPermissions = this.checkPermissions.bind(this);
     }
 
     componentDidMount() {
-        this.checkPermissions();
+        this.loadData();
     }
 
     onViewClick(id) {
@@ -42,17 +35,25 @@ class Forms extends Component {
         history.push(`/admin/formularios/${id}`);
     }
 
-    checkPermissions() {
-        const { match } = this.props;
-        const { path } = match;
-        const [{ role }, dispatch] = this.context;
-        dispatch({
-            type: 'CHECK_PERMISSIONS',
-            value: {
-                role,
-                path,
-            },
+    async loadData() {
+        this.setState({
+            loading: true,
         });
+
+        await getForms()
+            .then((response) => {
+                this.setState({
+                    data: response.data,
+                    loading: false,
+                });
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    const [, dispatch] = this.context;
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
     }
 
     handleRemove() {
@@ -60,7 +61,7 @@ class Forms extends Component {
     }
 
     render() {
-        const { showConfirm } = this.state;
+        const { showConfirm, data, loading } = this.state;
         const columns = [
             {
                 Header: 'Nombre',
@@ -104,9 +105,10 @@ class Forms extends Component {
                 </TopBar>
 
                 <ReactTable
-                    data={forms}
+                    data={data}
                     columns={columns}
                     {...tableConfig}
+                    loading={loading}
                 />
 
                 <SweetAlert

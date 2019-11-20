@@ -7,16 +7,30 @@ import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import MachineForm from './MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
-import { tableConfig, dummyData } from '../../config';
+import { getMachines, deleteMachine } from '../../Service/Api';
+import { tableConfig } from '../../config';
 
 class Machines extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showConfirm: false,
+            data: [],
+            loading: false,
+            deleteId: null,
         };
+        this.loadData = this.loadData.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.findData = this.findData.bind(this);
+    }
+
+    componentDidMount() {
+        this.loadData();
+    }
+
+    findData = (id) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === id);
     }
 
     getStatus = (value) => {
@@ -25,14 +39,33 @@ class Machines extends Component {
         return 'Mantenimiento';
     }
 
-    findData = (id) => dummyData.find((item) => item.id === id);
+    async loadData() {
+        this.setState({
+            loading: true,
+        });
+
+        await getMachines()
+            .then((response) => {
+                this.setState({
+                    data: response.data,
+                    loading: false,
+                });
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    const [, dispatch] = this.context;
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+    }
 
     handleRemove() {
         this.setState({ showConfirm: true });
     }
 
     render() {
-        const { showConfirm } = this.state;
+        const { showConfirm, data, loading } = this.state;
         const columns = [
             {
                 Header: 'Nombre',
@@ -126,16 +159,17 @@ class Machines extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={dummyData} filename="maquinas.csv" />
+                    <DownloadCSVButton data={data} filename="maquinas.csv" />
                     <ModalView title="Crear máquina" type="add">
                         <MachineForm />
                     </ModalView>
                 </TopBar>
 
                 <ReactTable
-                    data={dummyData}
+                    data={data}
                     columns={columns}
                     {...tableConfig}
+                    loading={loading}
                 />
 
                 <SweetAlert

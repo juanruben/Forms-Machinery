@@ -7,26 +7,60 @@ import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ClientForm from './ClientForm';
 import ModalView from '../../Layout/ModalView/ModalView';
-import { tableConfig, dummyData } from '../../config';
+import { tableConfig } from '../../config';
+import { getClients, deleteClient } from '../../Service/Api';
 
 class Clients extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showConfirm: false,
+            data: [],
+            loading: false,
+            deleteId: null,
         };
+        this.loadData = this.loadData.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.findData = this.findData.bind(this);
     }
 
-    findData = (id) => dummyData.find((item) => item.id === id);
+    componentDidMount() {
+        this.loadData();
+    }
+
+    findData = (id) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === id);
+    }
+
+    async loadData() {
+        this.setState({
+            loading: true,
+        });
+
+        await getClients()
+            .then((response) => {
+                this.setState({
+                    data: response.data,
+                    loading: false,
+                });
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    const [, dispatch] = this.context;
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+    }
 
     handleRemove() {
         this.setState({ showConfirm: true });
     }
 
     render() {
-        const { showConfirm } = this.state;
+        const { showConfirm, data, loading } = this.state;
+
         const columns = [
             {
                 Header: 'Nombre',
@@ -90,16 +124,17 @@ class Clients extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={dummyData} filename="clientes.csv" />
+                    <DownloadCSVButton data={data} filename="clientes.csv" />
                     <ModalView title="Crear cliente" type="add">
                         <ClientForm />
                     </ModalView>
                 </TopBar>
 
                 <ReactTable
-                    data={dummyData}
+                    data={data}
                     columns={columns}
                     {...tableConfig}
+                    loading={loading}
                 />
 
                 <SweetAlert
