@@ -24,7 +24,7 @@ export function decode(value) {
 }
 
 export function validateRut(rut) {
-    const rexp = new RegExp(/^([0-9])+\-([kK0-9])+$/);
+    const rexp = new RegExp(/^([0-9])+-([kK0-9])+$/);
     if (rut.match(rexp)) {
         const RUT = rut.split('-');
         const elRut = RUT[0].split('');
@@ -58,5 +58,5 @@ export function formatRut(rut) {
 }
 
 export function unformatRut(rut) {
-    return rut.replace(/\./g, '').replace(/\-/g, '');
+    return rut.replace(/\./g, '').replace(/-/g, '');
 }
