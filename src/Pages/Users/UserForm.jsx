@@ -117,28 +117,46 @@ class UserForm extends Component {
     }
 
     async handleNew() {
+        if (this.validForm()) {
         this.toggleLoading(true);
+            const { data } = this.state;
+
+            await addUser(data).then((response) => {
+                if (response && response.status === 201) {
         const { callback } = this.props;
-        setTimeout(() => {
-            this.toggleLoading(false);
             callback();
-        }, 500);
+    }
+            }).catch((error) => {
+                this.setState({
+                    errors: error.response.data.errors,
+                });
+            });
+            this.toggleLoading(false);
+        }
     }
 
     async handleUpdate() {
+        if (this.validForm()) {
         this.toggleLoading(true);
+            const { data } = this.state;
+
+            await updateUser(data).then((response) => {
+                if (response && response.status === 200) {
         const { callback } = this.props;
-        setTimeout(() => {
+                    callback();
+                }
+            }).catch((error) => {
+                this.setState({
+                    errors: error.response.data.errors,
+                });
+            });
             this.toggleLoading(false);
-            callback();
-        }, 500);
+        }
     }
 
     toggleLoading(value) {
-        const [, dispatch] = this.context;
-        dispatch({
-            type: 'SET_LOADING',
-            value,
+        this.setState({
+            loading: value,
         });
     }
 
