@@ -6,7 +6,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
-import { getUsers } from '../../Service/Api';
+import { getUsers, deleteUser } from '../../Service/Api';
 
 class Users extends Component {
     constructor(props) {
@@ -15,10 +15,12 @@ class Users extends Component {
             showConfirm: false,
             data: [],
             loading: false,
+            deleteId: null,
         };
         this.handleRemove = this.handleRemove.bind(this);
         this.loadData = this.loadData.bind(this);
         this.findData = this.findData.bind(this);
+        this.removeUser = this.removeUser.bind(this);
     }
 
     componentDidMount() {
@@ -41,11 +43,20 @@ class Users extends Component {
                     data: response.data,
                     loading: false,
                 });
+    async removeUser() {
+        const { deleteId } = this.state;
+        await deleteUser(deleteId).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
             });
     }
 
-    handleRemove() {
-        this.setState({ showConfirm: true });
+    handleRemove(id) {
+        this.setState({
+            showConfirm: true,
+            deleteId: id,
+        });
     }
 
     render() {
@@ -174,6 +185,7 @@ class Users extends Component {
                     cancelBtnBsStyle="default"
                     title="Eliminar usuario"
                     onConfirm={() => {
+                        this.removeUser();
                         this.setState({
                             showConfirm: false,
                         });
