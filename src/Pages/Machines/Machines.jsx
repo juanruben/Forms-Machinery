@@ -83,7 +83,7 @@ class Machines extends Component {
                 Header: 'Nombre',
                 accessor: 'name',
                 Cell: (row) => (
-                    <ModalView title={row.original.name}>
+                    <ModalView title={row.original.name} callback={this.loadData}>
                         <MachineForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
@@ -171,7 +171,7 @@ class Machines extends Component {
             <>
                 <TopBar>
                     <DownloadCSVButton data={data} filename="maquinas.csv" />
-                    <ModalView title="Crear máquina" type="add">
+                    <ModalView title="Crear máquina" type="add" callback={this.loadData}>
                         <MachineForm />
                     </ModalView>
                 </TopBar>
