@@ -27,7 +27,7 @@ class UserForm extends Component {
             errors: {},
             loading: false,
         };
-        this.handleNew = this.handleNew.bind(this);
+        this.handleCreate = this.handleCreate.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.onChange = this.onChange.bind(this);
     }
@@ -119,7 +119,7 @@ class UserForm extends Component {
         return formIsValid;
     }
 
-    async handleNew() {
+    async handleCreate() {
         if (this.validForm()) {
             this.toggleLoading(true);
             const { data } = this.state;
@@ -192,7 +192,7 @@ class UserForm extends Component {
                 {!readOnly && (
                     <div className="form-footer">
                         {loading && <div className="spinner"><Spinner /></div>}
-                        <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={createMode ? this.handleNew : this.handleUpdate} />
+                        <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={createMode ? this.handleCreate : this.handleUpdate} />
                     </div>
                 )}
             </>
