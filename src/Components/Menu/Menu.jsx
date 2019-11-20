@@ -13,14 +13,18 @@ const Menu = (props) => {
     const state = useStateValue();
 
     async function handleSignOut() {
-        await logout().then((response) => {
-            if (response && response.status === 200) {
-                const [, dispatch] = state;
+        const [, dispatch] = state;
+
+        await logout()
+            .then(() => {
                 dispatch({
                     type: 'EXIT',
                 });
-            }
-        });
+            }).catch(() => {
+                dispatch({
+                    type: 'EXIT',
+                });
+            });
     }
 
     return (
