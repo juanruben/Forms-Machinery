@@ -1,10 +1,11 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'reactstrap';
-import { StateContext } from '../../State';
+import { Row, Col, Spinner } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
+import { addUser, updateUser } from '../../Service/Api';
 
 const profiles = [
     {
