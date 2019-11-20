@@ -79,12 +79,7 @@ class CheckOut extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            errors: {
-                client: 'Requerido',
-                code: 'test',
-                construction: 'Formato inválido',
-                test: 'fskjdl',
-            },
+            errors: {},
         };
     }
 
@@ -96,9 +91,9 @@ class CheckOut extends Component {
                 <Title text="Datos generales" />
                 <div className="check-in-container__section">
                     <Row>
-                        <Col md={6}><Select label="Cliente" options={clients} placeholder="Seleccione..." name="client" onChange={() => { }} errors={errors.client} /></Col>
-                        <Col md={6}><Select label="Obra" options={constructions} placeholder="Seleccione..." name="construction" onChange={() => { }} errors={errors.construction} /></Col>
-                        <Col md={6}><Select label="Código de máquina" options={machines} placeholder="Seleccione..." name="code" onChange={() => { }} errors={errors.code} /></Col>
+                        <Col md={6}><Select label="Cliente" options={clients} placeholder="Seleccione..." name="client" onChange={() => { }} errors={errors} /></Col>
+                        <Col md={6}><Select label="Obra" options={constructions} placeholder="Seleccione..." name="construction" onChange={() => { }} errors={errors} /></Col>
+                        <Col md={6}><Select label="Código de máquina" options={machines} placeholder="Seleccione..." name="code" onChange={() => { }} errors={errors} /></Col>
                     </Row>
                 </div>
 
