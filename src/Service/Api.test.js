@@ -11,7 +11,7 @@ describe('Api', () => {
             },
         }));
 
-        const response = await login('username', 'password');
+        const response = await login({ user: 'username', password: 'password' });
 
         expect(response.data.token).toEqual('qwertyuiop123456789');
         expect(response.data.role).toEqual(1);
