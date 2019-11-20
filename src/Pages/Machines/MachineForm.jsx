@@ -27,6 +27,8 @@ class MachineForm extends Component {
         super(props);
         this.state = {
             createMode: true,
+            data: {},
+            errors: {},
         };
         this.handleNew = this.handleNew.bind(this);
     }
@@ -43,9 +45,12 @@ class MachineForm extends Component {
 
     onChange(event) {
         const { name, value } = event.target;
+        const { data, errors } = this.state;
+        data[name] = value;
+        errors[name] = '';
         this.setState({
-            [name]: value,
-            errors: {},
+            data,
+            errors,
         });
     }
 
@@ -77,18 +82,21 @@ class MachineForm extends Component {
 
     render() {
         const { readOnly } = this.props;
-        const { createMode, code, company, plate, model, year, machine } = this.state;
+        const { data, createMode, errors } = this.state;
+        const {
+            code, company, plate, model, year, machine,
+        } = data;
 
         return (
             <>
                 <Row>
-                    <Col md={12}><Input label="Nombre" placeholder="Nombre" name="company" onChange={() => { }} value={machine} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input label="Código" placeholder="Código" name="code" onChange={() => { }} value={code} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input label="Patente" placeholder="Patente" name="plate" onChange={() => { }} value={plate} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input label="Marca" placeholder="Marca" name="brand" onChange={() => { }} value={company} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input label="Modelo" placeholder="Modelo" name="model" onChange={() => { }} value={model} readOnly={readOnly} /></Col>
-                    <Col md={6}><Input label="Año" placeholder="Año" name="year" onChange={() => { }} value={year} readOnly={readOnly} /></Col>
-                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="name" onChange={() => { }} value={code} readOnly={readOnly} /></Col>
+                    <Col md={12}><Input label="Nombre" placeholder="Nombre" name="company" onChange={() => { }} value={machine} readOnly={readOnly} errors={errors} /></Col>
+                    <Col md={6}><Input label="Código" placeholder="Código" name="code" onChange={() => { }} value={code} readOnly={readOnly} errors={errors} /></Col>
+                    <Col md={6}><Input label="Patente" placeholder="Patente" name="plate" onChange={() => { }} value={plate} readOnly={readOnly} errors={errors} /></Col>
+                    <Col md={6}><Input label="Marca" placeholder="Marca" name="brand" onChange={() => { }} value={company} readOnly={readOnly} errors={errors} /></Col>
+                    <Col md={6}><Input label="Modelo" placeholder="Modelo" name="model" onChange={() => { }} value={model} readOnly={readOnly} errors={errors} /></Col>
+                    <Col md={6}><Input label="Año" placeholder="Año" name="year" onChange={() => { }} value={year} readOnly={readOnly} errors={errors} /></Col>
+                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="name" onChange={() => { }} value={code} readOnly={readOnly} errors={errors} /></Col>
                 </Row>
                 {!readOnly && (
                     <Row>
