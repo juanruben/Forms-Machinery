@@ -6,6 +6,7 @@ import {
 import { useStateValue } from './State';
 import Login from './Pages/Login/Login';
 import Recover from './Pages/Recover/Recover';
+import Restore from './Pages/Restore/Restore';
 import Main from './Layout/Main/Main';
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -27,6 +28,7 @@ const AppRouter = () => (
         <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/recuperar" component={Recover} />
+            <Route exact path="/restablecer" component={Restore} />
             <PrivateRoute path="/" component={Main} />
         </Switch>
     </Router>
