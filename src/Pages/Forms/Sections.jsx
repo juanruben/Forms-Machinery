@@ -1,15 +1,19 @@
+/* eslint-disable camelcase */
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
+import { Spinner } from 'reactstrap';
 import { StateContext } from '../../State';
 import SectionForm from './SectionForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
-import { getForm } from '../../Service/Api';
+import {
+    getForm, orderSection, deleteSection, copySection,
+} from '../../Service/Api';
 
 import './sortable.scss';
 
@@ -17,12 +21,30 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
-const SortableItem = sortableElement(({ index, value, history }) => {
+const SortableItem = sortableElement(({
+    index, value, history, data, callback,
+}) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
     const onViewClick = () => {
         history.push(`/admin/formularios/secciones/${index}`);
     };
+
+    async function handleRemove() {
+        await deleteSection(data.id)
+            .then(() => {
+                callback();
+            }).catch(() => {
+            });
+    }
+
+    async function handleCopy() {
+        await copySection(data.id)
+            .then(() => {
+                callback();
+            }).catch(() => {
+            });
+    }
 
     return (
         <>
@@ -34,11 +56,11 @@ const SortableItem = sortableElement(({ index, value, history }) => {
                     </button>
                 </span>
                 <div className="form-actions">
-                    <button type="button">
+                    <button onClick={handleCopy} type="button">
                         <i className="far fa-copy" />
                     </button>
-                    <ModalView title="Editar sección de formulario" type="edit">
-                        <SectionForm />
+                    <ModalView title="Editar sección de formulario" type="edit" callback={callback}>
+                        <SectionForm data={data} />
                     </ModalView>
                     <button onClick={() => { setShowConfirm(true); }} type="button">
                         <i className="fas fa-trash" />
@@ -56,6 +78,7 @@ const SortableItem = sortableElement(({ index, value, history }) => {
                 cancelBtnBsStyle="default"
                 title="Eliminar sección"
                 onConfirm={() => {
+                    handleRemove();
                     setShowConfirm(false);
                 }}
                 onCancel={() => {
@@ -75,6 +98,7 @@ class Sections extends Component {
             data: {},
         };
         this.loadData = this.loadData.bind(this);
+        this.handleOrder = this.handleOrder.bind(this);
     }
 
     componentDidMount() {
@@ -82,16 +106,39 @@ class Sections extends Component {
     }
 
     onSortEnd = ({ oldIndex, newIndex }) => {
-        this.setState(({ items }) => ({
-            items: arrayMove(items, oldIndex, newIndex),
-        }));
+        const { match } = this.props;
+        const { id } = match.params;
+        this.handleOrder(oldIndex, newIndex, id);
     };
+
+    async handleOrder(oldIndex, newIndex, id) {
+        const { data } = this.state;
+        const { model_section } = data;
+        data.model_section = arrayMove(model_section, oldIndex, newIndex);
+        this.setState({
+            data,
+        });
+
+        const [, dispatch] = this.context;
+        this.setState({ loading: true });
+        await orderSection({ current: oldIndex + 1, new: newIndex + 1 }, id)
+            .then(() => {
+                this.loadData();
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+        this.setState({ loading: false });
+    }
 
     async loadData() {
         const { match } = this.props;
         const { id } = match.params;
         const [, dispatch] = this.context;
-
+        this.setState({ loading: true });
         await getForm(id)
             .then((response) => {
                 this.setState({
@@ -105,6 +152,7 @@ class Sections extends Component {
                     });
                 }
             });
+        this.setState({ loading: false });
     }
 
     render() {
@@ -128,7 +176,7 @@ class Sections extends Component {
                     <Title text={`Secciones del formulario ${data.name}`} />
                 )}
 
-                {!loading && data.model_section ? (
+                {data.model_section && (
                     <SortableContainer
                         onSortEnd={this.onSortEnd}
                         lockAxis="y"
@@ -142,10 +190,13 @@ class Sections extends Component {
                                 index={index}
                                 value={item.name}
                                 history={history}
+                                data={item}
+                                callback={this.loadData}
                             />
                         ))}
                     </SortableContainer>
-                ) : (<div>No hay secciones creadas</div>)}
+                )}
+                {loading && <Spinner />}
             </>
         );
     }
