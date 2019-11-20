@@ -4,6 +4,7 @@ import matchSorter from 'match-sorter';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
+import { StateContext } from '../../State';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
 import { getUsers, deleteUser } from '../../Service/Api';
@@ -43,6 +44,16 @@ class Users extends Component {
                     data: response.data,
                     loading: false,
                 });
+            }).catch((error) => {
+                if (error.response.status === 403) {
+                    const [, dispatch] = this.context;
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+    }
+
     async removeUser() {
         const { deleteId } = this.state;
         await deleteUser(deleteId).then((response) => {
@@ -202,5 +213,7 @@ class Users extends Component {
         );
     }
 }
+
+Users.contextType = StateContext;
 
 export default Users;
