@@ -153,7 +153,7 @@ class ClientForm extends Component {
         } = data;
 
         const rest = {
-            onChange: this.onChang,
+            onChange: this.onChange,
             errors,
             required: true,
         };
