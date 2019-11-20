@@ -100,18 +100,18 @@ export async function deleteConstruction(id) {
 // FORMS
 
 export async function getForms() {
-    return axios.get(`${url}/construction`);
+    return axios.get(`${url}/forms`);
 }
 
 export async function addForm(data) {
-    return axios.post(`${url}/construction`, { ...data });
+    return axios.post(`${url}/forms`, { ...data });
 }
 
 export async function updateForm(data, id) {
-    return axios.put(`${url}/construction/${id}`, { ...data });
+    return axios.put(`${url}/forms/${id}`, { ...data });
 }
 
 export async function deleteForm(id) {
-    return axios.delete(`${url}/construction/${id}`);
+    return axios.delete(`${url}/forms/${id}`);
 }
 
