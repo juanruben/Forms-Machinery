@@ -86,36 +86,22 @@ class Constructions extends Component {
                 filterable: true,
             },
             {
-                Header: 'Rut',
-                accessor: 'rut',
-                maxWidth: 100,
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['rut'] }),
+                Header: 'Dirección',
+                accessor: 'add',
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['address'] }),
                 filterAll: true,
                 filterable: true,
             },
             {
-                Header: 'Contacto',
-                accessor: 'contact',
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['contact'] }),
-                filterAll: true,
-                filterable: true,
-            },
-            {
-                Header: 'Email',
-                accessor: 'email',
-                Cell: (row) => (
-                    <a href={`mailto:${row.original.email}`}>
-                        {row.original.email}
-                    </a>
-                ),
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['email'] }),
+                Header: 'Cliente',
+                accessor: 'client_id',
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['cliente_id'] }),
                 filterAll: true,
                 filterable: true,
             },
             {
                 Header: 'Acciones',
                 id: 'actions',
-                accessor: (row) => null,
                 filterable: false,
                 sortable: false,
                 maxWidth: 100,
