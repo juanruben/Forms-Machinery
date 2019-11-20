@@ -105,16 +105,16 @@ class CheckOut extends Component {
                 <Title text={form.name} />
 
                 {form.model_section.map((section) => (
-                    <>
+                    <div key={section.id}>
                         <Title text={section.name} />
                         <div className="check-in-container__section">
                             <Row>
                                 {section.model_field.map((field) => (
-                                    <Col md={6}><Input label={`${field.name} ${field.required ? '*' : ''}`} name="test" onChange={() => { }} errors={errors.test} /></Col>
+                                    <Col md={6} key={field.id}><Input label={`${field.name} ${field.required ? '*' : ''}`} name="test" onChange={() => { }} errors={errors.test} /></Col>
                                 ))}
                             </Row>
                         </div>
-                    </>
+                    </div>
                 ))}
 
                 <Row>
