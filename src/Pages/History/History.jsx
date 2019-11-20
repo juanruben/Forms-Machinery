@@ -10,15 +10,22 @@ import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
-import { tableConfig, dummyData } from '../../config';
+import { tableConfig } from '../../config';
 import ClientForm from '../Clients/ClientForm';
 import MachineForm from '../Machines/MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+
+const getStatus = (value) => {
+    if (value === 1) return 'En terreno';
+    if (value === 2) return 'En taller';
+    return 'Mantenimiento';
+};
 
 class History extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            data: [],
             showing: false,
             ready: false,
         };
@@ -26,13 +33,10 @@ class History extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
-    getStatus(value) {
-        if (value === 1) return 'En terreno';
-        if (value === 2) return 'En taller';
-        return 'Mantenimiento';
+    findData = (id) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === id);
     }
-
-    findData = (id) => dummyData.find((item) => item.id === id);
 
     toggle() {
         this.setState((prevState) => ({
@@ -46,6 +50,8 @@ class History extends Component {
     }
 
     render() {
+        const { data } = this.state;
+
         const columns = [
             {
                 Header: 'Fecha',
@@ -87,7 +93,7 @@ class History extends Component {
                 accessor: 'status',
                 width: 130,
                 Cell: (row) => (
-                    <>{this.getStatus(row.original.status)}</>
+                    <>{getStatus(row.original.status)}</>
                 ),
                 filterMethod: (filter, row) => {
                     if (filter.value === 'all') {
@@ -121,13 +127,14 @@ class History extends Component {
             {
                 Header: 'Ver',
                 id: 'actions',
-                accessor: (row) => null,
                 filterable: false,
                 sortable: false,
                 maxWidth: 50,
-                Cell: (row) => (
+                Cell: () => ( // row
                     <div className="form-actions">
-                        <span className="form-actions__icon" onClick={this.toggle}><i className="fas fa-eye" /></span>
+                        <button className="form-actions__icon" onClick={this.toggle} type="button">
+                            <i className="fas fa-eye" />
+                        </button>
                     </div>
                 ),
             },
@@ -170,11 +177,11 @@ class History extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={dummyData} filename="historial.csv" />
+                    <DownloadCSVButton data={data} filename="historial.csv" />
                 </TopBar>
 
                 <ReactTable
-                    data={dummyData}
+                    data={data}
                     columns={columns}
                     {...tableConfig}
                 />
@@ -204,8 +211,7 @@ class History extends Component {
                                 }}
                             >
                                 {
-                                    ({ blob, url, loading, error }) =>
-                                        (loading ? 'Cargando documento...' : 'Descargar')
+                                    ({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar')
                                 }
                             </PDFDownloadLink>
                         )}
