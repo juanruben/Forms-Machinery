@@ -51,46 +51,62 @@ class UserForm extends Component {
     }
 
     validForm() {
-        const { data } = this.state;
+        const { data, createMode } = this.state;
         const {
-            name, business_name, rut, contact, phone, email, address,
+            name, last_name, username, rut, password, repeatPassword, phone, email, role_id,
         } = data;
         const errors = {};
         let formIsValid = true;
 
         if (!name || name.trim().length === 0) {
             formIsValid = false;
-            errors.name = 'Requerido';
+            errors.name = ['Requerido'];
         }
 
-        if (!business_name || business_name.trim().length === 0) {
+        if (!last_name || last_name.trim().length === 0) {
             formIsValid = false;
-            errors.business_name = 'Requerido';
+            errors.last_name = ['Requerido'];
         }
 
         if (!rut || rut.trim().length === 0) {
             formIsValid = false;
-            errors.rut = 'Requerido';
+            errors.rut = ['Requerido'];
         }
 
-        if (!contact || contact.trim().length === 0) {
+        if (!username || username.trim().length === 0) {
             formIsValid = false;
-            errors.contact = 'Requerido';
+            errors.username = ['Requerido'];
+        } else if (phone.trim().length < 6) {
+            formIsValid = false;
+            errors.phone = ['Deben ser al menos 6 caracteres'];
         }
 
-        if (!phone || contact.trim().length === 0) {
+        if (!phone || phone.trim().length === 0) {
             formIsValid = false;
-            errors.phone = 'Requerido';
+            errors.phone = ['Requerido'];
+        } else if (phone.trim().length !== 11) {
+            formIsValid = false;
+            errors.phone = ['Deben ser 11 dígitos'];
         }
 
         if (!email || email.trim().length === 0) {
             formIsValid = false;
-            errors.email = 'Requerido';
+            errors.email = ['Requerido'];
         }
 
-        if (!address || address.trim().length === 0) {
+        if (!role_id || role_id === 0) {
             formIsValid = false;
-            errors.address = 'Requerido';
+            errors.role_id = ['Requerido'];
+        }
+
+        if (createMode) {
+            if (!repeatPassword || repeatPassword.trim().length === 0) {
+                formIsValid = false;
+                errors.repeatPassword = ['Requerido'];
+            } else if (repeatPassword !== password) {
+            formIsValid = false;
+                errors.repeatPassword = ['Debe coincidir'];
+            }
         }
 
         this.setState({
