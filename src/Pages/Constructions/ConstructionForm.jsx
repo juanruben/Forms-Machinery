@@ -11,11 +11,11 @@ import { addConstruction, updateConstruction, getClients } from '../../Service/A
 const status_options = [
     {
         id: 'active',
-        name: 'active',
+        name: 'Activo',
     },
     {
         id: 'finished',
-        name: 'finished',
+        name: 'Finalizado',
     },
 ];
 
