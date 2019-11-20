@@ -15,6 +15,8 @@ axios.interceptors.request.use((config) => {
     return config;
 }, (err) => Promise.reject(err));
 
+// GENERAL
+
 export async function login(data) {
     return axios.post(`${url}/login`, { ...data });
 }
@@ -22,6 +24,8 @@ export async function login(data) {
 export async function logout() {
     return axios.post(`${url}/logout`);
 }
+
+// USERS
 
 export async function getUsers() {
     return axios.get(`${url}/users`);
@@ -38,3 +42,76 @@ export async function updateUser(data, id) {
 export async function deleteUser(id) {
     return axios.delete(`${url}/users/${id}`);
 }
+
+// CLIENTS
+
+export async function getClients() {
+    return axios.get(`${url}/clients`);
+}
+
+export async function addClient(data) {
+    return axios.post(`${url}/clients`, { ...data });
+}
+
+export async function updateClient(data, id) {
+    return axios.put(`${url}/clients/${id}`, { ...data });
+}
+
+export async function deleteClient(id) {
+    return axios.delete(`${url}/clients/${id}`);
+}
+
+// MACHINE
+
+export async function getMachines() {
+    return axios.get(`${url}/machine`);
+}
+
+export async function addMachine(data) {
+    return axios.post(`${url}/machine`, { ...data });
+}
+
+export async function updateMachine(data, id) {
+    return axios.put(`${url}/machine/${id}`, { ...data });
+}
+
+export async function deleteMachine(id) {
+    return axios.delete(`${url}/machine/${id}`);
+}
+
+// CONSTRUCTIONS
+
+export async function getConstructions() {
+    return axios.get(`${url}/construction`);
+}
+
+export async function addConstruction(data) {
+    return axios.post(`${url}/construction`, { ...data });
+}
+
+export async function updateConstruction(data, id) {
+    return axios.put(`${url}/construction/${id}`, { ...data });
+}
+
+export async function deleteConstruction(id) {
+    return axios.delete(`${url}/construction/${id}`);
+}
+
+// FORMS
+
+export async function getForms() {
+    return axios.get(`${url}/construction`);
+}
+
+export async function addForm(data) {
+    return axios.post(`${url}/construction`, { ...data });
+}
+
+export async function updateForm(data, id) {
+    return axios.put(`${url}/construction/${id}`, { ...data });
+}
+
+export async function deleteForm(id) {
+    return axios.delete(`${url}/construction/${id}`);
+}
+
