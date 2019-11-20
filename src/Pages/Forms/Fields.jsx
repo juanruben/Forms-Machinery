@@ -10,10 +10,10 @@ import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 
 import './sortable.scss';
-import image from './image.png';
-import text from './text.png';
-import simple from './simple.png';
-import multiple from './multiple.png';
+import image from './assets/image.png';
+import text from './assets/text.png';
+import simple from './assets/simple.png';
+import multiple from './assets/multiple.png';
 
 const SortableContainer = sortableContainer(({ children }) => <ul className="sortable-container">{children}</ul>);
 
