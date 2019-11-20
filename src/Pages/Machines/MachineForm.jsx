@@ -6,23 +6,7 @@ import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
-import { addMachine, updateMachine } from '../../Service/Api';
-
-const forms = [
-    {
-        id: 1,
-        name: 'Formulario 1',
-    },
-    {
-        id: 2,
-        name: 'Formulario 2',
-    },
-    {
-        id: 3,
-        name: 'Formulario 3',
-    },
-];
-
+import { addMachine, updateMachine, getForms } from '../../Service/Api';
 
 class MachineForm extends Component {
     constructor(props) {
@@ -30,22 +14,25 @@ class MachineForm extends Component {
         this.state = {
             createMode: true,
             data: {},
+            forms: [],
             errors: {},
             loading: false,
         };
         this.handleCreate = this.handleCreate.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.loadForms = this.loadForms.bind(this);
     }
 
     componentDidMount() {
         const { data } = this.props;
         if (data) {
             this.setState({
-                ...data,
+                data,
                 createMode: false,
             });
         }
+        this.loadForms();
     }
 
     onChange(event) {
@@ -59,10 +46,32 @@ class MachineForm extends Component {
         });
     }
 
+    async loadForms() {
+        this.setState({
+            loading: true,
+        });
+
+        await getForms()
+            .then((response) => {
+                this.setState({
+                    forms: response.data,
+                    loading: false,
+                });
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    const [, dispatch] = this.context;
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+    }
+
+
     validForm() {
         const { data } = this.state;
         const {
-            name, code, plate, model, brand, year, form_id,
+            name, code, plate, model, brand, year, model_form_id,
         } = data;
         const errors = {};
         let formIsValid = true;
@@ -97,9 +106,9 @@ class MachineForm extends Component {
             errors.year = ['Requerido'];
         }
 
-        if (!form_id || form_id === 0) {
+        if (!model_form_id || model_form_id === 0) {
             formIsValid = false;
-            errors.role_id = ['Requerido'];
+            errors.model_form_id = ['Requerido'];
         }
 
         this.setState({
@@ -156,10 +165,10 @@ class MachineForm extends Component {
     render() {
         const { readOnly } = this.props;
         const {
-            data, createMode, errors, loading,
+            data, createMode, errors, loading, forms,
         } = this.state;
         const {
-            name, code, plate, model, brand, year, form_id,
+            name, code, plate, model, brand, year, model_form_id,
         } = data;
 
         const rest = {
@@ -176,8 +185,8 @@ class MachineForm extends Component {
                     <Col md={6}><Input label="Patente" name="plate" value={plate} {...rest} /></Col>
                     <Col md={6}><Input label="Modelo" name="model" value={model} {...rest} /></Col>
                     <Col md={6}><Input label="Marca" name="brand" value={brand} {...rest} /></Col>
-                    <Col md={6}><Input label="Año" name="year" value={year} {...rest} /></Col>
-                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="form_id" value={String(form_id)} {...rest} /></Col>
+                    <Col md={6}><Input label="Año" name="year" value={year} type="number" {...rest} /></Col>
+                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={String(model_form_id)} {...rest} /></Col>
                 </Row>
                 {!readOnly && (
                     <div className="form-footer">
