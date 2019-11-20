@@ -144,11 +144,6 @@ class Machines extends Component {
                 ),
             },
             {
-                Header: 'Último movimiento',
-                accessor: 'date',
-                maxWidth: 150,
-            },
-            {
                 Header: 'Acciones',
                 id: 'actions',
                 filterable: false,
