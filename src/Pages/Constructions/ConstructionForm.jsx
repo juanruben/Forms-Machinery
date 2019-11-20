@@ -198,8 +198,11 @@ class ConstructionForm extends Component {
                     {!createMode && (
                         <Col md={12}><Select name="status" label="Estado" value={status} options={status_options} placeholder="Seleccione..." {...rest} /></Col>
                     )}
-                    <Col md={12}><Input name="notifications" label="Emails" placeholder="correo1@ejemplo.com" value={notifications} icon="far fa-envelope" {...rest} /></Col>
-                    <Col md={12}>* Estas direcciones de correo recibirán reporte y estado de las maquinarias cuando esta salgan del taller hacia la obra del cliente</Col>
+                    <Col md={12}><Input name="notifications" label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={notifications} icon="far fa-envelope" {...rest} /></Col>
+                    <Col md={12}>
+                        * Estas direcciones de correo recibirán reporte y estado de
+                        las maquinarias cuando esta salgan del taller hacia la obra del cliente
+                    </Col>
                 </Row>
                 {!readOnly && (
                     <div className="form-footer">
