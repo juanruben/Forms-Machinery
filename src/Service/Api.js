@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { decode } from './Utils';
 
+const url = process.env.REACT_APP_API_URL;
+
 axios.interceptors.request.use((config) => {
     const tokenSession = localStorage.getItem('t');
 
@@ -14,27 +16,18 @@ axios.interceptors.request.use((config) => {
 }, (err) => Promise.reject(err));
 
 export async function login(user, password) {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, {
-        user,
-        password,
-    }).then((res) => res)
-        .catch((error) => {
-            if (error.response) {
-                return error.response;
+    return axios.post(`${url}/login`, { user, password });
             }
-            return null;
-        });
-    return response;
-}
 
 export async function logout() {
-    return axios.post(`${process.env.REACT_APP_API_URL}/logout`);
+    return axios.post(`${url}/logout`);
 }
 
 export async function getUsers() {
-    return axios.get(`${process.env.REACT_APP_API_URL}/users`);
+    return axios.get(`${url}/users`);
 }
 
 export async function addUser(data) {
-    return axios.post(`${process.env.REACT_APP_API_URL}/users`);
+    return axios.post(`${url}/users`, { ...data });
+}
 }
