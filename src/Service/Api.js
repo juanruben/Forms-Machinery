@@ -116,3 +116,7 @@ export async function deleteForm(id) {
     return axios.delete(`${url}/forms/${id}`);
 }
 
+export async function copyForm(form_id) {
+    return axios.post(`${url}/forms/copy/form`, { form_id });
+}
+
