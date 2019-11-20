@@ -8,6 +8,7 @@ import MenuButton from '../../Components/MenuButton/MenuButton';
 import Title from '../../Components/Title/Title';
 import History from '../../Pages/History/History';
 import Clients from '../../Pages/Clients/Clients';
+import Constructions from '../../Pages/Constructions/Constructions';
 import Machines from '../../Pages/Machines/Machines';
 import Users from '../../Pages/Users/Users';
 import Forms from '../../Pages/Forms/Forms';
@@ -112,6 +113,7 @@ class Main extends React.Component {
                     <Switch>
                         <Route exact path="/admin/dashboard" component={History} />
                         <Route exact path="/admin/clientes" component={Clients} />
+                        <Route exact path="/admin/obras" component={Constructions} />
                         <Route exact path="/admin/usuarios" component={Users} />
                         <Route exact path="/admin/maquinas" component={Machines} />
                         <Route exact path="/admin/formularios" component={Forms} />
