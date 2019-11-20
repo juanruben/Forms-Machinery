@@ -107,7 +107,7 @@ class Constructions extends Component {
                 maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <ModalView title="Editar obra" type="edit">
+                        <ModalView title="Editar obra" type="edit" callback={this.loadData}>
                             <ConstructionForm data={this.findData(row.original.id)} />
                         </ModalView>
                         <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
@@ -122,7 +122,7 @@ class Constructions extends Component {
             <>
                 <TopBar>
                     <DownloadCSVButton data={data} filename="obras.csv" />
-                    <ModalView title="Crear obra" type="add">
+                    <ModalView title="Crear obra" type="add" callback={this.loadData}>
                         <ConstructionForm />
                     </ModalView>
                 </TopBar>
