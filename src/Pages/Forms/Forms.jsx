@@ -8,7 +8,7 @@ import { StateContext } from '../../State';
 import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalView from '../../Layout/ModalView/ModalView';
-import { getForms, deleteForm } from '../../Service/Api';
+import { getForms, deleteForm, copyForm } from '../../Service/Api';
 import { tableConfig } from '../../config';
 import './Forms.scss';
 
@@ -22,6 +22,7 @@ class Forms extends Component {
             deleteId: null,
         };
         this.loadData = this.loadData.bind(this);
+        this.handleCopy = this.handleCopy.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.onViewClick = this.onViewClick.bind(this);
     }
@@ -70,6 +71,25 @@ class Forms extends Component {
         });
     }
 
+    async handleCopy(id) {
+        const [, dispatch] = this.context;
+        dispatch({
+            type: 'SET_LOADING',
+            value: true,
+        });
+
+        await copyForm(id).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
+        });
+
+        dispatch({
+            type: 'SET_LOADING',
+            value: false,
+        });
+    }
+
     handleRemove(id) {
         this.setState({
             showConfirm: true,
@@ -100,7 +120,9 @@ class Forms extends Component {
                 maxWidth: 150,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <span className="form-actions__icon"><i className="far fa-copy" /></span>
+                        <button onClick={() => { this.handleCopy(row.original.id); }} type="button">
+                            <i className="far fa-copy" />
+                        </button>
                         <ModalView title="Editar formulario" type="edit" callback={this.loadData}>
                             <FormForm data={this.findData(row.original.id)} />
                         </ModalView>
