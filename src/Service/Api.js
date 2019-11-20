@@ -17,7 +17,7 @@ axios.interceptors.request.use((config) => {
 
 export async function login(user, password) {
     return axios.post(`${url}/login`, { user, password });
-            }
+}
 
 export async function logout() {
     return axios.post(`${url}/logout`);
@@ -30,4 +30,11 @@ export async function getUsers() {
 export async function addUser(data) {
     return axios.post(`${url}/users`, { ...data });
 }
+
+export async function updateUser(data, id) {
+    return axios.put(`${url}/users/${id}`, { ...data });
+}
+
+export async function deleteUser(id) {
+    return axios.delete(`${url}/users/${id}`);
 }
