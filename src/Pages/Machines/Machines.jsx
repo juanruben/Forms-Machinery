@@ -102,7 +102,6 @@ class Machines extends Component {
             {
                 Header: 'Modelo',
                 accessor: 'model',
-                maxWidth: 100,
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['model'] }),
                 filterAll: true,
                 filterable: true,
