@@ -85,7 +85,7 @@ class SectionForm extends Component {
             this.toggleLoading(true);
             const { data } = this.state;
 
-            await updateSection(data).then((response) => {
+            await updateSection(data, data.id).then((response) => {
                 if (response && response.status === 200) {
                     const { callback } = this.props;
                     callback();
