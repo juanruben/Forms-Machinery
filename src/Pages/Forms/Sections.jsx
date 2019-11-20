@@ -4,10 +4,12 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
+import { StateContext } from '../../State';
 import SectionForm from './SectionForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
+import { getForm } from '../../Service/Api';
 
 import './sortable.scss';
 
@@ -70,35 +72,14 @@ class Sections extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [
-                {
-                    id: 1,
-                    name: 'Nombre de sección 1',
-                },
-                {
-                    id: 2,
-                    name: 'Nombre de sección 2',
-                },
-                {
-                    id: 3,
-                    name: 'Nombre de sección 3',
-                },
-                {
-                    id: 4,
-                    name: 'Nombre de sección 4',
-                },
-                {
-                    id: 5,
-                    name: 'Nombre de sección 5',
-                },
-                {
-                    id: 6,
-                    name: 'Nombre de sección 6',
-                },
-            ],
+            data: {},
         };
+        this.loadData = this.loadData.bind(this);
     }
 
+    componentDidMount() {
+        this.loadData();
+    }
 
     onSortEnd = ({ oldIndex, newIndex }) => {
         this.setState(({ items }) => ({
@@ -106,15 +87,35 @@ class Sections extends Component {
         }));
     };
 
+    async loadData() {
+        const { match } = this.props;
+        const { id } = match.params;
+        const [, dispatch] = this.context;
+
+        await getForm(id)
+            .then((response) => {
+                this.setState({
+                    data: response.data,
+                    loading: false,
+                });
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+    }
+
     render() {
-        const { items } = this.state;
+        const { data, loading } = this.state;
         const { history } = this.props;
 
         return (
             <>
                 <TopBar>
-                    <ModalView title="Crear sección de formulario" type="add">
-                        <SectionForm />
+                    <ModalView title="Crear sección de formulario" type="add" callback={this.loadData}>
+                        <SectionForm form_id={data.id} />
                     </ModalView>
                 </TopBar>
                 <button onClick={() => { history.goBack(); }} className="back-button" type="button">
@@ -122,31 +123,39 @@ class Sections extends Component {
                     {' '}
                     Volver
                 </button>
-                <Title text="Secciones del formulario [...xyz]" />
 
-                <SortableContainer
-                    onSortEnd={this.onSortEnd}
-                    lockAxis="y"
-                    useWindowAsScrollContainer
-                    useDragHandle
-                    helperClass="sortable-container"
-                >
-                    {items.map((item, index) => (
-                        <SortableItem
-                            key={item.id}
-                            index={index}
-                            value={item.name}
-                            history={history}
-                        />
-                    ))}
-                </SortableContainer>
+                {data.name && (
+                    <Title text={`Secciones del formulario ${data.name}`} />
+                )}
+
+                {!loading && data.model_section ? (
+                    <SortableContainer
+                        onSortEnd={this.onSortEnd}
+                        lockAxis="y"
+                        useWindowAsScrollContainer
+                        useDragHandle
+                        helperClass="sortable-container"
+                    >
+                        {data.model_section.map((item, index) => (
+                            <SortableItem
+                                key={item.id}
+                                index={index}
+                                value={item.name}
+                                history={history}
+                            />
+                        ))}
+                    </SortableContainer>
+                ) : (<div>No hay secciones creadas</div>)}
             </>
         );
     }
 }
 
+Sections.contextType = StateContext;
+
 Sections.propTypes = {
     history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
 };
 
 export default withRouter(Sections);
