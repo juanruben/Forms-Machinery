@@ -93,7 +93,7 @@ class Recover extends Component {
                 <Box>
                     <Logo padding={30} maxWidth={150} />
                     <div className="login-container">
-                        <Input type="email" name="email" onChange={this.handleInputChange} value={email} icon="far fa-envelope" placeholder="Correo electrónico" errors={errors.email} />
+                        <Input type="email" name="email" onChange={this.handleInputChange} value={email} icon="far fa-envelope" placeholder="Correo electrónico" errors={errors} />
                         <Button type="button" onClick={this.send} text="Enviar" />
                     </div>
                     <Link to="/login" className="link-login">Volver</Link>
