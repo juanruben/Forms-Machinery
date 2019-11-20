@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Spinner } from 'reactstrap';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -28,6 +29,17 @@ class NewForm extends Component {
         }
     }
 
+    onChange(event) {
+        const { name, value } = event.target;
+        const { data, errors } = this.state;
+        data[name] = value;
+        errors[name] = '';
+        this.setState({
+            data,
+            errors,
+        });
+    }
+
     validForm() {
         const { data } = this.state;
         const { name } = data;
@@ -44,17 +56,6 @@ class NewForm extends Component {
         });
 
         return formIsValid;
-    }
-
-    onChange(event) {
-        const { name, value } = event.target;
-        const { data, errors } = this.state;
-        data[name] = value;
-        errors[name] = '';
-        this.setState({
-            data,
-            errors,
-        });
     }
 
     async handleCreate() {
@@ -119,5 +120,16 @@ class NewForm extends Component {
         );
     }
 }
+
+NewForm.propTypes = {
+    callback: PropTypes.func,
+    data: PropTypes.object,
+};
+
+NewForm.defaultProps = {
+    callback: null,
+    data: null,
+};
+
 
 export default NewForm;
