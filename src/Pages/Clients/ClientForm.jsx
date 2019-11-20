@@ -1,9 +1,11 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Spinner } from 'reactstrap';
 import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import { addClient, updateClient } from '../../Service/Api';
 
 class ClientForm extends Component {
     constructor(props) {
@@ -13,7 +15,8 @@ class ClientForm extends Component {
             data: {},
             errors: {},
         };
-        this.handleNew = this.handleNew.bind(this);
+        this.handleCreate = this.handleCreate.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
         this.onChange = this.onChange.bind(this);
         this.validForm = this.validForm.bind(this);
     }
@@ -89,42 +92,56 @@ class ClientForm extends Component {
         return formIsValid;
     }
 
-    async handleNew() {
+    async handleCreate() {
         if (this.validForm()) {
             this.toggleLoading(true);
-            const { callback } = this.props;
+            const { data } = this.state;
 
-            setTimeout(() => {
-                this.toggleLoading(false);
-                callback();
-            }, 500);
+            await addClient(data).then((response) => {
+                if (response && response.status === 201) {
+                    const { callback } = this.props;
+                    callback();
+                }
+            }).catch((error) => {
+                this.setState({
+                    errors: error.response.data.errors,
+                });
+            });
+
+            this.toggleLoading(false);
         }
     }
 
     async handleUpdate() {
         if (this.validForm()) {
             this.toggleLoading(true);
-            const { callback } = this.props;
+            const { data } = this.state;
 
-            setTimeout(() => {
-                this.toggleLoading(false);
-                callback();
-            }, 500);
+            await updateClient(data).then((response) => {
+                if (response && response.status === 200) {
+                    const { callback } = this.props;
+                    callback();
+                }
+            }).catch((error) => {
+                this.setState({
+                    errors: error.response.data.errors,
+                });
+            });
+            this.toggleLoading(false);
         }
     }
 
     toggleLoading(value) {
-        const [, dispatch] = this.context;
-        dispatch({
-            type: 'SET_LOADING',
-            value,
+        this.setState({
+            loading: value,
         });
     }
 
-
     render() {
         const { readOnly } = this.props;
-        const { createMode, errors, data } = this.state;
+        const {
+            createMode, errors, data, loading,
+        } = this.state;
         const {
             name, business_name, rut, contact, phone, email, address,
         } = data;
@@ -139,19 +156,13 @@ class ClientForm extends Component {
                     <Col md={6}><Input name="contact" onChange={this.onChange} label="Contacto" placeholder="Persona contacto" value={contact} readOnly={readOnly} icon="fas fa-user-tie" errors={errors} required /></Col>
                     <Col md={6}><Input name="phone" onChange={this.onChange} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={phone} readOnly={readOnly} icon="fas fa-phone" errors={errors} required /></Col>
                     <Col md={6}><Input name="address" onChange={this.onChange} label="Dirección" placeholder="Dirección" value={address} readOnly={readOnly} icon="fas fa-map-marked-alt" errors={errors} required /></Col>
-                    <Col md={12}><Input name="email" onChange={this.onChange} label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={email} readOnly={readOnly} icon="far fa-envelope" errors={errors} required /></Col>
+                    <Col md={12}><Input name="email" onChange={this.onChange} label="Email" placeholder="correo1@ejemplo.com" value={email} readOnly={readOnly} icon="far fa-envelope" errors={errors} required /></Col>
                 </Row>
                 {!readOnly && (
-                    <>
-                        * Estas direcciones de correo recibirán reporte y estado de las maquinarias
-                        cuando esta salgan del taller hacia la obra del cliente
-                        <Row>
-                            <Col md={8} />
-                            <Col md={4}>
-                                <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={this.handleNew} />
-                            </Col>
-                        </Row>
-                    </>
+                    <div className="form-footer">
+                        {loading && <div className="spinner"><Spinner /></div>}
+                        <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={createMode ? this.handleCreate : this.handleUpdate} />
+                    </div>
                 )}
             </>
         );
