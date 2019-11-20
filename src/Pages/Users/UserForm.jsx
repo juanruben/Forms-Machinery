@@ -25,8 +25,10 @@ class UserForm extends Component {
             createMode: true,
             data: {},
             errors: {},
+            loading: false,
         };
         this.handleNew = this.handleNew.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -105,7 +107,7 @@ class UserForm extends Component {
                 formIsValid = false;
                 errors.repeatPassword = ['Requerido'];
             } else if (repeatPassword !== password) {
-            formIsValid = false;
+                formIsValid = false;
                 errors.repeatPassword = ['Debe coincidir'];
             }
         }
@@ -119,14 +121,14 @@ class UserForm extends Component {
 
     async handleNew() {
         if (this.validForm()) {
-        this.toggleLoading(true);
+            this.toggleLoading(true);
             const { data } = this.state;
 
             await addUser(data).then((response) => {
                 if (response && response.status === 201) {
-        const { callback } = this.props;
-            callback();
-    }
+                    const { callback } = this.props;
+                    callback();
+                }
             }).catch((error) => {
                 this.setState({
                     errors: error.response.data.errors,
@@ -138,12 +140,12 @@ class UserForm extends Component {
 
     async handleUpdate() {
         if (this.validForm()) {
-        this.toggleLoading(true);
+            this.toggleLoading(true);
             const { data } = this.state;
 
             await updateUser(data).then((response) => {
                 if (response && response.status === 200) {
-        const { callback } = this.props;
+                    const { callback } = this.props;
                     callback();
                 }
             }).catch((error) => {
@@ -163,7 +165,9 @@ class UserForm extends Component {
 
     render() {
         const { readOnly } = this.props;
-        const { createMode, errors, data } = this.state;
+        const {
+            createMode, errors, data, loading,
+        } = this.state;
         const {
             name, last_name, username, rut, phone, email, role_id, password, repeatPassword,
         } = data;
@@ -180,8 +184,8 @@ class UserForm extends Component {
                     <Col md={12}><Select label="Rol" value={String(role_id)} options={profiles} placeholder="Seleccione..." name="role_id" onChange={this.onChange} readOnly={readOnly} errors={errors} required /></Col>
                     {createMode && (
                         <>
-                    <Col md={6}><Input name="password" type="password" value={password} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Contraseña" placeholder="Contraseña" errors={errors} required /></Col>
-                    <Col md={6}><Input name="repeatPassword" type="password" value={repeatPassword} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Repita contraseña" placeholder="Repita contraseña" errors={errors} required /></Col>
+                            <Col md={6}><Input name="password" type="password" value={password} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Contraseña" placeholder="Contraseña" errors={errors} required /></Col>
+                            <Col md={6}><Input name="repeatPassword" type="password" value={repeatPassword} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Repita contraseña" placeholder="Repita contraseña" errors={errors} required /></Col>
                         </>
                     )}
                 </Row>
@@ -207,7 +211,5 @@ UserForm.defaultProps = {
     data: null,
     readOnly: false,
 };
-
-UserForm.contextType = StateContext;
 
 export default UserForm;
