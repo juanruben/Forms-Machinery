@@ -8,7 +8,6 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-// import { login } from '../../Service/__mocks__/Api';
 import { login } from '../../Service/Api';
 import './Login.scss';
 
@@ -16,8 +15,7 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
+            data: {},
             errors: {},
             showAlertError: false,
             alertMessage: '',
@@ -42,24 +40,25 @@ class Login extends Component {
     }
 
     validForm() {
-        const { username, password } = this.state;
+        const { data } = this.state;
+        const { user, password } = data;
         const errors = {};
         let formIsValid = true;
 
-        if (username.trim().length === 0) {
+        if (!user || user.trim().length === 0) {
             formIsValid = false;
-            errors.username = 'Requerido';
-        } else if (!validateUsername(username)) {
+            errors.username = ['Requerido'];
+        } else if (!validateUsername(user)) {
             formIsValid = false;
-            errors.username = 'Error de formato';
+            errors.username = ['Error de formato'];
         }
 
-        if (password.trim().length === 0) {
+        if (!password || password.trim().length === 0) {
             formIsValid = false;
-            errors.password = 'Requerido';
+            errors.password = ['Requerido'];
         } else if (!validatePassword(password)) {
             formIsValid = false;
-            errors.password = 'Error de formato';
+            errors.password = ['Error de formato'];
         }
 
         this.setState({
@@ -78,25 +77,25 @@ class Login extends Component {
     }
 
     async requestSignIn() {
-        const { username, password } = this.state;
+        const { data } = this.state;
 
-        await login(username, password).then((response) => {
+        await login(data).then((response) => {
             if (response && response.status === 200) {
-                const { data } = response;
-                this.signIn(data.token, data.role);
-            } else if (response && response.status === 401) {
-                this.setState({
-                    showAlertError: true,
-                    alertMessage: 'Datos incorrectos',
-                });
+                const { token, role } = response.data;
+                this.signIn(token, role);
             } else {
                 this.setState({
                     showAlertError: true,
                     alertMessage: 'Error de conexión',
                 });
             }
-            this.toggleLoading(false);
+        }).catch(() => {
+            this.setState({
+                showAlertError: true,
+                alertMessage: 'Datos incorrectos',
+            });
         });
+        this.toggleLoading(false);
     }
 
     signIn(token, role) {
@@ -116,20 +115,22 @@ class Login extends Component {
 
     handleInputChange(event) {
         const { name, value } = event.target;
+        const { data, errors } = this.state;
+        data[name] = value;
+        errors[name] = '';
         this.setState({
-            [name]: value,
-            errors: {},
+            data,
+            errors,
         });
     }
 
     render() {
         const [{ loggedin, role }] = this.context;
-        const { showAlertError, alertMessage } = this.state;
         const {
-            username,
-            password,
-            errors,
+            showAlertError, alertMessage, errors, data,
         } = this.state;
+        const { user, password } = data;
+
 
         const path = role === 1 ? '/admin/dashboard' : '/entrada';
         if (loggedin) {
@@ -143,9 +144,11 @@ class Login extends Component {
                 <Box>
                     <Logo padding={30} maxWidth={150} />
                     <div className="login-container">
-                        <Input type="text" name="username" onChange={this.handleInputChange} value={username} icon="fas fa-user-tie" placeholder="Usuario" errors={errors} />
+                        <Input type="text" name="user" onChange={this.handleInputChange} value={user} icon="fas fa-user-tie" placeholder="Usuario" errors={errors} />
                         <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors} />
-                        <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
+                        <div className="login-footer">
+                            <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
+                        </div>
                     </div>
                     <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
                 </Box>
