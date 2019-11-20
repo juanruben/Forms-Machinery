@@ -129,5 +129,17 @@ export async function addSection(data, form_id) {
 }
 
 export async function updateSection(data, id) {
-    return axios.put(`${url}/forms/sections/${id}`, { ...data });
+    return axios.patch(`${url}/forms/sections/${id}`, { ...data });
+}
+
+export async function orderSection(data, id) {
+    return axios.patch(`${url}/forms/order/section/${id}`, { ...data });
+}
+
+export async function deleteSection(id) {
+    return axios.delete(`${url}/forms/sections/${id}`);
+}
+
+export async function copySection(section_id) {
+    return axios.post(`${url}/forms/copy/section`, { section_id });
 }
