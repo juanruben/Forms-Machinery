@@ -5,6 +5,7 @@ import { Row, Col, Spinner } from 'reactstrap';
 import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import { validateRut, validateEmail } from '../../Service/Utils';
 import { addClient, updateClient } from '../../Service/Api';
 
 class ClientForm extends Component {
@@ -60,6 +61,11 @@ class ClientForm extends Component {
             errors.business_name = 'Requerido';
         }
 
+        if (rut && !validateRut(rut)) {
+            formIsValid = false;
+            errors.rut = 'Rut inválido';
+        }
+
         if (!rut || rut.trim().length === 0) {
             formIsValid = false;
             errors.rut = 'Requerido';
@@ -73,6 +79,11 @@ class ClientForm extends Component {
         if (!phone || contact.trim().length === 0) {
             formIsValid = false;
             errors.phone = 'Requerido';
+        }
+
+        if (email && !validateEmail(email)) {
+            formIsValid = false;
+            errors.email = 'Email inválido';
         }
 
         if (!email || email.trim().length === 0) {
@@ -152,7 +163,7 @@ class ClientForm extends Component {
                 <Row>
                     <Col md={6}><Input name="name" onChange={this.onChange} label="Nombre empresa" placeholder="Nombre empresa" value={name} readOnly={readOnly || !createMode} icon="fas fa-industry" errors={errors} required /></Col>
                     <Col md={6}><Input name="business_name" onChange={this.onChange} label="Razón social" placeholder="Razón social" value={business_name} readOnly={readOnly || !createMode} errors={errors} required /></Col>
-                    <Col md={6}><Input name="rut" onChange={this.onChange} label="Rut empresa" placeholder="Rut empresa" value={rut} readOnly={readOnly || !createMode} icon="far fa-address-card" errors={errors} required /></Col>
+                    <Col md={6}><Input name="rut" onChange={this.onChange} label="Rut empresa" placeholder="Ej: 11111111-1" value={rut} readOnly={readOnly || !createMode} icon="far fa-address-card" errors={errors} required /></Col>
                     <Col md={6}><Input name="contact" onChange={this.onChange} label="Contacto" placeholder="Persona contacto" value={contact} readOnly={readOnly} icon="fas fa-user-tie" errors={errors} required /></Col>
                     <Col md={6}><Input name="phone" onChange={this.onChange} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={phone} readOnly={readOnly} icon="fas fa-phone" errors={errors} required /></Col>
                     <Col md={6}><Input name="address" onChange={this.onChange} label="Dirección" placeholder="Dirección" value={address} readOnly={readOnly} icon="fas fa-map-marked-alt" errors={errors} required /></Col>
