@@ -156,7 +156,7 @@ class Machines extends Component {
                 maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <ModalView title="Editar máquina" type="edit">
+                        <ModalView title="Editar máquina" type="edit" callback={this.loadData}>
                             <MachineForm data={this.findData(row.original.id)} />
                         </ModalView>
                         <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
