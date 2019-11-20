@@ -37,6 +37,7 @@ const Input = (props) => {
                     value={value}
                     onChange={onChange}
                     placeholder={placeholder}
+                    autoComplete="new-password"
                 />
                 {warning && <div className="warning">{errors[name]}</div>}
             </div>
