@@ -104,6 +104,10 @@ export async function getForms() {
     return axios.get(`${url}/forms`);
 }
 
+export async function getForm(id) {
+    return axios.get(`${url}/forms/${id}`);
+}
+
 export async function addForm(data) {
     return axios.post(`${url}/forms`, { ...data });
 }
@@ -120,3 +124,10 @@ export async function copyForm(form_id) {
     return axios.post(`${url}/forms/copy/form`, { form_id });
 }
 
+export async function addSection(data, form_id) {
+    return axios.post(`${url}/forms/${form_id}/sections`, { ...data });
+}
+
+export async function updateSection(data, id) {
+    return axios.put(`${url}/forms/sections/${id}`, { ...data });
+}
