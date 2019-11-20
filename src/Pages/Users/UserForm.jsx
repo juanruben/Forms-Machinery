@@ -142,9 +142,13 @@ class UserForm extends Component {
                     <Col md={6}><Input name="rut" value={rut} onChange={this.onChange} readOnly={readOnly} label="RUT" placeholder="RUT" icon="far fa-address-card" errors={errors} required /></Col>
                     <Col md={6}><Input name="phone" value={phone} onChange={this.onChange} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" icon="fas fa-phone" errors={errors} required /></Col>
                     <Col md={6}><Input name="email" value={email} onChange={this.onChange} readOnly={readOnly} label="Email" placeholder="Email" icon="far fa-envelope" errors={errors} required /></Col>
-                    <Col md={12}><Select label="Rol" value={role_id} options={profiles} placeholder="Seleccione..." name="role_id" onChange={this.onChange} readOnly={readOnly} errors={errors} required /></Col>
+                    <Col md={12}><Select label="Rol" value={String(role_id)} options={profiles} placeholder="Seleccione..." name="role_id" onChange={this.onChange} readOnly={readOnly} errors={errors} required /></Col>
+                    {createMode &&
+                        <>
                     <Col md={6}><Input name="password" type="password" value={password} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Contraseña" placeholder="Contraseña" errors={errors} required /></Col>
                     <Col md={6}><Input name="repeatPassword" type="password" value={repeatPassword} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Repita contraseña" placeholder="Repita contraseña" errors={errors} required /></Col>
+                        </>
+                    }
                 </Row>
                 {!readOnly && (
                     <div className="form-footer">
