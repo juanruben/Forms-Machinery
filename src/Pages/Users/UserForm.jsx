@@ -147,12 +147,10 @@ class UserForm extends Component {
                     <Col md={6}><Input name="repeatPassword" type="password" value={repeatPassword} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Repita contraseña" placeholder="Repita contraseña" errors={errors} required /></Col>
                 </Row>
                 {!readOnly && (
-                    <Row>
-                        <Col md={8} />
-                        <Col md={4}>
-                            <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={this.handleNew} />
-                        </Col>
-                    </Row>
+                    <div className="form-footer">
+                        {loading && <div className="spinner"><Spinner /></div>}
+                        <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={createMode ? this.handleNew : this.handleUpdate} />
+                    </div>
                 )}
             </>
         );
