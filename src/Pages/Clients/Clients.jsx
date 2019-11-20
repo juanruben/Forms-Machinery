@@ -95,7 +95,7 @@ class Clients extends Component {
                 filterable: true,
             },
             {
-                Header: 'Contacto',
+                Header: 'Teléfono de contacto',
                 accessor: 'contact',
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['contact'] }),
                 filterAll: true,
