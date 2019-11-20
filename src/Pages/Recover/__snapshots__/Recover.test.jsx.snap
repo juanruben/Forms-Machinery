@@ -5,7 +5,7 @@ exports[`Recover should render correctly 1`] = `
   <Box>
     <Logo padding={30} maxWidth={150} />
     <div className=\\"login-container\\">
-      <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors=\\"\\" label=\\"\\" readOnly={false} hideReadOnly={false} />
+      <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false} />
       <Button type=\\"button\\" onClick={[Function: bound send]} text=\\"Enviar\\" disabled={false} />
     </div>
     <Link to=\\"/login\\" className=\\"link-login\\">
