@@ -20,7 +20,8 @@ class Login extends Component {
             showAlertError: false,
             alertMessage: '',
         };
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onKeyPress = this.onKeyPress.bind(this);
         this.validForm = this.validForm.bind(this);
         this.checkLoggedIn = this.checkLoggedIn.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
@@ -30,6 +31,23 @@ class Login extends Component {
 
     componentDidMount() {
         this.checkLoggedIn();
+    }
+
+    onChange(event) {
+        const { name, value } = event.target;
+        const { data, errors } = this.state;
+        data[name] = value;
+        errors[name] = '';
+        this.setState({
+            data,
+            errors,
+        });
+    }
+
+    onKeyPress(event) {
+        if (event.key === 'Enter') {
+            this.handleSignIn();
+        }
     }
 
     checkLoggedIn() {
@@ -47,10 +65,10 @@ class Login extends Component {
 
         if (!user || user.trim().length === 0) {
             formIsValid = false;
-            errors.username = ['Requerido'];
+            errors.user = ['Requerido'];
         } else if (!validateUsername(user)) {
             formIsValid = false;
-            errors.username = ['Error de formato'];
+            errors.user = ['Error de formato'];
         }
 
         if (!password || password.trim().length === 0) {
@@ -113,16 +131,7 @@ class Login extends Component {
         }
     }
 
-    handleInputChange(event) {
-        const { name, value } = event.target;
-        const { data, errors } = this.state;
-        data[name] = value;
-        errors[name] = '';
-        this.setState({
-            data,
-            errors,
-        });
-    }
+
 
     render() {
         const [{ loggedin, role }] = this.context;
@@ -144,8 +153,8 @@ class Login extends Component {
                 <Box>
                     <Logo padding={30} maxWidth={150} />
                     <div className="login-container">
-                        <Input type="text" name="user" onChange={this.handleInputChange} value={user} icon="fas fa-user-tie" placeholder="Usuario" errors={errors} />
-                        <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors} />
+                        <Input type="text" name="user" onChange={this.onChange} value={user} icon="fas fa-user-tie" placeholder="Usuario" errors={errors} />
+                        <Input type="password" name="password" onChange={this.onChange} onKeyPress={this.onKeyPress} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors} />
                         <div className="login-footer">
                             <Button type="submit" onClick={this.handleSignIn} text="Entrar" />
                         </div>
