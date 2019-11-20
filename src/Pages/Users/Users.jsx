@@ -60,7 +60,7 @@ class Users extends Component {
             if (response && response.status === 200) {
                 this.loadData();
             }
-            });
+        });
     }
 
     handleRemove(id) {
@@ -154,13 +154,12 @@ class Users extends Component {
             {
                 Header: 'Acciones',
                 id: 'actions',
-                accessor: (row) => null,
                 filterable: false,
                 sortable: false,
                 maxWidth: 100,
                 Cell: (row) => (
                     <div className="form-actions">
-                        <ModalView title="Editar usuario" type="edit">
+                        <ModalView title="Editar usuario" type="edit" callback={this.loadData}>
                             <UserForm data={this.findData(row.original.id)} />
                         </ModalView>
                         <button onClick={() => { this.handleRemove(row.original.id); }} type="button">
@@ -174,7 +173,7 @@ class Users extends Component {
         return (
             <>
                 <TopBar>
-                    <ModalView title="Crear usuario" type="add">
+                    <ModalView title="Crear usuario" type="add" callback={this.loadData}>
                         <UserForm />
                     </ModalView>
                 </TopBar>
