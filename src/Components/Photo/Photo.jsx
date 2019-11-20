@@ -41,13 +41,15 @@ class Photo extends Component {
     }
 
     render() {
-        const { label, required, errors } = this.props;
+        const {
+            label, required, name, errors,
+        } = this.props;
         const { viewCapture, dataUri } = this.state;
-        const warning = (errors.length > 0);
+        const warning = (errors[name] && errors[name].length > 0);
         const buttonText = viewCapture ? <i className="far fa-stop-circle" /> : <i className="fas fa-camera" />;
 
         return (
-            <div className="photo-container" >
+            <div className="photo-container">
                 <div>
                     {label}
                     {required ? ' *' : ''}
@@ -64,21 +66,22 @@ class Photo extends Component {
                         </>
                     ) : null}
                 </div>
-                {warning && <div className="warning">{errors}</div>}
+                {warning && <div className="warning">{errors[name]}</div>}
             </div>
         );
     }
 }
 
 Photo.propTypes = {
-    errors: PropTypes.string,
+    errors: PropTypes.object,
     label: PropTypes.string,
+    name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     required: PropTypes.bool,
 };
 
 Photo.defaultProps = {
-    errors: '',
+    errors: {},
     label: '',
     required: false,
 };

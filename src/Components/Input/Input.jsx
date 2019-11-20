@@ -39,17 +39,7 @@ const Input = (props) => {
                     placeholder={placeholder}
                     autoComplete="new-password"
                 />
-                {warning
-                    && (
-                        <div className="warning">
-                            {errors[name].map((error) => (
-                                <span key={error}>
-                                    {error}
-                                    {' '}
-                                </span>
-                            ))}
-                        </div>
-                    )}
+                {warning && <div className="warning">{errors[name]}</div>}
             </div>
         </>
     );

@@ -7,7 +7,7 @@ function Multiple(props) {
         label, options, name, errors, required,
     } = props;
 
-    const warning = (errors.length > 0);
+    const warning = (errors[name] && errors[name].length > 0);
 
     return (
         <div className="multiple-container">
@@ -23,13 +23,13 @@ function Multiple(props) {
                     </li>
                 ))}
             </ul>
-            {warning && <div className="warning">{errors}</div>}
+            {warning && <div className="warning">{errors[name]}</div>}
         </div>
     );
 }
 
 Multiple.propTypes = {
-    errors: PropTypes.string,
+    errors: PropTypes.object,
     label: PropTypes.string.isRequired,
     options: PropTypes.array.isRequired,
     name: PropTypes.string.isRequired,
@@ -38,7 +38,7 @@ Multiple.propTypes = {
 
 Multiple.defaultProps = {
     required: false,
-    errors: '',
+    errors: {},
 };
 
 export default Multiple;
