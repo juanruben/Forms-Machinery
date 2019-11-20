@@ -15,8 +15,8 @@ axios.interceptors.request.use((config) => {
     return config;
 }, (err) => Promise.reject(err));
 
-export async function login(user, password) {
-    return axios.post(`${url}/login`, { user, password });
+export async function login(data) {
+    return axios.post(`${url}/login`, { ...data });
 }
 
 export async function logout() {
