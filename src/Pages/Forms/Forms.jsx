@@ -58,6 +58,7 @@ class Forms extends Component {
                     dispatch({
                         type: 'EXIT',
                     });
+                } else if (error.response.status === 500) {
                 }
             });
     }
