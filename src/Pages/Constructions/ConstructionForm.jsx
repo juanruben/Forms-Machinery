@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Row, Col, Spinner } from 'reactstrap';
 import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
+import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
 import { addConstruction, updateConstruction } from '../../Service/Api';
 
@@ -146,17 +147,21 @@ class ConstructionForm extends Component {
             name, business_name, rut, contact, phone, email, address,
         } = data;
 
+        const rest = {
+            onChange: this.onChang,
+            errors,
+            required: true,
+            readOnly,
+        }
 
         return (
             <>
                 <Row>
-                    <Col md={6}><Input name="name" onChange={this.onChange} label="Nombre empresa" placeholder="Nombre empresa" value={name} readOnly={readOnly || !createMode} icon="fas fa-industry" errors={errors} required /></Col>
-                    <Col md={6}><Input name="business_name" onChange={this.onChange} label="Razón social" placeholder="Razón social" value={business_name} readOnly={readOnly || !createMode} errors={errors} required /></Col>
-                    <Col md={6}><Input name="rut" onChange={this.onChange} label="Rut empresa" placeholder="Rut empresa" value={rut} readOnly={readOnly || !createMode} icon="far fa-address-card" errors={errors} required /></Col>
-                    <Col md={6}><Input name="contact" onChange={this.onChange} label="Contacto" placeholder="Persona contacto" value={contact} readOnly={readOnly} icon="fas fa-user-tie" errors={errors} required /></Col>
-                    <Col md={6}><Input name="phone" onChange={this.onChange} label="Teléfono de contacto" placeholder="Teléfono de contacto" value={phone} readOnly={readOnly} icon="fas fa-phone" errors={errors} required /></Col>
-                    <Col md={6}><Input name="address" onChange={this.onChange} label="Dirección" placeholder="Dirección" value={address} readOnly={readOnly} icon="fas fa-map-marked-alt" errors={errors} required /></Col>
-                    <Col md={12}><Input name="email" onChange={this.onChange} label="Email" placeholder="correo1@ejemplo.com" value={email} readOnly={readOnly} icon="far fa-envelope" errors={errors} required /></Col>
+                    <Col md={12}><Input name="name" label="Nombre" value={name} icon="fas fa-industry" {...rest} /></Col>
+                    <Col md={12}><Input name="address" label="Dirección" value={address} icon="fas fa-map-marked-alt" {...rest} /></Col>
+                    <Col md={12}><Select name="cliente_id" label="Cliente" value={business_name} {...rest} options={[{}]} placeholder="Seleccione..." /></Col>
+                    <Col md={12}><Input name="email" label="Emails" placeholder="correo1@ejemplo.com" value={email} icon="far fa-envelope" {...rest} /></Col>
+                    <Col md={12}>* Estas direcciones de correo recibirán reporte y estado de las maquinarias cuando esta salgan del taller hacia la obra del cliente</Col>
                 </Row>
                 {!readOnly && (
                     <div className="form-footer">
