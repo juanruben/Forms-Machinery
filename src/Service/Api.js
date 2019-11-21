@@ -152,7 +152,7 @@ export async function getFields(section_id) {
 }
 
 export async function addField(data, section_id) {
-    return axios.post(`${url}forms/sections/${section_id}/fields`, { ...data });
+    return axios.post(`${url}/forms/sections/${section_id}/fields`, { ...data });
 }
 
 export async function updateField(data, id) {

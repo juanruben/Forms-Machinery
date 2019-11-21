@@ -1,15 +1,16 @@
 @import "../../styles.scss";
 
-.button-main {
+.item-option {
   color: white;
   background-color: $icafal-orange;
   border: none;
   border-radius: 2px;
   display: block;
   font-weight: bold;
-  height: 35px;
+  padding: 5px;
   text-transform: uppercase;
   width: 100%;
+  margin-bottom: 5px;
 
   &:hover:not([disabled]) {
     background-color: #db4d00;

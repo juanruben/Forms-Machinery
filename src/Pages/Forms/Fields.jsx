@@ -72,7 +72,7 @@ const SortableItem = sortableElement(({ index, value, type, data, callback }) =>
                         <i className="far fa-copy" />
                     </button>
                     <ModalView title="Editar campo" type="edit">
-                        <FieldForm />
+                        <FieldForm data={data}/>
                     </ModalView>
                     <button onClick={() => { setShowConfirm(true); }} type="button">
                         <i className="fas fa-trash" />
@@ -169,13 +169,14 @@ class Fields extends Component {
 
     render() {
         const { items } = this.state;
-        const { history } = this.props;
+        const { history, match } = this.props;
+        const { id } = match.params;
 
         return (
             <>
                 <TopBar>
                     <ModalView title="Crear campo" type="add">
-                        <FieldForm />
+                        <FieldForm section_id={id} />
                     </ModalView>
                 </TopBar>
                 <button onClick={() => { history.goBack(); }} className="back-button" type="button">

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './Button.scss';
 
 const Button = (props) => {
-    const { onClick, disabled, text } = props;
+    const { onClick, disabled, text, className } = props;
     return (
-        <button type="submit" className="button-main" onClick={onClick} disabled={disabled}>
+        <button type="submit" className={className ? "button-main " + className : "button-main" } onClick={onClick} disabled={disabled}>
             {text}
         </button>
     );
