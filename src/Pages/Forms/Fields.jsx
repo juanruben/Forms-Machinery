@@ -5,6 +5,8 @@ import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
 import FieldForm from './FieldForm';
+import { StateContext } from '../../State';
+import { getFields, addField, updateField, deleteField, copyField, orderField } from '../../Service/Api';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
@@ -19,7 +21,7 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
-const SortableItem = sortableElement(({ index, value, type }) => {
+const SortableItem = sortableElement(({ index, value, type, data, callback }) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
     function getIcon(fff) {
@@ -37,6 +39,24 @@ const SortableItem = sortableElement(({ index, value, type }) => {
         }
     }
 
+    //Delete Field Function
+    async function handleRemove() {
+        await deleteField(data.id)
+            .then(() => {
+                callback();
+            }).catch(() => {
+            });
+    }
+
+    //Copy Field Function
+    async function handleCopy() {
+        await copyField(data.id)
+            .then(() => {
+                callback();
+            }).catch(() => {
+            });
+    }
+
     return (
         <>
             <li className="sortable-item">
@@ -48,7 +68,7 @@ const SortableItem = sortableElement(({ index, value, type }) => {
                     </button>
                 </span>
                 <div className="form-actions">
-                    <button type="button">
+                    <button type="button" onClick={handleCopy}>
                         <i className="far fa-copy" />
                     </button>
                     <ModalView title="Editar campo" type="edit">
@@ -70,6 +90,7 @@ const SortableItem = sortableElement(({ index, value, type }) => {
                 cancelBtnBsStyle="default"
                 title="Eliminar campo"
                 onConfirm={() => {
+                    handleRemove();
                     setShowConfirm(false);
                 }}
                 onCancel={() => {
@@ -86,39 +107,28 @@ class Fields extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: [
-                {
-                    id: 1,
-                    name: 'Nombre del campo 1',
-                    type: 'text',
-                },
-                {
-                    id: 2,
-                    name: 'Nombre del campo 2',
-                    type: 'multiple',
-                },
-                {
-                    id: 3,
-                    name: 'Nombre del campo 3',
-                    type: 'image',
-                },
-                {
-                    id: 4,
-                    name: 'Nombre del campo 4',
-                    type: 'multiple',
-                },
-                {
-                    id: 5,
-                    name: 'Nombre del campo 5',
-                    type: 'simple',
-                },
-                {
-                    id: 6,
-                    name: 'Nombre del campo 6',
-                    type: 'text',
-                },
-            ],
+            items: [],
         };
+        this.loadData = this.loadData.bind(this);
+    }
+
+    componentDidMount(){
+        this.loadData();
+    }
+
+    //Load fields by Section Id
+    async loadData(){
+        const { match } = this.props;
+        const { id } = match.params;
+        const [, dispatch] = this.context;
+        this.setState({ loading: true });
+        await getFields(id)
+            .then((response) => {
+                this.setState({
+                    items: response.data
+                }); 
+            })
+        this.setState({ loading: false });
     }
 
 
@@ -159,6 +169,8 @@ class Fields extends Component {
                             value={item.name}
                             type={item.type}
                             history={history}
+                            data={item}
+                            callback={this.loadData}
                         />
                     ))}
                 </SortableContainer>
@@ -166,6 +178,8 @@ class Fields extends Component {
         );
     }
 }
+
+Fields.contextType = StateContext;
 
 Fields.propTypes = {
     history: PropTypes.object.isRequired,

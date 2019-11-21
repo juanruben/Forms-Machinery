@@ -27,7 +27,7 @@ const SortableItem = sortableElement(({
     const [showConfirm, setShowConfirm] = useState(false);
 
     const onViewClick = () => {
-        history.push(`/admin/formularios/secciones/${index}`);
+        history.push(`/admin/formularios/secciones/${data.id}`);
     };
 
     async function handleRemove() {
