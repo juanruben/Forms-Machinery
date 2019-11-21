@@ -143,3 +143,30 @@ export async function deleteSection(id) {
 export async function copySection(section_id) {
     return axios.post(`${url}/forms/copy/section`, { section_id });
 }
+
+
+//Start Fields Implementation
+
+export async function getFields(section_id) {
+    return axios.get(`${url}/fields/section/${section_id}`);
+}
+
+export async function addField(data, section_id) {
+    return axios.post(`${url}/forms/sections/${section_id}/fields`, { ...data });
+}
+
+export async function updateField(data, id) {
+    return axios.patch(`${url}/forms/sections/fields/${id}`, { ...data });
+}
+
+export async function orderField(data, section_id) {
+    return axios.patch(`${url}/forms/order/field/${section_id}`, { ...data });
+}
+
+export async function deleteField(id) {
+    return axios.delete(`${url}/forms/sections/fields/${id}`);
+}
+
+export async function copyField(field_id) {
+    return axios.post(`${url}/forms/copy/field`, { field_id });
+}
