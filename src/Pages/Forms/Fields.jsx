@@ -133,10 +133,39 @@ class Fields extends Component {
 
 
     onSortEnd = ({ oldIndex, newIndex }) => {
+
+        const { match } = this.props;
+        const { id } = match.params;
+
+        this.handleOrder(oldIndex, newIndex, id);
+
         this.setState(({ items }) => ({
             items: arrayMove(items, oldIndex, newIndex),
         }));
     };
+
+    async handleOrder(current, newIndex, id){
+        let data = {
+            current : current + 1,
+            new : newIndex + 1,
+        };
+
+        console.log("[ORDER]", data);
+        console.log("[ID SECCION]", id);
+
+        this.setState({loading : true});
+
+        await orderField(data, id)
+            .then((value) => {
+                console.log(value)
+                // this.loadData(); 
+            }).catch((value) => {
+                console.log(value)
+            });
+
+        this.setState({loading : false});
+
+    }
 
     render() {
         const { items } = this.state;
