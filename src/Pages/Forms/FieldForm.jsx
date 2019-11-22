@@ -54,6 +54,7 @@ class FieldForm extends Component {
             switch(data.type){
                 case "text":
                     data.type = "1";
+                    data.options = [];
                     break;
                 case "simple":
                     data.type = "2";                                        
@@ -62,7 +63,8 @@ class FieldForm extends Component {
                     data.type = "3";
                     break;
                 case "image":
-                    data.type = "4";                
+                    data.type = "4";  
+                    data.options = [];              
                     break;
                 default:
                     data.type = "1";                    
@@ -157,9 +159,50 @@ class FieldForm extends Component {
         
     }    
 
-    handleUpdate(){
+    async handleUpdate(){
         const { data } = this.state;  
-        console.log(data)      
+        
+        if(this.validationRules()){
+
+            let dataForm = {
+                name : data.name,
+                required: data.required ? 1 : 0,            
+                comments: data.comments ? 1 : 0,            
+            };
+    
+            switch(data.type){
+                case "1":
+                    dataForm.type = "text";                
+                    break;
+                case "2":
+                    dataForm.type = "simple";
+                    dataForm.options = ['Si','No'];
+                    data.options = dataForm.options;
+                    break;
+                case "3":
+                    dataForm.type = "multiple";
+                    dataForm.options = data.options;
+                    break;
+                case "4":
+                    dataForm.type = "image";                
+                    break;
+                default:
+                    dataForm.type = "text";
+                    
+            }  
+            
+            this.toggleLoading(true);
+            
+            await updateField(dataForm, data.id)
+                .then((value) => {                    
+                    const { callback } = this.props;
+                    callback();
+                }).catch((error) => {
+                    
+                })
+
+            this.toggleLoading(false);
+        }
     }
 
     handleOptions(){
