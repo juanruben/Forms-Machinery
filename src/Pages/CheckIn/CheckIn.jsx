@@ -11,51 +11,6 @@ import Photo from '../../Components/Photo/Photo';
 
 import './CheckIn.scss';
 
-const options = [
-    {
-        id: 1,
-        name: '50%',
-    },
-    {
-        id: 2,
-        name: '75%',
-    },
-    {
-        id: 3,
-        name: '100%',
-    },
-];
-
-const options2 = [
-    {
-        id: 4,
-        name: 'Bueno',
-    },
-    {
-        id: 5,
-        name: 'Regular',
-    },
-    {
-        id: 6,
-        name: 'Malo',
-    },
-];
-
-const options3 = [
-    {
-        id: 7,
-        name: 'Bajo',
-    },
-    {
-        id: 8,
-        name: 'Medio',
-    },
-    {
-        id: 9,
-        name: 'Alto',
-    },
-];
-
 class CheckIn extends Component {
     constructor(props) {
         super(props);
