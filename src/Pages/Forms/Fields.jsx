@@ -1,15 +1,17 @@
 import React, { Component, useState } from 'react';
-import PropTypes from 'prop-types';
-import SweetAlert from 'react-bootstrap-sweetalert';
+import { Spinner } from 'reactstrap';
+import { StateContext } from '../../State';
 import { withRouter } from 'react-router-dom';
+import { getFields, deleteField, copyField, orderField } from '../../Service/Api';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
+import PropTypes from 'prop-types';
 import arrayMove from 'array-move';
 import FieldForm from './FieldForm';
-import { StateContext } from '../../State';
-import { getFields, addField, updateField, deleteField, copyField, orderField } from '../../Service/Api';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
+
 
 import image from './assets/image.png';
 import text from './assets/text.png';
@@ -21,7 +23,7 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
-const SortableItem = sortableElement(({ index, value, type, data, callback }) => {
+const SortableItem = sortableElement(({ index, value, type, data, callback, loading }) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
     function getIcon(fff) {
@@ -41,6 +43,7 @@ const SortableItem = sortableElement(({ index, value, type, data, callback }) =>
 
     //Delete Field Function
     async function handleRemove() {
+        loading(true);
         await deleteField(data.id)
             .then(() => {
                 callback();
@@ -50,6 +53,7 @@ const SortableItem = sortableElement(({ index, value, type, data, callback }) =>
 
     //Copy Field Function
     async function handleCopy() {
+        loading(true);
         await copyField(data.id)
             .then(() => {
                 callback();
@@ -71,8 +75,8 @@ const SortableItem = sortableElement(({ index, value, type, data, callback }) =>
                     <button type="button" onClick={handleCopy}>
                         <i className="far fa-copy" />
                     </button>
-                    <ModalView title="Editar campo" type="edit">
-                        <FieldForm data={data}/>
+                    <ModalView title="Editar campo" type="edit" callback={callback}>
+                        <FieldForm data={data} section_id={data.model_section_id} />
                     </ModalView>
                     <button onClick={() => { setShowConfirm(true); }} type="button">
                         <i className="fas fa-trash" />
@@ -108,8 +112,10 @@ class Fields extends Component {
         super(props);
         this.state = {
             items: [],
+            data: {},
         };
         this.loadData = this.loadData.bind(this);
+        this.toogleLoading = this.toogleLoading.bind(this);
     }
 
     componentDidMount(){
@@ -123,12 +129,27 @@ class Fields extends Component {
         const [, dispatch] = this.context;
         this.setState({ loading: true });
         await getFields(id)
-            .then((response) => {
+            .then((response) => {                
                 this.setState({
-                    items: response.data
+                    items: response.data.model_field,
+                    data: response.data
                 }); 
-            })
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+
         this.setState({ loading: false });
+    }
+
+
+    toogleLoading(value){
+        this.setState({
+            loading: value
+        });
     }
 
 
@@ -168,15 +189,15 @@ class Fields extends Component {
     }
 
     render() {
-        const { items } = this.state;
+        const { items, loading, data } = this.state;
         const { history, match } = this.props;
-        const { id } = match.params;
+        const { id } = match.params;        
 
         return (
             <>
                 <TopBar>
-                    <ModalView title="Crear campo" type="add">
-                        <FieldForm section_id={id} />
+                    <ModalView title="Crear campo" type="add" callback={this.loadData}>
+                        <FieldForm section_id={parseInt(id)} />
                     </ModalView>
                 </TopBar>
                 <button onClick={() => { history.goBack(); }} className="back-button" type="button">
@@ -184,27 +205,35 @@ class Fields extends Component {
                     {' '}
                     Volver
                 </button>
-                <Title text="Campos de la sección [...xyz]" />
-                <SortableContainer
-                    onSortEnd={this.onSortEnd}
-                    lockAxis="y"
-                    useWindowAsScrollContainer
-                    useDragHandle
-                    helperClass="sortable-container"
-                >
-                    {items.map((item, index) => (
-                        <SortableItem
-                            key={item.id}
-                            index={index}
-                            value={item.name}
-                            type={item.type}
-                            history={history}
-                            data={item}
-                            callback={this.loadData}
-                        />
-                    ))}
-                </SortableContainer>
+                
+                {data.name && (   
+                    <>
+                        <Title text={"Campos de la sección " + data.name } />                 
+                        <SortableContainer
+                            onSortEnd={this.onSortEnd}
+                            lockAxis="y"
+                            useWindowAsScrollContainer
+                            useDragHandle
+                            helperClass="sortable-container"
+                        >
+                            {items.map((item, index) => (
+                                <SortableItem
+                                    key={item.id}
+                                    index={index}
+                                    value={item.name}
+                                    type={item.type}
+                                    history={history}
+                                    data={item}
+                                    callback={this.loadData}
+                                    loading={this.toogleLoading}                                    
+                                />
+                            ))}
+                        </SortableContainer>
+                    </>
+                )}
+                {loading && <Spinner />} 
             </>
+            
         );
     }
 }

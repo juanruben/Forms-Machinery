@@ -148,7 +148,7 @@ export async function copySection(section_id) {
 //Start Fields Implementation
 
 export async function getFields(section_id) {
-    return axios.get(`${url}/fields/section/${section_id}`);
+    return axios.get(`${url}/sections/${section_id}`);
 }
 
 export async function addField(data, section_id) {

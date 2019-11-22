@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
+import { Spinner } from 'reactstrap';
+import PropTypes from 'prop-types';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
@@ -48,6 +50,24 @@ class FieldForm extends Component {
     componentDidMount() {
         const { data } = this.props;
         if (data) {
+
+            switch(data.type){
+                case "text":
+                    data.type = "1";
+                    break;
+                case "simple":
+                    data.type = "2";                                        
+                    break;
+                case "multiple":
+                    data.type = "3";
+                    break;
+                case "image":
+                    data.type = "4";                
+                    break;
+                default:
+                    data.type = "1";                    
+            }
+
             this.setState({
                 data,
                 createMode: false,                
@@ -92,43 +112,47 @@ class FieldForm extends Component {
         const { data } = this.state;
         const { section_id } = this.props;
         
-        this.validationRules();
+        if(this.validationRules()){
 
-        let dataForm = {
-            name : data.name,
-            required: data.required ? 1 : 0,            
-            comments: data.comments ? 1 : 0,            
-        };
+            let dataForm = {
+                name : data.name,
+                required: data.required ? 1 : 0,            
+                comments: data.comments ? 1 : 0,            
+            };
+    
+            switch(data.type){
+                case "1":
+                    dataForm.type = "text";                
+                    break;
+                case "2":
+                    dataForm.type = "simple";
+                    dataForm.options = ['Si','No'];
+                    data.options = dataForm.options;
+                    break;
+                case "3":
+                    dataForm.type = "multiple";
+                    dataForm.options = data.options;
+                    break;
+                case "4":
+                    dataForm.type = "image";                
+                    break;
+                default:
+                    dataForm.type = "text";
+                    
+            }  
+            
+            this.toggleLoading(true);
+            
+            await addField(dataForm, section_id)
+                .then((value) => {                    
+                    const { callback } = this.props;
+                    callback();
+                }).catch((error) => {
+                    
+                })
 
-        switch(data.type){
-            case "1":
-                dataForm.type = "text";                
-                break;
-            case "2":
-                dataForm.type = "simple";
-                dataForm.options = ['Yes','No'];
-                data.options = dataForm.options;
-                break;
-            case "3":
-                dataForm.type = "multiple";
-                dataForm.options = data.options;
-                break;
-            case "4":
-                dataForm.type = "image";                
-                break;
-            default:
-                dataForm.type = "image";
-                dataForm.options = null;
-        }  
-
-        console.log(dataForm)
-        
-        await addField(dataForm, section_id)
-            .then((value) => {
-                console.log(value);
-            }).catch((value) => {
-                console.log(value)
-            })
+            this.toggleLoading(false);
+        }      
         
         
     }    
@@ -141,18 +165,24 @@ class FieldForm extends Component {
     handleOptions(){
         
         const { data, opciones } = this.state;
-
-        data['options'].push(opciones);        
+        const errors = {};
+        if(opciones.trim().length === 0){
+            errors.opciones = "Requerido"
+        }else{
+            data['options'].push(opciones);
+        }
+                
 
         this.setState({
             data,
+            errors,
             opciones:""
         });
         
     }
 
     handleDelete(event){
-        const { data, opciones } = this.state;
+        const { data } = this.state;
 
         data['options'].splice(event.target.value,1);        
 
@@ -161,6 +191,14 @@ class FieldForm extends Component {
             opciones:""
         });
         
+    }
+
+    //Toggle functions
+
+    toggleLoading(value) {
+        this.setState({
+            loading: value,
+        });
     }
 
     //Validations
@@ -174,12 +212,19 @@ class FieldForm extends Component {
 
         if(!name || name.trim().length === 0){
             formIsValid = false;
-            errors.name = "Required"            
+            errors.name = "Requerido"            
         }
 
         if(!type){
             formIsValid = false;
-            errors.type = "Required"
+            errors.type = "Requerido"
+        }
+
+        if(data.type === '3'){
+            if( data.options.length <= 1 ) {
+                formIsValid = false;
+                errors.opciones = "Requerido al menos 2 opciónes"
+            }
         }
 
         this.setState({
@@ -192,7 +237,7 @@ class FieldForm extends Component {
     render() {
 
         const {
-            createMode, errors, data, opciones
+            createMode, errors, data, opciones, loading
         } = this.state;
         const { name, type, required, comments } = data;
 
@@ -205,7 +250,7 @@ class FieldForm extends Component {
                     
                     <Row>
                         <Col md={8}>
-                            <Input label="Opciones" name="opciones" placeholder="Opciones" onChange={this.onChange} value={opciones} />
+                            <Input label="Opciones" name="opciones" placeholder="Opciones" onChange={this.onChange} value={opciones} errors={errors} required />
                             
                             {data.options.map((item, index) => (
                                 <ItemOption text={item} onClick={this.handleDelete} value={index} key={index}></ItemOption>
@@ -224,8 +269,8 @@ class FieldForm extends Component {
                 <Simple label="Observaciones" name="comments" onChange={this.onChangeBoolean} value={comments} />
 
                 <Row>
-                    <Col md={8} />
-                    <Col md={4}>
+                    <Col md={8} style={{textAlign : 'right'}}>{loading && <div className="spinner"><Spinner /></div>}</Col>
+                    <Col md={4}>                        
                         <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={createMode ? this.handleCreate : this.handleUpdate} />
                     </Col>
                 </Row>
@@ -233,5 +278,16 @@ class FieldForm extends Component {
         );
     }
 }
+
+FieldForm.propTypes = {
+    callback: PropTypes.func,
+    data: PropTypes.object,
+    section_id: PropTypes.number.isRequired,
+};
+
+FieldForm.defaultProps = {
+    callback: null,
+    data: null,
+};
 
 export default FieldForm;
