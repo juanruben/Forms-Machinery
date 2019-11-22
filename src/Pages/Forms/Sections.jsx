@@ -60,7 +60,7 @@ const SortableItem = sortableElement(({
                         <i className="far fa-copy" />
                     </button>
                     <ModalView title="Editar sección de formulario" type="edit" callback={callback}>
-                        <SectionForm data={data} />
+                        <SectionForm data={data} form_id={data.id} />
                     </ModalView>
                     <button onClick={() => { setShowConfirm(true); }} type="button">
                         <i className="fas fa-trash" />
@@ -157,13 +157,15 @@ class Sections extends Component {
 
     render() {
         const { data, loading } = this.state;
+        const { match } = this.props;
+        const { id } = match.params;
         const { history } = this.props;
 
         return (
             <>
                 <TopBar>
                     <ModalView title="Crear sección de formulario" type="add" callback={this.loadData}>
-                        <SectionForm form_id={data.id} />
+                        <SectionForm form_id={parseInt(id)} />
                     </ModalView>
                 </TopBar>
                 <button onClick={() => { history.goBack(); }} className="back-button" type="button">
