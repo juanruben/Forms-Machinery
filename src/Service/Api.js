@@ -50,6 +50,10 @@ export async function getClients() {
     return axios.get(`${url}/clients`);
 }
 
+export async function getConstructionsByClient(id) {
+    return axios.get(`${url}/clients/${id}/constructions`);
+}
+
 export async function addClient(data) {
     return axios.post(`${url}/clients`, { ...data });
 }

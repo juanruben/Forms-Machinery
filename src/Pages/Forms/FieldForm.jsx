@@ -37,7 +37,8 @@ class FieldForm extends Component {
                 options: []
             },
             errors: {},
-            opciones: "",            
+            opciones: "",
+            count: 0,            
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeBoolean = this.onChangeBoolean.bind(this);
@@ -128,7 +129,16 @@ class FieldForm extends Component {
                     break;
                 case "2":
                     dataForm.type = "simple";
-                    dataForm.options = ['Si','No'];
+                    dataForm.options = [
+                        {
+                            id: 1,
+                            name: "Si"
+                        },
+                        {
+                            id: 2,
+                            name: "No"
+                        }
+                    ];
                     data.options = dataForm.options;
                     break;
                 case "3":
@@ -208,17 +218,26 @@ class FieldForm extends Component {
     handleOptions(){
         
         const { data, opciones } = this.state;
+        let { count } = this.state;
         const errors = {};
         if(opciones.trim().length === 0){
             errors.opciones = "Requerido"
         }else{
-            data['options'].push(opciones);
+
+            let item = {
+                id: count,
+                name: opciones
+            }
+            data['options'].push(item);
+
+            count++;
         }
                 
 
         this.setState({
             data,
             errors,
+            count,
             opciones:""
         });
         
@@ -296,7 +315,7 @@ class FieldForm extends Component {
                             <Input label="Opciones" name="opciones" placeholder="Opciones" onChange={this.onChange} value={opciones} errors={errors} required />
                             
                             {data.options.map((item, index) => (
-                                <ItemOption text={item} onClick={this.handleDelete} value={index} key={index}></ItemOption>
+                                <ItemOption text={item.name} onClick={this.handleDelete} value={index} key={index}></ItemOption>
                             ))}
 
                         </Col>    
