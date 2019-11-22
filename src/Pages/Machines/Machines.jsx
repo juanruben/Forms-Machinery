@@ -34,8 +34,8 @@ class Machines extends Component {
     }
 
     getStatus = (value) => {
-        if (value === 1) return 'En terreno';
-        if (value === 2) return 'En taller';
+        if (value === '1') return 'En obra';
+        if (value === '2') return 'En taller';
         return 'Mantenimiento';
     }
 
@@ -111,20 +111,21 @@ class Machines extends Component {
                 accessor: 'status',
                 width: 130,
                 Cell: (row) => (
-                    <>{this.getStatus(row.original.status)}</>
+                    <>{row.original.status}</>
                 ),
                 filterMethod: (filter, row) => {
+                    
                     if (filter.value === 'all') {
                         return true;
                     }
-                    if (filter.value === '1') {
-                        return row[filter.id] === 1;
+                    if (filter.value === 'En obra') {
+                        return row[filter.id] === "En obra";
                     }
-                    if (filter.value === '2') {
-                        return row[filter.id] === 2;
+                    if (filter.value === 'En taller') {
+                        return row[filter.id] === "En taller";
                     }
-                    if (filter.value === '3') {
-                        return row[filter.id] === 3;
+                    if (filter.value === 'Mantenimiento') {
+                        return row[filter.id] === "Mantenimiento";
                     }
                     return row[filter.id] === 0;
                 },
@@ -136,9 +137,9 @@ class Machines extends Component {
                         value={filter ? filter.value : 'all'}
                     >
                         <option value="">Todo...</option>
-                        <option value="1">En obra</option>
-                        <option value="2">En taller</option>
-                        <option value="3">Mantenimiento</option>
+                        <option value="En obra">En obra</option>
+                        <option value="En taller">En taller</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
                     </select>
                 ),
             },
