@@ -222,20 +222,18 @@ class CheckIn extends Component {
                 </Row>
 
                 {form.model_section.map((section) => (
-                    <div className="check-in-container__section" key={section.id}>
-                        <Row key={section.id}>
+                    <Row className="check-in-container__section" key={`section${section.id}`}>
                             <Col md={12}>
                                 {section.name && <Title text={section.name} />}
                             </Col>
 
                             {section.model_field.map((field) => (
-                                <Col md={6} key={field.id} className="check-in-container__field">
+                            <Col md={6} key={`field${field.id}`} className="check-in-container__field">
                                     {this.getControl(field)}
                                 </Col>
                             ))}
 
                         </Row>
-                    </div>
                 ))}
                 <Row>
                     <Col md={8} />
