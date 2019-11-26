@@ -12,7 +12,7 @@ import {
     getClients, getMachines, getConstructionsByClient, getForm,
 } from '../../Service/Api';
 
-import './CheckIn.scss';
+import './Register.scss';
 
 class CheckIn extends Component {
     constructor(props) {
@@ -60,6 +60,7 @@ class CheckIn extends Component {
         const machine = machines.find((item) => item.id === parseInt(value));
 
         await getForm(machine.model_form_id).then((response) => {
+            console.log("FORM", response);
             this.setState({
                 form: response.data,
             });
@@ -101,36 +102,36 @@ class CheckIn extends Component {
             errors,
             value: formData[field.id],
         };
-
+        console.log("CAMPO", field, comments);
         switch (field.type) {
             case 'multiple':
                 return (
                     <>
-                    <Multiple
-                        options={field.options}
-                        {...props}
-                    />
+                        <Multiple
+                            options={field.options}
+                            {...props}
+                        />
                         {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
                     </>
                 );
             case 'image':
                 return (
                     <>
-                    <Photo {...props} />
+                        <Photo {...props} />
                         {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
                     </>
                 );
             case 'simple':
                 return (
                     <>
-                    <Simple {...props} />
+                        <Simple {...props} />
                         {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
                     </>
                 );
             case 'text':
                 return (
                     <>
-                    <Input {...props} />
+                        <Input {...props} />
                         {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
                     </>
                 );
@@ -223,17 +224,17 @@ class CheckIn extends Component {
 
                 {form.model_section.map((section) => (
                     <Row className="check-in-container__section" key={`section${section.id}`}>
-                            <Col md={12}>
-                                {section.name && <Title text={section.name} />}
-                            </Col>
+                        <Col md={12}>
+                            {section.name && <Title text={section.name} />}
+                        </Col>
 
-                            {section.model_field.map((field) => (
+                        {section.model_field.map((field) => (
                             <Col md={6} key={`field${field.id}`} className="check-in-container__field">
-                                    {this.getControl(field)}
-                                </Col>
-                            ))}
+                                {this.getControl(field)}
+                            </Col>
+                        ))}
 
-                        </Row>
+                    </Row>
                 ))}
                 <Row>
                     <Col md={8} />

@@ -14,7 +14,7 @@ import Users from '../../Pages/Users/Users';
 import Forms from '../../Pages/Forms/Forms';
 import Sections from '../../Pages/Forms/Sections';
 import Fields from '../../Pages/Forms/Fields';
-import Register from '../../Pages/CheckIn/CheckIn';
+import Register from '../../Pages/Register/Register';
 
 import menuAdmin from './data/dataMenuAdmin';
 import menuOp from './data/dataMenuOp';
