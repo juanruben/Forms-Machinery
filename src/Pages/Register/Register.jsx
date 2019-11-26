@@ -14,7 +14,7 @@ import {
 
 import './Register.scss';
 
-class CheckIn extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -247,4 +247,4 @@ class CheckIn extends Component {
     }
 }
 
-export default CheckIn;
+export default Register;
