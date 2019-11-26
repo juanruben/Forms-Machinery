@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import {
+    Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink,
+} from '@react-pdf/renderer';
+import {
+    Row, Col, Modal, ModalHeader, ModalBody, ModalFooter,
+} from 'reactstrap';
 import Title from '../../Components/Title/Title';
 import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
@@ -31,14 +36,18 @@ class Register extends Component {
                 ],
             },
             errors: {},
+            showing: false,
+            ready: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
         this.onChangeClient = this.onChangeClient.bind(this);
         this.onChangeMachine = this.onChangeMachine.bind(this);
         this.handleSend = this.handleSend.bind(this);
+        this.handlePreview = this.handlePreview.bind(this);
         this.validForm = this.validForm.bind(this);
         this.getControl = this.getControl.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
 
     componentDidMount() {
@@ -140,6 +149,17 @@ class Register extends Component {
         }
     }
 
+
+    handleSend = () => {
+        alert('send');
+    }
+
+    handlePreview() {
+        if (this.validForm()) {
+            this.toggle();
+        }
+    }
+
     async loadConstructionsByClientId(id) {
         await getConstructionsByClient(id)
             .then((response) => {
@@ -193,17 +213,56 @@ class Register extends Component {
         return formIsValid;
     }
 
-    handleSend() {
-        if (this.validForm()) {
-            alert("ok");
-        }
+
+
+    toggle() {
+        this.setState((prevState) => ({
+            showing: !prevState.showing,
+            ready: false,
+        }), () => {
+            setTimeout(() => {
+                this.setState({ ready: true });
+            }, 1);
+        });
     }
 
     render() {
         const {
-            errors, clients, machines, constructions, form, data,
+            errors, clients, machines, constructions, form, data, showing, ready,
         } = this.state;
         const { client, machine, construction } = data;
+
+        const styles = StyleSheet.create({
+            page: {
+                flexDirection: 'row',
+                backgroundColor: '#FFF',
+            },
+            section: {
+                margin: 10,
+                padding: 10,
+                flexGrow: 1,
+                fontSize: 100,
+                fontWeight: 700,
+                color: '#CCC',
+            },
+            text: {
+                color: '#F00',
+                margin: 10,
+                padding: 10,
+                flexGrow: 1,
+                fontSize: 12,
+            },
+        });
+
+        const doc = (
+            <Document>
+                <Page size="A4" style={styles.page}>
+                    <View style={styles.section}>
+                        <Text>PDF Icafal</Text>
+                    </View>
+                </Page>
+            </Document>
+        );
 
         return (
             <div className="check-in-container">
@@ -236,12 +295,32 @@ class Register extends Component {
 
                     </Row>
                 ))}
-                <Row>
-                    <Col md={8} />
-                    <Col md={4}>
-                        <Button text="Enviar" onClick={this.handleSend} />
-                    </Col>
-                </Row>
+                <div className="form-footer">
+                    <Button text="Revisar" onClick={this.handlePreview} />
+                </div>
+
+
+
+
+
+
+                <Modal isOpen={showing} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle} />
+                    <ModalBody>
+                        {ready && (
+                            <PDFViewer width="100%" height="300px">
+                                {doc}
+                            </PDFViewer>
+                        )}
+                    </ModalBody>
+                    <ModalFooter>
+                        {ready && (
+                            <div className="form-footer">
+                                <Button text="Enviar" onClick={this.handleSend} />
+                            </div>
+                        )}
+                    </ModalFooter>
+                </Modal>
             </div>
         );
     }
