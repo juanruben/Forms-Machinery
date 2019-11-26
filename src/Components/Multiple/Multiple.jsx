@@ -4,7 +4,7 @@ import './Multiple.scss';
 
 function Multiple(props) {
     const {
-        label, options, name, errors, required,
+        label, options, name, errors, required, onChange,
     } = props;
 
     const warning = (errors[name] && errors[name].length > 0);
@@ -18,7 +18,7 @@ function Multiple(props) {
             <ul className={`multiple-item ${warning && 'border-error'}`}>
                 {options.map((item) => (
                     <li key={item.id}>
-                        <input type="radio" id={item.id} value={item.id} name={name} />
+                        <input type="radio" id={item.id} value={item.id} name={name} onChange={onChange} />
                         <label htmlFor={item.id}>{item.name}</label>
                     </li>
                 ))}
@@ -34,6 +34,7 @@ Multiple.propTypes = {
     options: PropTypes.array.isRequired,
     name: PropTypes.string.isRequired,
     required: PropTypes.bool,
+    onChange: PropTypes.func.isRequired,
 };
 
 Multiple.defaultProps = {
