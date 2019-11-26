@@ -22,7 +22,7 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
 const SortableItem = sortableElement(({
-    index, value, history, data, callback,
+    value, history, data, callback,
 }) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
