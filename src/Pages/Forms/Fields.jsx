@@ -1,16 +1,18 @@
 import React, { Component, useState } from 'react';
 import { Spinner } from 'reactstrap';
-import { StateContext } from '../../State';
 import { withRouter } from 'react-router-dom';
-import { getFields, deleteField, copyField, orderField } from '../../Service/Api';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
 import arrayMove from 'array-move';
-import FieldForm from './FieldForm';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import { StateContext } from '../../State';
+import FieldForm from './FieldForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
+import {
+    getFields, deleteField, copyField, orderField,
+} from '../../Service/Api';
 
 
 import image from './assets/image.png';
@@ -26,8 +28,8 @@ const DragHandle = sortableHandle(() => <span className="drag-handle"><i classNa
 const SortableItem = sortableElement(({ index, value, type, data, callback, loading }) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
-    function getIcon(fff) {
-        switch (fff) {
+    function getIcon(fieldType) {
+        switch (fieldType) {
             case 'text':
                 return text;
             case 'image':
@@ -41,7 +43,6 @@ const SortableItem = sortableElement(({ index, value, type, data, callback, load
         }
     }
 
-    //Delete Field Function
     async function handleRemove() {
         loading(true);
         await deleteField(data.id)
@@ -51,7 +52,6 @@ const SortableItem = sortableElement(({ index, value, type, data, callback, load
             });
     }
 
-    //Copy Field Function
     async function handleCopy() {
         loading(true);
         await copyField(data.id)
@@ -118,22 +118,41 @@ class Fields extends Component {
         this.toogleLoading = this.toogleLoading.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadData();
     }
 
-    //Load fields by Section Id
-    async loadData(){
+    onSortEnd = ({ oldIndex, newIndex }) => {
+        if (oldIndex !== newIndex) {
+            const { match } = this.props;
+            const { id } = match.params;
+
+
+            this.handleOrder(oldIndex, newIndex, id);
+
+            this.setState(({ items }) => ({
+                items: arrayMove(items, oldIndex, newIndex),
+            }));
+        }
+    };
+
+    toogleLoading(value) {
+        this.setState({
+            loading: value
+        });
+    }
+
+    async loadData() {
         const { match } = this.props;
         const { id } = match.params;
         const [, dispatch] = this.context;
         this.setState({ loading: true });
         await getFields(id)
-            .then((response) => {                
+            .then((response) => {
                 this.setState({
                     items: response.data.model_field,
                     data: response.data
-                }); 
+                });
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
                     dispatch({
@@ -145,36 +164,16 @@ class Fields extends Component {
         this.setState({ loading: false });
     }
 
-
-    toogleLoading(value){
-        this.setState({
-            loading: value
-        });
-    }
-
-
-    onSortEnd = ({ oldIndex, newIndex }) => {
-
-        const { match } = this.props;
-        const { id } = match.params;
-
-        this.handleOrder(oldIndex, newIndex, id);
-
-        this.setState(({ items }) => ({
-            items: arrayMove(items, oldIndex, newIndex),
-        }));
-    };
-
-    async handleOrder(current, newIndex, id){
+    async handleOrder(current, newIndex, id) {
         let data = {
-            current : current + 1,
-            new : newIndex + 1,
+            current: current + 1,
+            new: newIndex + 1,
         };
 
         console.log("[ORDER]", data);
         console.log("[ID SECCION]", id);
 
-        this.setState({loading : true});
+        this.setState({ loading: true });
 
         await orderField(data, id)
             .then((value) => {
@@ -184,14 +183,14 @@ class Fields extends Component {
                 console.log(value)
             });
 
-        this.setState({loading : false});
+        this.setState({ loading: false });
 
     }
 
     render() {
         const { items, loading, data } = this.state;
         const { history, match } = this.props;
-        const { id } = match.params;        
+        const { id } = match.params;
 
         return (
             <>
@@ -205,10 +204,10 @@ class Fields extends Component {
                     {' '}
                     Volver
                 </button>
-                
-                {data.name && (   
+
+                {data.name && (
                     <>
-                        <Title text={"Campos de la sección " + data.name } />                 
+                        <Title text={`Campos de la sección ${data.name}`} />
                         <SortableContainer
                             onSortEnd={this.onSortEnd}
                             lockAxis="y"
@@ -225,15 +224,15 @@ class Fields extends Component {
                                     history={history}
                                     data={item}
                                     callback={this.loadData}
-                                    loading={this.toogleLoading}                                    
+                                    loading={this.toogleLoading}
                                 />
                             ))}
                         </SortableContainer>
                     </>
                 )}
-                {loading && <Spinner />} 
+                {loading && <Spinner />}
             </>
-            
+
         );
     }
 }
