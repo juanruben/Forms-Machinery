@@ -42,8 +42,10 @@ const Menu = (props) => {
                         </NavLink>
                     ))}
                     <li>
-                        <span><i className="fas fa-door-open" /></span>
-                        <button type="button" onClick={handleSignOut}>Cerrar sesión</button>
+                        <button type="button" onClick={handleSignOut}>
+                            <span><i className="fas fa-door-open" /></span>
+                            Cerrar sesión
+                        </button>
                     </li>
                 </ul>
             </div>
