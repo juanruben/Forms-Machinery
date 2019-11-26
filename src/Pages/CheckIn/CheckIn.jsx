@@ -7,6 +7,7 @@ import Simple from '../../Components/Simple/Simple';
 import Multiple from '../../Components/Multiple/Multiple';
 import Input from '../../Components/Input/Input';
 import Photo from '../../Components/Photo/Photo';
+import Comments from '../../Components/Comments/Comments';
 import {
     getClients, getMachines, getConstructionsByClient, getForm,
 } from '../../Service/Api';
@@ -89,7 +90,7 @@ class CheckIn extends Component {
 
     getControl = (field) => {
         const { errors, formData } = this.state;
-
+        const comments = field.comments === 1;
         const props = {
             required: field.required,
             name: field.id,
@@ -102,22 +103,34 @@ class CheckIn extends Component {
         switch (field.type) {
             case 'multiple':
                 return (
+                    <>
                     <Multiple
                         options={field.options}
                         {...props}
                     />
+                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                    </>
                 );
             case 'image':
                 return (
+                    <>
                     <Photo {...props} />
+                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                    </>
                 );
             case 'simple':
                 return (
+                    <>
                     <Simple {...props} />
+                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                    </>
                 );
             case 'text':
                 return (
+                    <>
                     <Input {...props} />
+                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                    </>
                 );
             default:
                 return null;
