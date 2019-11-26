@@ -35,6 +35,7 @@ class CheckIn extends Component {
         this.onChangeMachine = this.onChangeMachine.bind(this);
         this.handleSend = this.handleSend.bind(this);
         this.validForm = this.validForm.bind(this);
+        this.getControl = this.getControl.bind(this);
     }
 
     componentDidMount() {
@@ -71,6 +72,51 @@ class CheckIn extends Component {
             data,
             errors,
         });
+    }
+
+    getControl = (field) => {
+        const { errors } = this.state;
+        console.log("CAMPO", field);
+        switch (field.type) {
+            case 'multiple':
+                return (
+                    <Multiple
+                        required
+                        label={field.name}
+                        options={field.options}
+                        name={field.name}
+                        onChange={() => { }}
+                        errors={errors}
+                    />
+                );
+            case 'image':
+                return (
+                    <Photo
+                        label={field.name}
+                        name="name3"
+                        onChange={() => { }}
+                    />
+                );
+            case 'simple':
+                return (
+                    <Simple
+                        label={field.name}
+                        name="name"
+                        onChange={() => { }}
+                    />
+                );
+            case 'text':
+                return (
+                    <Input
+                        label={field.name}
+                        name="name"
+                        placeholder={field.name}
+                        onChange={() => { }}
+                    />
+                );
+            default:
+                return null;
+        }
     }
 
     async loadConstructionsByClientId(id) {
@@ -162,28 +208,11 @@ class CheckIn extends Component {
                                 {section.name && <Title text={section.name} />}
                             </Col>
 
-                            {section.model_field.map((field) => {
-                                switch (field.type) {
-                                    case 'multiple':
-                                        return (
-                                            <Col md={6} key={field.id} className="check-in-container__field"><Multiple required label={field.name} options={field.options} name={field.name} onChange={() => { }} errors={errors} /></Col>
-                                        );
-                                    case 'image':
-                                        return (
-                                            <Col md={6} key={field.id} className="check-in-container__field"><Photo label={field.name} name="name3" onChange={() => { }} /></Col>
-                                        );
-                                    case 'simple':
-                                        return (
-                                            <Col md={6} key={field.id} className="check-in-container__field"><Simple label={field.name} name="name" onChange={() => { }} /></Col>
-                                        );
-                                    case 'text':
-                                        return (
-                                            <Col md={6} key={field.id} className="check-in-container__field"><Input label={field.name} name="name" placeholder={field.name} onChange={() => { }} /></Col>
-                                        );
-                                    default:
-                                        return null;
-                                }
-                            })}
+                            {section.model_field.map((field) => (
+                                <Col md={6} key={field.id} className="check-in-container__field">
+                                    {this.getControl(field)}
+                                </Col>
+                            ))}
 
                         </Row>
                     </div>
