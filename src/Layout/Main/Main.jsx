@@ -14,8 +14,7 @@ import Users from '../../Pages/Users/Users';
 import Forms from '../../Pages/Forms/Forms';
 import Sections from '../../Pages/Forms/Sections';
 import Fields from '../../Pages/Forms/Fields';
-import CheckIn from '../../Pages/CheckIn/CheckIn';
-import CheckOut from '../../Pages/CheckOut/CheckOut';
+import Register from '../../Pages/CheckIn/CheckIn';
 
 import menuAdmin from './data/dataMenuAdmin';
 import menuOp from './data/dataMenuOp';
@@ -119,8 +118,8 @@ class Main extends React.Component {
                         <Route exact path="/admin/formularios" component={Forms} />
                         <Route exact path="/admin/formularios/:id" component={Sections} />
                         <Route exact path="/admin/formularios/secciones/:id" component={Fields} />
-                        <Route exact path="/entrada" component={CheckIn} />
-                        <Route exact path="/salida" component={CheckOut} />
+                        <Route exact path="/entrada" component={() => <Register type="checkin" />} />
+                        <Route exact path="/salida" component={() => <Register type="checkout" />} />
                     </Switch>
                 </div>
             </Sidebar>
