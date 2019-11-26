@@ -94,8 +94,8 @@ class CheckIn extends Component {
         const { errors, formData } = this.state;
         const comments = field.comments === 1;
         const props = {
-            required: field.required,
-            name: field.id,
+            required: field.required === 1,
+            name: String(field.id),
             label: field.name,
             onChange: this.onChangeFormField,
             errors,
