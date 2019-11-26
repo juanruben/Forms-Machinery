@@ -1,6 +1,6 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
-import { Spinner } from 'reactstrap';
+import { Row, Col, Spinner } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -34,11 +34,11 @@ class FieldForm extends Component {
         this.state = {
             createMode: true,
             data: {
-                options: []
+                options: [],
             },
             errors: {},
-            opciones: "",
-            count: 0,            
+            opciones: '',
+            count: 0,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeBoolean = this.onChangeBoolean.bind(this);
@@ -51,57 +51,56 @@ class FieldForm extends Component {
     componentDidMount() {
         const { data } = this.props;
         if (data) {
-
-            switch(data.type){
-                case "text":
-                    data.type = "1";
+            switch (data.type) {
+                case 'text':
+                    data.type = '1';
                     data.options = [];
                     break;
-                case "simple":
-                    data.type = "2";                                        
+                case 'simple':
+                    data.type = '2';
                     break;
-                case "multiple":
-                    data.type = "3";
+                case 'multiple':
+                    data.type = '3';
                     break;
-                case "image":
-                    data.type = "4";  
-                    data.options = [];              
+                case 'image':
+                    data.type = '4';
+                    data.options = [];
                     break;
                 default:
-                    data.type = "1";                    
+                    data.type = '1';
             }
 
             this.setState({
                 data,
-                createMode: false,                
+                createMode: false,
             });
         }
     }
 
-    //On Actions
+    // On Actions
 
     onChange(event) {
         const { name, value } = event.target;
-        const { data, errors } = this.state;   
-        let { opciones } = this.state;             
-        if(name === 'opciones'){
-            opciones = value
-        }else{
-            data[name] = value;        
+        const { data, errors } = this.state;
+        let { opciones } = this.state;
+        if (name === 'opciones') {
+            opciones = value;
+        } else {
+            data[name] = value;
         }
-        
+
         errors[name] = '';
         this.setState({
             data,
             errors,
-            opciones
+            opciones,
         });
     }
 
     onChangeBoolean(event) {
         const { name, checked } = event.target;
-        const { data, errors } = this.state;                
-        data[name] = checked;        
+        const { data, errors } = this.state;
+        data[name] = checked;
         errors[name] = '';
         this.setState({
             data,
@@ -109,153 +108,142 @@ class FieldForm extends Component {
         });
     }
 
-    //Handlers
-    async handleCreate(){
-
+    // Handlers
+    async handleCreate() {
         const { data } = this.state;
         const { section_id } = this.props;
-        
-        if(this.validationRules()){
 
-            let dataForm = {
-                name : data.name,
-                required: data.required ? 1 : 0,            
-                comments: data.comments ? 1 : 0,            
+        if (this.validationRules()) {
+            const dataForm = {
+                name: data.name,
+                required: data.required ? 1 : 0,
+                comments: data.comments ? 1 : 0,
             };
-    
-            switch(data.type){
-                case "1":
-                    dataForm.type = "text";                
+
+            switch (data.type) {
+                case '1':
+                    dataForm.type = 'text';
                     break;
-                case "2":
-                    dataForm.type = "simple";
+                case '2':
+                    dataForm.type = 'simple';
                     dataForm.options = [
                         {
                             id: 1,
-                            name: "Si"
+                            name: 'Si',
                         },
                         {
                             id: 2,
-                            name: "No"
-                        }
+                            name: 'No',
+                        },
                     ];
                     data.options = dataForm.options;
                     break;
-                case "3":
-                    dataForm.type = "multiple";
+                case '3':
+                    dataForm.type = 'multiple';
                     dataForm.options = data.options;
                     break;
-                case "4":
-                    dataForm.type = "image";                
+                case '4':
+                    dataForm.type = 'image';
                     break;
                 default:
-                    dataForm.type = "text";
-                    
-            }  
-            
+                    dataForm.type = 'text';
+            }
+
             this.toggleLoading(true);
-            
+
             await addField(dataForm, section_id)
-                .then((value) => {                    
+                .then((value) => {
                     const { callback } = this.props;
                     callback();
                 }).catch((error) => {
-                    
-                })
 
-            this.toggleLoading(false);
-        }      
-        
-        
-    }    
-
-    async handleUpdate(){
-        const { data } = this.state;  
-        
-        if(this.validationRules()){
-
-            let dataForm = {
-                name : data.name,
-                required: data.required ? 1 : 0,            
-                comments: data.comments ? 1 : 0,            
-            };
-    
-            switch(data.type){
-                case "1":
-                    dataForm.type = "text";                
-                    break;
-                case "2":
-                    dataForm.type = "simple";
-                    dataForm.options = ['Si','No'];
-                    data.options = dataForm.options;
-                    break;
-                case "3":
-                    dataForm.type = "multiple";
-                    dataForm.options = data.options;
-                    break;
-                case "4":
-                    dataForm.type = "image";                
-                    break;
-                default:
-                    dataForm.type = "text";
-                    
-            }  
-            
-            this.toggleLoading(true);
-            
-            await updateField(dataForm, data.id)
-                .then((value) => {                    
-                    const { callback } = this.props;
-                    callback();
-                }).catch((error) => {
-                    
-                })
+                });
 
             this.toggleLoading(false);
         }
     }
 
-    handleOptions(){
-        
+    async handleUpdate() {
+        const { data } = this.state;
+
+        if (this.validationRules()) {
+            const dataForm = {
+                name: data.name,
+                required: data.required ? 1 : 0,
+                comments: data.comments ? 1 : 0,
+            };
+
+            switch (data.type) {
+                case '1':
+                    dataForm.type = 'text';
+                    break;
+                case '2':
+                    dataForm.type = 'simple';
+                    dataForm.options = ['Si', 'No'];
+                    data.options = dataForm.options;
+                    break;
+                case '3':
+                    dataForm.type = 'multiple';
+                    dataForm.options = data.options;
+                    break;
+                case '4':
+                    dataForm.type = 'image';
+                    break;
+                default:
+                    dataForm.type = 'text';
+            }
+
+            this.toggleLoading(true);
+
+            await updateField(dataForm, data.id)
+                .then((value) => {
+                    const { callback } = this.props;
+                    callback();
+                }).catch((error) => {
+
+                });
+
+            this.toggleLoading(false);
+        }
+    }
+
+    handleOptions() {
         const { data, opciones } = this.state;
         let { count } = this.state;
         const errors = {};
-        if(opciones.trim().length === 0){
-            errors.opciones = "Requerido"
-        }else{
-
-            let item = {
+        if (opciones.trim().length === 0) {
+            errors.opciones = 'Requerido';
+        } else {
+            const item = {
                 id: count,
-                name: opciones
-            }
-            data['options'].push(item);
+                name: opciones,
+            };
+            data.options.push(item);
 
-            count++;
+            count += 1;
         }
-                
+
 
         this.setState({
             data,
             errors,
             count,
-            opciones:""
+            opciones: '',
         });
-        
     }
 
-    handleDelete(event){
+    handleDelete(event) {
         const { data } = this.state;
 
-        data['options'].splice(event.target.value,1);        
+        data.options.splice(event.target.value, 1);
 
         this.setState({
             data,
-            opciones:""
+            opciones: '',
         });
-        
     }
 
-    //Toggle functions
+    // Toggle functions
 
     toggleLoading(value) {
         this.setState({
@@ -263,29 +251,28 @@ class FieldForm extends Component {
         });
     }
 
-    //Validations
+    // Validations
 
-    validationRules(){
-
+    validationRules() {
         const { data } = this.state;
         const { name, type } = data;
         const errors = {};
         let formIsValid = true;
 
-        if(!name || name.trim().length === 0){
+        if (!name || name.trim().length === 0) {
             formIsValid = false;
-            errors.name = "Requerido"            
+            errors.name = 'Requerido';
         }
 
-        if(!type){
+        if (!type) {
             formIsValid = false;
-            errors.type = "Requerido"
+            errors.type = 'Requerido';
         }
 
-        if(data.type === '3'){
-            if( data.options.length <= 1 ) {
+        if (data.type === '3') {
+            if (data.options.length <= 1) {
                 formIsValid = false;
-                errors.opciones = "Requerido al menos 2 opciónes"
+                errors.opciones = 'Requerido al menos 2 opciónes';
             }
         }
 
@@ -297,42 +284,43 @@ class FieldForm extends Component {
     }
 
     render() {
-
         const {
-            createMode, errors, data, opciones, loading
+            createMode, errors, data, opciones, loading,
         } = this.state;
-        const { name, type, required, comments } = data;
+        const {
+            name, type, required, comments,
+        } = data;
 
         return (
             <>
-                <Input label="Nombre" name="name" placeholder="Nombre" onChange={this.onChange} value={name} errors={errors} required/>
-                <Select label="Tipo" name="type" options={types} placeholder="Seleccione..." onChange={this.onChange} value={type} errors={errors} required/>
+                <Input label="Nombre" name="name" placeholder="Nombre" onChange={this.onChange} value={name} errors={errors} required />
+                <Select label="Tipo" name="type" options={types} placeholder="Seleccione..." onChange={this.onChange} value={type} errors={errors} required />
 
-                {data.type === "3" ? (
-                    
+                {data.type === '3' ? (
+
                     <Row>
                         <Col md={8}>
                             <Input label="Opciones" name="opciones" placeholder="Opciones" onChange={this.onChange} value={opciones} errors={errors} required />
-                            
+
                             {data.options.map((item, index) => (
-                                <ItemOption text={item.name} onClick={this.handleDelete} value={index} key={index}></ItemOption>
+                                <ItemOption text={item.name} onClick={this.handleDelete} value={index} key={index} />
                             ))}
 
-                        </Col>    
-                        <Col md={4}>
-                            <Button text='Agregar' onClick={this.handleOptions} className="align-btn"/>
                         </Col>
-                    </Row>                    
-                
-                ) : ("")}                
+                        <Col md={4}>
+                            <Button text="Agregar" onClick={this.handleOptions} className="align-btn" />
+                        </Col>
+                    </Row>
+
+                ) : ('')}
 
                 <Simple label="Requerido" name="required" onChange={this.onChangeBoolean} value={required} />
 
                 <Simple label="Observaciones" name="comments" onChange={this.onChangeBoolean} value={comments} />
 
                 <Row>
-                    <Col md={8} style={{textAlign : 'right'}}>{loading && <div className="spinner"><Spinner /></div>}</Col>
-                    <Col md={4}>                        
+                    <Col md={8} style={{ textAlign: 'right' }}>{loading && <div className="spinner"><Spinner /></div>}</Col>
+                    <Col md={4}>
                         <Button text={createMode ? 'Crear' : 'Actualizar'} onClick={createMode ? this.handleCreate : this.handleUpdate} />
                     </Col>
                 </Row>
