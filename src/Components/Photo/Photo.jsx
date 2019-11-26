@@ -23,8 +23,15 @@ class Photo extends Component {
     }
 
     handleOnChange(dataUri) {
-        const { onChange } = this.props;
-        onChange(dataUri);
+        const { onChange, name } = this.props;
+        const data = {
+            target: {
+                name,
+                value: dataUri,
+                type: 'image',
+            },
+        };
+        onChange(data);
         this.setState({
             dataUri,
             viewCapture: false,
@@ -32,8 +39,15 @@ class Photo extends Component {
     }
 
     handleRemove() {
-        const { onChange } = this.props;
-        onChange(null);
+        const { onChange, name } = this.props;
+        const data = {
+            target: {
+                name,
+                value: null,
+                type: 'image',
+            },
+        };
+        onChange(data);
         this.setState({
             dataUri: null,
             viewCapture: false,
