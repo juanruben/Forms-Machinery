@@ -25,7 +25,9 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
-const SortableItem = sortableElement(({ index, value, type, data, callback, loading }) => {
+const SortableItem = sortableElement(({
+    value, type, data, callback, loading, required, comments,
+}) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
     function getIcon(fieldType) {
@@ -69,6 +71,8 @@ const SortableItem = sortableElement(({ index, value, type, data, callback, load
                     <img src={getIcon(type)} alt="" style={{ width: '25px' }} />
                     <button className="link-button" disabled type="button">
                         {value}
+                        {required && <i className="fas fa-asterisk asterisk" />}
+                        {comments && <i className="far fa-comment-alt comment" />}
                     </button>
                 </span>
                 <div className="form-actions">
@@ -217,6 +221,8 @@ class Fields extends Component {
                                     data={item}
                                     callback={this.loadData}
                                     loading={this.toogleLoading}
+                                    required={item.required === 1}
+                                    comments={item.comments === 1}
                                 />
                             ))}
                         </SortableContainer>
