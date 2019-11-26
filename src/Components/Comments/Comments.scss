@@ -1,0 +1,13 @@
+.comments-container {
+  text-align: right;
+  .title {
+    font-style: italic;
+    font-size: 0.8em;
+    color: #999;
+  }
+  textarea {
+    border-color: #999;
+    border-radius: 4px;
+    width: 50%;
+  }
+}
