@@ -1,27 +1,14 @@
 @import "../../styles.scss";
 
 .item-option {
-  color: white;
-  background-color: $icafal-orange;
-  border: none;
-  border-radius: 2px;
-  display: block;
-  font-weight: bold;
+  border-bottom: solid 1px #ddd;
+  display: flex;
+  justify-content: space-between;
   padding: 5px;
-  text-transform: uppercase;
-  width: 100%;
   margin-bottom: 5px;
 
-  &:hover:not([disabled]) {
-    background-color: #db4d00;
-    cursor: pointer;
+  button {
+    border: none;
+    padding: 0;
   }
-
-  &:disabled {
-    cursor: auto;
-  }
-}
-
-.align-btn{
-  margin-top:21px
 }

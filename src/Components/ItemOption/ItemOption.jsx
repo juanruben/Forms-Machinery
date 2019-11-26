@@ -5,7 +5,12 @@ import './ItemOption.scss';
 const ItemOption = (props) => {
     const { text, onClick, value } = props;
     return (
-        <button className="item-option" value={value} onClick={onClick}> {text} </button>
+        <div className="item-option">
+            <span>{text}</span>
+            <button value={value} onClick={onClick} type="button">
+                <i className="fas fa-trash" />
+            </button>
+        </div>
     );
 };
 
@@ -16,7 +21,7 @@ ItemOption.propTypes = {
 };
 
 ItemOption.defaultProps = {
-    text: 'ItemOption',    
+    text: 'ItemOption',
 };
 
 export default ItemOption;
