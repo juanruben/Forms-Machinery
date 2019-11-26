@@ -8,8 +8,8 @@ function Simple(props) {
         <div className="simple-container">
             <div>{label}</div>
             <label className="switch" htmlFor={name}>
-                <input id={name} name={name} type="checkbox" onChange={onChange}/>                 
-                <span className="slider round" />                
+                <input id={name} name={name} type="checkbox" onChange={onChange} />
+                <span className="slider round" />
             </label>
         </div>
     );
@@ -18,6 +18,7 @@ function Simple(props) {
 Simple.propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
 };
 
 export default Simple;
