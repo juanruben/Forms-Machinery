@@ -78,9 +78,11 @@ class CheckIn extends Component {
     }
 
     onChangeFormField(event) {
-        const { name, value } = event.target;
+        const {
+            name, value, type, checked,
+        } = event.target;
         const { formData, errors } = this.state;
-        formData[name] = value;
+        formData[name] = type === 'checkbox' ? checked : value;
         errors[name] = '';
         this.setState({
             formData,
