@@ -148,8 +148,7 @@ export async function copySection(section_id) {
     return axios.post(`${url}/forms/copy/section`, { section_id });
 }
 
-
-//Start Fields Implementation
+// FIELDS
 
 export async function getFields(section_id) {
     return axios.get(`${url}/sections/${section_id}`);
