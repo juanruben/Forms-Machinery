@@ -18,6 +18,7 @@ class CheckIn extends Component {
         super(props);
         this.state = {
             data: {},
+            formData: {},
             clients: [],
             constructions: [],
             machines: [],
@@ -31,6 +32,7 @@ class CheckIn extends Component {
             errors: {},
         };
         this.onChange = this.onChange.bind(this);
+        this.onChangeFormField = this.onChangeFormField.bind(this);
         this.onChangeClient = this.onChangeClient.bind(this);
         this.onChangeMachine = this.onChangeMachine.bind(this);
         this.handleSend = this.handleSend.bind(this);
@@ -74,45 +76,48 @@ class CheckIn extends Component {
         });
     }
 
+    onChangeFormField(event) {
+        const { name, value } = event.target;
+        const { formData, errors } = this.state;
+        formData[name] = value;
+        errors[name] = '';
+        this.setState({
+            formData,
+            errors,
+        });
+    }
+
     getControl = (field) => {
-        const { errors } = this.state;
-        console.log("CAMPO", field);
+        const { errors, formData } = this.state;
+
+        const props = {
+            required: field.required,
+            name: field.id,
+            label: field.name,
+            onChange: this.onChangeFormField,
+            errors,
+            value: formData[field.id],
+        };
+
         switch (field.type) {
             case 'multiple':
                 return (
                     <Multiple
-                        required
-                        label={field.name}
                         options={field.options}
-                        name={field.name}
-                        onChange={() => { }}
-                        errors={errors}
+                        {...props}
                     />
                 );
             case 'image':
                 return (
-                    <Photo
-                        label={field.name}
-                        name="name3"
-                        onChange={() => { }}
-                    />
+                    <Photo {...props} />
                 );
             case 'simple':
                 return (
-                    <Simple
-                        label={field.name}
-                        name="name"
-                        onChange={() => { }}
-                    />
+                    <Simple {...props} />
                 );
             case 'text':
                 return (
-                    <Input
-                        label={field.name}
-                        name="name"
-                        placeholder={field.name}
-                        onChange={() => { }}
-                    />
+                    <Input {...props} />
                 );
             default:
                 return null;
@@ -202,7 +207,7 @@ class CheckIn extends Component {
                 </Row>
 
                 {form.model_section.map((section) => (
-                    <div className="check-in-container__section">
+                    <div className="check-in-container__section" key={section.id}>
                         <Row key={section.id}>
                             <Col md={12}>
                                 {section.name && <Title text={section.name} />}
@@ -217,17 +222,6 @@ class CheckIn extends Component {
                         </Row>
                     </div>
                 ))}
-
-                {/* <Row>
-                        <Col md={6}><Simple label="Esto es un ejemplo de selección simple" name="name" onChange={() => { }} /></Col>
-                        <Col md={6}><Multiple required label="Esto es un ejemplo de múltiples opciones" options={options} name="test" onChange={() => { }} errors={errors} /></Col>
-                        <Col md={6}><Multiple label="Otro ejemplo de múltiples opciones" options={options2} name="name2" onChange={() => { }} /></Col>
-                        <Col md={6}><Multiple label="Y otro más" options={options3} name="name3" onChange={() => { }} /></Col>
-                        <Col md={4}><Photo required label="Toma una foto de XYZ en la máquina" onChange={() => { }} name="photo1" errors={errors} /></Col>
-                        <Col md={4}><Photo label="Toma otra foto de la máquina" name="name2" onChange={() => { }} /></Col>
-                        <Col md={4}><Photo label="Y otra foto más" name="name3" onChange={() => { }} /></Col>
-                    </Row> */}
-
                 <Row>
                     <Col md={8} />
                     <Col md={4}>
