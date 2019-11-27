@@ -7,7 +7,7 @@ function Comments(props) {
     return (
         <div className="comments-container">
             <div className="title">Observaciones</div>
-            <textarea name={`comment-${name}`} onChange={onChange} />
+            <textarea name={`comment_${name}`} onChange={onChange} />
         </div>
     );
 }
