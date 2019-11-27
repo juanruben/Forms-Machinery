@@ -173,3 +173,9 @@ export async function deleteField(id) {
 export async function copyField(field_id) {
     return axios.post(`${url}/forms/copy/field`, { field_id });
 }
+
+// REGISTER
+
+export async function sendRegister(data) {
+    return axios.post(`${url}/register`, { ...data });
+}
