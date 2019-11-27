@@ -241,7 +241,34 @@ class Register extends Component {
         };
 
         await sendRegister(params).then((response) => {
-            console.log("RESPUESTA", response);
+            if (response && response.status === 201) {
+                alert("Enviado");
+                this.setState({
+                    data: {},
+                    formData: {},
+                    formFields: [],
+                    clientSelected: {},
+                    constructionSelected: {},
+                    machineSelected: {},
+                    form: {
+                        model_section: [
+                            {
+                                model_field: [],
+                            },
+                        ],
+                    },
+                    errors: {},
+                    showing: false,
+                    ready: false,
+                    loading: false,
+                });
+            } else {
+                this.setState({
+                });
+            }
+        }).catch(() => {
+            this.setState({
+            });
         });
         this.toggleLoading(false);
     }
