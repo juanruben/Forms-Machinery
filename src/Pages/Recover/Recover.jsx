@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import { StateContext } from '../../State';
 import { validateEmail } from '../../Service/Utils';
 import LayoutFullWidth from '../../Layout/LayoutFullWidth/LayoutFullWidth';
@@ -7,7 +8,7 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-
+import { recover } from '../../Service/Api';
 import './Recover.scss';
 
 class Recover extends Component {
@@ -16,6 +17,8 @@ class Recover extends Component {
         this.state = {
             email: '',
             errors: {},
+            showAlertError: false,
+            alertMessage: '',
             sent: false,
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -50,26 +53,25 @@ class Recover extends Component {
 
     async send() {
         if (this.validForm()) {
-            this.toggleLoading(true);
-            // const { email } = this.state;
-
-            // const response = await LoginApi({
-            //     username,
-            //     password,
-            // });
-            this.setState({
-                sent: true,
+            const { email } = this.state;
+            await recover(email).then((response) => {
+                if (response && response.status === 200) {
+                    this.setState({
+                        email: '',
+                        sent: true,
+                    });
+                } else {
+                    this.setState({
+                        showAlertError: true,
+                        alertMessage: 'Error de conexión',
+                    });
+                }
+            }).catch(() => {
+                this.setState({
+                    showAlertError: true,
+                    alertMessage: 'Email no se encuentra registrado u/o activo',
+                });
             });
-
-            // if (responseApi.result === 'success') {
-            //     if (responseApi.perfil === 1) {
-            //         window.location.assign('/administrador/');
-            //     } else {
-            //         window.location.assign('/operador/');
-            //     }
-            // }
-
-            this.toggleLoading(false);
         }
     }
 
@@ -85,6 +87,8 @@ class Recover extends Component {
         const {
             email,
             errors,
+            showAlertError,
+            alertMessage,
             sent,
         } = this.state;
 
@@ -98,6 +102,19 @@ class Recover extends Component {
                     </div>
                     <Link to="/login" className="link-login">Volver</Link>
                 </Box>
+                <SweetAlert
+                    title=""
+                    show={showAlertError}
+                    error
+                    onConfirm={() => {
+                        this.setState({
+                            showAlertError: false,
+                        });
+                    }}
+                >
+                    {alertMessage}
+                </SweetAlert>
+
                 {sent && <div className="message-ok">Revisa tu correo y verifica tu contraseña</div>}
             </LayoutFullWidth>
         );
