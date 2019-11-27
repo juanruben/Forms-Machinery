@@ -16,7 +16,7 @@ import Photo from '../../Components/Photo/Photo';
 import Comments from '../../Components/Comments/Comments';
 import Doc from './Doc';
 import {
-    getClients, getMachines, getConstructionsByClient, getForm,
+    getClients, getMachines, getConstructionsByClient, getForm, sendRegister,
 } from '../../Service/Api';
 
 import './Register.scss';
@@ -57,6 +57,7 @@ class Register extends Component {
         this.validDynamicForm = this.validDynamicForm.bind(this);
         this.getControl = this.getControl.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.send = this.send.bind(this);
     }
 
     componentDidMount() {
@@ -195,13 +196,13 @@ class Register extends Component {
     }
 
 
-    handleSend = () => {
-        const {
-            form, formData, clientSelected, constructionSelected, machineSelected,
-        } = this.state;
-        const { type } = this.props;
-
+    handleSend() {
         if (this.validForm() && this.validDynamicForm()) {
+            const {
+                form, formData, clientSelected, constructionSelected, machineSelected,
+            } = this.state;
+            const { type } = this.props;
+
             pdf(<Doc
                 form={form}
                 client={clientSelected}
@@ -211,12 +212,36 @@ class Register extends Component {
                 data={formData}
             />).toBlob()
                 .then((pdfBlob) => {
-                    this.setState({
-                        pdfBlob,
-                    });
+                    const reader = new window.FileReader();
+                    reader.readAsDataURL(pdfBlob);
+                    reader.onloadend = () => {
+                        const base64data = reader.result;
+                        this.send(base64data);
+                    };
                 });
-            alert("En desarrollo");
         }
+    }
+
+    async send(file) {
+        const { formFields, constructionSelected, machineSelected } = this.state;
+        const { type } = this.props;
+
+        formFields.forEach((item) => {
+            const field = item;
+            delete field.required;
+        });
+
+        const params = {
+            type,
+            machine_id: machineSelected.id,
+            construction_id: constructionSelected.id,
+            file,
+            fields: formFields,
+        };
+
+        await sendRegister(params).then((response) => {
+            console.log("RESPUESTA", response);
+        });
     }
 
     handlePreview() {
