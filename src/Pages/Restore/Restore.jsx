@@ -115,8 +115,8 @@ class Restore extends Component {
                 <Box>
                     <Logo padding={30} maxWidth={150} />
                     <div className="login-container">
-                        <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="far fa-lock" placeholder="Contraseña" errors={errors} />
-                        <Input type="password" name="passwordRepeat" onChange={this.handleInputChange} value={passwordRepeat} icon="far fa-lock" placeholder="Repita contraseña" errors={errors} />
+                        <Input type="password" name="password" onChange={this.handleInputChange} value={password} icon="fas fa-unlock-alt" placeholder="Contraseña" errors={errors} />
+                        <Input type="password" name="passwordRepeat" onChange={this.handleInputChange} value={passwordRepeat} icon="fas fa-unlock-alt" placeholder="Repita contraseña" errors={errors} />
                         <Button type="button" onClick={this.send} text="Enviar" />
                     </div>
                     <Link to="/login" className="link-login">Volver</Link>
