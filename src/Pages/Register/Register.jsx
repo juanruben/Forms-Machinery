@@ -344,7 +344,7 @@ class Register extends Component {
                     <Button text="Vista previa" onClick={this.handlePreview} />
                 </div>
                 <div className="form-footer">
-                    <Button text="Enviar" onClick={this.validDynamicForm} />
+                    <Button text="Enviar" onClick={this.handleSend} />
                 </div>
 
                 <Modal isOpen={showing} toggle={this.toggle}>
