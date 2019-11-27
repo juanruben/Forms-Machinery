@@ -30,6 +30,10 @@ export async function recover(email) {
     return axios.post(`${url}/password`, { email });
 }
 
+export async function restore(password) {
+    return axios.post(`${url}/reset`, { password });
+}
+
 // USERS
 
 export async function getUsers() {
