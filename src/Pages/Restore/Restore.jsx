@@ -45,16 +45,16 @@ class Restore extends Component {
 
         if (!validatePassword(password)) {
             formIsValid = false;
-            errors.password = 'Error de formato de password';
+            errors.password = ['Error de formato de password'];
         }
 
         if (!validatePassword(passwordRepeat)) {
             formIsValid = false;
-            errors.passwordRepeat = 'Error de formato de password Repeat';
+            errors.passwordRepeat = ['Error de formato de password Repeat'];
         }
         if (password !== passwordRepeat) {
             formIsValid = false;
-            errors.passwordRepeat = 'Error Password no coinciden';
+            errors.passwordRepeat = ['Error Password no coinciden'];
         }
         this.setState({
             errors,
