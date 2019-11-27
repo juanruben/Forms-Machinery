@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     PDFViewer, pdf,
 } from '@react-pdf/renderer';
@@ -195,8 +196,20 @@ class Register extends Component {
 
 
     handleSend = () => {
+        const {
+            form, formData, clientSelected, constructionSelected, machineSelected,
+        } = this.state;
+        const { type } = this.props;
+
         if (this.validForm() && this.validDynamicForm()) {
-            pdf(<Doc form={this.state.form} />).toBlob()
+            pdf(<Doc
+                form={form}
+                client={clientSelected}
+                construction={constructionSelected}
+                machine={machineSelected}
+                type={type}
+                data={formData}
+            />).toBlob()
                 .then((pdfBlob) => {
                     this.setState({
                         pdfBlob,
