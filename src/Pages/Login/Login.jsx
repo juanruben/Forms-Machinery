@@ -131,8 +131,6 @@ class Login extends Component {
         }
     }
 
-
-
     render() {
         const [{ loggedin, role }] = this.context;
         const {
