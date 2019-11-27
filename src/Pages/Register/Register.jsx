@@ -4,7 +4,7 @@ import {
     PDFViewer, pdf,
 } from '@react-pdf/renderer';
 import {
-    Row, Col, Modal, ModalHeader, ModalBody,
+    Row, Col, Modal, ModalHeader, ModalBody, Spinner,
 } from 'reactstrap';
 import Title from '../../Components/Title/Title';
 import Select from '../../Components/Select/Select';
@@ -44,7 +44,7 @@ class Register extends Component {
             errors: {},
             showing: false,
             ready: false,
-            pdfBlob: null,
+            loading: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -225,6 +225,7 @@ class Register extends Component {
     async send(file) {
         const { formFields, constructionSelected, machineSelected } = this.state;
         const { type } = this.props;
+        this.toggleLoading(true);
 
         formFields.forEach((item) => {
             const field = item;
@@ -242,6 +243,7 @@ class Register extends Component {
         await sendRegister(params).then((response) => {
             console.log("RESPUESTA", response);
         });
+        this.toggleLoading(false);
     }
 
     handlePreview() {
@@ -337,9 +339,15 @@ class Register extends Component {
         });
     }
 
+    toggleLoading(value) {
+        this.setState({
+            loading: value,
+        });
+    }
+
     render() {
         const {
-            errors, clients, machines, constructions, form, data, showing, ready, formData, clientSelected, constructionSelected, machineSelected,
+            errors, clients, machines, constructions, form, data, showing, ready, formData, clientSelected, constructionSelected, machineSelected, loading,
         } = this.state;
         const {
             client, machine, construction,
@@ -382,6 +390,7 @@ class Register extends Component {
                     <Button text="Vista previa" onClick={this.handlePreview} />
                 </div>
                 <div className="form-footer">
+                    {loading && <div className="spinner"><Spinner /></div>}
                     <Button text="Enviar" onClick={this.handleSend} />
                 </div>
 
