@@ -26,6 +26,10 @@ export async function logout() {
     return axios.post(`${url}/logout`);
 }
 
+export async function recover(email) {
+    return axios.post(`${url}/password`, { email });
+}
+
 // USERS
 
 export async function getUsers() {
