@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { StateContext } from '../../State';
 import { validatePassword } from '../../Service/Utils';
@@ -15,9 +16,8 @@ class Restore extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {
-                token: this.props.match.params.token,
-            },
+            data: {},
+            token: '',
             errors: {},
             showAlertError: false,
             alertMessage: '',
@@ -26,6 +26,16 @@ class Restore extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.validForm = this.validForm.bind(this);
         this.send = this.send.bind(this);
+    }
+
+    componentDidMount() {
+        const { location } = this.props;
+        const { search } = location;
+        this.setState({
+            token: new URLSearchParams(search).get('token'),
+        }, () => {
+            console.log("ESTE ES EL TOKEN -----> ", this.state.token);
+        });
     }
 
     validForm() {
@@ -42,7 +52,7 @@ class Restore extends Component {
             formIsValid = false;
             errors.passwordRepeat = 'Error de formato de password Repeat';
         }
-        if(password !== passwordRepeat){
+        if (password !== passwordRepeat) {
             formIsValid = false;
             errors.passwordRepeat = 'Error Password no coinciden';
         }
@@ -139,6 +149,10 @@ class Restore extends Component {
     }
 }
 
+Restore.propTypes = {
+    location: PropTypes.object.isRequired,
+};
+
 Restore.contextType = StateContext;
 
-export default Restore;
+export default withRouter(Restore);
