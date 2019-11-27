@@ -53,6 +53,7 @@ class Recover extends Component {
 
     async send() {
         if (this.validForm()) {
+            this.toggleLoading(true);
             const { email } = this.state;
             await recover(email).then((response) => {
                 if (response && response.status === 200) {
@@ -72,6 +73,7 @@ class Recover extends Component {
                     alertMessage: 'Email no se encuentra registrado u/o activo',
                 });
             });
+            this.toggleLoading(false);
         }
     }
 
