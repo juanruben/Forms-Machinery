@@ -314,7 +314,7 @@ class FieldForm extends Component {
 
                 ) : ('')}
 
-                <Simple label="Requerido" name="required" onChange={this.onChangeBoolean} value={required} />
+                {(type !== '2') && <Simple label="Requerido" name="required" onChange={this.onChangeBoolean} value={required} />}
 
                 <Simple label="Observaciones" name="comments" onChange={this.onChangeBoolean} value={comments} />
 
