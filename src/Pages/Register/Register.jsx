@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {
-    Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink,
+    Document, Page, Text, View, StyleSheet, PDFViewer, pdf,
 } from '@react-pdf/renderer';
 import {
-    Row, Col, Modal, ModalHeader, ModalBody, ModalFooter,
+    Row, Col, Modal, ModalHeader, ModalBody,
 } from 'reactstrap';
 import Title from '../../Components/Title/Title';
 import Select from '../../Components/Select/Select';
@@ -25,6 +25,7 @@ class Register extends Component {
         this.state = {
             data: {},
             formData: {},
+            formFields: [],
             clients: [],
             constructions: [],
             machines: [],
@@ -38,6 +39,7 @@ class Register extends Component {
             errors: {},
             showing: false,
             ready: false,
+            pdfData: null,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -46,8 +48,10 @@ class Register extends Component {
         this.handleSend = this.handleSend.bind(this);
         this.handlePreview = this.handlePreview.bind(this);
         this.validForm = this.validForm.bind(this);
+        this.validDynamicForm = this.validDynamicForm.bind(this);
         this.getControl = this.getControl.bind(this);
         this.toggle = this.toggle.bind(this);
+        this.createPdf = this.createPdf.bind(this);
     }
 
     componentDidMount() {
@@ -61,6 +65,7 @@ class Register extends Component {
         this.loadConstructionsByClientId(parseInt(value));
     }
 
+
     async onChangeMachine(event) {
         const { value } = event.target;
         const { machines } = this.state;
@@ -69,9 +74,9 @@ class Register extends Component {
         const machine = machines.find((item) => item.id === parseInt(value));
 
         await getForm(machine.model_form_id).then((response) => {
-            console.log("FORM", response);
             this.setState({
                 form: response.data,
+                formFields: this.parseForm(response.data),
             });
         });
     }
@@ -100,18 +105,36 @@ class Register extends Component {
         });
     }
 
+    parseForm = (form) => {
+        const fields = [];
+        form.model_section.forEach((section) => {
+            section.model_field.forEach((field) => {
+                fields.push({
+                    value: null,
+                    comments: '',
+                    model_field_id: field.id,
+                    type: field.type,
+                    model_section_id: field.model_section_id,
+                    required: field.required,
+                });
+            });
+        });
+        fields.sort((a, b) => a.model_field_id - b.model_field_id);
+        return fields;
+    }
+
     getControl = (field) => {
         const { errors, formData } = this.state;
         const comments = field.comments === 1;
         const props = {
             required: field.required === 1,
-            name: String(field.id),
+            name: `field-${field.id}`,
             label: field.name,
             onChange: this.onChangeFormField,
             errors,
-            value: formData[field.id],
+            value: formData[`field-${field.id}`],
         };
-        console.log("CAMPO", field, comments);
+
         switch (field.type) {
             case 'multiple':
                 return (
@@ -120,28 +143,28 @@ class Register extends Component {
                             options={field.options}
                             {...props}
                         />
-                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                        {comments && <Comments {...props} />}
                     </>
                 );
             case 'image':
                 return (
                     <>
                         <Photo {...props} />
-                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                        {comments && <Comments {...props} />}
                     </>
                 );
             case 'simple':
                 return (
                     <>
                         <Simple {...props} />
-                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                        {comments && <Comments {...props} />}
                     </>
                 );
             case 'text':
                 return (
                     <>
                         <Input {...props} />
-                        {comments && <Comments name={field.id} onChange={this.onChangeFormField} />}
+                        {comments && <Comments {...props} />}
                     </>
                 );
             default:
@@ -151,11 +174,20 @@ class Register extends Component {
 
 
     handleSend = () => {
-        alert('send');
+        if (this.validForm() && this.validDynamicForm()) {
+            pdf(this.createPdf()).toBlob()
+                .then((pdfData) => {
+                    this.setState({
+                        pdfData,
+                    });
+                });
+        }
     }
 
+
+
     handlePreview() {
-        if (this.validForm()) {
+        if (this.validForm() && this.validDynamicForm()) {
             this.toggle();
         }
     }
@@ -213,25 +245,31 @@ class Register extends Component {
         return formIsValid;
     }
 
+    validDynamicForm() {
+        let formIsValid = true;
 
+        const { formFields, formData, errors } = this.state;
+        formFields.forEach((field) => {
+            field.value = formData[`field-${field.model_field_id}`] || null;
+            field.comments = formData[`comment_field-${field.model_field_id}`] || null;
 
-    toggle() {
-        this.setState((prevState) => ({
-            showing: !prevState.showing,
-            ready: false,
-        }), () => {
-            setTimeout(() => {
-                this.setState({ ready: true });
-            }, 1);
+            if (field.required === 1 && !field.value) {
+                errors[`field-${field.model_field_id}`] = ['Requerido'];
+            }
         });
+
+
+        this.setState({
+            formFields,
+            errors,
+        });
+        return formIsValid;
     }
 
-    render() {
-        const {
-            errors, clients, machines, constructions, form, data, showing, ready,
-        } = this.state;
-        const { client, machine, construction } = data;
 
+
+    createPdf() {
+        const { formData } = this.state;
         const styles = StyleSheet.create({
             page: {
                 flexDirection: 'row',
@@ -254,7 +292,7 @@ class Register extends Component {
             },
         });
 
-        const doc = (
+        return (
             <Document>
                 <Page size="A4" style={styles.page}>
                     <View style={styles.section}>
@@ -263,6 +301,24 @@ class Register extends Component {
                 </Page>
             </Document>
         );
+    }
+
+    toggle() {
+        this.setState((prevState) => ({
+            showing: !prevState.showing,
+            ready: false,
+        }), () => {
+            setTimeout(() => {
+                this.setState({ ready: true });
+            }, 1);
+        });
+    }
+
+    render() {
+        const {
+            errors, clients, machines, constructions, form, data, showing, ready,
+        } = this.state;
+        const { client, machine, construction } = data;
 
         return (
             <div className="check-in-container">
@@ -297,29 +353,18 @@ class Register extends Component {
                 ))}
                 <div className="form-footer">
                     <Button text="Revisar" onClick={this.handlePreview} />
+                    <Button text="Enviar" onClick={this.validDynamicForm} />
                 </div>
-
-
-
-
-
 
                 <Modal isOpen={showing} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle} />
                     <ModalBody>
                         {ready && (
                             <PDFViewer width="100%" height="300px">
-                                {doc}
+                                {this.createPdf()}
                             </PDFViewer>
                         )}
                     </ModalBody>
-                    <ModalFooter>
-                        {ready && (
-                            <div className="form-footer">
-                                <Button text="Enviar" onClick={this.handleSend} />
-                            </div>
-                        )}
-                    </ModalFooter>
                 </Modal>
             </div>
         );
