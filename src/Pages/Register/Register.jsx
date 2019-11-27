@@ -249,15 +249,17 @@ class Register extends Component {
         let formIsValid = true;
 
         const { formFields, formData, errors } = this.state;
-        formFields.forEach((field) => {
+
+        formFields.forEach((item) => {
+            const field = item;
             field.value = formData[`field-${field.model_field_id}`] || null;
             field.comments = formData[`comment_field-${field.model_field_id}`] || null;
 
             if (field.required === 1 && !field.value) {
+                formIsValid = false;
                 errors[`field-${field.model_field_id}`] = ['Requerido'];
             }
         });
-
 
         this.setState({
             formFields,
@@ -265,8 +267,6 @@ class Register extends Component {
         });
         return formIsValid;
     }
-
-
 
     createPdf() {
         const { formData } = this.state;
