@@ -369,4 +369,8 @@ class Register extends Component {
     }
 }
 
+Register.protoTypes = {
+    type: PropTypes.string.isRequired,
+};
+
 export default Register;
