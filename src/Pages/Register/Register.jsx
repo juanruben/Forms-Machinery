@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Document, Page, Text, View, StyleSheet, PDFViewer, pdf,
+    PDFViewer, pdf,
 } from '@react-pdf/renderer';
 import {
     Row, Col, Modal, ModalHeader, ModalBody,
@@ -13,6 +13,7 @@ import Multiple from '../../Components/Multiple/Multiple';
 import Input from '../../Components/Input/Input';
 import Photo from '../../Components/Photo/Photo';
 import Comments from '../../Components/Comments/Comments';
+import Doc from './Doc';
 import {
     getClients, getMachines, getConstructionsByClient, getForm,
 } from '../../Service/Api';
@@ -27,8 +28,11 @@ class Register extends Component {
             formData: {},
             formFields: [],
             clients: [],
+            clientSelected: {},
             constructions: [],
+            constructionSelected: {},
             machines: [],
+            machineSelected: {},
             form: {
                 model_section: [
                     {
@@ -39,11 +43,12 @@ class Register extends Component {
             errors: {},
             showing: false,
             ready: false,
-            pdfData: null,
+            pdfBlob: null,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
         this.onChangeClient = this.onChangeClient.bind(this);
+        this.onChangeConstruction = this.onChangeConstruction.bind(this);
         this.onChangeMachine = this.onChangeMachine.bind(this);
         this.handleSend = this.handleSend.bind(this);
         this.handlePreview = this.handlePreview.bind(this);
@@ -51,32 +56,48 @@ class Register extends Component {
         this.validDynamicForm = this.validDynamicForm.bind(this);
         this.getControl = this.getControl.bind(this);
         this.toggle = this.toggle.bind(this);
-        this.createPdf = this.createPdf.bind(this);
     }
 
     componentDidMount() {
         this.loadClients();
         this.loadMachines();
+        // this.toggle();
     }
 
     onChangeClient(event) {
         const { value } = event.target;
+        const { clients } = this.state;
         this.onChange(event);
+        const clientSelected = clients.find((item) => item.id === parseInt(value));
+        this.setState({
+            clientSelected,
+        });
         this.loadConstructionsByClientId(parseInt(value));
     }
 
+    onChangeConstruction(event) {
+        const { value } = event.target;
+        const { constructions } = this.state;
+        this.onChange(event);
+        const constructionSelected = constructions.find((item) => item.id === parseInt(value));
+        this.setState({
+            constructionSelected,
+        });
+        this.loadConstructionsByClientId(parseInt(value));
+    }
 
     async onChangeMachine(event) {
         const { value } = event.target;
         const { machines } = this.state;
 
         this.onChange(event);
-        const machine = machines.find((item) => item.id === parseInt(value));
+        const machineSelected = machines.find((item) => item.id === parseInt(value));
 
-        await getForm(machine.model_form_id).then((response) => {
+        await getForm(machineSelected.model_form_id).then((response) => {
             this.setState({
                 form: response.data,
                 formFields: this.parseForm(response.data),
+                machineSelected,
             });
         });
     }
@@ -175,16 +196,14 @@ class Register extends Component {
 
     handleSend = () => {
         if (this.validForm() && this.validDynamicForm()) {
-            pdf(this.createPdf()).toBlob()
-                .then((pdfData) => {
+            pdf(<Doc form={this.state.form} />).toBlob()
+                .then((pdfBlob) => {
                     this.setState({
-                        pdfData,
+                        pdfBlob,
                     });
                 });
         }
     }
-
-
 
     handlePreview() {
         if (this.validForm() && this.validDynamicForm()) {
@@ -268,41 +287,6 @@ class Register extends Component {
         return formIsValid;
     }
 
-    createPdf() {
-        const { formData } = this.state;
-        const styles = StyleSheet.create({
-            page: {
-                flexDirection: 'row',
-                backgroundColor: '#FFF',
-            },
-            section: {
-                margin: 10,
-                padding: 10,
-                flexGrow: 1,
-                fontSize: 100,
-                fontWeight: 700,
-                color: '#CCC',
-            },
-            text: {
-                color: '#F00',
-                margin: 10,
-                padding: 10,
-                flexGrow: 1,
-                fontSize: 12,
-            },
-        });
-
-        return (
-            <Document>
-                <Page size="A4" style={styles.page}>
-                    <View style={styles.section}>
-                        <Text>PDF Icafal</Text>
-                    </View>
-                </Page>
-            </Document>
-        );
-    }
-
     toggle() {
         this.setState((prevState) => ({
             showing: !prevState.showing,
@@ -316,9 +300,12 @@ class Register extends Component {
 
     render() {
         const {
-            errors, clients, machines, constructions, form, data, showing, ready,
+            errors, clients, machines, constructions, form, data, showing, ready, formData, clientSelected, constructionSelected, machineSelected,
         } = this.state;
-        const { client, machine, construction } = data;
+        const {
+            client, machine, construction,
+        } = data;
+        const { type } = this.props;
 
         return (
             <div className="check-in-container">
@@ -327,7 +314,7 @@ class Register extends Component {
                 <div className="check-in-container__section">
                     <Row>
                         <Col md={6}><Select name="client" required label="Cliente" options={clients} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} /></Col>
-                        <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChange} value={construction} errors={errors} /></Col>
+                        <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} errors={errors} /></Col>
                         <Col md={6}><Select name="machine" required label="Código de máquina" options={machines} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} /></Col>
                     </Row>
                 </div>
@@ -351,8 +338,11 @@ class Register extends Component {
 
                     </Row>
                 ))}
+
                 <div className="form-footer">
-                    <Button text="Revisar" onClick={this.handlePreview} />
+                    <Button text="Vista previa" onClick={this.handlePreview} />
+                </div>
+                <div className="form-footer">
                     <Button text="Enviar" onClick={this.validDynamicForm} />
                 </div>
 
@@ -361,7 +351,14 @@ class Register extends Component {
                     <ModalBody>
                         {ready && (
                             <PDFViewer width="100%" height="300px">
-                                {this.createPdf()}
+                                <Doc
+                                    form={form}
+                                    client={clientSelected}
+                                    construction={constructionSelected}
+                                    machine={machineSelected}
+                                    type={type}
+                                    data={formData}
+                                />
                             </PDFViewer>
                         )}
                     </ModalBody>
