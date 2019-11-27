@@ -288,7 +288,7 @@ class FieldForm extends Component {
             createMode, errors, data, opciones, loading,
         } = this.state;
         const {
-            name, type, required, comments,
+            name, type, required, comments, options,
         } = data;
 
         return (
@@ -296,13 +296,13 @@ class FieldForm extends Component {
                 <Input label="Nombre" name="name" placeholder="Nombre" onChange={this.onChange} value={name} errors={errors} required />
                 <Select label="Tipo" name="type" options={types} placeholder="Seleccione..." onChange={this.onChange} value={type} errors={errors} required />
 
-                {data.type === '3' ? (
+                {type === '3' ? (
 
                     <Row>
                         <Col md={8}>
                             <Input label="Opciones" name="opciones" placeholder="Opciones" onChange={this.onChange} value={opciones} errors={errors} required />
 
-                            {data.options.map((item, index) => (
+                            {options.map((item, index) => (
                                 <ItemOption text={item.name} onClick={this.handleDelete} value={index} key={index} />
                             ))}
 
