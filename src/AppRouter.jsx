@@ -28,7 +28,7 @@ const AppRouter = () => (
         <Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/recuperar" component={Recover} />
-            <Route exact path="/restablecer" component={Restore} />
+            <Route path="/restablecer/:token" component={Restore} />
             <PrivateRoute path="/" component={Main} />
         </Switch>
     </Router>
