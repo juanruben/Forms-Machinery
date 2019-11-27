@@ -202,6 +202,7 @@ class Register extends Component {
                         pdfBlob,
                     });
                 });
+            alert("En desarrollo");
         }
     }
 
