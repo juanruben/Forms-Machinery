@@ -74,11 +74,12 @@ class Restore extends Component {
     async send() {
         if (this.validForm()) {
             this.toggleLoading(true);
-            const { data } = this.state;
+            const { data, token } = this.state;
+            data.token = token;
             await restore(data).then((response) => {
                 if (response && response.status === 200) {
                     this.setState({
-                        email: '',
+                        data: '',
                         sent: true,
                     });
                 } else {
