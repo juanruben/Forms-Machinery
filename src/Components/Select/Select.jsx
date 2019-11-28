@@ -28,7 +28,7 @@ const Select = (props) => {
                 {label}
                 {required ? ' *' : ''}
                 <select className={`${warning && 'border-error'}`} name={name} id="" value={value} onChange={onChange}>
-                    <option value="0" disabled>{placeholder}</option>
+                    <option value="-1" disabled>{placeholder}</option>
                     {options.map((item) => (
                         <option key={item.id} value={item.id}>{item.name}</option>
                     ))}
@@ -56,7 +56,7 @@ Select.defaultProps = {
     label: '',
     errors: {},
     options: [],
-    value: '0',
+    value: '-1',
     placeholder: '',
     readOnly: false,
     hideReadOnly: false,
