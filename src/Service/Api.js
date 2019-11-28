@@ -187,3 +187,7 @@ export async function copyField(field_id) {
 export async function sendRegister(data) {
     return axios.post(`${url}/register`, { ...data });
 }
+
+export async function getRegisters() {
+    return axios.get(`${url}/register`);
+}
