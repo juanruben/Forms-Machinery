@@ -228,7 +228,11 @@ class Fields extends Component {
                         </SortableContainer>
                     </>
                 )}
-                {loading && <Spinner />}
+                {loading && (
+                    <div className="simple-loading-container">
+                        <Spinner />
+                    </div>
+                )}
             </>
 
         );

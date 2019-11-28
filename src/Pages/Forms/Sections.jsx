@@ -198,7 +198,11 @@ class Sections extends Component {
                         ))}
                     </SortableContainer>
                 )}
-                {loading && <Spinner />}
+                {loading && (
+                    <div className="simple-loading-container">
+                        <Spinner />
+                    </div>
+                )}
             </>
         );
     }
