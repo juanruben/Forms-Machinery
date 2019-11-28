@@ -80,6 +80,10 @@ export async function getMachines() {
     return axios.get(`${url}/machine`);
 }
 
+export async function getMachine(id) {
+    return axios.get(`${url}/machine/${id}`);
+}
+
 export async function addMachine(data) {
     return axios.post(`${url}/machine`, { ...data });
 }
