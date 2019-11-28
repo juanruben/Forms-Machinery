@@ -63,7 +63,6 @@ class Register extends Component {
     componentDidMount() {
         this.loadClients();
         this.loadMachines();
-        // this.toggle();
     }
 
     onChangeClient(event) {
