@@ -4,7 +4,8 @@ import './Select.scss';
 
 const Select = (props) => {
     const {
-        label, options, errors, name, value, onChange, placeholder, readOnly, hideReadOnly, required,
+        label, options, errors, name, value, onChange, placeholder,
+        readOnly, hideReadOnly, required,
     } = props;
     const warning = (errors[name] && errors[name].length > 0);
 

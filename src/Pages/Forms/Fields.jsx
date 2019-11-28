@@ -142,7 +142,7 @@ class Fields extends Component {
 
     toogleLoading(value) {
         this.setState({
-            loading: value
+            loading: value,
         });
     }
 
@@ -155,7 +155,7 @@ class Fields extends Component {
             .then((response) => {
                 this.setState({
                     items: response.data.model_field,
-                    data: response.data
+                    data: response.data,
                 });
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
@@ -173,10 +173,9 @@ class Fields extends Component {
 
         await orderField({ current: current + 1, new: newIndex + 1 }, id)
             .then((value) => {
-                console.log(value)
-                // this.loadData();
+                console.log(value);
             }).catch((value) => {
-                console.log(value)
+                console.log(value);
             });
 
         this.setState({ loading: false });
@@ -243,6 +242,7 @@ Fields.contextType = StateContext;
 
 Fields.propTypes = {
     history: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
 };
 
 export default withRouter(Fields);
