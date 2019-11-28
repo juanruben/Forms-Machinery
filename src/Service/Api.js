@@ -30,8 +30,8 @@ export async function recover(email) {
     return axios.post(`${url}/password`, { email });
 }
 
-export async function restore(password) {
-    return axios.post(`${url}/reset`, { password });
+export async function restore(data) {
+    return axios.post(`${url}/reset`, { ...data });
 }
 
 // USERS
