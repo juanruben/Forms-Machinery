@@ -114,18 +114,17 @@ class Machines extends Component {
                     <>{row.original.status}</>
                 ),
                 filterMethod: (filter, row) => {
-                    
                     if (filter.value === 'all') {
                         return true;
                     }
                     if (filter.value === 'En obra') {
-                        return row[filter.id] === "En obra";
+                        return row[filter.id] === 'En obra';
                     }
                     if (filter.value === 'En taller') {
-                        return row[filter.id] === "En taller";
+                        return row[filter.id] === 'En taller';
                     }
                     if (filter.value === 'Mantenimiento') {
-                        return row[filter.id] === "Mantenimiento";
+                        return row[filter.id] === 'Mantenimiento';
                     }
                     return row[filter.id] === 0;
                 },
