@@ -5,7 +5,7 @@ export function validateEmail(email) {
 }
 
 export function validateUsername(username) {
-    const regex = /^[a-z]+$/;
+    const regex = /^[a-z0-9]+$/;
     return regex.test(String(username).toLowerCase());
 }
 
