@@ -106,9 +106,11 @@ class Sections extends Component {
     }
 
     onSortEnd = ({ oldIndex, newIndex }) => {
-        const { match } = this.props;
-        const { id } = match.params;
-        this.handleOrder(oldIndex, newIndex, id);
+        if (oldIndex !== newIndex) {
+            const { match } = this.props;
+            const { id } = match.params;
+            this.handleOrder(oldIndex, newIndex, id);
+        }
     };
 
     async handleOrder(oldIndex, newIndex, id) {
