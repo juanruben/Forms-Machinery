@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink,
-} from '@react-pdf/renderer';
-import {
-    Modal, ModalHeader, ModalBody, ModalFooter,
-} from 'reactstrap';
 import ReactTable from 'react-table';
-import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import { tableConfig } from '../../config';
@@ -15,24 +8,14 @@ import MachineForm from '../Machines/MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { getRegisters } from '../../Service/Api';
 
-
-const getStatus = (value) => {
-    if (value === 1) return 'En terreno';
-    if (value === 2) return 'En taller';
-    return 'Mantenimiento';
-};
-
 class History extends Component {
     constructor(props) {
         super(props);
         this.state = {
             data: [],
-            showing: false,
-            ready: false,
             loading: false,
         };
         this.loadData = this.loadData.bind(this);
-        this.toggle = this.toggle.bind(this);
     }
 
     componentDidMount() {
@@ -56,30 +39,18 @@ class History extends Component {
 
         await getRegisters()
             .then((response) => {
-                console.log(response.data);
                 this.setState({
                     data: response.data,
                     loading: false,
                 });
             }).catch((error) => {
-                if (error && (error.response.status === 403 || error.response.status === 401)) {
+                if (error.response.status === 403 || error.response.status === 401 || error.response.status === 500) {
                     const [, dispatch] = this.context;
                     dispatch({
                         type: 'EXIT',
                     });
                 }
             });
-    }
-
-    toggle() {
-        this.setState((prevState) => ({
-            showing: !prevState.showing,
-            ready: false,
-        }), () => {
-            setTimeout(() => {
-                this.setState({ ready: true });
-            }, 1);
-        });
     }
 
     render() {
@@ -163,53 +134,20 @@ class History extends Component {
             },
             {
                 Header: 'Ver',
-                id: 'actions',
+                accessor: 'pdf',
+                id: 'pdf',
                 filterable: false,
                 sortable: false,
                 maxWidth: 50,
-                Cell: () => ( // row
+                Cell: (row) => (
                     <div className="form-actions">
-                        <button className="form-actions__icon" onClick={this.toggle} type="button">
+                        <a className="form-actions__icon" href={row.original.pdf} target="_blank" rel="noopener noreferrer">
                             <i className="fas fa-eye" />
-                        </button>
+                        </a>
                     </div>
                 ),
             },
         ];
-
-        const { showing, ready } = this.state;
-
-        const styles = StyleSheet.create({
-            page: {
-                flexDirection: 'row',
-                backgroundColor: '#FFF',
-            },
-            section: {
-                margin: 10,
-                padding: 10,
-                flexGrow: 1,
-                fontSize: 100,
-                fontWeight: 700,
-                color: '#CCC',
-            },
-            text: {
-                color: '#F00',
-                margin: 10,
-                padding: 10,
-                flexGrow: 1,
-                fontSize: 12,
-            },
-        });
-
-        const doc = (
-            <Document>
-                <Page size="A4" style={styles.page}>
-                    <View style={styles.section}>
-                        <Text>PDF Icafal</Text>
-                    </View>
-                </Page>
-            </Document>
-        );
 
         return (
             <>
@@ -223,38 +161,6 @@ class History extends Component {
                     {...tableConfig}
                     loading={loading}
                 />
-
-                <Modal isOpen={showing} toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>
-                        Máquina 1...
-                    </ModalHeader>
-                    <ModalBody>
-                        {ready && (
-                            <PDFViewer width="100%" height="300px">
-                                {doc}
-                            </PDFViewer>
-                        )}
-                    </ModalBody>
-                    <ModalFooter>
-                        {ready && (
-                            <PDFDownloadLink
-                                document={doc}
-                                fileName="test.pdf"
-                                style={{
-                                    textDecoration: 'none',
-                                    padding: '10px',
-                                    color: '#FFF',
-                                    backgroundColor: '#FF5900',
-                                    borderRadius: '3px',
-                                }}
-                            >
-                                {
-                                    ({ blob, url, loading, error }) => (loading ? 'Cargando documento...' : 'Descargar')
-                                }
-                            </PDFDownloadLink>
-                        )}
-                    </ModalFooter>
-                </Modal>
             </>
         );
     }
