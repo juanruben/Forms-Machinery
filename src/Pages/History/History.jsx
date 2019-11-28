@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { StateContext } from '../State';
 import {
     Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink,
 } from '@react-pdf/renderer';
@@ -14,6 +13,8 @@ import { tableConfig } from '../../config';
 import ClientForm from '../Clients/ClientForm';
 import MachineForm from '../Machines/MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { getRegisters } from '../../Service/Api';
+
 
 const getStatus = (value) => {
     if (value === 1) return 'En terreno';
@@ -28,15 +29,43 @@ class History extends Component {
             data: [],
             showing: false,
             ready: false,
+            loading: false,
         };
-
+        this.loadData = this.loadData.bind(this);
         this.toggle = this.toggle.bind(this);
+    }
+
+    componentDidMount() {
+        this.loadData();
     }
 
     findData = (id) => {
         const { data } = this.state;
         return data.find((item) => item.id === id);
     }
+
+    async loadData() {
+        this.setState({
+            loading: true,
+        });
+
+        await getRegisters()
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    data: response.data,
+                    loading: false,
+                });
+            }).catch((error) => {
+                if (error.response.status === 403 || error.response.status === 401) {
+                    const [, dispatch] = this.context;
+                    dispatch({
+                        type: 'EXIT',
+                    });
+                }
+            });
+    }
+
 
     toggle() {
         this.setState((prevState) => ({
@@ -50,39 +79,35 @@ class History extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { data, loading } = this.state;
 
         const columns = [
             {
                 Header: 'Fecha',
-                accessor: 'date',
+                accessor: 'created_at',
                 maxWidth: 150,
             },
             {
-                Header: 'Patente',
-                accessor: 'plate',
-                maxWidth: 100,
+                Header: 'Tipo',
+                accessor: 'type',
+                maxWidth: 80,
                 Cell: (row) => (
-                    <ModalView title={row.original.plate}>
-                        <MachineForm data={this.findData(row.original.id)} readOnly />
-                    </ModalView>
+                    <div>{row.original.type === 'checkin' ? 'Entrada' : 'Salida'}</div>
                 ),
             },
             {
                 Header: 'Código',
-                accessor: 'code',
-                maxWidth: 100,
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['code'] }),
-                filterAll: true,
-                filterable: true,
+                accessor: 'machine.code',
+                maxWidth: 80,
+                Cell: (row) => (
+                    <div>{row.original.machine.code}</div>
+                ),
             },
             {
                 Header: 'Cliente',
-                accessor: 'name',
+                accessor: 'client.name',
                 Cell: (row) => (
-                    <ModalView title={row.original.name}>
-                        <ClientForm data={this.findData(row.original.id)} readOnly />
-                    </ModalView>
+                    <div>{row.original.client.name}</div>
                 ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
                 filterAll: true,
@@ -184,6 +209,7 @@ class History extends Component {
                     data={data}
                     columns={columns}
                     {...tableConfig}
+                    loading={loading}
                 />
 
                 <Modal isOpen={showing} toggle={this.toggle}>
