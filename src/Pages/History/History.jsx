@@ -39,9 +39,14 @@ class History extends Component {
         this.loadData();
     }
 
-    findData = (id) => {
+    findMachine = (registerId) => {
         const { data } = this.state;
-        return data.find((item) => item.id === id);
+        return data.find((item) => item.id === registerId).machine;
+    }
+
+    findClient = (registerId) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === registerId).client;
     }
 
     async loadData() {
@@ -57,7 +62,7 @@ class History extends Component {
                     loading: false,
                 });
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
+                if (error && (error.response.status === 403 || error.response.status === 401)) {
                     const [, dispatch] = this.context;
                     dispatch({
                         type: 'EXIT',
@@ -65,7 +70,6 @@ class History extends Component {
                 }
             });
     }
-
 
     toggle() {
         this.setState((prevState) => ({
@@ -94,46 +98,11 @@ class History extends Component {
                 Cell: (row) => (
                     <div>{row.original.type === 'checkin' ? 'Entrada' : 'Salida'}</div>
                 ),
-            },
-            {
-                Header: 'Código',
-                accessor: 'machine.code',
-                maxWidth: 80,
-                Cell: (row) => (
-                    <div>{row.original.machine.code}</div>
-                ),
-            },
-            {
-                Header: 'Cliente',
-                accessor: 'client.name',
-                Cell: (row) => (
-                    <div>{row.original.client.name}</div>
-                ),
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
-                filterAll: true,
-                filterable: true,
-            },
-            {
-                Header: 'Estado',
-                accessor: 'status',
-                width: 130,
-                Cell: (row) => (
-                    <>{getStatus(row.original.status)}</>
-                ),
                 filterMethod: (filter, row) => {
                     if (filter.value === 'all') {
                         return true;
                     }
-                    if (filter.value === '1') {
-                        return row[filter.id] === 1;
-                    }
-                    if (filter.value === '2') {
-                        return row[filter.id] === 2;
-                    }
-                    if (filter.value === '3') {
-                        return row[filter.id] === 3;
-                    }
-                    return row[filter.id] === 0;
+                    return row[filter.id] === filter.value;
                 },
                 Filter: ({ filter, onChange }) => (
                     <select
@@ -143,9 +112,52 @@ class History extends Component {
                         value={filter ? filter.value : 'all'}
                     >
                         <option value="">Todo...</option>
-                        <option value="1">En terreno</option>
-                        <option value="2">En taller</option>
-                        <option value="3">Mantenimiento</option>
+                        <option value="checkin">Entrada</option>
+                        <option value="checkout">Salida</option>
+                    </select>
+                ),
+
+            },
+            {
+                Header: 'Código',
+                accessor: 'machine.code',
+                maxWidth: 80,
+                Cell: (row) => (
+                    <ModalView title={row.original.machine.code}>
+                        <MachineForm data={this.findMachine(row.original.id)} readOnly />
+                    </ModalView>
+                ),
+            },
+            {
+                Header: 'Cliente',
+                accessor: 'client.name',
+                Cell: (row) => (
+                    <ModalView title={row.original.client.name}>
+                        <ClientForm data={this.findClient(row.original.id)} readOnly />
+                    </ModalView>
+                ),
+            },
+            {
+                Header: 'Estado',
+                accessor: 'machine.status',
+                width: 130,
+                filterMethod: (filter, row) => {
+                    if (filter.value === 'all') {
+                        return true;
+                    }
+                    return row[filter.id] === filter.value;
+                },
+                Filter: ({ filter, onChange }) => (
+                    <select
+                        onChange={(event) => onChange(event.target.value)}
+                        className="table-select-top"
+                        style={{ width: '100%', height: '100%' }}
+                        value={filter ? filter.value : 'all'}
+                    >
+                        <option value="">Todo...</option>
+                        <option value="En taller">En taller</option>
+                        <option value="En obra">En obra</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
                     </select>
                 ),
             },
