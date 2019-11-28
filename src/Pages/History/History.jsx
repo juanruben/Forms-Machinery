@@ -32,6 +32,31 @@ class History extends Component {
         return data.find((item) => item.id === registerId).client;
     }
 
+    formattedData = () => {
+        const { data } = this.state;
+        const result = [];
+        data.forEach((item) => {
+            result.push({
+                id: item.id,
+                FechaCreacion: item.created_at,
+                Tipo: item.type === 'checkin' ? 'Entrada' : 'Salida',
+                Cliente: item.client.name,
+                RazonSocial: item.client.business_name,
+                Obra: item.construction.name,
+                Direccion: item.construction.address,
+                Maquina: item.machine.name,
+                CodigoMaquina: item.machine.code,
+                Patente: item.machine.plate,
+                Modelo: item.machine.model,
+                Marca: item.machine.brand,
+                Año: item.machine.year,
+                Reporte: item.pdf,
+                CreadoPor: `${item.user.name} ${item.user.last_name} (${item.user.username})`,
+            });
+        });
+        return result;
+    }
+
     async loadData() {
         this.setState({
             loading: true,
@@ -39,6 +64,7 @@ class History extends Component {
 
         await getRegisters()
             .then((response) => {
+                console.log(response.data);
                 this.setState({
                     data: response.data,
                     loading: false,
@@ -152,7 +178,7 @@ class History extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={data} filename="historial.csv" />
+                    <DownloadCSVButton data={this.formattedData()} filename="historial.csv" />
                 </TopBar>
 
                 <ReactTable

@@ -39,6 +39,25 @@ class Machines extends Component {
         return 'Mantenimiento';
     }
 
+    formattedData = () => {
+        const { data } = this.state;
+        const result = [];
+        data.forEach((item) => {
+            result.push({
+                id: item.id,
+                Nombre: item.name,
+                Codigo: item.code,
+                Patente: item.plate,
+                Modelo: item.model,
+                Marca: item.brand,
+                Año: item.year,
+                Estado: item.status,
+                FechaCreacion: item.created_at,
+            });
+        });
+        return result;
+    }
+
     async loadData() {
         this.setState({
             loading: true,
@@ -164,7 +183,7 @@ class Machines extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={data} filename="maquinas.csv" />
+                    <DownloadCSVButton data={this.formattedData()} filename="maquinas.csv" />
                     <ModalView title="Crear máquina" type="add" callback={this.loadData}>
                         <MachineForm />
                     </ModalView>

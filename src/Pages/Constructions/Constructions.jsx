@@ -32,6 +32,24 @@ class Constructions extends Component {
         return data.find((item) => item.id === id);
     }
 
+    formattedData = () => {
+        const { data } = this.state;
+        const result = [];
+        data.forEach((item) => {
+            result.push({
+                id: item.id,
+                Nombre: item.name,
+                Direccion: item.address,
+                Notificaciones: item.notifications,
+                Estado: item.status === 'active' ? 'Activo' : 'Inactivo',
+                Cliente: item.client.name,
+                RazonSocial: item.client.business_name,
+                FechaCreacion: item.created_at,
+            });
+        });
+        return result;
+    }
+
     async loadData() {
         this.setState({
             loading: true,
@@ -122,7 +140,7 @@ class Constructions extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={data} filename="obras.csv" />
+                    <DownloadCSVButton data={this.formattedData()} filename="obras.csv" />
                     <ModalView title="Crear obra" type="add" callback={this.loadData}>
                         <ConstructionForm />
                     </ModalView>

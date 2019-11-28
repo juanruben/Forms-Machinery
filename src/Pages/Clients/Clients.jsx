@@ -33,6 +33,24 @@ class Clients extends Component {
         return data.find((item) => item.id === id);
     }
 
+    formattedData = () => {
+        const { data } = this.state;
+        const result = [];
+        data.forEach((item) => {
+            result.push({
+                id: item.id,
+                Nombre: item.name,
+                RazonSocial: item.business_name,
+                Rut: item.rut,
+                Direccion: item.address,
+                Correo: item.email,
+                Estado: item.status === 'active' ? 'Activo' : 'Inactivo',
+                FechaCreacion: item.created_at,
+            });
+        });
+        return result;
+    }
+
     async loadData() {
         this.setState({
             loading: true,
@@ -116,7 +134,6 @@ class Clients extends Component {
             {
                 Header: 'Acciones',
                 id: 'actions',
-                accessor: (row) => null,
                 filterable: false,
                 sortable: false,
                 maxWidth: 100,
@@ -136,7 +153,7 @@ class Clients extends Component {
         return (
             <>
                 <TopBar>
-                    <DownloadCSVButton data={data} filename="clientes.csv" />
+                    <DownloadCSVButton data={this.formattedData()} filename="clientes.csv" />
                     <ModalView title="Crear cliente" type="add" callback={this.loadData}>
                         <ClientForm />
                     </ModalView>
