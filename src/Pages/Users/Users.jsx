@@ -7,7 +7,7 @@ import UserForm from './UserForm';
 import { StateContext } from '../../State';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
-import { formatRut } from '../../Service/Utils';
+import { formatRut, formatPhone } from '../../Service/Utils';
 import { getUsers, deleteUser } from '../../Service/Api';
 
 class Users extends Component {
@@ -109,7 +109,7 @@ class Users extends Component {
                 accessor: 'phone',
                 maxWidth: 150,
                 Cell: (row) => (
-                    <a href={`tel:${row.original.phone}`}>{row.original.phone}</a>
+                    <a href={`tel:${row.original.phone}`}>{formatPhone(row.original.phone)}</a>
                 ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['phone'] }),
                 filterAll: true,
