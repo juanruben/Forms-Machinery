@@ -456,7 +456,7 @@ class Register extends Component {
     }
 }
 
-Register.protoTypes = {
+Register.propTypes = {
     type: PropTypes.string.isRequired,
 };
 
