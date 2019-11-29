@@ -4,7 +4,8 @@ import './Input.scss';
 
 const Input = (props) => {
     const {
-        label, icon, errors, type, name, value, onChange, placeholder, readOnly, hideReadOnly, required, onKeyPress,
+        label, icon, errors, type, name, value, onChange, placeholder,
+        readOnly, hideReadOnly, required, onKeyPress, onBlur, onFocus,
     } = props;
     const warning = (errors[name] && errors[name].length > 0);
 
@@ -39,6 +40,8 @@ const Input = (props) => {
                     onKeyPress={onKeyPress}
                     placeholder={placeholder || label}
                     autoComplete="new-password"
+                    onBlur={onBlur}
+                    onFocus={onFocus}
                 />
                 {warning && <div className="warning">{errors[name]}</div>}
             </div>
@@ -58,6 +61,9 @@ Input.propTypes = {
     readOnly: PropTypes.bool,
     hideReadOnly: PropTypes.bool,
     required: PropTypes.bool,
+    onKeyPress: PropTypes.func,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
 };
 
 Input.defaultProps = {
@@ -70,6 +76,9 @@ Input.defaultProps = {
     readOnly: false,
     hideReadOnly: false,
     required: false,
+    onKeyPress: null,
+    onBlur: null,
+    onFocus: null,
 };
 
 export default Input;
