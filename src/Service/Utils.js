@@ -83,3 +83,29 @@ export function validateEmailList(emails) {
     }
     return true;
 }
+
+export function dateToLocale(value) {
+    const [date, time] = value.split(' ');
+    let [year, month, day] = date.split('-');
+    let [hh, mm, ss] = time.split(':');
+    const d = new Date(Date.UTC(year, month - 1, day, hh, mm, ss));
+
+    year = d.getFullYear();
+
+    month = d.getMonth() + 1;
+    month = (month < 10) ? (`0${month}`) : month;
+
+    day = d.getDate();
+    day = (day < 10) ? (`0${day}`) : day;
+
+    hh = d.getHours();
+    hh = (hh < 10) ? (`0${hh}`) : hh;
+
+    mm = d.getMinutes();
+    mm = (mm < 10) ? (`0${mm}`) : mm;
+
+    ss = d.getSeconds();
+    ss = (ss < 10) ? (`0${ss}`) : ss;
+
+    return `${year}-${month}-${day} ${hh}:${mm}:${ss}`;
+}
