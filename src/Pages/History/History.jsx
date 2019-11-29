@@ -65,13 +65,14 @@ class History extends Component {
 
         await getRegisters()
             .then((response) => {
-                console.log(response.data);
                 this.setState({
                     data: response.data,
                     loading: false,
                 });
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401 || error.response.status === 500) {
+                if (error.response.status === 403
+                    || error.response.status === 401
+                    || error.response.status === 500) {
                     const [, dispatch] = this.context;
                     dispatch({
                         type: 'EXIT',
