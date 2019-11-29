@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import { StateContext } from '../../State';
 import { validatePassword } from '../../Service/Utils';
 import LayoutFullWidth from '../../Layout/LayoutFullWidth/LayoutFullWidth';
@@ -9,6 +8,7 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import AlertDialog from '../../Components/AlertDialog/AlertDialog';
 import { restore } from '../../Service/Api';
 import './Restore.scss';
 
@@ -33,13 +33,12 @@ class Restore extends Component {
         const { search } = location;
         this.setState({
             token: new URLSearchParams(search).get('token'),
-        }, () => {
-            console.log("ESTE ES EL TOKEN -----> ", this.state.token);
         });
     }
 
     validForm() {
-        const { password, passwordRepeat } = this.state.data;
+        const { data } = this.state;
+        const { password, passwordRepeat } = data;
         const errors = {};
         let formIsValid = true;
 
@@ -115,11 +114,12 @@ class Restore extends Component {
             showAlertError,
             alertMessage,
             sent,
+            data,
         } = this.state;
         const {
             password,
             passwordRepeat,
-        } = this.state.data;
+        } = data;
 
         return (
             <LayoutFullWidth>
@@ -132,18 +132,11 @@ class Restore extends Component {
                     </div>
                     <Link to="/login" className="link-login">Volver</Link>
                 </Box>
-                <SweetAlert
-                    title=""
+                <AlertDialog
+                    message={alertMessage}
                     show={showAlertError}
-                    error
-                    onConfirm={() => {
-                        this.setState({
-                            showAlertError: false,
-                        });
-                    }}
-                >
-                    {alertMessage}
-                </SweetAlert>
+                    onConfirm={() => { this.setState({ showAlertError: false }); }}
+                />
                 {sent && <div className="message-ok">Contraseña actualizada</div>}
             </LayoutFullWidth>
         );

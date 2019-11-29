@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import { StateContext } from '../../State';
 import { validateUsername, validatePassword } from '../../Service/Utils';
 import LayoutFullWidth from '../../Layout/LayoutFullWidth/LayoutFullWidth';
@@ -8,6 +7,7 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
+import AlertDialog from '../../Components/AlertDialog/AlertDialog';
 import { login } from '../../Service/Api';
 import './Login.scss';
 
@@ -160,18 +160,11 @@ class Login extends Component {
                     <Link to="/recuperar" className="link-login">Olvidó su contraseña</Link>
                 </Box>
 
-                <SweetAlert
-                    title=""
+                <AlertDialog
+                    message={alertMessage}
                     show={showAlertError}
-                    error
-                    onConfirm={() => {
-                        this.setState({
-                            showAlertError: false,
-                        });
-                    }}
-                >
-                    {alertMessage}
-                </SweetAlert>
+                    onConfirm={() => { this.setState({ showAlertError: false }); }}
+                />
             </LayoutFullWidth>
         );
     }
