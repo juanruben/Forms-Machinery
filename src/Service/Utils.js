@@ -50,13 +50,13 @@ export function validateRut(rut) {
     return false;
 }
 
-export function formatRut(rut) {
-    if (rut) {
-        return rut.replace(/[.-]/g, '').replace(/^(\d{1,2})(\d{3})(\d{3})(\w{1})$/, '$1.$2.$3-$4');
+export function formatPhone(phone) {
+    if (phone) {
+        return phone.replace(/[.-]/g, '').replace(/^(\d{3})(\d{4})(\d{4})$/, '($1) $2 $3');
     }
     return '';
 }
 
-export function unformatRut(rut) {
-    return rut.replace(/\./g, '').replace(/-/g, '');
+export function unformatPhone(phone) {
+    return phone ? phone.replace(/[^0-9.]/g, '') : '';
 }
