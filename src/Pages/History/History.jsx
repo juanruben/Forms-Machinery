@@ -164,6 +164,23 @@ class History extends Component {
                 ),
             },
             {
+                Header: '',
+                accessor: 'pdf',
+                id: 'pdf',
+                filterable: false,
+                sortable: false,
+                maxWidth: 50,
+                Cell: (row) => (
+                    <div className="form-actions">
+                        {row.original.type === 'checkin' && (
+                            <button className="form-actions__icon" type="button">
+                                <i className="fas fa-exclamation-triangle" />
+                            </button>
+                        )}
+                    </div>
+                ),
+            },
+            {
                 Header: 'Ver',
                 accessor: 'pdf',
                 id: 'pdf',
