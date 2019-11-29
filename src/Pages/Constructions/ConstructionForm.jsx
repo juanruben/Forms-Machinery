@@ -6,6 +6,8 @@ import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
+import { validateEmailList } from '../../Service/Utils';
+
 import { addConstruction, updateConstruction, getClients } from '../../Service/Api';
 
 const status_options = [
@@ -109,9 +111,12 @@ class ConstructionForm extends Component {
             errors.client_id = 'Requerido';
         }
 
-        if (!notifications || notifications === 0) {
+        if (!notifications || notifications.trim().length === 0) {
             formIsValid = false;
-            errors.notifications = 'Requerido';
+            errors.notifications = ['Requerido'];
+        } else if (!validateEmailList(notifications)) {
+            formIsValid = false;
+            errors.notifications = 'Error de formato en una o varias direcciones';
         }
 
         if (!createMode) {
