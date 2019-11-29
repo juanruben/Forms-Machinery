@@ -6,6 +6,7 @@ import { tableConfig } from '../../config';
 import ClientForm from '../Clients/ClientForm';
 import MachineForm from '../Machines/MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { dateToLocale } from '../../Service/Utils';
 import { getRegisters } from '../../Service/Api';
 
 class History extends Component {
@@ -87,6 +88,9 @@ class History extends Component {
                 Header: 'Fecha',
                 accessor: 'created_at',
                 maxWidth: 150,
+                Cell: (row) => (
+                    <div>{dateToLocale(row.original.created_at)}</div>
+                ),
             },
             {
                 Header: 'Tipo',
