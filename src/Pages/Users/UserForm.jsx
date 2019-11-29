@@ -6,6 +6,10 @@ import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
 import { addUser, updateUser } from '../../Service/Api';
+import {
+    validateUsername, validateRut, validatePassword, validateEmail,
+    formatRut, unformatRut, formatPhone, unformatPhone,
+} from '../../Service/Utils';
 
 const profiles = [
     {
@@ -30,11 +34,17 @@ class UserForm extends Component {
         this.handleCreate = this.handleCreate.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onBlurRut = this.onBlurRut.bind(this);
+        this.onFocusRut = this.onFocusRut.bind(this);
+        this.onBlurPhone = this.onBlurPhone.bind(this);
+        this.onFocusPhone = this.onFocusPhone.bind(this);
     }
 
     componentDidMount() {
         const { data } = this.props;
         if (data) {
+            data.phone = formatPhone(data.phone);
+            data.rut = formatRut(data.rut);
             this.setState({
                 data,
                 createMode: false,
@@ -50,6 +60,38 @@ class UserForm extends Component {
         this.setState({
             data,
             errors,
+        });
+    }
+
+    onBlurRut() {
+        const { data } = this.state;
+        data.rut = formatRut(data.rut);
+        this.setState({
+            data,
+        });
+    }
+
+    onFocusRut() {
+        const { data } = this.state;
+        data.rut = unformatRut(data.rut);
+        this.setState({
+            data,
+        });
+    }
+
+    onBlurPhone() {
+        const { data } = this.state;
+        data.phone = formatPhone(data.phone);
+        this.setState({
+            data,
+        });
+    }
+
+    onFocusPhone() {
+        const { data } = this.state;
+        data.phone = unformatPhone(data.phone);
+        this.setState({
+            data,
         });
     }
 
@@ -71,23 +113,29 @@ class UserForm extends Component {
             errors.last_name = ['Requerido'];
         }
 
-        if (!rut || rut.trim().length === 0) {
+        if (!rut || unformatRut(rut).trim().length === 0) {
             formIsValid = false;
             errors.rut = ['Requerido'];
+        } else if (!validateRut(rut)) {
+            formIsValid = false;
+            errors.rut = ['Rut inválido'];
         }
 
         if (!username || username.trim().length === 0) {
             formIsValid = false;
             errors.username = ['Requerido'];
-        } else if (phone.trim().length < 6) {
+        } else if (username.trim().length < 6) {
             formIsValid = false;
-            errors.phone = ['Deben ser al menos 6 caracteres'];
+            errors.username = ['Deben ser al menos 6 caracteres'];
+        } else if (!validateUsername(username)) {
+            formIsValid = false;
+            errors.username = ['Error de formato. Solo minúsculas'];
         }
 
         if (!phone || phone.trim().length === 0) {
             formIsValid = false;
             errors.phone = ['Requerido'];
-        } else if (phone.trim().length !== 11) {
+        } else if (unformatPhone(phone).length !== 11) {
             formIsValid = false;
             errors.phone = ['Deben ser 11 dígitos'];
         }
@@ -95,6 +143,9 @@ class UserForm extends Component {
         if (!email || email.trim().length === 0) {
             formIsValid = false;
             errors.email = ['Requerido'];
+        } else if (!validateEmail(email)) {
+            formIsValid = false;
+            errors.email = 'Error de formato de email';
         }
 
         if (!role_id || role_id === 0) {
@@ -103,6 +154,14 @@ class UserForm extends Component {
         }
 
         if (createMode) {
+            if (!password || password.trim().length === 0) {
+                formIsValid = false;
+                errors.password = ['Requerido'];
+            } else if (!validatePassword(password)) {
+                formIsValid = false;
+                errors.password = ['Al menos: 1 mayúsc, 1 minúsc, 1 número'];
+            }
+
             if (!repeatPassword || repeatPassword.trim().length === 0) {
                 formIsValid = false;
                 errors.repeatPassword = ['Requerido'];
@@ -123,7 +182,8 @@ class UserForm extends Component {
         if (this.validForm()) {
             this.toggleLoading(true);
             const { data } = this.state;
-
+            data.phone = unformatPhone(data.phone);
+            data.rut = unformatRut(data.rut);
             await addUser(data).then((response) => {
                 if (response && response.status === 201) {
                     const { callback } = this.props;
@@ -142,7 +202,8 @@ class UserForm extends Component {
         if (this.validForm()) {
             this.toggleLoading(true);
             const { data } = this.state;
-
+            data.phone = unformatPhone(data.phone);
+            data.rut = unformatRut(data.rut);
             await updateUser(data).then((response) => {
                 if (response && response.status === 200) {
                     const { callback } = this.props;
@@ -178,10 +239,10 @@ class UserForm extends Component {
                     <Col md={6}><Input name="name" value={name} onChange={this.onChange} readOnly={readOnly} label="Nombre" placeholder="Nombre" icon="fas fa-user-alt" errors={errors} required /></Col>
                     <Col md={6}><Input name="last_name" value={last_name} onChange={this.onChange} readOnly={readOnly} label="Apellido" placeholder="Apellido" icon="fas fa-user-alt" errors={errors} required /></Col>
                     <Col md={6}><Input name="username" value={username} onChange={this.onChange} readOnly={readOnly} label="Nombre de usuario" placeholder="Nombre de usuario" icon="fas fa-user-alt" errors={errors} required /></Col>
-                    <Col md={6}><Input name="rut" value={rut} onChange={this.onChange} readOnly={readOnly} label="RUT" placeholder="RUT" icon="far fa-address-card" errors={errors} required /></Col>
-                    <Col md={6}><Input name="phone" value={phone} onChange={this.onChange} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" icon="fas fa-phone" errors={errors} required /></Col>
+                    <Col md={6}><Input name="rut" value={rut} onChange={this.onChange} readOnly={readOnly} label="RUT" placeholder="RUT" icon="far fa-address-card" errors={errors} required onBlur={this.onBlurRut} onFocus={this.onFocusRut} /></Col>
+                    <Col md={6}><Input name="phone" value={phone} onChange={this.onChange} readOnly={readOnly} label="Teléfono" placeholder="Teléfono" icon="fas fa-phone" errors={errors} required onBlur={this.onBlurPhone} onFocus={this.onFocusPhone} /></Col>
                     <Col md={6}><Input name="email" value={email} onChange={this.onChange} readOnly={readOnly} label="Email" placeholder="Email" icon="far fa-envelope" errors={errors} required /></Col>
-                    <Col md={12}><Select label="Rol" value={String(role_id)} options={profiles} placeholder="Seleccione..." name="role_id" onChange={this.onChange} readOnly={readOnly} errors={errors} required /></Col>
+                    <Col md={12}><Select label="Rol" value={role_id} options={profiles} placeholder="Seleccione..." name="role_id" onChange={this.onChange} readOnly={readOnly} errors={errors} required /></Col>
                     {createMode && (
                         <>
                             <Col md={6}><Input name="password" type="password" value={password} onChange={this.onChange} readOnly={readOnly} hideReadOnly label="Contraseña" placeholder="Contraseña" errors={errors} required /></Col>

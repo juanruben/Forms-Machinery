@@ -5,7 +5,10 @@ import { Row, Col, Spinner } from 'reactstrap';
 import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import { validateRut, validateEmail } from '../../Service/Utils';
+import {
+    validateRut, validateEmail, formatRut, unformatRut,
+    formatPhone, unformatPhone,
+} from '../../Service/Utils';
 import { addClient, updateClient } from '../../Service/Api';
 
 class ClientForm extends Component {
@@ -20,16 +23,54 @@ class ClientForm extends Component {
         this.handleUpdate = this.handleUpdate.bind(this);
         this.onChange = this.onChange.bind(this);
         this.validForm = this.validForm.bind(this);
+        this.onBlurRut = this.onBlurRut.bind(this);
+        this.onFocusRut = this.onFocusRut.bind(this);
+        this.onBlurPhone = this.onBlurPhone.bind(this);
+        this.onFocusPhone = this.onFocusPhone.bind(this);
     }
 
     componentDidMount() {
         const { data } = this.props;
         if (data) {
+            data.phone = formatPhone(data.phone);
+            data.rut = formatRut(data.rut);
             this.setState({
                 data,
                 createMode: false,
             });
         }
+    }
+
+    onBlurRut() {
+        const { data } = this.state;
+        data.rut = formatRut(data.rut);
+        this.setState({
+            data,
+        });
+    }
+
+    onFocusRut() {
+        const { data } = this.state;
+        data.rut = unformatRut(data.rut);
+        this.setState({
+            data,
+        });
+    }
+
+    onBlurPhone() {
+        const { data } = this.state;
+        data.contact = formatPhone(data.contact);
+        this.setState({
+            data,
+        });
+    }
+
+    onFocusPhone() {
+        const { data } = this.state;
+        data.contact = unformatPhone(data.contact);
+        this.setState({
+            data,
+        });
     }
 
     onChange(event) {
@@ -73,7 +114,10 @@ class ClientForm extends Component {
 
         if (!contact || contact.trim().length === 0) {
             formIsValid = false;
-            errors.contact = 'Requerido';
+            errors.contact = ['Requerido'];
+        } else if (unformatPhone(contact).length !== 11) {
+            formIsValid = false;
+            errors.contact = ['Deben ser 11 dígitos'];
         }
 
         if (email && !validateEmail(email)) {
@@ -83,7 +127,10 @@ class ClientForm extends Component {
 
         if (!email || email.trim().length === 0) {
             formIsValid = false;
-            errors.email = 'Requerido';
+            errors.email = ['Requerido'];
+        } else if (!validateEmail(email)) {
+            formIsValid = false;
+            errors.email = 'Error de formato de email';
         }
 
         if (!address || address.trim().length === 0) {
@@ -163,8 +210,8 @@ class ClientForm extends Component {
                 <Row>
                     <Col md={6}><Input name="name" label="Nombre empresa" value={name} readOnly={readOnly || !createMode} icon="fas fa-industry" {...rest} /></Col>
                     <Col md={6}><Input name="business_name" label="Razón social" value={business_name} readOnly={readOnly || !createMode} {...rest} /></Col>
-                    <Col md={6}><Input name="rut" label="Rut empresa" placeholder="Ej: 11111111-1" value={rut} readOnly={readOnly || !createMode} icon="far fa-address-card" {...rest} /></Col>
-                    <Col md={6}><Input name="contact" label="Teléfono de contacto" value={contact} readOnly={readOnly} icon="fas fa-phone" {...rest} /></Col>
+                    <Col md={6}><Input name="rut" label="Rut empresa" placeholder="Ej: 11111111-1" value={rut} readOnly={readOnly || !createMode} icon="far fa-address-card" onBlur={this.onBlurRut} onFocus={this.onFocusRut} {...rest} /></Col>
+                    <Col md={6}><Input name="contact" label="Teléfono de contacto" value={contact} readOnly={readOnly} icon="fas fa-phone" required onBlur={this.onBlurPhone} onFocus={this.onFocusPhone} {...rest} /></Col>
                     <Col md={12}><Input name="address" label="Dirección" value={address} readOnly={readOnly} icon="fas fa-map-marked-alt" {...rest} /></Col>
                     <Col md={12}><Input name="email" label="Email" placeholder="correo1@ejemplo.com" value={email} readOnly={readOnly} icon="far fa-envelope" {...rest} /></Col>
                 </Row>
