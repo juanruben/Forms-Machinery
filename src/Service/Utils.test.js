@@ -1,6 +1,6 @@
 import {
     validateEmail, validateUsername, validatePassword, encode, decode,
-    validateRut, formatRut, unformatRut,
+    validateRut, formatRut, unformatRut, dateToLocale,
 } from './Utils';
 
 describe('Utils', () => {
@@ -16,8 +16,9 @@ describe('Utils', () => {
     test('validate username', () => {
         expect(validateUsername('test')).toBeTruthy();
         expect(validateUsername('')).toBeFalsy();
-        expect(validateUsername('3123123')).toBeFalsy();
-        expect(validateUsername('test123')).toBeFalsy();
+        expect(validateUsername('3123123')).toBeTruthy();
+        expect(validateUsername('test123')).toBeTruthy();
+        expect(validateUsername('Test123')).toBeFalsy();
     });
 
     test('validate password', () => {
@@ -50,8 +51,12 @@ describe('Utils', () => {
     });
 
     test('unformat rut', () => {
-        expect(unformatRut('25.622.766-5')).toEqual('256227665');
+        expect(unformatRut('25.622.766-5')).toEqual('25622766-5');
         expect(unformatRut('')).toEqual('');
     });
 
+    test('date to locale', () => {
+        expect(dateToLocale('2019-11-29 15:48:56')).toEqual('2019-11-29 12:48:56');
+        expect(dateToLocale('2019-12-1 00:30:00')).toEqual('2019-11-30 21:30:00');
+    });
 });
