@@ -80,8 +80,7 @@ class Doc extends Component {
                     marginTop: 10,
                     marginBottom: 10,
                     width: 250,
-                    textAlign: 'center',
-                    marginHorizontal: 100,
+                    marginHorizontal: 130,
                 },
             }),
         };
