@@ -85,7 +85,6 @@ class Register extends Component {
         this.setState({
             constructionSelected,
         });
-        this.loadConstructionsByClientId(parseInt(value));
     }
 
     async onChangeMachine(event) {
