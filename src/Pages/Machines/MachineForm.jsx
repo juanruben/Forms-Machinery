@@ -17,6 +17,7 @@ class MachineForm extends Component {
             forms: [],
             errors: {},
             loading: false,
+            loadingForms: false,
             estado: [
                 {
                     id: 1,
@@ -103,15 +104,13 @@ class MachineForm extends Component {
     }
 
     async loadForms() {
-        this.setState({
-            loading: true,
-        });
+        this.setState({ loadingForms: true });
 
         await getForms()
             .then((response) => {
                 this.setState({
                     forms: response.data,
-                    loading: false,
+                    loadingForms: false,
                 });
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
@@ -228,7 +227,7 @@ class MachineForm extends Component {
     render() {
         const { readOnly } = this.props;
         const {
-            data, createMode, errors, loading, forms, estado,
+            data, createMode, errors, loading, forms, estado, loadingForms,
         } = this.state;
         const {
             name, code, plate, model, brand, year, model_form_id, status,
@@ -249,7 +248,7 @@ class MachineForm extends Component {
                     <Col md={6}><Input label="Modelo" name="model" value={model} {...rest} /></Col>
                     <Col md={6}><Input label="Marca" name="brand" value={brand} {...rest} /></Col>
                     <Col md={6}><Input label="Año" name="year" value={year} type="number" {...rest} /></Col>
-                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={model_form_id} {...rest} /></Col>
+                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={model_form_id} loading={loadingForms} {...rest} /></Col>
                     {!readOnly && (
                         <Col md={12}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
                     )}
