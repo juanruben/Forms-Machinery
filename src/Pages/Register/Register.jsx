@@ -46,6 +46,9 @@ class Register extends Component {
             ready: false,
             loading: false,
             loadingForm: false,
+            loadingClients: false,
+            loadingConstructions: false,
+            loadingMachines: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -68,11 +71,14 @@ class Register extends Component {
 
     onChangeClient(event) {
         const { value } = event.target;
-        const { clients } = this.state;
+        const { clients, data } = this.state;
         this.onChange(event);
         const clientSelected = clients.find((item) => item.id === parseInt(value));
+        data.construction = '-1';
         this.setState({
             clientSelected,
+            data,
+            constructionSelected: {},
         });
         this.loadConstructionsByClientId(parseInt(value));
     }
@@ -281,26 +287,32 @@ class Register extends Component {
     }
 
     async loadConstructionsByClientId(id) {
+        this.setState({ loadingConstructions: true });
         await getConstructionsByClient(id)
             .then((response) => {
                 this.setState({
                     constructions: response.data.construction,
+                    loadingConstructions: false,
                 });
             });
     }
 
     async loadClients() {
+        this.setState({ loadingClients: true });
         await getClients().then((response) => {
             this.setState({
                 clients: response.data,
+                loadingClients: false,
             });
         });
     }
 
     async loadMachines() {
+        this.setState({ loadingMachines: true });
         await getMachines().then((response) => {
             this.setState({
                 machines: response.data,
+                loadingMachines: false,
             });
         });
     }
@@ -377,7 +389,7 @@ class Register extends Component {
         const {
             errors, clients, machines, constructions, form, data, showing, ready,
             formData, clientSelected, constructionSelected, machineSelected, loading,
-            loadingForm,
+            loadingForm, loadingClients, loadingConstructions, loadingMachines,
         } = this.state;
         const {
             client, machine, construction,
@@ -390,9 +402,9 @@ class Register extends Component {
 
                 <div className="check-in-container__section">
                     <Row>
-                        <Col md={6}><Select name="client" required label="Cliente" options={clients} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} /></Col>
-                        <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} errors={errors} /></Col>
-                        <Col md={6}><Select name="machine" required label="Código de máquina" options={machines} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} /></Col>
+                        <Col md={6}><Select name="client" required label="Cliente" options={clients} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} loading={loadingClients} /></Col>
+                        <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} loading={loadingConstructions} errors={errors} /></Col>
+                        <Col md={6}><Select name="machine" required label="Código de máquina" options={machines} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} loading={loadingMachines} /></Col>
                     </Row>
                 </div>
 
