@@ -7,7 +7,7 @@ import Box from '../../Layout/Box/Box';
 import Logo from '../../Components/Logo/Logo';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import AlertDialog from '../../Components/AlertDialog/AlertDialog';
+import { AlertDialog } from '../../Components/Dialog/Dialog';
 import { login } from '../../Service/Api';
 import './Login.scss';
 
