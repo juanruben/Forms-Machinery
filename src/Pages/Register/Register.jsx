@@ -45,6 +45,7 @@ class Register extends Component {
             showing: false,
             ready: false,
             loading: false,
+            loadingForm: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -90,6 +91,7 @@ class Register extends Component {
     async onChangeMachine(event) {
         const { value } = event.target;
         const { machines } = this.state;
+        this.setState({ loadingForm: true });
 
         this.onChange(event);
         const machineSelected = machines.find((item) => item.id === parseInt(value));
@@ -99,6 +101,7 @@ class Register extends Component {
                 form: response.data,
                 formFields: this.parseForm(response.data),
                 machineSelected,
+                loadingForm: false,
             });
         });
     }
@@ -373,7 +376,9 @@ class Register extends Component {
 
     render() {
         const {
-            errors, clients, machines, constructions, form, data, showing, ready, formData, clientSelected, constructionSelected, machineSelected, loading,
+            errors, clients, machines, constructions, form, data, showing, ready,
+            formData, clientSelected, constructionSelected, machineSelected, loading,
+            loadingForm,
         } = this.state;
         const {
             client, machine, construction,
@@ -391,33 +396,42 @@ class Register extends Component {
                         <Col md={6}><Select name="machine" required label="Código de máquina" options={machines} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} /></Col>
                     </Row>
                 </div>
-                <Row>
-                    <Col md={12}>
-                        {form.name && <Title text={form.name} />}
-                    </Col>
-                </Row>
 
-                {form.model_section.map((section) => (
-                    <Row className="check-in-container__section" key={`section${section.id}`}>
-                        <Col md={12}>
-                            {section.name && <Title text={section.name} />}
-                        </Col>
+                {loadingForm && (
+                    <div className="simple-loading-container">
+                        <Spinner />
+                    </div>
+                )}
 
-                        {section.model_field.map((field) => (
-                            <Col md={6} key={`field${field.id}`} className="check-in-container__field">
-                                {this.getControl(field)}
+                {!loadingForm && form.model_section.map((section) => (
+                    <>
+                        <Row>
+                            <Col md={12}>
+                                {form.name && <Title text={form.name} />}
                             </Col>
-                        ))}
+                        </Row>
 
-                    </Row>
+                        <Row className="check-in-container__section" key={`section${section.id}`}>
+                            <Col md={12}>
+                                {section.name && <Title text={section.name} />}
+                            </Col>
+
+                            {section.model_field.map((field) => (
+                                <Col md={6} key={`field${field.id}`} className="check-in-container__field">
+                                    {this.getControl(field)}
+                                </Col>
+                            ))}
+
+                        </Row>
+                    </>
                 ))}
 
                 <div className="form-footer">
-                    <Button text="Vista previa" onClick={this.handlePreview} />
+                    <Button text="Vista previa" onClick={this.handlePreview} disabled={loadingForm} />
                 </div>
                 <div className="form-footer">
                     {loading && <div className="spinner"><Spinner /></div>}
-                    <Button text="Enviar" onClick={this.handleSend} />
+                    <Button text="Enviar" onClick={this.handleSend} disabled={loadingForm} />
                 </div>
 
                 <Modal isOpen={showing} toggle={this.toggle}>
