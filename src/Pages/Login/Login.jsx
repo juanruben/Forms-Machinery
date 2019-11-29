@@ -76,7 +76,7 @@ class Login extends Component {
             errors.password = ['Requerido'];
         } else if (!validatePassword(password)) {
             formIsValid = false;
-            errors.password = ['Error de formato'];
+            errors.password = ['Debe tener al menos: 1 mayúscula, 1 minúscula, 1 número'];
         }
 
         this.setState({
