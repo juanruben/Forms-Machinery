@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Spinner } from 'reactstrap';
+
 import './Select.scss';
 
 const Select = (props) => {
     const {
         label, options, errors, name, value, onChange, placeholder,
-        readOnly, hideReadOnly, required,
+        readOnly, hideReadOnly, required, loading,
     } = props;
     const warning = (errors[name] && errors[name].length > 0);
 
@@ -28,7 +30,8 @@ const Select = (props) => {
             <div className="select-container">
                 {label}
                 {required ? ' *' : ''}
-                <select className={`${warning && 'border-error'}`} name={name} id="" value={value} onChange={onChange}>
+                {loading && <div className="loading"><Spinner size="sm" /></div>}
+                <select className={`${warning && 'border-error'}`} name={name} id="" value={value} onChange={onChange} disabled={loading}>
                     <option value="-1" disabled>{placeholder}</option>
                     {options.map((item) => (
                         <option key={item.id} value={item.id}>{item.name}</option>
@@ -51,6 +54,7 @@ Select.propTypes = {
     readOnly: PropTypes.bool,
     hideReadOnly: PropTypes.bool,
     required: PropTypes.bool,
+    loading: PropTypes.bool,
 };
 
 Select.defaultProps = {
@@ -62,6 +66,7 @@ Select.defaultProps = {
     readOnly: false,
     hideReadOnly: false,
     required: false,
+    loading: false,
 };
 
 export default Select;
