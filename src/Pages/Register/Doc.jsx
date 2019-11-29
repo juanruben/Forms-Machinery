@@ -100,15 +100,15 @@ class Doc extends Component {
         const { styles } = this.state;
         const data = this.getData(field.id);
 
-        if (!data) return null;
-
-        if (field.type === 'simple' && data) {
+        if (field.type === 'simple') {
             return (
                 <Text style={styles.field}>
-                    {field.name}
+                    {field.name}: {data ? "SI" : "NO"}
                 </Text>
             );
         }
+
+        if (!data) return null;
 
         if (field.type === 'image') {
             return (
