@@ -30,6 +30,7 @@ class ConstructionForm extends Component {
             data: {},
             errors: {},
             clients: [],
+            loadingClients: false,
         };
         this.handleCreate = this.handleCreate.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
@@ -68,15 +69,12 @@ class ConstructionForm extends Component {
     }
 
     async loadClients() {
-        this.setState({
-            loading: true,
-        });
-
+        this.setState({ loadingClients: true });
         await getClients()
             .then((response) => {
                 this.setState({
                     clients: response.data,
-                    loading: false,
+                    loadingClients: false,
                 });
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
@@ -181,7 +179,7 @@ class ConstructionForm extends Component {
     render() {
         const { readOnly } = this.props;
         const {
-            createMode, errors, data, loading, clients,
+            createMode, errors, data, loading, clients, loadingClients,
         } = this.state;
         const {
             name, address, client_id, notifications, status,
@@ -199,7 +197,7 @@ class ConstructionForm extends Component {
                 <Row>
                     <Col md={12}><Input name="name" label="Nombre" value={name} icon="fas fa-industry" {...rest} /></Col>
                     <Col md={12}><Input name="address" label="Dirección" value={address} icon="fas fa-map-marked-alt" {...rest} /></Col>
-                    <Col md={12}><Select name="client_id" label="Cliente" value={client_id} options={clients} placeholder="Seleccione..." {...rest} /></Col>
+                    <Col md={12}><Select name="client_id" label="Cliente" value={client_id} options={clients} placeholder="Seleccione..." {...rest} loading={loadingClients} /></Col>
                     {!createMode && (
                         <Col md={12}><Select name="status" label="Estado" value={status} options={status_options} placeholder="Seleccione..." {...rest} /></Col>
                     )}
