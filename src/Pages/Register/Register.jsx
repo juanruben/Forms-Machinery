@@ -328,7 +328,7 @@ class Register extends Component {
             errors.client = ['Requerido'];
         }
 
-        if (!construction) {
+        if (!construction || construction === '-1') {
             formIsValid = false;
             errors.construction = ['Requerido'];
         }
