@@ -129,8 +129,10 @@ class Doc extends Component {
 
     currentDate = () => {
         const date = new Date();
+        const min = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
+        const sec = date.getSeconds() < 10 ? `0${date.getSeconds()}` : date.getSeconds();
         let string = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}\n`;
-        string += `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        string += `${date.getHours()}:${min}:${sec}`;
         return string;
     }
 
