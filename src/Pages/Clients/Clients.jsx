@@ -8,6 +8,7 @@ import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVBut
 import ClientForm from './ClientForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
+import { formatRut, formatPhone } from '../../Service/Utils';
 import { getClients, deleteClient } from '../../Service/Api';
 
 class Clients extends Component {
@@ -108,6 +109,9 @@ class Clients extends Component {
                 Header: 'Rut',
                 accessor: 'rut',
                 maxWidth: 100,
+                Cell: (row) => (
+                    <span>{formatRut(row.original.rut)}</span>
+                ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['rut'] }),
                 filterAll: true,
                 filterable: true,
@@ -115,6 +119,9 @@ class Clients extends Component {
             {
                 Header: 'Teléfono de contacto',
                 accessor: 'contact',
+                Cell: (row) => (
+                    <a href={`tel:${row.original.contact}`}>{formatPhone(row.original.contact)}</a>
+                ),
                 filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['contact'] }),
                 filterAll: true,
                 filterable: true,
