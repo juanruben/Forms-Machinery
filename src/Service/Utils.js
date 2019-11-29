@@ -72,3 +72,14 @@ export function formatPhone(phone) {
 export function unformatPhone(phone) {
     return phone ? phone.replace(/[^0-9.]/g, '') : '';
 }
+
+export function validateEmailList(emails) {
+    const array = emails.split(',');
+    for (let i = 0; i < array.length; i += 1) {
+        const email = array[i].trim();
+        if (!validateEmail(email)) {
+            return false;
+        }
+    }
+    return true;
+}
