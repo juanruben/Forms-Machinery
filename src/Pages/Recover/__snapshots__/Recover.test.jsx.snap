@@ -5,12 +5,13 @@ exports[`Recover should render correctly 1`] = `
   <Box>
     <Logo padding={30} maxWidth={150} />
     <div className=\\"login-container\\">
-      <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false} />
+      <Input type=\\"email\\" name=\\"email\\" onChange={[Function: bound handleInputChange]} value=\\"\\" icon=\\"far fa-envelope\\" placeholder=\\"Correo electrónico\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false} onKeyPress={{...}} onBlur={{...}} onFocus={{...}} />
       <Button type=\\"button\\" onClick={[Function: bound send]} text=\\"Enviar\\" disabled={false} />
     </div>
     <Link to=\\"/login\\" className=\\"link-login\\">
       Volver
     </Link>
   </Box>
+  <SweetAlert title=\\"\\" show={false} error={true} onConfirm={[Function: onConfirm]} allowEscape={true} closeOnClickOutside={true} inputType=\\"text\\" customClass=\\"\\" validationMsg={{...}} validationRegex={{...}} hideOverlay={false} required={true} disabled={false} focusConfirmBtn={true} focusCancelBtn={false} showCloseButton={false} confirmBtnBsStyle=\\"primary\\" cancelBtnBsStyle=\\"link\\" beforeMount={[Function: beforeMount]} afterMount={[Function: afterMount]} beforeUpdate={{...}} afterUpdate={[Function: afterUpdate]} beforeUnmount={[Function: beforeUnmount]} style={{...}} closeBtnStyle={{...}} timeout={0} openAnim={{...}} closeAnim={false} reverseButtons={false} />
 </LayoutFullWidth>"
 `;

@@ -20,16 +20,16 @@ exports[`Login should render correctly 1`] = `
                             </div>
                           </Logo>
                           <div className=\\"login-container\\">
-                            <Input type=\\"text\\" name=\\"user\\" onChange={[Function: bound onChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false}>
+                            <Input type=\\"text\\" name=\\"user\\" onChange={[Function: bound onChange]} value=\\"\\" icon=\\"fas fa-user-tie\\" placeholder=\\"Usuario\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false} onKeyPress={{...}} onBlur={{...}} onFocus={{...}}>
                               <div className=\\"input-container\\">
                                 <i className=\\"fas fa-user-tie\\" />
-                                <input className=\\"undefined padding-icon\\" type=\\"text\\" name=\\"user\\" value=\\"\\" onChange={[Function: bound onChange]} onKeyPress={[undefined]} placeholder=\\"Usuario\\" autoComplete=\\"new-password\\" />
+                                <input className=\\"undefined padding-icon\\" type=\\"text\\" name=\\"user\\" value=\\"\\" onChange={[Function: bound onChange]} onKeyPress={{...}} placeholder=\\"Usuario\\" autoComplete=\\"new-password\\" onBlur={{...}} onFocus={{...}} />
                               </div>
                             </Input>
-                            <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound onChange]} onKeyPress={[Function: bound onKeyPress]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false}>
+                            <Input type=\\"password\\" name=\\"password\\" onChange={[Function: bound onChange]} onKeyPress={[Function: bound onKeyPress]} value=\\"\\" icon=\\"fas fa-unlock-alt\\" placeholder=\\"Contraseña\\" errors={{...}} label=\\"\\" readOnly={false} hideReadOnly={false} required={false} onBlur={{...}} onFocus={{...}}>
                               <div className=\\"input-container\\">
                                 <i className=\\"fas fa-unlock-alt\\" />
-                                <input className=\\"undefined padding-icon\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound onChange]} onKeyPress={[Function: bound onKeyPress]} placeholder=\\"Contraseña\\" autoComplete=\\"new-password\\" />
+                                <input className=\\"undefined padding-icon\\" type=\\"password\\" name=\\"password\\" value=\\"\\" onChange={[Function: bound onChange]} onKeyPress={[Function: bound onKeyPress]} placeholder=\\"Contraseña\\" autoComplete=\\"new-password\\" onBlur={{...}} onFocus={{...}} />
                               </div>
                             </Input>
                             <div className=\\"login-footer\\">
