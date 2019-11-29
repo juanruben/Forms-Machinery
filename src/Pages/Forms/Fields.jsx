@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
 import arrayMove from 'array-move';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import { StateContext } from '../../State';
 import FieldForm from './FieldForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
 import {
@@ -88,14 +88,20 @@ const SortableItem = sortableElement(({
                 </div>
             </li>
 
-            <SweetAlert
+            <ConfirmDialog
                 show={showConfirm}
-                warning
-                showCancel
-                confirmBtnText="Sí, estoy seguro"
-                cancelBtnText="No, Cancelar"
-                confirmBtnBsStyle="danger"
-                cancelBtnBsStyle="default"
+                title="Eliminar obra"
+                onConfirm={() => {
+                    this.removeConstruction();
+                    this.setState({ showConfirm: false });
+                }}
+                onCancel={() => {
+                    this.setState({ showConfirm: false });
+                }}
+            />
+
+            <ConfirmDialog
+                show={showConfirm}
                 title="Eliminar campo"
                 onConfirm={() => {
                     handleRemove();
@@ -104,9 +110,7 @@ const SortableItem = sortableElement(({
                 onCancel={() => {
                     setShowConfirm(false);
                 }}
-            >
-                ¿Está seguro?
-            </SweetAlert>
+            />
         </>
     );
 });

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
 import { StateContext } from '../../State';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ClientForm from './ClientForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { tableConfig } from '../../config';
 import { formatRut, formatPhone } from '../../Service/Utils';
 import { getClients, deleteClient } from '../../Service/Api';
@@ -173,29 +173,17 @@ class Clients extends Component {
                     loading={loading}
                 />
 
-                <SweetAlert
+                <ConfirmDialog
                     show={showConfirm}
-                    warning
-                    showCancel
-                    confirmBtnText="Sí, estoy seguro"
-                    cancelBtnText="No, Cancelar"
-                    confirmBtnBsStyle="danger"
-                    cancelBtnBsStyle="default"
                     title="Eliminar cliente"
                     onConfirm={() => {
                         this.removeClient();
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
                     onCancel={() => {
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
-                >
-                    ¿Está seguro?
-                </SweetAlert>
+                />
             </>
         );
     }

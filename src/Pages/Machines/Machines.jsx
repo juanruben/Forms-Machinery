@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 // import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import MachineForm from './MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { getMachines, deleteMachine } from '../../Service/Api';
 import { tableConfig } from '../../config';
 
@@ -196,29 +196,15 @@ class Machines extends Component {
                     loading={loading}
                 />
 
-                <SweetAlert
+                <ConfirmDialog
                     show={showConfirm}
-                    warning
-                    showCancel
-                    confirmBtnText="Sí, estoy seguro"
-                    cancelBtnText="No, Cancelar"
-                    confirmBtnBsStyle="danger"
-                    cancelBtnBsStyle="default"
                     title="Eliminar máquina"
                     onConfirm={() => {
                         this.removeMachine();
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
-                    onCancel={() => {
-                        this.setState({
-                            showConfirm: false,
-                        });
-                    }}
-                >
-                    ¿Está seguro?
-                </SweetAlert>
+                    onCancel={this.setState({ showConfirm: false })}
+                />
             </>
         );
     }

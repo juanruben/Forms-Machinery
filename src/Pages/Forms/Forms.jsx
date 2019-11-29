@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import matchSorter from 'match-sorter';
 import { withRouter } from 'react-router-dom';
 import ReactTable from 'react-table';
@@ -9,6 +8,7 @@ import TopBar from '../../Components/TopBar/TopBar';
 import FormForm from './FormForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { getForms, deleteForm, copyForm } from '../../Service/Api';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { tableConfig } from '../../config';
 import './Forms.scss';
 
@@ -150,29 +150,17 @@ class Forms extends Component {
                     loading={loading}
                 />
 
-                <SweetAlert
+                <ConfirmDialog
                     show={showConfirm}
-                    warning
-                    showCancel
-                    confirmBtnText="Sí, estoy seguro"
-                    cancelBtnText="No, Cancelar"
-                    confirmBtnBsStyle="danger"
-                    cancelBtnBsStyle="default"
-                    title="Eliminar formulario"
+                    title="Eliminar campo"
                     onConfirm={() => {
                         this.removeForm();
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
                     onCancel={() => {
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
-                >
-                    ¿Está seguro?
-                </SweetAlert>
+                />
             </>
         );
     }

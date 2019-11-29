@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import React, { Component, useState } from 'react';
 import PropTypes from 'prop-types';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import { withRouter } from 'react-router-dom';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import arrayMove from 'array-move';
@@ -11,6 +10,7 @@ import SectionForm from './SectionForm';
 import ModalView from '../../Layout/ModalView/ModalView';
 import Title from '../../Components/Title/Title';
 import TopBar from '../../Components/TopBar/TopBar';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import {
     getForm, orderSection, deleteSection, copySection,
 } from '../../Service/Api';
@@ -68,14 +68,8 @@ const SortableItem = sortableElement(({
                 </div>
             </li>
 
-            <SweetAlert
+            <ConfirmDialog
                 show={showConfirm}
-                warning
-                showCancel
-                confirmBtnText="Sí, estoy seguro"
-                cancelBtnText="No, Cancelar"
-                confirmBtnBsStyle="danger"
-                cancelBtnBsStyle="default"
                 title="Eliminar sección"
                 onConfirm={() => {
                     handleRemove();
@@ -84,9 +78,7 @@ const SortableItem = sortableElement(({
                 onCancel={() => {
                     setShowConfirm(false);
                 }}
-            >
-                ¿Está seguro?
-            </SweetAlert>
+            />
         </>
     );
 });

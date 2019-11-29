@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import TopBar from '../../Components/TopBar/TopBar';
 import UserForm from './UserForm';
 import { StateContext } from '../../State';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { formatRut, formatPhone } from '../../Service/Utils';
 import { getUsers, deleteUser } from '../../Service/Api';
 
@@ -189,29 +189,15 @@ class Users extends Component {
                     loading={loading}
                 />
 
-                <SweetAlert
+                <ConfirmDialog
                     show={showConfirm}
-                    warning
-                    showCancel
-                    confirmBtnText="Sí, estoy seguro"
-                    cancelBtnText="No, Cancelar"
-                    confirmBtnBsStyle="danger"
-                    cancelBtnBsStyle="default"
                     title="Eliminar usuario"
                     onConfirm={() => {
                         this.removeUser();
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
-                    onCancel={() => {
-                        this.setState({
-                            showConfirm: false,
-                        });
-                    }}
-                >
-                    ¿Está seguro?
-                </SweetAlert>
+                    onCancel={this.setState({ showConfirm: false })}
+                />
             </>
         );
     }

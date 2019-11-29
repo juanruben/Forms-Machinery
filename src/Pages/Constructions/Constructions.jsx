@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import SweetAlert from 'react-bootstrap-sweetalert';
 import matchSorter from 'match-sorter';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ConstructionForm from './ConstructionForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { tableConfig } from '../../config';
 import { getConstructions, deleteConstruction } from '../../Service/Api';
 
@@ -153,29 +153,17 @@ class Constructions extends Component {
                     loading={loading}
                 />
 
-                <SweetAlert
+                <ConfirmDialog
                     show={showConfirm}
-                    warning
-                    showCancel
-                    confirmBtnText="Sí, estoy seguro"
-                    cancelBtnText="No, Cancelar"
-                    confirmBtnBsStyle="danger"
-                    cancelBtnBsStyle="default"
                     title="Eliminar obra"
                     onConfirm={() => {
                         this.removeConstruction();
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
                     onCancel={() => {
-                        this.setState({
-                            showConfirm: false,
-                        });
+                        this.setState({ showConfirm: false });
                     }}
-                >
-                    ¿Está seguro?
-                </SweetAlert>
+                />
             </>
         );
     }
