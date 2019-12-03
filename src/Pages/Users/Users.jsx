@@ -196,7 +196,7 @@ class Users extends Component {
                         this.removeUser();
                         this.setState({ showConfirm: false });
                     }}
-                    onCancel={this.setState({ showConfirm: false })}
+                    onCancel={this.setState({ showConfirm: false })} // hi!!
                 />
             </>
         );
