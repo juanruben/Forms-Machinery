@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Title from '../../Components/Title/Title';
 import { getRegistersDiff } from '../../Service/Api';
+import { dateToLocale } from '../../Service/Utils';
 
 import './Compare.scss';
 
@@ -106,21 +107,29 @@ class Compare extends Component {
                         <Col className="compare-column">
                             <Title text="Salida" />
                             {previous ? (
-                                <div className="document-pdf-icon">
-                                    <a href={previous.pdf} target="_blank" rel="noopener noreferrer">
-                                        <i className="far fa-file-pdf" />
-                                    </a>
-                                </div>
+                                <>
+                                    <div className="document-pdf-icon">
+                                        <a href={previous.pdf} target="_blank" rel="noopener noreferrer">
+                                            <i className="far fa-file-pdf" />
+                                        </a>
+                                    </div>
+                                    {this.formatItem('Fecha', dateToLocale(previous.created_at))}
+                                    {this.formatItem('Usuario', `${current.user.name} ${current.user.last_name}`)}
+                                </>
                             ) : (<div>No hay registro anterior</div>)}
                         </Col>
                         <Col className="compare-column left-compare">
-                            <Title text="Entrada" />
                             {current && (
-                                <div className="document-pdf-icon">
-                                    <a href={current.pdf} target="_blank" rel="noopener noreferrer">
-                                        <i className="far fa-file-pdf" />
-                                    </a>
-                                </div>
+                                <>
+                                    <Title text="Entrada" />
+                                    <div className="document-pdf-icon">
+                                        <a href={current.pdf} target="_blank" rel="noopener noreferrer">
+                                            <i className="far fa-file-pdf" />
+                                        </a>
+                                    </div>
+                                    {this.formatItem('Fecha', dateToLocale(current.created_at))}
+                                    {this.formatItem('Usuario', `${current.user.name} ${current.user.last_name}`)}
+                                </>
                             )}
                         </Col>
                     </Row>
