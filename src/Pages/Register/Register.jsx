@@ -453,7 +453,7 @@ class Register extends Component {
                 )}
 
                 {!loadingForm && form.model_section.map((section) => (
-                    <>
+                    <div key={`section${section.id}`}>
                         <Row>
                             <Col md={12}>
                                 {form.name && <Title text={form.name} />}
@@ -472,7 +472,7 @@ class Register extends Component {
                             ))}
 
                         </Row>
-                    </>
+                    </div>
                 ))}
 
                 <div className="form-footer">
