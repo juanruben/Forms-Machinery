@@ -15,6 +15,7 @@ import Forms from '../../Pages/Forms/Forms';
 import Sections from '../../Pages/Forms/Sections';
 import Fields from '../../Pages/Forms/Fields';
 import Register from '../../Pages/Register/Register';
+import Compare from '../../Pages/Compare/Compare';
 
 import menuAdmin from './data/dataMenuAdmin';
 import menuOp from './data/dataMenuOp';
@@ -111,6 +112,7 @@ class Main extends React.Component {
                 <div className="content-area">
                     <Switch>
                         <Route exact path="/admin/dashboard" component={History} />
+                        <Route exact path="/admin/compara/:id" component={Compare} />
                         <Route exact path="/admin/clientes" component={Clients} />
                         <Route exact path="/admin/obras" component={Constructions} />
                         <Route exact path="/admin/usuarios" component={Users} />
