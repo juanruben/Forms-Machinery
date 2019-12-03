@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
+import { Link } from 'react-router-dom';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import { tableConfig } from '../../config';
@@ -184,9 +185,9 @@ class History extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         {row.original.type === 'checkin' && (
-                            <button className="form-actions__icon" type="button">
+                            <Link className="form-actions__icon" to={`/admin/compara/${row.original.id}`}>
                                 <i className="fas fa-exclamation-triangle" />
-                            </button>
+                            </Link>
                         )}
                     </div>
                 ),
