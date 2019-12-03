@@ -4,13 +4,13 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 
 export function AlertDialog(props) {
     const {
-        message, show, onConfirm, title,
+        message, show, onConfirm, title, success,
     } = props;
     return (
         <SweetAlert
             title={title}
             show={show}
-            error
+            error={!success}
             onConfirm={onConfirm}
         >
             {message}
@@ -23,11 +23,13 @@ AlertDialog.propTypes = {
     show: PropTypes.bool.isRequired,
     onConfirm: PropTypes.func.isRequired,
     title: PropTypes.string,
+    success: PropTypes.bool,
 };
 
 AlertDialog.defaultProps = {
     title: '',
     message: '',
+    success: false,
 };
 
 export function ConfirmDialog(props) {
