@@ -6,6 +6,7 @@ import { tableConfig } from '../../config';
 import ClientForm from '../Clients/ClientForm';
 import MachineForm from '../Machines/MachineForm';
 import ModalView from '../../Layout/ModalView/ModalView';
+import { StateContext } from '../../State';
 import { dateToLocale } from '../../Service/Utils';
 import { getRegisters } from '../../Service/Api';
 
@@ -73,15 +74,14 @@ class History extends Component {
         await getRegisters()
             .then((response) => {
                 if (this._isMounted) {
-                this.setState({
-                    data: response.data,
-                    loading: false,
-                });
+                    this.setState({
+                        data: response.data,
+                        loading: false,
+                    });
                 }
             }).catch((error) => {
-                if (error.response.status === 403
-                    || error.response.status === 401
-                    || error.response.status === 500) {
+                const { status } = error.response;
+                if (status === 401) {
                     const [, dispatch] = this.context;
                     dispatch({
                         type: 'EXIT',
@@ -222,5 +222,7 @@ class History extends Component {
         );
     }
 }
+
+History.contextType = StateContext;
 
 export default History;
