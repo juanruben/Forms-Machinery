@@ -165,7 +165,7 @@ class Fields extends Component {
     async loadData() {
         const { match } = this.props;
         const { id } = match.params;
-        this.setState({ loading: true });
+        this.toogleLoading(true);
         await getFields(id)
             .then((response) => {
                 this.setState({
@@ -176,11 +176,11 @@ class Fields extends Component {
                 this.handleError(error);
             });
 
-        this.setState({ loading: false });
+        this.toogleLoading(false);
     }
 
     async handleOrder(current, newIndex, id) {
-        this.setState({ loading: true });
+        this.toogleLoading(true);
 
         await orderField({ current: current + 1, new: newIndex + 1 }, id)
             .then(() => {
@@ -188,7 +188,7 @@ class Fields extends Component {
                 this.handleError(error);
             });
 
-        this.setState({ loading: false });
+        this.toogleLoading(false);
     }
 
     render() {
