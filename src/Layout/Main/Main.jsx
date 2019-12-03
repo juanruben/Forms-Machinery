@@ -79,6 +79,7 @@ class Main extends React.Component {
         const { dataMenu } = this.state;
 
         const item = dataMenu.find((v) => v.path === pathname);
+        document.title = item ? `Icafal | ${item.title}` : 'Icafal';
         return item ? item.title : '';
     }
 

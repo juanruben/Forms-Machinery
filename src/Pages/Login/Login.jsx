@@ -31,6 +31,7 @@ class Login extends Component {
 
     componentDidMount() {
         this.checkLoggedIn();
+        document.title = 'Icafal';
     }
 
     onChange(event) {
