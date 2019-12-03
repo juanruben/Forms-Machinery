@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
+import { StateContext } from '../../State';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import ConstructionForm from './ConstructionForm';
@@ -184,5 +185,7 @@ class Constructions extends Component {
         );
     }
 }
+
+Constructions.contextType = StateContext;
 
 export default Constructions;

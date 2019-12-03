@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, Spinner } from 'reactstrap';
+import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
@@ -282,5 +283,7 @@ UserForm.defaultProps = {
     data: null,
     readOnly: false,
 };
+
+UserForm.contextType = StateContext;
 
 export default UserForm;

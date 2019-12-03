@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import { StateContext } from '../State';
 import ReactTable from 'react-table';
 import matchSorter from 'match-sorter';
+import { StateContext } from '../../State';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import MachineForm from './MachineForm';
@@ -225,5 +225,7 @@ class Machines extends Component {
         );
     }
 }
+
+Machines.contextType = StateContext;
 
 export default Machines;

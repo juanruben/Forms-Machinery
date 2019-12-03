@@ -6,6 +6,7 @@ import {
 import {
     Row, Col, Modal, ModalHeader, ModalBody, Spinner,
 } from 'reactstrap';
+import { StateContext } from '../../State';
 import Title from '../../Components/Title/Title';
 import Select from '../../Components/Select/Select';
 import Button from '../../Components/Button/Button';
@@ -518,5 +519,7 @@ class Register extends Component {
 Register.propTypes = {
     type: PropTypes.string.isRequired,
 };
+
+Register.contextType = StateContext;
 
 export default Register;

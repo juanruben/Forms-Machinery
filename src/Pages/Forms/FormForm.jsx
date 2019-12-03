@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'reactstrap';
+import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { addForm, updateForm } from '../../Service/Api';
@@ -141,5 +142,6 @@ NewForm.defaultProps = {
     data: null,
 };
 
+NewForm.contextType = StateContext;
 
 export default NewForm;

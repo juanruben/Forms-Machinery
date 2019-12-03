@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'reactstrap';
+import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { addSection, updateSection } from '../../Service/Api';
@@ -143,5 +144,7 @@ SectionForm.defaultProps = {
     callback: null,
     data: null,
 };
+
+SectionForm.contextType = StateContext;
 
 export default SectionForm;

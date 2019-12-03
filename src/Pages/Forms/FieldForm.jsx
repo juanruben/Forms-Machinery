@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Spinner } from 'reactstrap';
 import PropTypes from 'prop-types';
+import { StateContext } from '../../State';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import Select from '../../Components/Select/Select';
@@ -354,5 +355,7 @@ FieldForm.defaultProps = {
     callback: null,
     data: null,
 };
+
+FieldForm.contextType = StateContext;
 
 export default FieldForm;
