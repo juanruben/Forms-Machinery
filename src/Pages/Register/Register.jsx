@@ -112,12 +112,12 @@ class Register extends Component {
 
         await getForm(machineSelected.model_form_id).then((response) => {
             if (this._isMounted) {
-            this.setState({
-                form: response.data,
-                formFields: this.parseForm(response.data),
-                machineSelected,
-                loadingForm: false,
-            });
+                this.setState({
+                    form: response.data,
+                    formFields: this.parseForm(response.data),
+                    machineSelected,
+                    loadingForm: false,
+                });
             }
         }).catch((error) => {
             this.handleError(error);
@@ -263,6 +263,9 @@ class Register extends Component {
 
         formFields.forEach((item) => {
             const field = item;
+            if (field.type === 'simple') {
+                field.value = field.value ? 'Si' : 'No';
+            }
             delete field.required;
         });
 
@@ -317,10 +320,10 @@ class Register extends Component {
         await getConstructionsByClient(id)
             .then((response) => {
                 if (this._isMounted) {
-                this.setState({
-                    constructions: response.data.construction,
-                    loadingConstructions: false,
-                });
+                    this.setState({
+                        constructions: response.data.construction,
+                        loadingConstructions: false,
+                    });
                 }
             }).catch((error) => {
                 this.handleError(error);
@@ -331,10 +334,10 @@ class Register extends Component {
         this.setState({ loadingClients: true });
         await getClients().then((response) => {
             if (this._isMounted) {
-            this.setState({
-                clients: response.data,
-                loadingClients: false,
-            });
+                this.setState({
+                    clients: response.data,
+                    loadingClients: false,
+                });
             }
         }).catch((error) => {
             this.handleError(error);
@@ -345,10 +348,10 @@ class Register extends Component {
         this.setState({ loadingMachines: true });
         await getMachines().then((response) => {
             if (this._isMounted) {
-            this.setState({
-                machines: response.data,
-                loadingMachines: false,
-            });
+                this.setState({
+                    machines: response.data,
+                    loadingMachines: false,
+                });
             }
         }).catch((error) => {
             this.handleError(error);
