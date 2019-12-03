@@ -90,7 +90,7 @@ class Restore extends Component {
             }).catch(() => {
                 this.setState({
                     showAlertError: true,
-                    alertMessage: 'No fue posible reestablecer las contraseñas',
+                    alertMessage: 'No fue posible reestablecer la contraseña',
                 });
             });
             this.toggleLoading(false);
