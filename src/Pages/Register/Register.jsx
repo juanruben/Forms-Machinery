@@ -108,6 +108,8 @@ class Register extends Component {
                 machineSelected,
                 loadingForm: false,
             });
+        }).catch((error) => {
+            this.handleError(error);
         });
     }
 
@@ -133,6 +135,20 @@ class Register extends Component {
             formData,
             errors,
         });
+    }
+
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        } else {
+            this.setState({
+                errors: error.response.data.errors,
+            });
+        }
     }
 
     parseForm = (form) => {
@@ -273,9 +289,8 @@ class Register extends Component {
                 this.setState({
                 });
             }
-        }).catch(() => {
-            this.setState({
-            });
+        }).catch((error) => {
+            this.handleError(error);
         });
         this.toggleLoading(false);
     }
@@ -294,6 +309,8 @@ class Register extends Component {
                     constructions: response.data.construction,
                     loadingConstructions: false,
                 });
+            }).catch((error) => {
+                this.handleError(error);
             });
     }
 
@@ -304,6 +321,8 @@ class Register extends Component {
                 clients: response.data,
                 loadingClients: false,
             });
+        }).catch((error) => {
+            this.handleError(error);
         });
     }
 
@@ -314,6 +333,8 @@ class Register extends Component {
                 machines: response.data,
                 loadingMachines: false,
             });
+        }).catch((error) => {
+            this.handleError(error);
         });
     }
 

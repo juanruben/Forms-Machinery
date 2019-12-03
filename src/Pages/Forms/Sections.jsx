@@ -22,7 +22,7 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
 const SortableItem = sortableElement(({
-    value, history, data, callback,
+    value, history, data, callback, callbackError,
 }) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
@@ -34,7 +34,8 @@ const SortableItem = sortableElement(({
         await deleteSection(data.id)
             .then(() => {
                 callback();
-            }).catch(() => {
+            }).catch((error) => {
+                callbackError(error);
             });
     }
 
@@ -42,7 +43,8 @@ const SortableItem = sortableElement(({
         await copySection(data.id)
             .then(() => {
                 callback();
-            }).catch(() => {
+            }).catch((error) => {
+                callbackError(error);
             });
     }
 
@@ -112,6 +114,16 @@ class Sections extends Component {
         }
     };
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
+
     async handleOrder(oldIndex, newIndex, id) {
         const { data } = this.state;
         const { model_section } = data;
@@ -120,17 +132,12 @@ class Sections extends Component {
             data,
         });
 
-        const [, dispatch] = this.context;
         this.setState({ loading: true });
         await orderSection({ current: oldIndex + 1, new: newIndex + 1 }, id)
             .then(() => {
                 this.loadData();
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
         this.setState({ loading: false });
     }
@@ -138,7 +145,6 @@ class Sections extends Component {
     async loadData() {
         const { match } = this.props;
         const { id } = match.params;
-        const [, dispatch] = this.context;
         this.setState({ loading: true });
         await getForm(id)
             .then((response) => {
@@ -149,11 +155,7 @@ class Sections extends Component {
                     });
                 }
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
         this.setState({ loading: false });
     }
@@ -197,6 +199,7 @@ class Sections extends Component {
                                 history={history}
                                 data={item}
                                 callback={this.loadData}
+                                callbackError={this.handleError}
                             />
                         ))}
                     </SortableContainer>

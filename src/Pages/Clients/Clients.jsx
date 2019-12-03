@@ -59,6 +59,16 @@ class Clients extends Component {
         return result;
     }
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
+
     async loadData() {
         this.setState({
             loading: true,
@@ -73,12 +83,7 @@ class Clients extends Component {
                     });
                 }
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    const [, dispatch] = this.context;
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
     }
 
@@ -88,6 +93,8 @@ class Clients extends Component {
             if (response && response.status === 200) {
                 this.loadData();
             }
+        }).catch((error) => {
+            this.handleError(error);
         });
     }
 

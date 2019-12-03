@@ -68,6 +68,20 @@ class ConstructionForm extends Component {
         });
     }
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        } else {
+            this.setState({
+                errors: error.response.data.errors,
+            });
+        }
+    }
+
     async loadClients() {
         this.setState({ loadingClients: true });
         await getClients()
@@ -77,12 +91,7 @@ class ConstructionForm extends Component {
                     loadingClients: false,
                 });
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    const [, dispatch] = this.context;
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
     }
 
@@ -142,9 +151,7 @@ class ConstructionForm extends Component {
                     callback();
                 }
             }).catch((error) => {
-                this.setState({
-                    errors: error.response.data.errors,
-                });
+                this.handleError(error);
             });
 
             this.toggleLoading(false);
@@ -162,9 +169,7 @@ class ConstructionForm extends Component {
                     callback();
                 }
             }).catch((error) => {
-                this.setState({
-                    errors: error.response.data.errors,
-                });
+                this.handleError(error);
             });
             this.toggleLoading(false);
         }

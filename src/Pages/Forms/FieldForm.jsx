@@ -109,6 +109,21 @@ class FieldForm extends Component {
     }
 
     // Handlers
+
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        } else {
+            this.setState({
+                errors: error.response.data.errors,
+            });
+        }
+    }
+
     async handleCreate() {
         const { data } = this.state;
         const { section_id } = this.props;
@@ -152,11 +167,11 @@ class FieldForm extends Component {
             this.toggleLoading(true);
 
             await addField(dataForm, section_id)
-                .then((value) => {
+                .then(() => {
                     const { callback } = this.props;
                     callback();
                 }).catch((error) => {
-
+                    this.handleError(error);
                 });
 
             this.toggleLoading(false);
@@ -196,11 +211,11 @@ class FieldForm extends Component {
             this.toggleLoading(true);
 
             await updateField(dataForm, data.id)
-                .then((value) => {
+                .then(() => {
                     const { callback } = this.props;
                     callback();
                 }).catch((error) => {
-
+                    this.handleError(error);
                 });
 
             this.toggleLoading(false);

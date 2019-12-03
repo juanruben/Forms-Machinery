@@ -41,6 +41,20 @@ class SectionForm extends Component {
         });
     }
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        } else {
+            this.setState({
+                errors: error.response.data.errors,
+            });
+        }
+    }
+
     validForm() {
         const { data } = this.state;
         const { name } = data;
@@ -71,9 +85,7 @@ class SectionForm extends Component {
                     callback();
                 }
             }).catch((error) => {
-                this.setState({
-                    errors: error.response.data.errors,
-                });
+                this.handleError(error);
             });
 
             this.toggleLoading(false);
@@ -91,9 +103,7 @@ class SectionForm extends Component {
                     callback();
                 }
             }).catch((error) => {
-                this.setState({
-                    errors: error.response.data.errors,
-                });
+                this.handleError(error);
             });
             this.toggleLoading(false);
         }

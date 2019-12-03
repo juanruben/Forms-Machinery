@@ -26,7 +26,7 @@ const SortableContainer = sortableContainer(({ children }) => <ul className="sor
 const DragHandle = sortableHandle(() => <span className="drag-handle"><i className="fas fa-grip-horizontal" /></span>);
 
 const SortableItem = sortableElement(({
-    value, type, data, callback, loading, required, comments,
+    value, type, data, callback, callbackError, loading, required, comments,
 }) => {
     const [showConfirm, setShowConfirm] = useState(false);
 
@@ -50,7 +50,8 @@ const SortableItem = sortableElement(({
         await deleteField(data.id)
             .then(() => {
                 callback();
-            }).catch(() => {
+            }).catch((error) => {
+                callbackError(error);
             });
     }
 
@@ -59,7 +60,8 @@ const SortableItem = sortableElement(({
         await copyField(data.id)
             .then(() => {
                 callback();
-            }).catch(() => {
+            }).catch((error) => {
+                callbackError(error);
             });
     }
 
@@ -144,6 +146,16 @@ class Fields extends Component {
         }
     };
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
+
     toogleLoading(value) {
         this.setState({
             loading: value,
@@ -153,7 +165,6 @@ class Fields extends Component {
     async loadData() {
         const { match } = this.props;
         const { id } = match.params;
-        const [, dispatch] = this.context;
         this.setState({ loading: true });
         await getFields(id)
             .then((response) => {
@@ -162,11 +173,7 @@ class Fields extends Component {
                     data: response.data,
                 });
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
 
         this.setState({ loading: false });
@@ -176,14 +183,12 @@ class Fields extends Component {
         this.setState({ loading: true });
 
         await orderField({ current: current + 1, new: newIndex + 1 }, id)
-            .then((value) => {
-                console.log(value);
-            }).catch((value) => {
-                console.log(value);
+            .then(() => {
+            }).catch((error) => {
+                this.handleError(error);
             });
 
         this.setState({ loading: false });
-
     }
 
     render() {
@@ -223,6 +228,7 @@ class Fields extends Component {
                                     history={history}
                                     data={item}
                                     callback={this.loadData}
+                                    callbackError={this.handleError}
                                     loading={this.toogleLoading}
                                     required={item.required === 1}
                                     comments={item.comments === 1}

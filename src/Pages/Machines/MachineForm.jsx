@@ -103,6 +103,20 @@ class MachineForm extends Component {
         return status;
     }
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        } else {
+            this.setState({
+                errors: error.response.data.errors,
+            });
+        }
+    }
+
     async loadForms() {
         this.setState({ loadingForms: true });
 
@@ -113,12 +127,7 @@ class MachineForm extends Component {
                     loadingForms: false,
                 });
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    const [, dispatch] = this.context;
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
     }
 
@@ -191,9 +200,7 @@ class MachineForm extends Component {
                     callback();
                 }
             }).catch((error) => {
-                this.setState({
-                    errors: error.response.data.errors,
-                });
+                this.handleError(error);
             });
             this.toggleLoading(false);
         }
@@ -210,9 +217,7 @@ class MachineForm extends Component {
                     callback();
                 }
             }).catch((error) => {
-                this.setState({
-                    errors: error.response.data.errors,
-                });
+                this.handleError(error);
             });
             this.toggleLoading(false);
         }

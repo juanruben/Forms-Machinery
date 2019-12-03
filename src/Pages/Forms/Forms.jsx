@@ -48,11 +48,20 @@ class Forms extends Component {
         return data.find((item) => item.id === id);
     }
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
+
     async loadData() {
         this.setState({
             loading: true,
         });
-
         await getForms()
             .then((response) => {
                 if (this._isMounted) {
@@ -62,23 +71,20 @@ class Forms extends Component {
                     });
                 }
             }).catch((error) => {
-                if (error.response.status === 403 || error.response.status === 401) {
-                    const [, dispatch] = this.context;
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                } else if (error.response.status === 500) {
-                }
+                this.handleError(error);
             });
     }
 
     async removeForm() {
         const { deleteId } = this.state;
-        await deleteForm(deleteId).then((response) => {
-            if (response && response.status === 200) {
-                this.loadData();
-            }
-        });
+        await deleteForm(deleteId)
+            .then((response) => {
+                if (response && response.status === 200) {
+                    this.loadData();
+                }
+            }).catch((error) => {
+                this.handleError(error);
+            });
     }
 
     async handleCopy(id) {
@@ -88,11 +94,14 @@ class Forms extends Component {
             value: true,
         });
 
-        await copyForm(id).then((response) => {
-            if (response && response.status === 200) {
-                this.loadData();
-            }
-        });
+        await copyForm(id)
+            .then((response) => {
+                if (response && response.status === 200) {
+                    this.loadData();
+                }
+            }).catch((error) => {
+                this.handleError(error);
+            });
 
         dispatch({
             type: 'SET_LOADING',

@@ -66,10 +66,18 @@ class History extends Component {
         return result;
     }
 
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
+
     async loadData() {
-        this.setState({
-            loading: true,
-        });
+        this.setState({ loading: true });
 
         await getRegisters()
             .then((response) => {
@@ -80,13 +88,7 @@ class History extends Component {
                     });
                 }
             }).catch((error) => {
-                const { status } = error.response;
-                if (status === 401) {
-                    const [, dispatch] = this.context;
-                    dispatch({
-                        type: 'EXIT',
-                    });
-                }
+                this.handleError(error);
             });
     }
 
