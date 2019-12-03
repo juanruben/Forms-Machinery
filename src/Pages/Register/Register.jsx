@@ -22,6 +22,8 @@ import {
 import './Register.scss';
 
 class Register extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -65,8 +67,13 @@ class Register extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadClients();
         this.loadMachines();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     onChangeClient(event) {
@@ -102,12 +109,14 @@ class Register extends Component {
         const machineSelected = machines.find((item) => item.id === parseInt(value));
 
         await getForm(machineSelected.model_form_id).then((response) => {
+            if (this._isMounted) {
             this.setState({
                 form: response.data,
                 formFields: this.parseForm(response.data),
                 machineSelected,
                 loadingForm: false,
             });
+            }
         }).catch((error) => {
             this.handleError(error);
         });
@@ -305,10 +314,12 @@ class Register extends Component {
         this.setState({ loadingConstructions: true });
         await getConstructionsByClient(id)
             .then((response) => {
+                if (this._isMounted) {
                 this.setState({
                     constructions: response.data.construction,
                     loadingConstructions: false,
                 });
+                }
             }).catch((error) => {
                 this.handleError(error);
             });
@@ -317,10 +328,12 @@ class Register extends Component {
     async loadClients() {
         this.setState({ loadingClients: true });
         await getClients().then((response) => {
+            if (this._isMounted) {
             this.setState({
                 clients: response.data,
                 loadingClients: false,
             });
+            }
         }).catch((error) => {
             this.handleError(error);
         });
@@ -329,10 +342,12 @@ class Register extends Component {
     async loadMachines() {
         this.setState({ loadingMachines: true });
         await getMachines().then((response) => {
+            if (this._isMounted) {
             this.setState({
                 machines: response.data,
                 loadingMachines: false,
             });
+            }
         }).catch((error) => {
             this.handleError(error);
         });
