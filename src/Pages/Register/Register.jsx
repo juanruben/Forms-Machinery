@@ -18,6 +18,7 @@ import Doc from './Doc';
 import {
     getClients, getMachines, getConstructionsByClient, getForm, sendRegister,
 } from '../../Service/Api';
+import { AlertDialog } from '../../Components/Dialog/Dialog';
 
 import './Register.scss';
 
@@ -51,6 +52,7 @@ class Register extends Component {
             loadingClients: false,
             loadingConstructions: false,
             loadingMachines: false,
+            sentOk: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -274,7 +276,6 @@ class Register extends Component {
 
         await sendRegister(params).then((response) => {
             if (response && response.status === 201) {
-                alert("Enviado");
                 this.setState({
                     data: {},
                     formData: {},
@@ -293,6 +294,7 @@ class Register extends Component {
                     showing: false,
                     ready: false,
                     loading: false,
+                    sentOk: true,
                 });
             } else {
                 this.setState({
@@ -425,7 +427,7 @@ class Register extends Component {
         const {
             errors, clients, machines, constructions, form, data, showing, ready,
             formData, clientSelected, constructionSelected, machineSelected, loading,
-            loadingForm, loadingClients, loadingConstructions, loadingMachines,
+            loadingForm, loadingClients, loadingConstructions, loadingMachines, sentOk,
         } = this.state;
         const {
             client, machine, construction,
@@ -480,6 +482,13 @@ class Register extends Component {
                     {loading && <div className="spinner"><Spinner /></div>}
                     <Button text="Enviar" onClick={this.handleSend} disabled={loadingForm} />
                 </div>
+
+                <AlertDialog
+                    message="Registro enviado correctamente"
+                    show={sentOk}
+                    success
+                    onConfirm={() => { this.setState({ sentOk: false }); }}
+                />
 
                 <Modal isOpen={showing} toggle={this.toggle}>
                     <ModalHeader toggle={this.toggle} />
