@@ -106,23 +106,21 @@ class Compare extends Component {
                         <Col className="compare-column">
                             <Title text="Salida" />
                             {previous ? (
-                                <>
-                                    <b>Documento: </b>
+                                <div className="document-pdf-icon">
                                     <a href={previous.pdf} target="_blank" rel="noopener noreferrer">
-                                        <i className="fas fa-file-pdf" />
+                                        <i className="far fa-file-pdf" />
                                     </a>
-                                </>
+                                </div>
                             ) : (<div>No hay registro anterior</div>)}
                         </Col>
                         <Col className="compare-column left-compare">
                             <Title text="Entrada" />
                             {current && (
-                                <>
-                                    <b>Documento: </b>
+                                <div className="document-pdf-icon">
                                     <a href={current.pdf} target="_blank" rel="noopener noreferrer">
-                                        <i className="fas fa-file-pdf" />
+                                        <i className="far fa-file-pdf" />
                                     </a>
-                                </>
+                                </div>
                             )}
                         </Col>
                     </Row>
