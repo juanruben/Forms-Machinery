@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Spinner } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { StateContext } from '../../State';
 import Title from '../../Components/Title/Title';
 import { getRegistersDiff } from '../../Service/Api';
 import { dateToLocale } from '../../Service/Utils';
@@ -46,6 +47,16 @@ class Compare extends Component {
             </Col>
         </Row>
     )
+
+    handleError = (error) => {
+        const { status } = error.response;
+        if (status === 401 || status === 403) {
+            const [, dispatch] = this.context;
+            dispatch({
+                type: 'EXIT',
+            });
+        }
+    }
 
     async loadData() {
         const { match } = this.props;
@@ -150,5 +161,7 @@ Compare.propTypes = {
     history: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
 };
+
+Compare.contextType = StateContext;
 
 export default withRouter(Compare);
