@@ -202,7 +202,7 @@ class History extends Component {
                 Cell: (row) => (
                     <div className="form-actions">
                         <a className="form-actions__icon" href={row.original.pdf} target="_blank" rel="noopener noreferrer">
-                            <i className="fas fa-eye" />
+                            <i className="far fa-file-pdf" />
                         </a>
                     </div>
                 ),
