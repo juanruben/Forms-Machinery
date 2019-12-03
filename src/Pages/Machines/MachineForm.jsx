@@ -9,6 +9,8 @@ import Select from '../../Components/Select/Select';
 import { addMachine, updateMachine, getForms } from '../../Service/Api';
 
 class MachineForm extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -41,6 +43,7 @@ class MachineForm extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         const { data } = this.props;
         if (data) {
             data.status = this.stringToStatus(data.status);
@@ -50,6 +53,10 @@ class MachineForm extends Component {
             });
         }
         this.loadForms();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     onChange(event) {
@@ -122,10 +129,12 @@ class MachineForm extends Component {
 
         await getForms()
             .then((response) => {
-                this.setState({
-                    forms: response.data,
-                    loadingForms: false,
-                });
+                if (this._isMounted) {
+                    this.setState({
+                        forms: response.data,
+                        loadingForms: false,
+                    });
+                }
             }).catch((error) => {
                 this.handleError(error);
             });
@@ -256,7 +265,7 @@ class MachineForm extends Component {
                     {!readOnly && (
                         <>
                             <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={String(model_form_id)} loading={loadingForms} {...rest} /></Col>
-                        <Col md={12}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
+                            <Col md={12}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
                         </>
                     )}
                     {readOnly && (
