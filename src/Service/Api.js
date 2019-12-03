@@ -195,3 +195,7 @@ export async function sendRegister(data) {
 export async function getRegisters() {
     return axios.get(`${url}/register`);
 }
+
+export async function getRegistersDiff(id) {
+    return axios.get(`${url}/register/diff/${id}`);
+}
