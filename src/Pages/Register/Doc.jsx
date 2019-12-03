@@ -72,6 +72,11 @@ class Doc extends Component {
                     fontSize: 14,
                 },
 
+                fieldNotes: {
+                    paddingLeft: 30,
+                    fontSize: 14,
+                },
+
                 fieldContainer: {
                     paddingTop: 10,
                 },
@@ -180,7 +185,7 @@ class Doc extends Component {
                                 <View style={styles.fieldContainer} key={field.id}>
                                     {this.getField(field)}
                                     {field.comments === 1 && this.getComment(field.id) && (
-                                        <Text style={styles.field}>
+                                        <Text style={styles.fieldNotes}>
                                             {`Observación: ${this.getComment(field.id)}`}
                                         </Text>
                                     )}
