@@ -253,9 +253,11 @@ class MachineForm extends Component {
                     <Col md={6}><Input label="Modelo" name="model" value={model} {...rest} /></Col>
                     <Col md={6}><Input label="Marca" name="brand" value={brand} {...rest} /></Col>
                     <Col md={6}><Input label="Año" name="year" value={year} type="number" {...rest} /></Col>
-                    <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={model_form_id} loading={loadingForms} {...rest} /></Col>
                     {!readOnly && (
+                        <>
+                            <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={String(model_form_id)} loading={loadingForms} {...rest} /></Col>
                         <Col md={12}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
+                        </>
                     )}
                     {readOnly && (
                         <Col md={6}><Input label="Estado" name="status" value={this.statusToString(status)} type="text" {...rest} /></Col>
