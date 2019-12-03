@@ -11,6 +11,8 @@ import { getMachines, deleteMachine } from '../../Service/Api';
 import { tableConfig } from '../../config';
 
 class Machines extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -25,7 +27,12 @@ class Machines extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     findData = (id) => {
@@ -65,10 +72,12 @@ class Machines extends Component {
 
         await getMachines()
             .then((response) => {
+                if (this._isMounted) {
                 this.setState({
                     data: response.data,
                     loading: false,
                 });
+                }
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
                     const [, dispatch] = this.context;

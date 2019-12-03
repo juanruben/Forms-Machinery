@@ -11,6 +11,8 @@ import { formatRut, formatPhone } from '../../Service/Utils';
 import { getUsers, deleteUser } from '../../Service/Api';
 
 class Users extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -26,7 +28,12 @@ class Users extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     findData = (id) => {
@@ -41,10 +48,12 @@ class Users extends Component {
 
         await getUsers()
             .then((response) => {
+                if (this._isMounted) {
                 this.setState({
                     data: response.data,
                     loading: false,
                 });
+                }
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
                     const [, dispatch] = this.context;

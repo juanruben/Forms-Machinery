@@ -10,6 +10,8 @@ import { tableConfig } from '../../config';
 import { getConstructions, deleteConstruction } from '../../Service/Api';
 
 class Constructions extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +26,12 @@ class Constructions extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     findData = (id) => {
@@ -57,10 +64,12 @@ class Constructions extends Component {
 
         await getConstructions()
             .then((response) => {
-                this.setState({
-                    data: response.data,
-                    loading: false,
-                });
+                if (this._isMounted) {
+                    this.setState({
+                        data: response.data,
+                        loading: false,
+                    });
+                }
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
                     const [, dispatch] = this.context;

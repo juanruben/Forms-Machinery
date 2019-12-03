@@ -84,6 +84,8 @@ const SortableItem = sortableElement(({
 });
 
 class Sections extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -94,7 +96,12 @@ class Sections extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     onSortEnd = ({ oldIndex, newIndex }) => {
@@ -135,10 +142,12 @@ class Sections extends Component {
         this.setState({ loading: true });
         await getForm(id)
             .then((response) => {
-                this.setState({
-                    data: response.data,
-                    loading: false,
-                });
+                if (this._isMounted) {
+                    this.setState({
+                        data: response.data,
+                        loading: false,
+                    });
+                }
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
                     dispatch({

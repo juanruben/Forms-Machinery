@@ -13,6 +13,8 @@ import { tableConfig } from '../../config';
 import './Forms.scss';
 
 class Forms extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -28,7 +30,12 @@ class Forms extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     onViewClick(id) {
@@ -48,10 +55,12 @@ class Forms extends Component {
 
         await getForms()
             .then((response) => {
-                this.setState({
-                    data: response.data,
-                    loading: false,
-                });
+                if (this._isMounted) {
+                    this.setState({
+                        data: response.data,
+                        loading: false,
+                    });
+                }
             }).catch((error) => {
                 if (error.response.status === 403 || error.response.status === 401) {
                     const [, dispatch] = this.context;

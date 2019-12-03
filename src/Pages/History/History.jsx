@@ -10,6 +10,8 @@ import { dateToLocale } from '../../Service/Utils';
 import { getRegisters } from '../../Service/Api';
 
 class History extends Component {
+    _isMounted = false;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -20,7 +22,12 @@ class History extends Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.loadData();
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     findMachine = (registerId) => {
@@ -65,10 +72,12 @@ class History extends Component {
 
         await getRegisters()
             .then((response) => {
+                if (this._isMounted) {
                 this.setState({
                     data: response.data,
                     loading: false,
                 });
+                }
             }).catch((error) => {
                 if (error.response.status === 403
                     || error.response.status === 401
