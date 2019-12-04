@@ -135,6 +135,7 @@ class Clients extends Component {
             {
                 Header: 'Teléfono de contacto',
                 accessor: 'contact',
+                maxWidth: 150,
                 Cell: (row) => (
                     <a href={`tel:${row.original.contact}`}>{formatPhone(row.original.contact)}</a>
                 ),
