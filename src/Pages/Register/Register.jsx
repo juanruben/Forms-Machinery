@@ -258,7 +258,7 @@ class Register extends Component {
                     };
                 });
         } else {
-            this.setState({ isValidForm: false })
+            this.setState({ isValidForm: false });
         }
     }
 
@@ -319,7 +319,7 @@ class Register extends Component {
         if (this.validForm() && this.validDynamicForm()) {
             this.toggle();
         } else {
-            this.setState({ isValidForm: false })
+            this.setState({ isValidForm: false });
         }
     }
 
