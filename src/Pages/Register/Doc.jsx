@@ -108,7 +108,7 @@ class Doc extends Component {
         if (field.type === 'simple') {
             return (
                 <Text style={styles.field}>
-                    {field.name}: {data ? "SI" : "NO"}
+                    {`${field.name}: ${data ? 'SI' : 'NO'}`}
                 </Text>
             );
         }
