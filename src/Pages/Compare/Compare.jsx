@@ -147,9 +147,14 @@ class Compare extends Component {
                 )}
 
                 {!loading && current && current.form.section.map((section) => (
-                    section.fields.map((field) => (
-                        this.getFieldCompared(field)
-                    ))
+                    <div key={section.id}>
+                        <div className="section-compare"><b>{section.value}</b></div>
+                        {section.fields.map((field) => (
+                            <div key={field.id}>
+                                {this.getFieldCompared(field)}
+                            </div>
+                        ))}
+                    </div>
                 ))}
 
             </>
