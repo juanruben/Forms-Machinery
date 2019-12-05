@@ -11,10 +11,10 @@ class Doc extends Component {
         this.state = {
             styles: StyleSheet.create({
                 page: {
-                    // flexDirection: 'row',
                     backgroundColor: '#FFF',
                     paddingLeft: 40,
                     paddingRight: 40,
+                    paddingBottom: 40,
                 },
 
                 columns: {
@@ -86,6 +86,15 @@ class Doc extends Component {
                     marginBottom: 10,
                     width: 250,
                     marginHorizontal: 130,
+                },
+                pageNumber: {
+                    position: 'absolute',
+                    fontSize: 12,
+                    bottom: 30,
+                    left: 0,
+                    right: 30,
+                    textAlign: 'right',
+                    color: 'grey',
                 },
             }),
         };
@@ -193,6 +202,13 @@ class Doc extends Component {
                             ))}
                         </View>
                     ))}
+                    <Text
+                        style={styles.pageNumber}
+                        render={({ pageNumber, totalPages }) => (
+                            `Página ${pageNumber} de ${totalPages}`
+                        )}
+                        fixed
+                    />
                 </Page>
             </Document>
         );
