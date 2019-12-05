@@ -472,7 +472,7 @@ class Register extends Component {
 
                 {!loadingForm && form.model_section.map((section) => (
                     <div key={`section${section.id}`}>
-                        <Row className="check-in-container__section" key={`section${section.id}`}>
+                        <Row className="register-container__section" key={`section${section.id}`}>
                             <Col md={12}>
                                 {section.name && <Title text={section.name} />}
                             </Col>
