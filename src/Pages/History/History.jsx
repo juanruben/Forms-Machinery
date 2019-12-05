@@ -54,12 +54,12 @@ class History extends Component {
                 RazonSocial: item.client.business_name,
                 Obra: item.construction.name,
                 Direccion: item.construction.address,
-                Maquina: item.machine.name,
-                CodigoMaquina: item.machine.code,
-                Patente: item.machine.plate,
-                Modelo: item.machine.model,
-                Marca: item.machine.brand,
-                Año: item.machine.year,
+                Maquina: item.machine ? item.machine.name : '',
+                CodigoMaquina: item.machine ? item.machine.code : '',
+                Patente: item.machine ? item.machine.plate : '',
+                Modelo: item.machine ? item.machine.model : '',
+                Marca: item.machine ? item.machine.brand : '',
+                Año: item.machine ? item.machine.year : '',
                 Reporte: item.pdf,
                 CreadoPor: `${item.user.name} ${item.user.last_name} (${item.user.username})`,
             });
@@ -137,7 +137,7 @@ class History extends Component {
                 accessor: 'machine.code',
                 maxWidth: 80,
                 Cell: (row) => (
-                    <ModalView title={row.original.machine.code}>
+                    <ModalView title={row.original.machine ? row.original.machine.code : ''}>
                         <MachineForm data={this.findMachine(row.original.id)} readOnly />
                     </ModalView>
                 ),
