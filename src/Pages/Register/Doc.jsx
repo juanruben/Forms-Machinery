@@ -182,7 +182,7 @@ class Doc extends Component {
                                 {section.name}
                             </Text>
                             {section.model_field.map((field) => (
-                                <View style={styles.fieldContainer} key={field.id}>
+                                <View style={styles.fieldContainer} wrap={false} key={field.id}>
                                     {this.getField(field)}
                                     {field.comments === 1 && this.getComment(field.id) && (
                                         <Text style={styles.fieldNotes}>
