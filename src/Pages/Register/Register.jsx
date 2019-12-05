@@ -54,6 +54,7 @@ class Register extends Component {
             loadingConstructions: false,
             loadingMachines: false,
             sentOk: false,
+            isValidForm: true,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -133,6 +134,7 @@ class Register extends Component {
         this.setState({
             data,
             errors,
+            isValidForm: true,
         });
     }
 
@@ -146,6 +148,7 @@ class Register extends Component {
         this.setState({
             formData,
             errors,
+            isValidForm: true,
         });
     }
 
@@ -254,6 +257,8 @@ class Register extends Component {
                         this.send(base64data);
                     };
                 });
+        } else {
+            this.setState({ isValidForm: false })
         }
     }
 
@@ -313,6 +318,8 @@ class Register extends Component {
     handlePreview() {
         if (this.validForm() && this.validDynamicForm()) {
             this.toggle();
+        } else {
+            this.setState({ isValidForm: false })
         }
     }
 
@@ -432,6 +439,7 @@ class Register extends Component {
             errors, clients, machines, constructions, form, data, showing, ready,
             formData, clientSelected, constructionSelected, machineSelected, loading,
             loadingForm, loadingClients, loadingConstructions, loadingMachines, sentOk,
+            isValidForm,
         } = this.state;
         const {
             client, machine, construction,
@@ -439,7 +447,7 @@ class Register extends Component {
         const { type } = this.props;
 
         return (
-            <div className="check-in-container">
+            <div className="register-container">
                 <Title text="Datos generales" />
 
                 <div className="check-in-container__section">
@@ -478,6 +486,8 @@ class Register extends Component {
                         </Row>
                     </div>
                 ))}
+
+                {!isValidForm && <div className="error-valid-form">* Faltan campos requerido</div>}
 
                 <div className="form-footer">
                     <Button text="Vista previa" onClick={this.handlePreview} disabled={loadingForm} />

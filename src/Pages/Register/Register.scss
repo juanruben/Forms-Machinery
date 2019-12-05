@@ -1,4 +1,4 @@
-.check-in-container {
+.register-container {
   margin: 50px 0;
 
   &__section {
@@ -9,5 +9,11 @@
     padding: 15px 20px;
     border-bottom: dashed 1px #ddd;
     border-right: dashed 1px #ddd;
+  }
+
+  .error-valid-form {
+    color: red;
+    font-weight: bold;
+    text-align: right;
   }
 }
