@@ -456,14 +456,14 @@ class Register extends Component {
                     </div>
                 )}
 
+                <Row>
+                    <Col md={12}>
+                        {form.name && <Title text={`Formulario: ${form.name}`} />}
+                    </Col>
+                </Row>
+
                 {!loadingForm && form.model_section.map((section) => (
                     <div key={`section${section.id}`}>
-                        <Row>
-                            <Col md={12}>
-                                {form.name && <Title text={form.name} />}
-                            </Col>
-                        </Row>
-
                         <Row className="check-in-container__section" key={`section${section.id}`}>
                             <Col md={12}>
                                 {section.name && <Title text={section.name} />}
