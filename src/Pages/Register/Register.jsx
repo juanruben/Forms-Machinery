@@ -494,7 +494,7 @@ class Register extends Component {
                 </div>
                 <div className="form-footer">
                     {loading && <div className="spinner"><Spinner /></div>}
-                    <Button text="Enviar" onClick={this.handleSend} disabled={loadingForm} />
+                    <Button text="Enviar" onClick={this.handleSend} disabled={loadingForm || loading} />
                 </div>
 
                 <AlertDialog
