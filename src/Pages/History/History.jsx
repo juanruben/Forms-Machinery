@@ -135,7 +135,7 @@ class History extends Component {
             {
                 Header: 'Código',
                 accessor: 'machine.code',
-                maxWidth: 80,
+                maxWidth: 150,
                 Cell: (row) => (
                     <ModalView title={row.original.machine ? row.original.machine.code : ''}>
                         <MachineForm data={this.findMachine(row.original.id)} readOnly />
@@ -149,30 +149,6 @@ class History extends Component {
                     <ModalView title={row.original.client.name}>
                         <ClientForm data={this.findClient(row.original.id)} readOnly />
                     </ModalView>
-                ),
-            },
-            {
-                Header: 'Estado',
-                accessor: 'machine.status',
-                width: 130,
-                filterMethod: (filter, row) => {
-                    if (filter.value === 'all') {
-                        return true;
-                    }
-                    return row[filter.id] === filter.value;
-                },
-                Filter: ({ filter, onChange }) => (
-                    <select
-                        onChange={(event) => onChange(event.target.value)}
-                        className="table-select-top"
-                        style={{ width: '100%', height: '100%' }}
-                        value={filter ? filter.value : 'all'}
-                    >
-                        <option value="">Todo...</option>
-                        <option value="En taller">En taller</option>
-                        <option value="En obra">En obra</option>
-                        <option value="Mantenimiento">Mantenimiento</option>
-                    </select>
                 ),
             },
             {
