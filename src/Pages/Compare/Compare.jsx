@@ -40,10 +40,12 @@ class Compare extends Component {
     getFieldCompared = (field) => (
         <Row>
             <Col>
-                <b>{field.value}</b>
+                <b>{field.name}</b>
+                {field.type !== 'image' ? field.value : <img className="image-compare" src={field.value} alt="" />}
             </Col>
             <Col>
-                <b>{field.value}</b>
+                <b>{field.name}</b>
+                {field.type !== 'image' ? field.value : <img className="image-compare" src={field.value} alt="" />}
             </Col>
         </Row>
     )
