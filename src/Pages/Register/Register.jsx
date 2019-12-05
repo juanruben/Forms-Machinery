@@ -478,7 +478,7 @@ class Register extends Component {
                             </Col>
 
                             {section.model_field.map((field) => (
-                                <Col md={6} key={`field${field.id}`} className="check-in-container__field">
+                                <Col md={6} key={`field${field.id}`} className="register-container__field">
                                     {this.getControl(field)}
                                 </Col>
                             ))}
