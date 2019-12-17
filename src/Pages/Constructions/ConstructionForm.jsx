@@ -208,8 +208,9 @@ class ConstructionForm extends Component {
                     )}
                     <Col md={12}><Input name="notifications" label="Emails" placeholder="correo1@ejemplo.com, correo2@ejemplo.com, ..." value={notifications} icon="far fa-envelope" {...rest} /></Col>
                     <Col md={12}>
-                        * Estas direcciones de correo recibirán reporte y estado de
-                        las maquinarias cuando esta salgan del taller hacia la obra del cliente
+                        * Puede agregar TODAS las que necesite.
+                        Estas direcciones de correo recibirán reporte y estado de
+                        las maquinarias cuando estas salgan del taller hacia la obra del cliente
                     </Col>
                 </Row>
                 {!readOnly && (
