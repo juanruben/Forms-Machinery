@@ -165,6 +165,7 @@ class Doc extends Component {
                     <Image
                         style={styles.logo}
                         src={logo}
+                        fixed
                     />
                     <Text style={styles.title}>
                         {title}
