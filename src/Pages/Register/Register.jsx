@@ -427,7 +427,9 @@ class Register extends Component {
             errors.machine = ['Requerido'];
         }
 
-        if (extraNotifications && extraNotifications.trim().length > 0 && !validateEmailList(extraNotifications)) {
+        if (extraNotifications
+            && extraNotifications.trim().length > 0
+            && !validateEmailList(extraNotifications)) {
             formIsValid = false;
             errors.extraNotifications = 'Error de formato en una o varias direcciones';
         }
