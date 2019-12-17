@@ -21,6 +21,7 @@ import {
     getClients, getMachines, getConstructionsByClient, getForm, sendRegister,
 } from '../../Service/Api';
 import { AlertDialog } from '../../Components/Dialog/Dialog';
+import { validateEmailList } from '../../Service/Utils';
 
 import './Register.scss';
 
@@ -255,6 +256,16 @@ class Register extends Component {
         }
     }
 
+    formatEmails = (emails) => {
+        const arr = emails.split(',');
+        return (
+            <ul>
+                {arr.map((email) => (
+                    <li>{email}</li>
+                ))}
+            </ul>
+        );
+    }
 
     handleSend() {
         if (this.validForm() && this.validDynamicForm()) {
@@ -395,7 +406,7 @@ class Register extends Component {
 
     validForm() {
         const { data } = this.state;
-        const { client, construction, machine } = data;
+        const { client, construction, machine, extraNotifications } = data;
         const errors = {};
         let formIsValid = true;
 
@@ -412,6 +423,11 @@ class Register extends Component {
         if (!machine) {
             formIsValid = false;
             errors.machine = ['Requerido'];
+        }
+
+        if (extraNotifications && extraNotifications.trim().length > 0 && !validateEmailList(extraNotifications)) {
+            formIsValid = false;
+            errors.extraNotifications = 'Error de formato en una o varias direcciones';
         }
 
         this.setState({
@@ -463,13 +479,13 @@ class Register extends Component {
 
     render() {
         const {
-            errors, clients, machines, constructions, form, data, showing, ready,
+            data, errors, clients, machines, constructions, form, showing, ready,
             formData, clientSelected, constructionSelected, machineSelected, loading,
             loadingForm, loadingClients, loadingConstructions, loadingMachines, sentOk,
             isValidForm, signOk, trimmedSign,
         } = this.state;
         const {
-            client, machine, construction,
+            client, machine, construction, extraNotifications,
         } = data;
         const { type } = this.props;
 
@@ -480,8 +496,20 @@ class Register extends Component {
                 <div className="check-in-container__section">
                     <Row>
                         <Col md={6}><Select name="client" required label="Cliente" options={clients} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} loading={loadingClients} /></Col>
-                        <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} loading={loadingConstructions} errors={errors} /></Col>
                         <Col md={6}><Select name="machine" required label="Máquina" options={machines} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} loading={loadingMachines} /></Col>
+                        <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} loading={loadingConstructions} errors={errors} /></Col>
+                        {constructionSelected.notifications && (
+                            <>
+                                <Col md={12}>
+                                    Se enviarán notificaciones a:
+                                    {this.formatEmails(constructionSelected.notifications)}
+                                </Col>
+
+                                <Col md={12}>
+                                    <Input name="extraNotifications" label="Correos adicionales" value={extraNotifications} icon="fas fa-envelope" onChange={this.onChange} errors={errors} placeholder="ejemplo1@correo.com, ejemplo2@correo.com, ..." />
+                                </Col>
+                            </>
+                        )}
                     </Row>
                 </div>
 
