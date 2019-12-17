@@ -34,6 +34,7 @@ class Doc extends Component {
                     fontSize: 20,
                     fontWeight: 700,
                     textAlign: 'center',
+                    textDecoration: 'underline',
                 },
 
                 date: {
@@ -46,6 +47,7 @@ class Doc extends Component {
                     marginTop: 10,
                     fontSize: 16,
                     fontWeight: 700,
+                    textDecoration: 'underline',
                 },
 
                 logo: {
