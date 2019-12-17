@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
     PDFViewer, pdf,
 } from '@react-pdf/renderer';
+import SignatureCanvas from 'react-signature-canvas';
 import {
     Row, Col, Modal, ModalHeader, ModalBody, Spinner,
 } from 'reactstrap';
@@ -25,6 +26,8 @@ import './Register.scss';
 
 class Register extends Component {
     _isMounted = false;
+
+    signPad = {};
 
     constructor(props) {
         super(props);
@@ -55,6 +58,8 @@ class Register extends Component {
             loadingMachines: false,
             sentOk: false,
             isValidForm: true,
+            signOk: false,
+            trimmedSign: null,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -68,6 +73,7 @@ class Register extends Component {
         this.getControl = this.getControl.bind(this);
         this.toggle = this.toggle.bind(this);
         this.send = this.send.bind(this);
+        this.onChangeSign = this.onChangeSign.bind(this);
     }
 
     componentDidMount() {
@@ -149,6 +155,22 @@ class Register extends Component {
             formData,
             errors,
             isValidForm: true,
+        });
+    }
+
+    onChangeSign = () => {
+        this.setState({
+            signOk: true,
+            trimmedSign: this.signPad.getTrimmedCanvas().toDataURL('image/png'),
+            isValidForm: true,
+        });
+    }
+
+    clear = () => {
+        this.signPad.clear();
+        this.setState({
+            signOk: false,
+            trimmedSign: null,
         });
     }
 
@@ -237,7 +259,7 @@ class Register extends Component {
     handleSend() {
         if (this.validForm() && this.validDynamicForm()) {
             const {
-                form, formData, clientSelected, constructionSelected, machineSelected,
+                form, formData, clientSelected, constructionSelected, machineSelected, trimmedSign,
             } = this.state;
             const { type } = this.props;
 
@@ -248,6 +270,7 @@ class Register extends Component {
                 machine={machineSelected}
                 type={type}
                 data={formData}
+                sign={trimmedSign}
             />).toBlob()
                 .then((pdfBlob) => {
                     const reader = new window.FileReader();
@@ -304,7 +327,10 @@ class Register extends Component {
                     ready: false,
                     loading: false,
                     sentOk: true,
+                    signOk: false,
+                    trimmedSign: null,
                 });
+                this.signPad.clear();
             } else {
                 this.setState({
                 });
@@ -316,7 +342,8 @@ class Register extends Component {
     }
 
     handlePreview() {
-        if (this.validForm() && this.validDynamicForm()) {
+        const { signOk } = this.state;
+        if (this.validForm() && this.validDynamicForm() && signOk) {
             this.toggle();
         } else {
             this.setState({ isValidForm: false });
@@ -439,7 +466,7 @@ class Register extends Component {
             errors, clients, machines, constructions, form, data, showing, ready,
             formData, clientSelected, constructionSelected, machineSelected, loading,
             loadingForm, loadingClients, loadingConstructions, loadingMachines, sentOk,
-            isValidForm,
+            isValidForm, signOk, trimmedSign,
         } = this.state;
         const {
             client, machine, construction,
@@ -487,7 +514,24 @@ class Register extends Component {
                     </div>
                 ))}
 
+                <div>Firma *</div>
+                <SignatureCanvas
+                    penColor="blue"
+                    canvasProps={{
+                        width: 500,
+                        height: 200,
+                        className: 'signature',
+                    }}
+                    onEnd={this.onChangeSign}
+                    clearOnResize={false}
+                    ref={(ref) => { this.signPad = ref; }}
+                />
+                <div>
+                    <button onClick={this.clear} type="button">Borrar</button>
+                </div>
+
                 {!isValidForm && <div className="error-valid-form">* Faltan campos requerido</div>}
+                {!isValidForm && !signOk && <div className="error-valid-form">* Debe firmar documento</div>}
 
                 <div className="form-footer">
                     <Button text="Vista previa" onClick={this.handlePreview} disabled={loadingForm} />
@@ -516,6 +560,7 @@ class Register extends Component {
                                     machine={machineSelected}
                                     type={type}
                                     data={formData}
+                                    sign={trimmedSign}
                                 />
                             </PDFViewer>
                         )}

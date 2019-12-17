@@ -54,6 +54,11 @@ class Doc extends Component {
                     width: 100,
                 },
 
+                sign: {
+                    width: 100,
+                    marginTop: 10,
+                },
+
                 text: {
                     margin: 12,
                     fontSize: 14,
@@ -153,7 +158,7 @@ class Doc extends Component {
 
     render() {
         const {
-            form, client, construction, machine, type,
+            form, client, construction, machine, type, sign,
         } = this.props;
         const { styles } = this.state;
         const title = `Informe de ${type === 'checkin' ? 'llegada' : 'salida'} de equipo`;
@@ -205,6 +210,15 @@ class Doc extends Component {
                             ))}
                         </View>
                     ))}
+
+                    <Text style={styles.subtitle}>
+                        Firma:
+                    </Text>
+                    <Image
+                        style={styles.sign}
+                        src={sign}
+                    />
+
                     <Text
                         style={styles.pageNumber}
                         render={({ pageNumber, totalPages }) => (
@@ -225,6 +239,7 @@ Doc.propTypes = {
     form: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
+    sign: PropTypes.string.isRequired,
 };
 
 export default Doc;
