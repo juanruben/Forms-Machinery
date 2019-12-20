@@ -67,6 +67,21 @@ class Compare extends Component {
         }
     }
 
+    getTitle = (title, info) => (
+        <div className="compare-title-container">
+            <Title text={title} />
+            <div className="compare-title-info">
+                {this.formatItem('Fecha', dateToLocale(info.created_at))}
+                {this.formatItem('Usuario', `${info.user.name} ${info.user.last_name}`)}
+            </div>
+            <div className="document-pdf-icon">
+                <a href={info.pdf} target="_blank" rel="noopener noreferrer">
+                    <i className="far fa-file-pdf" />
+                </a>
+            </div>
+        </div>
+    );
+
     async loadData() {
         const { match } = this.props;
         const { id } = match.params;
@@ -125,32 +140,10 @@ class Compare extends Component {
                 {!loading && (
                     <Row>
                         <Col className="compare-column">
-                            <Title text="Salida" />
-                            {previous ? (
-                                <>
-                                    <div className="document-pdf-icon">
-                                        <a href={previous.pdf} target="_blank" rel="noopener noreferrer">
-                                            <i className="far fa-file-pdf" />
-                                        </a>
-                                    </div>
-                                    {this.formatItem('Fecha', dateToLocale(previous.created_at))}
-                                    {this.formatItem('Usuario', `${current.user.name} ${current.user.last_name}`)}
-                                </>
-                            ) : (<div>No hay registro anterior</div>)}
+                            {previous && (this.getTitle('Salida', previous))}
                         </Col>
-                        <Col className="compare-column left-compare">
-                            {current && (
-                                <>
-                                    <Title text="Entrada" />
-                                    <div className="document-pdf-icon">
-                                        <a href={current.pdf} target="_blank" rel="noopener noreferrer">
-                                            <i className="far fa-file-pdf" />
-                                        </a>
-                                    </div>
-                                    {this.formatItem('Fecha', dateToLocale(current.created_at))}
-                                    {this.formatItem('Usuario', `${current.user.name} ${current.user.last_name}`)}
-                                </>
-                            )}
+                        <Col className="compare-column">
+                            {current && (this.getTitle('Entrada', current))}
                         </Col>
                     </Row>
                 )}
