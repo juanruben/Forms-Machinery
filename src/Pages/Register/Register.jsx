@@ -297,13 +297,7 @@ class Register extends Component {
         return machines.filter((machine) => machine.status === 'En obra');
     }
 
-    getClientsForSelect = (clients) => {
-        return clients.sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    getConstructionsForSelect = (constructions) => {
-        return constructions.sort((a, b) => a.name.localeCompare(b.name));
-    }
+    getSorted = (list) => list.sort((a, b) => a.name.localeCompare(b.name));
 
     getMachinesForSelect = (machines) => {
         const list = [];
@@ -313,7 +307,7 @@ class Register extends Component {
                 name: machines[ii].code,
             });
         }
-        return list.sort((a, b) => a.name.localeCompare(b.name));
+        return this.getSorted(list);
     }
 
     handleSend() {
@@ -551,9 +545,9 @@ class Register extends Component {
                 <Title text="Datos generales" />
                 <div className="register-container__section">
                     <Row>
-                        <Col md={6}><Select name="client" required label="Cliente" options={this.getClientsForSelect(clients)} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} loading={loadingClients} /></Col>
+                        <Col md={6}><Select name="client" required label="Cliente" options={this.getSorted(clients)} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} loading={loadingClients} /></Col>
                         <Col md={6}><Select name="machine" required label="Máquina" options={this.getMachinesForSelect(machines)} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} loading={loadingMachines} /></Col>
-                        <Col md={6}><Select name="construction" required label="Obra" options={this.getConstructionsForSelect(constructions)} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} loading={loadingConstructions} errors={errors} /></Col>
+                        <Col md={6}><Select name="construction" required label="Obra" options={this.getSorted(constructions)} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} loading={loadingConstructions} errors={errors} /></Col>
                         {constructionSelected.notifications && (
                             <>
                                 <Col md={12}>
