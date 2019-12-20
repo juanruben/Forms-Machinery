@@ -17,7 +17,7 @@ function Multiple(props) {
             </div>
             <ul className={`multiple-item ${warning && 'border-error'}`}>
                 {options.map((item) => (
-                    <li key={item.id}>
+                    <li key={`${item.name}${item.id}`}>
                         <input type="radio" id={item.id} value={item.name} name={name} onChange={onChange} />
                         <label htmlFor={item.id}>{item.name}</label>
                     </li>
