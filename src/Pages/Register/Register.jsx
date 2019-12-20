@@ -267,8 +267,25 @@ class Register extends Component {
         );
     }
 
+    getEmails = () => {
+        const { constructionSelected, data } = this.state;
+        const { extraNotifications } = data;
+        const { notifications } = constructionSelected;
+
+        if (!extraNotifications || extraNotifications.trim() === '') {
+            return notifications;
+        }
+
+        if (notifications === '') {
+            return '';
+        }
+
+        return `${notifications}, ${extraNotifications}`;
+    }
+
     handleSend() {
-        if (this.validForm() && this.validDynamicForm()) {
+        const { signOk } = this.state;
+        if (this.validForm() && this.validDynamicForm() && signOk) {
             const {
                 form, formData, clientSelected, constructionSelected, machineSelected, trimmedSign,
             } = this.state;
@@ -315,6 +332,7 @@ class Register extends Component {
             construction_id: constructionSelected.id,
             file,
             fields: formFields,
+            extraNotifications: this.getEmails(),
         };
 
         await sendRegister(params).then((response) => {
