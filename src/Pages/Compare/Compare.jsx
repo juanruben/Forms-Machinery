@@ -80,12 +80,20 @@ class Compare extends Component {
         }
     }
 
-    getTitle = (title, info) => (
+    getHeader = (title, info) => (
         <div className="compare-title-container">
             <Title text={title} />
             <div className="compare-title-info">
                 {this.formatItem('Fecha', dateToLocale(info.created_at))}
                 {this.formatItem('Usuario', `${info.user.name} ${info.user.last_name}`)}
+                <Row>
+                    <Col className="compare-column">
+                        {this.formatItem('Cliente', info.client.name)}
+                        {this.formatItem('Razón social', info.client.business_name)}
+                        {this.formatItem('Obra', info.construction.name)}
+                        {this.formatItem('Dirección', info.construction.address)}
+                    </Col>
+                </Row>
             </div>
             <div className="document-pdf-icon">
                 <a href={info.pdf} target="_blank" rel="noopener noreferrer">
@@ -141,7 +149,7 @@ class Compare extends Component {
                 {current && machine && form && (
                     <>
                         <Row>
-                            <Col>
+                            <Col className="compare-column">
                                 {this.formatItem('Máquina', machine.name)}
                                 {this.formatItem('Código', machine.code)}
                                 {this.formatItem('Marca', machine.brand)}
@@ -150,25 +158,16 @@ class Compare extends Component {
                                 {this.formatItem('Número de serie', machine.serie)}
                             </Col>
                         </Row>
-
-                        <Row>
-                            <Col className="compare-column">
-                                {this.formatItem('Cliente', current.client.name)}
-                                {this.formatItem('Razón social', current.client.business_name)}
-                                {this.formatItem('Obra', current.construction.name)}
-                                {this.formatItem('Dirección', current.construction.address)}
-                            </Col>
-                        </Row>
                     </>
                 )}
 
                 {!loading && (
                     <Row>
                         <Col className="compare-column">
-                            {previous && (this.getTitle('Salida', previous))}
+                            {previous && (this.getHeader('Salida', previous))}
                         </Col>
                         <Col className="compare-column">
-                            {current && (this.getTitle('Entrada', current))}
+                            {current && (this.getHeader('Entrada', current))}
                         </Col>
                     </Row>
                 )}
