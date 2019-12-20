@@ -187,6 +187,21 @@ class Doc extends Component {
                         <Text style={styles.item}>
                             {`Máquina: ${machine.name}`}
                         </Text>
+                        <Text style={styles.item}>
+                            {`Código: ${machine.code}`}
+                        </Text>
+                        <Text style={styles.item}>
+                            {`Marca: ${machine.brand}`}
+                        </Text>
+                        <Text style={styles.item}>
+                            {`Modelo: ${machine.model}`}
+                        </Text>
+                        <Text style={styles.item}>
+                            {`Patente: ${machine.plate}`}
+                        </Text>
+                        <Text style={styles.item}>
+                            {`Número de serie: ${machine.serie}`}
+                        </Text>
                     </View>
 
                     <Text style={styles.subtitle}>
