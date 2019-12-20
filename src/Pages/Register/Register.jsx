@@ -552,8 +552,7 @@ class Register extends Component {
         return (
             <div className="register-container">
                 <Title text="Datos generales" />
-
-                <div className="check-in-container__section">
+                <div className="register-container__section">
                     <Row>
                         <Col md={6}><Select name="client" required label="Cliente" options={this.getClientsForSelect(clients)} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} loading={loadingClients} /></Col>
                         <Col md={6}><Select name="machine" required label="Máquina" options={this.getMachinesForSelect(machines)} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} loading={loadingMachines} /></Col>
