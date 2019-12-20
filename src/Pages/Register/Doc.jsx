@@ -226,13 +226,15 @@ class Doc extends Component {
                         </View>
                     ))}
 
-                    <Text style={styles.subtitle}>
-                        Firma:
-                    </Text>
-                    <Image
-                        style={styles.sign}
-                        src={sign}
-                    />
+                    <View wrap={false}>
+                        <Text style={styles.subtitle}>
+                            Firma:
+                        </Text>
+                        <Image
+                            style={styles.sign}
+                            src={sign}
+                        />
+                    </View>
 
                     <Text
                         style={styles.pageNumber}
