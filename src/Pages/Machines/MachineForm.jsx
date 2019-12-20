@@ -144,7 +144,7 @@ class MachineForm extends Component {
     validForm() {
         const { data } = this.state;
         const {
-            name, code, plate, model, brand, year, model_form_id, status,
+            name, code, serie, plate, model, brand, year, model_form_id, status,
         } = data;
         const errors = {};
         let formIsValid = true;
@@ -157,6 +157,11 @@ class MachineForm extends Component {
         if (!code || code.trim().length === 0) {
             formIsValid = false;
             errors.code = ['Requerido'];
+        }
+
+        if (!serie || serie.trim().length === 0) {
+            formIsValid = false;
+            errors.serie = ['Requerido'];
         }
 
         if (!plate || plate.trim().length === 0) {
@@ -244,7 +249,7 @@ class MachineForm extends Component {
             data, createMode, errors, loading, forms, estado, loadingForms,
         } = this.state;
         const {
-            name, code, plate, model, brand, year, model_form_id, status,
+            name, code, serie, plate, model, brand, year, model_form_id, status,
         } = data;
 
         const rest = {
@@ -259,13 +264,14 @@ class MachineForm extends Component {
                     <Col md={12}><Input label="Nombre" name="name" value={name} {...rest} /></Col>
                     <Col md={6}><Input label="Código" name="code" value={code} {...rest} /></Col>
                     <Col md={6}><Input label="Patente" name="plate" value={plate} {...rest} /></Col>
+                    <Col md={6}><Input label="Número de serie" name="serie" value={serie} {...rest} /></Col>
                     <Col md={6}><Input label="Modelo" name="model" value={model} {...rest} /></Col>
                     <Col md={6}><Input label="Marca" name="brand" value={brand} {...rest} /></Col>
                     <Col md={6}><Input label="Año" name="year" value={year} type="number" {...rest} /></Col>
                     {!readOnly && (
                         <>
                             <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={String(model_form_id)} loading={loadingForms} {...rest} /></Col>
-                            <Col md={12}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
+                            <Col md={6}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
                         </>
                     )}
                     {readOnly && (
