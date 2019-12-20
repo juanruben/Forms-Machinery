@@ -40,12 +40,12 @@ class Compare extends Component {
     getFieldCompared = (field) => (
         <Row className={this.diff(field) ? 'compare-item compare-diff' : 'compare-item'}>
             <Col>
-                <b>{field.name}</b>
-                {field.type !== 'image' ? field.value : <img className="image-compare" src={field.value} alt="" />}
+                <b>{`${field.name}: `}</b>
+                {field.type !== 'image' ? field.value_previous : <img className="image-compare" src={field.value_previous} alt="" />}
             </Col>
             <Col>
-                <b>{field.name}</b>
-                {field.type !== 'image' ? field.value : <img className="image-compare" src={field.value} alt="" />}
+                <b>{`${field.name}: `}</b>
+                {field.type !== 'image' ? field.value_current : <img className="image-compare" src={field.value_current} alt="" />}
             </Col>
         </Row>
     )
