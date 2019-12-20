@@ -116,12 +116,20 @@ class Machines extends Component {
             {
                 Header: 'Nombre',
                 accessor: 'name',
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                filterAll: true,
+                filterable: true,
+            },
+            {
+                Header: 'Código',
+                accessor: 'code',
                 Cell: (row) => (
-                    <ModalView title={row.original.name} callback={this.loadData}>
+                    <ModalView title={row.original.code} callback={this.loadData}>
                         <MachineForm data={this.findData(row.original.id)} readOnly />
                     </ModalView>
                 ),
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['name'] }),
+                maxWidth: 100,
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['plate'] }),
                 filterAll: true,
                 filterable: true,
             },
@@ -134,10 +142,9 @@ class Machines extends Component {
                 filterable: true,
             },
             {
-                Header: 'Nº Serie',
-                accessor: 'plate',
-                maxWidth: 150,
-                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['plate'] }),
+                Header: 'Marca',
+                accessor: 'brand',
+                filterMethod: (filter, rows) => matchSorter(rows, filter.value, { keys: ['serie'] }),
                 filterAll: true,
                 filterable: true,
             },
