@@ -114,7 +114,7 @@ class Compare extends Component {
                     {' '}
                     Volver
                 </button>
-                <Title text="Comparación - EN DESARROLLO -" />
+                <Title text="Comparación" />
 
                 {loading && (
                     <div className="simple-loading-container">
