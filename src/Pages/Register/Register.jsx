@@ -233,10 +233,7 @@ class Register extends Component {
             case 'multiple':
                 return (
                     <>
-                        <Multiple
-                            options={field.options}
-                            {...props}
-                        />
+                        <Multiple options={field.options} {...props} />
                         {comments && <Comments {...props} />}
                     </>
                 );
