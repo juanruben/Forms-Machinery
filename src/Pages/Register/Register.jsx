@@ -518,7 +518,7 @@ class Register extends Component {
         }), () => {
             setTimeout(() => {
                 this.setState({ ready: true });
-            }, 1);
+            }, 3000);
         });
     }
 
