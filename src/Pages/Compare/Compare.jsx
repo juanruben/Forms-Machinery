@@ -137,14 +137,6 @@ class Compare extends Component {
                 {current && machine && form && (
                     <>
                         <Row>
-                            <Col className="compare-column">
-                                {this.formatItem('Cliente', current.client.name)}
-                                {this.formatItem('Razón social', current.client.business_name)}
-                                {this.formatItem('Obra', current.construction.name)}
-                                {this.formatItem('Dirección', current.construction.address)}
-                            </Col>
-                        </Row>
-                        <Row>
                             <Col>
                                 {this.formatItem('Máquina', machine.name)}
                                 {this.formatItem('Código', machine.code)}
@@ -152,6 +144,15 @@ class Compare extends Component {
                                 {this.formatItem('Modelo', machine.model)}
                                 {this.formatItem('Patente', machine.plate)}
                                 {this.formatItem('Número de serie', machine.serie)}
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col className="compare-column">
+                                {this.formatItem('Cliente', current.client.name)}
+                                {this.formatItem('Razón social', current.client.business_name)}
+                                {this.formatItem('Obra', current.construction.name)}
+                                {this.formatItem('Dirección', current.construction.address)}
                             </Col>
                         </Row>
                     </>
