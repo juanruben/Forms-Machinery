@@ -286,6 +286,24 @@ class Register extends Component {
         return `${notifications}, ${extraNotifications}`;
     }
 
+    filterMachines = (machines, type) => {
+        if (type === 'checkout') {
+            return machines.filter((machine) => machine.status === 'En taller');
+        }
+        return machines.filter((machine) => machine.status === 'En obra');
+    }
+
+    getMachinesForSelect = (machines) => {
+        const list = [];
+        for (let ii = 0; ii < machines.length; ii += 1) {
+            list.push({
+                id: machines[ii].id,
+                name: machines[ii].code,
+            });
+        }
+        return list.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
     handleSend() {
         const { signOk } = this.state;
         if (this.validForm() && this.validDynamicForm() && signOk) {
@@ -412,11 +430,13 @@ class Register extends Component {
     }
 
     async loadMachines() {
+        const { type } = this.props;
+
         this.setState({ loadingMachines: true });
         await getMachines().then((response) => {
             if (this._isMounted) {
                 this.setState({
-                    machines: response.data,
+                    machines: this.filterMachines(response.data, type),
                     loadingMachines: false,
                 });
             }
@@ -521,7 +541,7 @@ class Register extends Component {
                 <div className="check-in-container__section">
                     <Row>
                         <Col md={6}><Select name="client" required label="Cliente" options={clients} placeholder="Seleccione..." onChange={this.onChangeClient} value={client} errors={errors} loading={loadingClients} /></Col>
-                        <Col md={6}><Select name="machine" required label="Máquina" options={machines} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} loading={loadingMachines} /></Col>
+                        <Col md={6}><Select name="machine" required label="Máquina" options={this.getMachinesForSelect(machines)} placeholder="Seleccione..." value={machine} onChange={this.onChangeMachine} errors={errors} loading={loadingMachines} /></Col>
                         <Col md={6}><Select name="construction" required label="Obra" options={constructions} placeholder="Seleccione..." onChange={this.onChangeConstruction} value={construction} loading={loadingConstructions} errors={errors} /></Col>
                         {constructionSelected.notifications && (
                             <>
