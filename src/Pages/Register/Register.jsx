@@ -264,7 +264,7 @@ class Register extends Component {
         return (
             <ul>
                 {arr.map((email) => (
-                    <li>{email}</li>
+                    <li key={email}>{email}</li>
                 ))}
             </ul>
         );
