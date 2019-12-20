@@ -27,5 +27,15 @@
 }
 
 .section-compare {
-  margin-top: 20px;
+  font-size: 1.2em;
+  margin-bottom: 0 10px;
+  text-decoration: underline;
+}
+
+.compare-item {
+  padding: 10px;
+}
+
+.compare-diff {
+  background-color: rgba(255, 0, 0, 0.2);
 }

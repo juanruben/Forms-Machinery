@@ -15,7 +15,10 @@ class Compare extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            current: null,
+            previous: null,
+            machine: null,
+            form: null,
             loading: false,
         };
         this.loadData = this.loadData.bind(this);
@@ -90,9 +93,11 @@ class Compare extends Component {
         await getRegistersDiff(id)
             .then((response) => {
                 if (this._isMounted) {
-                    console.log(response.data);
                     this.setState({
-                        data: response.data,
+                        current: response.data.current,
+                        previous: response.data.previous,
+                        machine: response.data.machine,
+                        form: response.data.form,
                     });
                 }
             }).catch((error) => {
@@ -104,8 +109,9 @@ class Compare extends Component {
 
     render() {
         const { history } = this.props;
-        const { data, loading } = this.state;
-        const { current, previous } = data;
+        const {
+            current, previous, machine, form, loading,
+        } = this.state;
 
         return (
             <>
@@ -156,9 +162,9 @@ class Compare extends Component {
                     </Row>
                 )}
 
-                {!loading && current && current.form.section.map((section) => (
+                {form && form.section.map((section) => (
                     <div key={section.id}>
-                        <div className="section-compare"><b>{section.value}</b></div>
+                        <div className="section-compare"><b>{section.name}</b></div>
                         {section.fields.map((field) => (
                             <div key={field.id}>
                                 {this.getFieldCompared(field)}
