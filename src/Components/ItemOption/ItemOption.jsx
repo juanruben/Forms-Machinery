@@ -17,7 +17,7 @@ const ItemOption = (props) => {
 ItemOption.propTypes = {
     text: PropTypes.string,
     onClick: PropTypes.func.isRequired,
-    value: PropTypes.number.isRequired,
+    value: PropTypes.string.isRequired,
 };
 
 ItemOption.defaultProps = {
