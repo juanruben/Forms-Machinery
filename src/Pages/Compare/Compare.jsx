@@ -45,10 +45,16 @@ class Compare extends Component {
             <Col>
                 <b>{`${field.name}: `}</b>
                 {field.type !== 'image' ? field.value_previous : <img className="image-compare" src={field.value_previous} alt="" />}
+                <div className="compare-item-comment">
+                    <i>{`Observaciones: ${field.comments_previous}`}</i>
+                </div>
             </Col>
             <Col>
                 <b>{`${field.name}: `}</b>
                 {field.type !== 'image' ? field.value_current : <img className="image-compare" src={field.value_current} alt="" />}
+                <div className="compare-item-comment">
+                    <i>{`Observaciones: ${field.comments_current}`}</i>
+                </div>
             </Col>
         </Row>
     )
