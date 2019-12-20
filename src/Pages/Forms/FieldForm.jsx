@@ -38,15 +38,14 @@ class FieldForm extends Component {
                 options: [],
             },
             errors: {},
-            opciones: '',
-            count: 0,
+            newOption: '',
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeBoolean = this.onChangeBoolean.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
-        this.handleOptions = this.handleOptions.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
+        this.handleAddOption = this.handleAddOption.bind(this);
+        this.handleDeleteOption = this.handleDeleteOption.bind(this);
     }
 
     componentDidMount() {
@@ -83,9 +82,9 @@ class FieldForm extends Component {
     onChange(event) {
         const { name, value } = event.target;
         const { data, errors } = this.state;
-        let { opciones } = this.state;
-        if (name === 'opciones') {
-            opciones = value;
+        let { newOption } = this.state;
+        if (name === 'newOption') {
+            newOption = value;
         } else {
             data[name] = value;
         }
@@ -94,7 +93,7 @@ class FieldForm extends Component {
         this.setState({
             data,
             errors,
-            opciones,
+            newOption,
         });
     }
 
@@ -223,39 +222,39 @@ class FieldForm extends Component {
         }
     }
 
-    handleOptions() {
-        const { data, opciones } = this.state;
-        let { count } = this.state;
+    handleAddOption() {
+        const { data, newOption } = this.state;
+        const { options } = data;
+        const count = data.options.length;
         const errors = {};
-        if (opciones.trim().length === 0) {
-            errors.opciones = 'Requerido';
+        if (newOption.trim().length === 0) {
+            errors.newOption = 'Requerido';
         } else {
             const item = {
-                id: count,
-                name: opciones,
+                id: `${count}-${newOption}`,
+                name: newOption,
             };
-            data.options.push(item);
-
-            count += 1;
+            options.push(item);
         }
 
+        data.options = options;
 
         this.setState({
             data,
             errors,
-            count,
-            opciones: '',
+            newOption: '',
         });
     }
 
-    handleDelete(event) {
+    handleDeleteOption(event) {
         const { data } = this.state;
+        const { options } = data;
+        options.splice(event.target.value, 1);
 
-        data.options.splice(event.target.value, 1);
-
+        data.options = options;
         this.setState({
             data,
-            opciones: '',
+            newOption: '',
         });
     }
 
@@ -301,7 +300,7 @@ class FieldForm extends Component {
 
     render() {
         const {
-            createMode, errors, data, opciones, loading,
+            createMode, errors, data, newOption, loading,
         } = this.state;
         const {
             name, type, required, comments, options,
@@ -316,23 +315,23 @@ class FieldForm extends Component {
 
                     <Row>
                         <Col md={8}>
-                            <Input label="Opciones" name="opciones" placeholder="Opciones" onChange={this.onChange} value={opciones} errors={errors} required />
+                            <Input label="Opciones" name="newOption" placeholder="Opciones" onChange={this.onChange} value={newOption} errors={errors} required />
 
-                            {options.map((item, index) => (
-                                <ItemOption text={item.name} onClick={this.handleDelete} value={index} key={index} />
+                            {options.map((item) => (
+                                <ItemOption text={item.name} onClick={this.handleDeleteOption} value={item.id} key={item.id} />
                             ))}
 
                         </Col>
                         <Col md={4}>
-                            <Button text="Agregar" onClick={this.handleOptions} className="align-btn" />
+                            <Button text="Agregar" onClick={this.handleAddOption} className="align-btn" />
                         </Col>
                     </Row>
 
                 ) : ('')}
 
-                {(type !== '2') && <Simple label="Requerido" name="required" onChange={this.onChangeBoolean} value={required} />}
+                {(type !== '2') && <Simple label="Requerido" name="required" onChange={this.onChangeBoolean} value={required === 1} />}
 
-                <Simple label="Observaciones" name="comments" onChange={this.onChangeBoolean} value={comments} />
+                <Simple label="Observaciones" name="comments" onChange={this.onChangeBoolean} value={comments === 1} />
 
                 <Row>
                     <Col md={8} style={{ textAlign: 'right' }}>{loading && <div className="spinner"><Spinner /></div>}</Col>
