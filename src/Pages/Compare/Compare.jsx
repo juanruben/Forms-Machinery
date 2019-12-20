@@ -38,7 +38,7 @@ class Compare extends Component {
     )
 
     getFieldCompared = (field) => (
-        <Row>
+        <Row className={this.diff(field) ? 'compare-item compare-diff' : 'compare-item'}>
             <Col>
                 <b>{field.name}</b>
                 {field.type !== 'image' ? field.value : <img className="image-compare" src={field.value} alt="" />}
@@ -49,6 +49,13 @@ class Compare extends Component {
             </Col>
         </Row>
     )
+
+    diff = (field) => {
+        if (field.type === 'simple' || field.type === 'multiple') {
+            return field.value_previous !== field.value_current;
+        }
+        return false;
+    }
 
     handleError = (error) => {
         const { status } = error.response;
