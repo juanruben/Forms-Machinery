@@ -129,6 +129,9 @@ class Register extends Component {
                 });
             }
         }).catch((error) => {
+            this.setState({
+                loadingForm: false,
+            });
             this.handleError(error);
         });
     }
