@@ -153,14 +153,14 @@ class History extends Component {
             },
             {
                 Header: '',
-                accessor: 'pdf',
-                id: 'pdf',
+                accessor: 'diff',
+                id: 'diff',
                 filterable: false,
                 sortable: false,
                 maxWidth: 50,
                 Cell: (row) => (
                     <div className="form-actions">
-                        {row.original.type === 'checkin' && (
+                        {row.original.type === 'checkin' && row.original.diff === 1 && (
                             <Link className="form-actions__icon" to={`/admin/compara/${row.original.id}`}>
                                 <i className="fas fa-exclamation-triangle" />
                             </Link>
