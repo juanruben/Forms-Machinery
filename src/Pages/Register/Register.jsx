@@ -61,6 +61,7 @@ class Register extends Component {
             isValidForm: true,
             signOk: false,
             trimmedSign: null,
+            formLoadingError: false,
         };
         this.onChange = this.onChange.bind(this);
         this.onChangeFormField = this.onChangeFormField.bind(this);
@@ -114,7 +115,10 @@ class Register extends Component {
     async onChangeMachine(event) {
         const { value } = event.target;
         const { machines } = this.state;
-        this.setState({ loadingForm: true });
+        this.setState({
+            loadingForm: true,
+            formLoadingError: false,
+        });
 
         this.onChange(event);
         const machineSelected = machines.find((item) => item.id === parseInt(value));
@@ -126,11 +130,14 @@ class Register extends Component {
                     formFields: this.parseForm(response.data),
                     machineSelected,
                     loadingForm: false,
+                    formData: {},
+                    errors: {},
                 });
             }
         }).catch((error) => {
             this.setState({
                 loadingForm: false,
+                formLoadingError: true,
             });
             this.handleError(error);
         });
@@ -305,8 +312,8 @@ class Register extends Component {
     }
 
     handleSend() {
-        const { signOk } = this.state;
-        if (this.validForm() && this.validDynamicForm() && signOk) {
+        const { signOk, formLoadingError } = this.state;
+        if (this.validForm() && this.validDynamicForm() && signOk && !formLoadingError) {
             const {
                 form, formData, clientSelected, constructionSelected, machineSelected, trimmedSign,
             } = this.state;
@@ -392,8 +399,8 @@ class Register extends Component {
     }
 
     handlePreview() {
-        const { signOk } = this.state;
-        if (this.validForm() && this.validDynamicForm() && signOk) {
+        const { signOk, formLoadingError } = this.state;
+        if (this.validForm() && this.validDynamicForm() && signOk && !formLoadingError) {
             this.toggle();
         } else {
             this.setState({ isValidForm: false });
@@ -527,7 +534,7 @@ class Register extends Component {
             data, errors, clients, machines, constructions, form, showing, ready,
             formData, clientSelected, constructionSelected, machineSelected, loading,
             loadingForm, loadingClients, loadingConstructions, loadingMachines, sentOk,
-            isValidForm, signOk, trimmedSign,
+            isValidForm, signOk, trimmedSign, formLoadingError,
         } = this.state;
         const {
             client, machine, construction, extraNotifications,
@@ -564,13 +571,19 @@ class Register extends Component {
                     </div>
                 )}
 
-                <Row>
-                    <Col md={12}>
-                        {form.name && <Title text={`Formulario: ${form.name}`} />}
-                    </Col>
-                </Row>
+                {!formLoadingError && (
+                    <Row>
+                        <Col md={12}>
+                            {form.name && <Title text={`Formulario: ${form.name}`} />}
+                        </Col>
+                    </Row>
+                )}
 
-                {!loadingForm && form.model_section.map((section) => (
+                {formLoadingError && (
+                    <div className="error-loading-form">Esta máquina no tiene formulario asociado</div>
+                )}
+
+                {!loadingForm && !formLoadingError && form.model_section.map((section) => (
                     <div key={`section${section.id}`}>
                         <Row className="register-container__section" key={`section${section.id}`}>
                             <Col md={12}>
