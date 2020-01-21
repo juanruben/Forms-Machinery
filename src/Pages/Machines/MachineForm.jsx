@@ -270,7 +270,7 @@ class MachineForm extends Component {
                     <Col md={6}><Input label="Año" name="year" value={year} type="number" {...rest} /></Col>
                     {!readOnly && (
                         <>
-                            <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={String(model_form_id)} loading={loadingForms} {...rest} /></Col>
+                            <Col md={6}><Select label="Formulario" options={forms} placeholder="Seleccione..." name="model_form_id" value={model_form_id ? String(model_form_id): "-1"} loading={loadingForms} {...rest} /></Col>
                             <Col md={6}><Select label="Estado" options={estado} placeholder="Seleccione..." name="status" value={status} {...rest} /></Col>
                         </>
                     )}
