@@ -5,6 +5,7 @@ import { StateContext } from '../../State';
 import TopBar from '../../Components/TopBar/TopBar';
 import DownloadCSVButton from '../../Components/DownloadCSVButton/DownloadCSVButton';
 import MachineForm from './MachineForm';
+import ConstructionClientView from '../Constructions/ConstructionClientView';
 import ModalView from '../../Layout/ModalView/ModalView';
 import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { getMachines, deleteMachine } from '../../Service/Api';
@@ -38,6 +39,16 @@ class Machines extends Component {
     findData = (id) => {
         const { data } = this.state;
         return data.find((item) => item.id === id);
+    }
+
+    findClient = (machineId) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === machineId).client;
+    }
+
+    findConstruction = (machineId) => {
+        const { data } = this.state;
+        return data.find((item) => item.id === machineId).construction;
     }
 
     getStatus = (value) => {
@@ -159,9 +170,16 @@ class Machines extends Component {
                 Header: 'Estado',
                 accessor: 'status',
                 width: 130,
-                Cell: (row) => (
-                    <>{row.original.status}</>
-                ),
+                Cell: (row) => {
+                    if (row.original.status === 'En obra') {
+                        return (
+                            <ModalView title="En obra" callback={this.loadData}>
+                                <ConstructionClientView construction={this.findConstruction(row.original.id)} client={this.findClient(row.original.id)} />
+                            </ModalView>
+                        );
+                    }
+                    return <>{row.original.status}</>;
+                },
                 filterMethod: (filter, row) => {
                     if (filter.value === 'all') {
                         return true;
