@@ -100,7 +100,7 @@ class FieldForm extends Component {
     onChangeBoolean(event) {
         const { name, checked } = event.target;
         const { data, errors } = this.state;
-        data[name] = checked;
+        data[name] = checked ? 1 : 0;
         errors[name] = '';
         this.setState({
             data,
