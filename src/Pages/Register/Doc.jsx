@@ -10,23 +10,17 @@ class Doc extends Component {
         super(props);
         this.state = {
             styles: StyleSheet.create({
+
+                container: {
+                    flex: 1,
+                    flexDirection: 'row',
+                },
+
                 page: {
                     backgroundColor: '#FFF',
                     paddingLeft: 40,
                     paddingRight: 40,
                     paddingBottom: 40,
-                },
-
-                columns: {
-                    flexDirection: 'row',
-                },
-
-                column: {
-                    margin: 10,
-                    padding: 10,
-                    flexGrow: 1,
-                    fontSize: 20,
-                    fontWeight: 700,
                 },
 
                 title: {
@@ -91,9 +85,10 @@ class Doc extends Component {
                 image: {
                     marginTop: 10,
                     marginBottom: 10,
-                    width: 250,
-                    marginHorizontal: 130,
+                    width: 200,
+                    marginHorizontal: 0,
                 },
+
                 pageNumber: {
                     position: 'absolute',
                     fontSize: 12,
@@ -102,6 +97,18 @@ class Doc extends Component {
                     right: 30,
                     textAlign: 'right',
                     color: 'grey',
+                },
+
+                row: {
+                    flex: 1,
+                    flexDirection: 'row',
+                    flexGrow: 1,
+                    flexWrap: true,
+                },
+
+                column: {
+                    width: '50%',
+                    padding: 10,
                 },
             }),
         };
@@ -213,16 +220,18 @@ class Doc extends Component {
                             <Text style={styles.subtitle}>
                                 {section.name}
                             </Text>
-                            {section.model_field.map((field) => (
-                                <View style={styles.fieldContainer} wrap={false} key={field.id}>
-                                    {this.getField(field)}
-                                    {field.comments === 1 && this.getComment(field.id) && (
-                                        <Text style={styles.fieldNotes}>
-                                            {`Observación: ${this.getComment(field.id)}`}
-                                        </Text>
-                                    )}
-                                </View>
-                            ))}
+                            <View style={styles.row}>
+                                {section.model_field.map((field) => (
+                                    <View style={styles.column} wrap={false} key={field.id}>
+                                        {this.getField(field)}
+                                        {field.comments === 1 && this.getComment(field.id) && (
+                                            <Text style={styles.fieldNotes}>
+                                                {`Observación: ${this.getComment(field.id)}`}
+                                            </Text>
+                                        )}
+                                    </View>
+                                ))}
+                            </View>
                         </View>
                     ))}
 
