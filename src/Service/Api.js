@@ -52,6 +52,10 @@ export async function deleteUser(id) {
     return axios.delete(`${url}/users/${id}`);
 }
 
+export async function restoreUser(id) {
+    return axios.get(`${url}/users/recovery/${id}`);
+}
+
 // CLIENTS
 
 export async function getClients() {
