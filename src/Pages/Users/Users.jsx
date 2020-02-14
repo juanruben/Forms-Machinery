@@ -8,7 +8,7 @@ import ModalView from '../../Layout/ModalView/ModalView';
 import { tableConfig } from '../../config';
 import { ConfirmDialog } from '../../Components/Dialog/Dialog';
 import { formatRut, formatPhone } from '../../Service/Utils';
-import { getUsers, deleteUser } from '../../Service/Api';
+import { getUsers, deleteUser, restoreUser } from '../../Service/Api';
 
 class Users extends Component {
     _isMounted = false;
@@ -20,8 +20,10 @@ class Users extends Component {
             data: [],
             loading: false,
             deleteId: null,
+            restoreId: null,
         };
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleRestore = this.handleRestore.bind(this);
         this.loadData = this.loadData.bind(this);
         this.findData = this.findData.bind(this);
         this.removeUser = this.removeUser.bind(this);
@@ -62,6 +64,8 @@ class Users extends Component {
                     this.setState({
                         data: response.data,
                         loading: false,
+                        deleteId: null,
+                        restoreId: null,
                     });
                 }
             }).catch((error) => {
@@ -80,6 +84,17 @@ class Users extends Component {
         });
     }
 
+    async restoreUser() {
+        const { restoreId } = this.state;
+        await restoreUser(restoreId).then((response) => {
+            if (response && response.status === 200) {
+                this.loadData();
+            }
+        }).catch((error) => {
+            this.handleError(error);
+        });
+    }
+
     handleRemove(id) {
         this.setState({
             showConfirm: true,
@@ -87,8 +102,17 @@ class Users extends Component {
         });
     }
 
+    handleRestore(id) {
+        this.setState({
+            showConfirm: true,
+            restoreId: id,
+        });
+    }
+
     render() {
-        const { showConfirm, data, loading } = this.state;
+        const {
+            showConfirm, data, loading, deleteId, restoreId,
+        } = this.state;
         const columns = [
             {
                 Header: 'Nombre',
@@ -187,6 +211,11 @@ class Users extends Component {
                                 <i className="fas fa-trash" />
                             </button>
                         )}
+                        {row.original.deleted_at && (
+                            <button onClick={() => { this.handleRestore(row.original.id); }} type="button">
+                                <i className="fas fa-undo" />
+                            </button>
+                        )}
                     </div>
                 ),
             },
@@ -209,9 +238,14 @@ class Users extends Component {
 
                 <ConfirmDialog
                     show={showConfirm}
-                    title="Eliminar usuario"
+                    title={deleteId ? 'Eliminar usuario' : 'Restablecer usuario'}
                     onConfirm={() => {
-                        this.removeUser();
+                        if (deleteId) {
+                            this.removeUser();
+                        }
+                        if (restoreId) {
+                            this.restoreUser();
+                        }
                         this.setState({ showConfirm: false });
                     }}
                     onCancel={() => {
