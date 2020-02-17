@@ -31,7 +31,7 @@ class Login extends Component {
 
     componentDidMount() {
         this.checkLoggedIn();
-        document.title = 'Icafal';
+        document.title = 'Forms Machinery';
     }
 
     onChange(event) {

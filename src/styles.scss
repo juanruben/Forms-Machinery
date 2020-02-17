@@ -1,79 +1,79 @@
 body,
 div,
 p {
-  font-size: 14px;
-  font-family: "Lato", sans-serif;
-  margin: 0;
-  padding: 0;
+    font-size: 14px;
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-$icafal-orange: #ff5900;
-$icafal-orange-dark: rgb(190, 51, 1);
-$icafal-background: #f2f2f2;
+$theme-orange: #ff5900;
+$theme-orange-dark: rgb(190, 51, 1);
+$theme-background: #f2f2f2;
 
 .-header {
-  background-color: $icafal-orange;
-  color: white;
-  display: none;
+    background-color: $theme-orange;
+    color: white;
+    display: none;
 }
 
 .rt-resizable-header-content {
-  padding: 4px 0;
+    padding: 4px 0;
 }
 
 .rt-th input,
 .table-select-top {
-  border: solid 1px #999 !important;
+    border: solid 1px #999 !important;
 }
 
 .modal-header .close {
-  outline: 0;
+    outline: 0;
 }
 
 .form-actions {
-  display: flex;
-  justify-content: space-around;
-  button {
-    background-color: rgba(0, 0, 0, 0);
-    border: 0;
+    display: flex;
+    justify-content: space-around;
+    button {
+        background-color: rgba(0, 0, 0, 0);
+        border: 0;
 
-    .fa-exclamation-triangle {
-      color: red;
+        .fa-exclamation-triangle {
+            color: red;
+        }
+
+        &:focus {
+            outline: 0;
+        }
     }
 
-    &:focus {
-      outline: 0;
+    a {
+        color: rgb(41, 41, 41);
+        font-size: 1.2em;
     }
-  }
-
-  a {
-    color: rgb(41, 41, 41);
-    font-size: 1.2em;
-  }
 }
 
 .form-footer {
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: row;
-  margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-top: 30px;
 
-  .spinner {
-    margin-right: 20px;
-  }
+    .spinner {
+        margin-right: 20px;
+    }
 
-  button {
-    width: 200px;
-  }
+    button {
+        width: 200px;
+    }
 }
 
 .simple-loading-container {
-  align-items: center;
-  display: flex;
-  height: 50px;
-  justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 50px;
+    justify-content: center;
 }
 
 .padding10 {
-  padding: 10px;
+    padding: 10px;
 }

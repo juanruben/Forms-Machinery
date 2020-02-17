@@ -1,84 +1,84 @@
 @import "../../styles.scss";
 
 .multiple-container {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 
-  ul.multiple-item {
-    list-style: none;
-    padding: 0px;
-    margin: 0;
-  }
+    ul.multiple-item {
+        list-style: none;
+        padding: 0px;
+        margin: 0;
+    }
 
-  .border-error {
-    border: solid red;
-    border-radius: 4px;
-  }
+    .border-error {
+        border: solid red;
+        border-radius: 4px;
+    }
 
-  ul.multiple-item li {
-    display: inline;
-  }
+    ul.multiple-item li {
+        display: inline;
+    }
 
-  ul.multiple-item li label {
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 2px solid rgba(139, 139, 139, 0.3);
-    color: #adadad;
-    border-radius: 25px;
-    white-space: nowrap;
-    margin: 3px 0px;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: all 0.2s;
-  }
+    ul.multiple-item li label {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 2px solid rgba(139, 139, 139, 0.3);
+        color: #adadad;
+        border-radius: 25px;
+        white-space: nowrap;
+        margin: 3px 0px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: all 0.2s;
+    }
 
-  ul.multiple-item li label {
-    padding: 8px 12px;
-    cursor: pointer;
-  }
+    ul.multiple-item li label {
+        padding: 8px 12px;
+        cursor: pointer;
+    }
 
-  ul.multiple-item li label::before {
-    display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 12px;
-    padding: 2px 2px 2px 2px;
-    content: "";
-    transition: transform 0.3s ease-in-out;
-  }
+    ul.multiple-item li label::before {
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 12px;
+        padding: 2px 2px 2px 2px;
+        content: "";
+        transition: transform 0.3s ease-in-out;
+    }
 
-  ul.multiple-item li input[type="radio"]:checked + label::before {
-    content: "\f00c";
-    height: 10px;
-    transform: rotate(-360deg);
-    transition: transform 0.3s ease-in-out;
-  }
+    ul.multiple-item li input[type="radio"]:checked + label::before {
+        content: "\f00c";
+        height: 10px;
+        transform: rotate(-360deg);
+        transition: transform 0.3s ease-in-out;
+    }
 
-  ul.multiple-item li input[type="radio"]:checked + label {
-    border: 2px solid $icafal-orange-dark;
-    background-color: $icafal-orange;
-    color: #fff;
-    transition: all 0.2s;
-  }
+    ul.multiple-item li input[type="radio"]:checked + label {
+        border: 2px solid $theme-orange-dark;
+        background-color: $theme-orange;
+        color: #fff;
+        transition: all 0.2s;
+    }
 
-  ul.multiple-item li input[type="radio"] {
-    display: absolute;
-  }
-  ul.multiple-item li input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-  }
+    ul.multiple-item li input[type="radio"] {
+        display: absolute;
+    }
+    ul.multiple-item li input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+    }
 
-  .warning {
-    color: red;
-    font-size: 0.8em;
-    font-weight: bold;
-  }
+    .warning {
+        color: red;
+        font-size: 0.8em;
+        font-weight: bold;
+    }
 }

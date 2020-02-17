@@ -1,70 +1,70 @@
 @import "../../styles.scss";
 
 .sidebar-container {
-  width: 200px;
+    width: 200px;
 
-  .content {
-    font-size: 0.9em;
-    padding: 16px;
-    padding-top: 30px;
-    height: 100%;
+    .content {
+        font-size: 0.9em;
+        padding: 16px;
+        padding-top: 30px;
+        height: 100%;
 
-    .menu-items {
-      border-bottom: solid 1px #eee;
-      border-top: solid 1px #eee;
-      list-style: none;
-      padding: 0;
+        .menu-items {
+            border-bottom: solid 1px #eee;
+            border-top: solid 1px #eee;
+            list-style: none;
+            padding: 0;
 
-      .single-item {
-        border-bottom: solid 1px #eee;
-        color: black;
-        padding: 7px 0;
+            .single-item {
+                border-bottom: solid 1px #eee;
+                color: black;
+                padding: 7px 0;
 
-        &:hover {
-          text-decoration: none;
-          color: $icafal-orange;
+                &:hover {
+                    text-decoration: none;
+                    color: $theme-orange;
+                }
+            }
+
+            .item-container:hover {
+                text-decoration: none;
+            }
+
+            .sidebarLink {
+                display: inline-block;
+                text-decoration: none;
+            }
+
+            span {
+                padding-right: 10px;
+
+                i {
+                    font-size: 1.5em;
+                    text-align: center;
+                    width: 30px;
+                }
+            }
+
+            .active li {
+                color: $theme-orange;
+                font-weight: bold;
+            }
+
+            button {
+                background: none;
+                border: none;
+                padding: 7px 0;
+                text-decoration: none;
+                cursor: pointer;
+
+                &:focus {
+                    outline: 0;
+                }
+
+                &:hover {
+                    color: $theme-orange;
+                }
+            }
         }
-      }
-
-      .item-container:hover {
-        text-decoration: none;
-      }
-
-      .sidebarLink {
-        display: inline-block;
-        text-decoration: none;
-      }
-
-      span {
-        padding-right: 10px;
-
-        i {
-          font-size: 1.5em;
-          text-align: center;
-          width: 30px;
-        }
-      }
-
-      .active li {
-        color: $icafal-orange;
-        font-weight: bold;
-      }
-
-      button {
-        background: none;
-        border: none;
-        padding: 7px 0;
-        text-decoration: none;
-        cursor: pointer;
-
-        &:focus {
-          outline: 0;
-        }
-
-        &:hover {
-          color: $icafal-orange;
-        }
-      }
     }
-  }
 }

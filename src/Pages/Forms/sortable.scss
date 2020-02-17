@@ -1,63 +1,63 @@
 @import "../../styles.scss";
 
 .sortable-container {
-  border-top: solid #ddd 1px;
-  list-style: none;
-  padding: 0;
-  user-select: none;
+    border-top: solid #ddd 1px;
+    list-style: none;
+    padding: 0;
+    user-select: none;
 }
 
 .sortable-item {
-  border-bottom: solid #ddd 1px;
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
+    border-bottom: solid #ddd 1px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
 
-  .link-button {
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    color: black;
-  }
-
-  .highlight {
-    color: $icafal-orange-dark;
-  }
-
-  .form-actions {
-    width: 150px;
-    button {
-      border: 0;
-      background-color: rgba(0, 0, 0, 0);
+    .link-button {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        color: black;
     }
-  }
 
-  .asterisk {
-    color: #999;
-    padding-left: 10px;
-  }
+    .highlight {
+        color: $theme-orange-dark;
+    }
 
-  .comment {
-    color: #999;
-    font-size: 1.3em;
-    padding-left: 10px;
-    transform: translateY(3px);
-  }
+    .form-actions {
+        width: 150px;
+        button {
+            border: 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
+    }
+
+    .asterisk {
+        color: #999;
+        padding-left: 10px;
+    }
+
+    .comment {
+        color: #999;
+        font-size: 1.3em;
+        padding-left: 10px;
+        transform: translateY(3px);
+    }
 }
 
 .drag-handle {
-  color: $icafal-orange;
-  cursor: pointer;
-  padding-right: 20px;
+    color: $theme-orange;
+    cursor: pointer;
+    padding-right: 20px;
 }
 
 .back-button {
-  background-color: $icafal-background;
-  border: none;
-  color: $icafal-orange;
-  font-size: 1.2em;
-  // font-weight: bold;
-  padding-bottom: 10px;
-  &:focus {
-    outline: 0;
-  }
+    background-color: $theme-background;
+    border: none;
+    color: $theme-orange;
+    font-size: 1.2em;
+    // font-weight: bold;
+    padding-bottom: 10px;
+    &:focus {
+        outline: 0;
+    }
 }

@@ -1,38 +1,38 @@
 @import "../../styles.scss";
 
 .modal-add-button {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  color: $icafal-orange;
-  font-size: 3em;
-  margin-left: 20px;
-  padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: $theme-orange;
+    font-size: 3em;
+    margin-left: 20px;
+    padding: 0;
 
-  &:hover {
-    color: $icafal-orange-dark;
-  }
+    &:hover {
+        color: $theme-orange-dark;
+    }
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+        outline: 0;
+    }
 }
 
 .modal-link-button {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  color: $icafal-orange-dark;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: $theme-orange-dark;
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+        outline: 0;
+    }
 }
 
 .modal-edit-button {
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-  padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 0;
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+        outline: 0;
+    }
 }

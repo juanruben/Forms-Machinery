@@ -1,27 +1,27 @@
 @import "../../styles.scss";
 
 .button-main {
-  color: white;
-  background-color: $icafal-orange;
-  border: none;
-  border-radius: 2px;
-  display: block;
-  font-weight: bold;
-  height: 35px;
-  text-transform: uppercase;
-  width: 100%;
+    color: white;
+    background-color: $theme-orange;
+    border: none;
+    border-radius: 2px;
+    display: block;
+    font-weight: bold;
+    height: 35px;
+    text-transform: uppercase;
+    width: 100%;
 
-  &:hover:not([disabled]) {
-    background-color: #db4d00;
-    cursor: pointer;
-  }
+    &:hover:not([disabled]) {
+        background-color: #db4d00;
+        cursor: pointer;
+    }
 
-  &:disabled {
-    cursor: auto;
-    background-color: #ffb289;
-  }
+    &:disabled {
+        cursor: auto;
+        background-color: #ffb289;
+    }
 }
 
 .align-btn {
-  margin-top: 21px;
+    margin-top: 21px;
 }

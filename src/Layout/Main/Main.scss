@@ -1,15 +1,15 @@
 @import "../../styles.scss";
 
 .top-area {
-  background-color: $icafal-background;
-  padding: 0 20px;
-  padding-top: 10px;
+    background-color: $theme-background;
+    padding: 0 20px;
+    padding-top: 10px;
 }
 
 .content-area {
-  background-color: $icafal-background;
-  min-height: calc(100vh - 150px);
-  overflow: auto;
-  padding: 20px;
-  padding-top: 0px;
+    background-color: $theme-background;
+    min-height: calc(100vh - 150px);
+    overflow: auto;
+    padding: 20px;
+    padding-top: 0px;
 }

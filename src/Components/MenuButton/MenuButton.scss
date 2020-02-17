@@ -1,17 +1,17 @@
 @import "../../styles.scss";
 
 .menu-icon {
-  background-color: $icafal-background;
-  border: none;
-  color: $icafal-orange;
-  font-size: 30px;
-  padding: 0;
+    background-color: $theme-background;
+    border: none;
+    color: $theme-orange;
+    font-size: 30px;
+    padding: 0;
 
-  &:focus {
-    outline: 0;
-  }
+    &:focus {
+        outline: 0;
+    }
 
-  &:hover {
-    color: $icafal-orange-dark;
-  }
+    &:hover {
+        color: $theme-orange-dark;
+    }
 }
